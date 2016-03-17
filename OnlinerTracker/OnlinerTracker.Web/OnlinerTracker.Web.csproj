@@ -211,6 +211,8 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\App\Application.js" />
+    <Content Include="scripts\App\Auth\Controllers\AuthCtrl.js" />
+    <Content Include="scripts\App\Auth\Views\Auth.html" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
@@ -223,8 +225,9 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Extensions\Class1.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
