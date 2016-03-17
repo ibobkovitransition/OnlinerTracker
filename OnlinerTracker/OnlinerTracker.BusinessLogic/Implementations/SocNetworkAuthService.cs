@@ -32,15 +32,17 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 			var client = authRoot.Clients.FirstOrDefault(x => x.Name == serviceName);
 
 			if (client == null)
+			{
 				throw new ArgumentException("Check your app configuration for {0}", serviceName);
+			}
 
 			var result = client.GetUserInfo(queryString);
 
 			return new UserInfo
 			{
 				FirstName = result.FirstName,
-				ProviderName = result.ProviderName,
-				UserId = result.Id
+				UserId = result.Id,
+				PhotoUri = result.PhotoUri
 			};
 		}
 	}

@@ -31,13 +31,14 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 					context.Dispose();
 				}
 			}
+
 			disposed = true;
 		}
 
 		public void Dispose()
 		{
 			Dispose(true);
-			GC.SuppressFinalize(this); // где-то у меня без этого были траблы
+			GC.SuppressFinalize(this);
 		}
 	}
 }

@@ -4,6 +4,7 @@ using Microsoft.Ajax.Utilities;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Interfaces;
+using System.Web;
 
 namespace OnlinerTracker.Web.Controllers.Mvc
 {
@@ -34,29 +35,25 @@ namespace OnlinerTracker.Web.Controllers.Mvc
 				return HttpNotFound();
 			}
 
-			var authResult = authService.GetUserInfo(Request.QueryString, socNetwork);
-			var userHash = hashService.Encrypt(authResult.UserId);
-			var user = repository.FindBy(x => x.SocNetworkId == authResult.UserId);
+			var authedUser = authService.GetUserInfo(Request.QueryString, socNetwork);
+			var user = repository.FindBy(x => x.UserId == authedUser.UserId);
 
 			if (user == null)
 			{
-				repository.Create(new User
-				{
-					FirstName = authResult.FirstName,
-					SocNetworkId = authResult.UserId,
-					CreatedOn = DateTime.Now
+				repository.Create(new User{
+					FirstName = authedUser.FirstName,
+					CreatedOn = DateTime.Now,
+					PhotoUri = authedUser.PhotoUri,
+					UserId = authedUser.UserId
 				});
+
 				uow.Commit();
 			}
 
-			//Response.Cookies.Add();
-
-			// hash id 
-
-			// cookie
-
-			// another shit
-			// put hash into cookie
+			var userHash = hashService.Encrypt(authedUser.UserId);
+			HttpCookie cookie = new HttpCookie("auth_cookie");
+			cookie.Value = userHash;
+			ControllerContext.HttpContext.Response.Cookies.Add(cookie);
 
 			return Redirect("/#/Home");
 		}

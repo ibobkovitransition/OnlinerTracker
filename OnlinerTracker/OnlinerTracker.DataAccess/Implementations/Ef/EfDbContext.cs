@@ -10,7 +10,6 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 		public EfDbContext(string connectionName)
 			: base($"name={connectionName}")
 		{
-			//Database.SetInitializer(new DropCreateDatabaseAlways<EfDbContext>());
 		}
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
