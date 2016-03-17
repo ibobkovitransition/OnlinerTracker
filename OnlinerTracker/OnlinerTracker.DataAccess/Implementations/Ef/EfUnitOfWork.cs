@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OnlinerTracker.DataAccess.Abstract;
 using OnlinerTracker.DataAccess.Enteties;
+using OnlinerTracker.DataAccess.Interfaces;
 
-namespace OnlinerTracker.DataAccess.Concrete.Ef
+namespace OnlinerTracker.DataAccess.Implementations.Ef
 {
 	public class EfUnitOfWork : IUnitOfWork
 	{
-
 		private readonly EfDbContext context;
 		private IRepository<User> userRepository;
 		private bool disposed;
@@ -44,6 +39,5 @@ namespace OnlinerTracker.DataAccess.Concrete.Ef
 			Dispose(true);
 			GC.SuppressFinalize(this); // где-то у меня без этого были траблы
 		}
-
 	}
 }

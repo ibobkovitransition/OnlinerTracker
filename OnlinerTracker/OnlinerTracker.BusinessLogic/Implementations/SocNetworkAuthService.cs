@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OAuth2;
-using OnlinerTracker.BusinessLogic.Abstract;
 using System.Collections.Specialized;
 using OnlinerTracker.BusinessLogic.Models;
 
-// TODO: вынести в отдельную view model
-
-
-namespace OnlinerTracker.BusinessLogic.Concrete
+namespace OnlinerTracker.BusinessLogic.Interfaces
 {
 	public class SocNetworkAuthService : ISocNetworkAuthService
 	{
@@ -27,7 +20,9 @@ namespace OnlinerTracker.BusinessLogic.Concrete
 			var client = authRoot.Clients.FirstOrDefault(x => x.Name == serviceName);
 
 			if (client == null)
+			{
 				throw new ArgumentException("There is no {0} in .config", serviceName);
+			}
 
 			return client.GetLoginLinkUri();
 		}
@@ -47,8 +42,6 @@ namespace OnlinerTracker.BusinessLogic.Concrete
 				ProviderName = result.ProviderName,
 				UserId = result.Id
 			};
-
 		}
-
 	}
 }

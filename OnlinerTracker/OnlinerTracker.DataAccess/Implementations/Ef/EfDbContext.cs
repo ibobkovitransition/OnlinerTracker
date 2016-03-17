@@ -1,23 +1,21 @@
 using System.Data.Entity.ModelConfiguration.Conventions;
 using OnlinerTracker.DataAccess.Enteties;
 
-namespace OnlinerTracker.DataAccess.Concrete.Ef
+namespace OnlinerTracker.DataAccess.Implementations.Ef
 {
-	using System;
 	using System.Data.Entity;
-	using System.Linq;
 
 	public class EfDbContext : DbContext
 	{
 		public EfDbContext(string connectionName)
 			: base($"name={connectionName}")
 		{
+			//Database.SetInitializer(new DropCreateDatabaseAlways<EfDbContext>());
 		}
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-			base.OnModelCreating(modelBuilder);
 		}
 
 		public virtual DbSet<User> Users { get; set; }

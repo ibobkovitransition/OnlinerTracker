@@ -1,26 +1,19 @@
-﻿
-<div class="alert alert-info" ng-controller="AccountCtrl">
+﻿<div class="alert alert-info" ng-controller="AccountCtrl">
 	<h3 class="text-center">Please sign in with</h3>
-
 	<div class="row">
 		<div class="col-xs-4 col-xs-offset-4">
-
-			<a class="btn btn-block btn-social btn-twitter" ng-click="getRequestToken('Twitter')">
+			<a class="btn btn-block btn-social btn-twitter" ng-click="getRequestUrl('Twitter')">
 				<span class="fa fa-twitter-square"></span>
 				Twitter
 			</a>
-
-			<a class="btn btn-block btn-social btn-facebook" ng-click="alert('Later')">
+			<a class="btn btn-block btn-social btn-facebook" ng-click="getRequestUrl('Facebook')">
 				<span class="fa fa-facebook-square"></span>
 				Facebook
 			</a>
-
 			<a class="btn btn-block btn-social btn-vk" ng-click="alert('Later')">
 				<span class="fa fa-vk"></span>
 				Vk
 			</a>
-
 		</div>
-
 	</div>
 </div>

@@ -52,9 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IContentSearchService.cs" />
-    <Compile Include="Abstract\ISocNetworkAuthService.cs" />
-    <Compile Include="Concrete\SocNetworkAuthService.cs" />
+    <Compile Include="Implementations\MD5HashService.cs" />
+    <Compile Include="Interfaces\IContentSearchService.cs" />
+    <Compile Include="Interfaces\IHashService.cs" />
+    <Compile Include="Interfaces\ISocNetworkAuthService.cs" />
+    <Compile Include="Implementations\SocNetworkAuthService.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

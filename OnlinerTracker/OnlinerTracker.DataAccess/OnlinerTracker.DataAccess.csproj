@@ -51,11 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IRepository.cs" />
-    <Compile Include="Abstract\IUnitOfWork.cs" />
-    <Compile Include="Concrete\Ef\EfDbContext.cs" />
-    <Compile Include="Concrete\Ef\EfUnitOfWork.cs" />
-    <Compile Include="Concrete\Ef\EfUserRepository.cs" />
+    <Compile Include="Enteties\Basis\BaseEntity.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Implementations\Ef\EfDbContext.cs" />
+    <Compile Include="Implementations\Ef\EfUnitOfWork.cs" />
+    <Compile Include="Implementations\Ef\EfUserRepository.cs" />
     <Compile Include="Enteties\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

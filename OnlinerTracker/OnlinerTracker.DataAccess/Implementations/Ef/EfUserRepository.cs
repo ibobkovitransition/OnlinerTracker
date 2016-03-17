@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
-using OnlinerTracker.DataAccess.Abstract;
 using OnlinerTracker.DataAccess.Enteties;
+using OnlinerTracker.DataAccess.Interfaces;
 
-namespace OnlinerTracker.DataAccess.Concrete.Ef
+namespace OnlinerTracker.DataAccess.Implementations.Ef
 {
 	public class EfUserRepository : IRepository<User>
 	{
-
 		internal readonly DbSet<User> DbSet;
 		internal readonly EfDbContext Context;
 
@@ -45,14 +41,13 @@ namespace OnlinerTracker.DataAccess.Concrete.Ef
 			{
 				DbSet.Attach(entity);
 			}
+
 			DbSet.Remove(entity);
 		}
 
 		public void Delete(int id)
 		{
 			var entity = DbSet.Find(id);
-			//if (entity == null)
-			//	throw new ArgumentException($"Ilegal id {id}");
 			Delete(entity);
 		}
 

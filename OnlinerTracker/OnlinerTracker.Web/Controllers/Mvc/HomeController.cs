@@ -1,6 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
-using OnlinerTracker.BusinessLogic.Abstract;
+﻿using System.Web.Mvc;
 
 namespace OnlinerTracker.Web.Controllers.Mvc
 {

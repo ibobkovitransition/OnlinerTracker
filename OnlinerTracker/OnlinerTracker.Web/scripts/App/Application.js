@@ -1,5 +1,4 @@
-﻿
-angular.module("AccountModule", []);
+﻿angular.module("AccountModule", []);
 angular.module("HomeModule", []);
 angular.module("AdminModule", []);
 
@@ -24,5 +23,4 @@ main.config(function ($routeProvider, $locationProvider) {
 	//	enabled: true,
 	//	requireBase: false
 	//});
-
 });

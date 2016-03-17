@@ -13,7 +13,7 @@ namespace OnlinerTracker.Web
 		{
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-			// apply supporting of routeAttribute in mvc controllers
+			// apply supporting of route attributes for mvc controllers
 			routes.MapMvcAttributeRoutes();
 
 			routes.MapRoute(

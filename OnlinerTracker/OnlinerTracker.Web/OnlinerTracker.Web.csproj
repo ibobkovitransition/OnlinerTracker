@@ -232,7 +232,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Mvc\AccountController.cs" />
     <Compile Include="Controllers\Mvc\HomeController.cs" />
-    <Compile Include="Controllers\Api\SocNetworkController.cs" />
+    <Compile Include="Controllers\Api\AccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

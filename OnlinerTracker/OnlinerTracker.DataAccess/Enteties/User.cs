@@ -1,8 +1,9 @@
-﻿namespace OnlinerTracker.DataAccess.Enteties
+﻿using OnlinerTracker.DataAccess.Enteties.Basis;
+
+namespace OnlinerTracker.DataAccess.Enteties
 {
-	public class User
+	public class User : BaseEntity
 	{
-		public int Id { get; set; }
 		public string FirstName { get; set; }
 		public string SocNetworkId { get; set; }
 	}
