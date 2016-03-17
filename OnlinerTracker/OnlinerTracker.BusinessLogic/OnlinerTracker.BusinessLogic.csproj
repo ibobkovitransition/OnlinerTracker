@@ -53,8 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IContentSearchService.cs" />
-    <Compile Include="Abstract\ISocialNetworkAuthService.cs" />
-    <Compile Include="Concrete\SocialNetworkAuthService.cs" />
+    <Compile Include="Abstract\ISocNetworkAuthService.cs" />
+    <Compile Include="Concrete\SocNetworkAuthService.cs" />
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

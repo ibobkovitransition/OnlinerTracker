@@ -2,7 +2,8 @@ using OAuth2;
 using OnlinerTracker.BusinessLogic.Abstract;
 using OnlinerTracker.BusinessLogic.Concrete;
 using OnlinerTracker.DataAccess.Abstract;
-using OnlinerTracker.DataAccess.Concrete;
+using OnlinerTracker.DataAccess.Concrete.Ef;
+using OnlinerTracker.DataAccess.Enteties;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -68,8 +69,12 @@ namespace OnlinerTracker.Web.App_Start
 		private static void RegisterServices(IKernel kernel)
 		{
 			kernel.Bind<AuthorizationRoot>().ToSelf();
-			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-			kernel.Bind<ISocialNetworkAuthService>().To<SocialNetworkAuthService>();
+			kernel.Bind<EfDbContext>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
+
+			kernel.Bind<IRepository<User>>().To<EfUserRepository>();
+
+			kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>();
+			kernel.Bind<ISocNetworkAuthService>().To<SocNetworkAuthService>();
 		}
 	}
 }

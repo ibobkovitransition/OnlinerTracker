@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using OnlinerTracker.DataAccess.Concrete.Ef;
 using OnlinerTracker.DataAccess.Enteties;
 
 namespace OnlinerTracker.DataAccess.Abstract
 {
-	public interface IUnitOfWork
-	{ 
-		IRepository<User> UserRepository { get; } 
+	public interface IUnitOfWork : IDisposable
+	{
+		IRepository<User> UserRepository { get; }
+
+		void Commit();
+
 	}
 }
