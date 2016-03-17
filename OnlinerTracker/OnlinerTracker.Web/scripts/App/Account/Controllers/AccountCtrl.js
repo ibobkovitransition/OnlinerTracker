@@ -1,7 +1,7 @@
 ﻿
-angular.module("AuthModule")
-	.controller("AuthCtrl", function ($scope, $http, $location, $window) {
-		$scope.getAuthUrl = function (socialNetworkName) {
+angular.module("AccountModule")
+	.controller("AccountCtrl", function ($scope, $http, $location, $window) {
+		$scope.getRequestToken = function (socNetwork) {
 
 			var rejectFn = function (response) {
 				// add errors
@@ -10,14 +10,12 @@ angular.module("AuthModule")
 			}
 
 			var accessFn = function (response) {
-				console.log("accessfn: ", response);
-
 				$window.location.href = response.data;
 			}
 
 			var config = {
 				method: "GET",
-				url: "/api/account/" + socialNetworkName
+				url: "/api/Account/SignIn/" + socNetwork
 			};
 
 			$http(config).then(accessFn, rejectFn);

@@ -20,7 +20,7 @@ namespace OnlinerTracker.BusinessLogic.Concrete
 			_authRoot = authRoot;
 		}
 
-		public string GetAuthUrl(string serviceName)
+		public string GetRequestToken(string serviceName)
 		{
 			var client = _authRoot.Clients.FirstOrDefault(x => x.Name == serviceName);
 
@@ -29,7 +29,7 @@ namespace OnlinerTracker.BusinessLogic.Concrete
 
 			return client.GetLoginLinkUri();
 		}
-		public UserInfo GetProtectedResources(NameValueCollection queryString, string serviceName)
+		public UserInfo GetUserInfo(NameValueCollection queryString, string serviceName)
 		{
 			var client = _authRoot.Clients.FirstOrDefault(x => x.Name == serviceName);
 			return client.GetUserInfo(queryString);

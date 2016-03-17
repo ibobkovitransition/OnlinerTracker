@@ -5,8 +5,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using OnlinerTracker.BusinessLogic.Abstract;
-using System.Collections.Specialized;
-using OnlinerTracker.Web.Extensions;
 using System.Web;
 
 namespace OnlinerTracker.Web.Controllers
@@ -20,22 +18,23 @@ namespace OnlinerTracker.Web.Controllers
 			_auth = auth;
 		}
 
-
-		[Route("~/api/account/{socNetwork}")]
-		public string GetLoginLink(string socNetwork)
+		[Route("~/api/Account/SignIn/{socNetwork}")]
+		public string GetRequestToken(string socNetwork)
 		{
-			return _auth.GetAuthUrl(socNetwork);
+			return _auth.GetRequestToken(socNetwork);
 		}
 
-		[Route("~/api/account/auth")]
-		public string GetAccessToken()
+		[Route("~/api/Account/Auth/{socNetwork}")]
+		public HttpResponseMessage GetAccessToken(string socNetwork)
 		{
-			// как хранить имя соц сети
-			//var coll = Request.GetQueryNameValuePairs();
-			var coll = HttpUtility.ParseQueryString(Request.RequestUri.Query);
+			var uriParams = HttpUtility.ParseQueryString(Request.RequestUri.Query);
+			var view = _auth.GetUserInfo(uriParams, socNetwork);
 
-			var view = _auth.GetProtectedResources(coll, "Twitter");
-			return "something";
+			// put in response
+
+			var response = Request.CreateResponse(HttpStatusCode.Redirect);
+			response.Headers.Location = new Uri("http://localhost:38840/#/Home");
+			return response;
 		}
 
 	}

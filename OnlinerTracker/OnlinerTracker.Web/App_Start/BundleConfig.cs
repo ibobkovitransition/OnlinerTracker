@@ -18,7 +18,7 @@ namespace OnlinerTracker.Web.App_Start
 			bundles.Add(new ScriptBundle("~/bundles/application")
 				
 				.Include("~/scripts/App/Application.js")
-				.Include("~/scripts/App/Auth/Controllers/AuthCtrl.js")
+				.Include("~/scripts/App/Account/Controllers/AccountCtrl.js")
 				);
 
 			bundles.Add(new ScriptBundle("~/bundles/jquery")

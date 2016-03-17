@@ -11,7 +11,7 @@ namespace OnlinerTracker.BusinessLogic.Abstract
 {
 	public interface ISocialNetworkAuthService
 	{
-		string GetAuthUrl(string serviceName);
-		UserInfo GetProtectedResources(NameValueCollection queryString, string serviceName);
+		string GetRequestToken(string serviceName);
+		UserInfo GetUserInfo(NameValueCollection queryString, string serviceName);
 	}
 }
