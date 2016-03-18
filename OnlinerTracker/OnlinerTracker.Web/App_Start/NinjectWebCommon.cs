@@ -1,8 +1,9 @@
 using OAuth2;
-using OnlinerTracker.BusinessLogic.Abstract;
-using OnlinerTracker.BusinessLogic.Concrete;
-using OnlinerTracker.DataAccess.Abstract;
-using OnlinerTracker.DataAccess.Concrete;
+using OnlinerTracker.BusinessLogic.Implementations;
+using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.DataAccess.Enteties;
+using OnlinerTracker.DataAccess.Implementations.Ef;
+using OnlinerTracker.DataAccess.Interfaces;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -67,9 +68,14 @@ namespace OnlinerTracker.Web.App_Start
 		/// <param name="kernel">The kernel.</param>
 		private static void RegisterServices(IKernel kernel)
 		{
+			// self binding
 			kernel.Bind<AuthorizationRoot>().ToSelf();
-			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-			kernel.Bind<ISocialNetworkAuthService>().To<SocialNetworkAuthService>();
+			kernel.Bind<EfDbContext>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
+
+			kernel.Bind<IRepository<User>>().To<EfUserRepository>();
+			kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>();
+			kernel.Bind<ISocNetworkAuthService>().To<SocNetworkAuthService>();
+			kernel.Bind<IHashService>().To<MD5HashService>();
 		}
 	}
 }

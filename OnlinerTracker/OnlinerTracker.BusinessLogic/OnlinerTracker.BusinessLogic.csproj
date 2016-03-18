@@ -52,13 +52,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IContentSearchService.cs" />
-    <Compile Include="Abstract\ISocialNetworkAuthService.cs" />
-    <Compile Include="Concrete\SocialNetworkAuthService.cs" />
+    <Compile Include="Implementations\MD5HashService.cs" />
+    <Compile Include="Interfaces\IContentSearchService.cs" />
+    <Compile Include="Interfaces\IHashService.cs" />
+    <Compile Include="Interfaces\ISocNetworkAuthService.cs" />
+    <Compile Include="Implementations\SocNetworkAuthService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnlinerTracker.DataAccess\OnlinerTracker.DataAccess.csproj">
+      <Project>{F73A59E1-CC0C-4F02-BBA8-7A8022B2078D}</Project>
+      <Name>OnlinerTracker.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
