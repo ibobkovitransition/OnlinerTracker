@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Specialized;
 using OnlinerTracker.BusinessLogic.Interfaces;
-using OnlinerTracker.BusinessLogic.Models;
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Interfaces;
 
-namespace OnlinerTracker.Web.Implementations
+namespace OnlinerTracker.BusinessLogic.Implementations
 {
 	public class UserService : IUserService
 	{
