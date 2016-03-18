@@ -2,29 +2,23 @@
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using OnlinerTracker.BusinessLogic.Interfaces;
-using OnlinerTracker.DataAccess.Enteties;
-using OnlinerTracker.DataAccess.Interfaces;
 using System.Web;
+using OnlinerTracker.Web.Interaces;
 
 namespace OnlinerTracker.Web.Controllers.Mvc
 {
-	/// <summary>
-	///  security - на случай если взбредет в angular поставлю поддержку html5, в этом случае /#/ исчезнет и возникнут неопределенности
-	/// </summary>
 	[RoutePrefix("api/v1/account")]
 	public class AccountController : Controller
 	{
-		private readonly ISocNetworkAuthService authService;
-		private readonly IRepository<User> repository;
-		private readonly IUnitOfWork uow;
+		private readonly IUserService userService;
 		private readonly IHashService hashService;
+		private readonly ICookieService cookieService;
 
-		public AccountController(ISocNetworkAuthService authService, IUnitOfWork uow, IHashService hashService)
+		public AccountController(IUserService userService, IHashService hashService, ICookieService cookieService)
 		{
-			this.authService = authService;
-			this.uow = uow;
+			this.userService = userService;
 			this.hashService = hashService;
-			repository = uow.UserRepository;
+			this.cookieService = cookieService;
 		}
 
 		[Route("auth/{socNetwork}")]
@@ -35,28 +29,10 @@ namespace OnlinerTracker.Web.Controllers.Mvc
 				return HttpNotFound();
 			}
 
-			var authedUser = authService.GetUserInfo(Request.QueryString, socNetwork);
-			var user = repository.FindBy(x => x.UserId == authedUser.UserId);
-
-			if (user == null)
-			{
-				repository.Create(new User
-				{
-					FirstName = authedUser.FirstName,
-					CreatedOn = DateTime.Now,
-					PhotoUri = authedUser.PhotoUri,
-					UserId = authedUser.UserId
-				});
-
-				uow.Commit();
-			}
-
-			var userHash = hashService.Encrypt(authedUser.UserId);
-			HttpCookie cookie = new HttpCookie("auth_cookie")
-			{
-				Value = userHash
-			};
-			ControllerContext.HttpContext.Response.Cookies.Add(cookie);
+			var authedUser = userService.AuthService.GetUserInfo(Request.QueryString, socNetwork);
+			var encryptedId = hashService.Encrypt(authedUser.UserId);
+			userService.AuthUser(authedUser);
+			cookieService.PutCookie(ControllerContext.HttpContext.Response, "onliner_tracker", encryptedId, 10);
 
 			return Redirect("/#/Home");
 		}

@@ -4,6 +4,8 @@ using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Implementations.Ef;
 using OnlinerTracker.DataAccess.Interfaces;
+using OnlinerTracker.Web.Implementations;
+using OnlinerTracker.Web.Interaces;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -70,9 +72,12 @@ namespace OnlinerTracker.Web.App_Start
 		{
 			// self binding
 			kernel.Bind<AuthorizationRoot>().ToSelf();
-			kernel.Bind<EfDbContext>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
+			kernel.Bind<EfDbContext>().ToSelf().InSingletonScope().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
 
-			kernel.Bind<IRepository<User>>().To<EfUserRepository>();
+			kernel.Bind<IRepository<User>>().To<EfGenericRepository<User>>();
+			kernel.Bind<IUserService>().To<UserService>();
+			kernel.Bind<ICookieService>().To<CookieService>();
+
 			kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>();
 			kernel.Bind<ISocNetworkAuthService>().To<SocNetworkAuthService>();
 			kernel.Bind<IHashService>().To<MD5HashService>();

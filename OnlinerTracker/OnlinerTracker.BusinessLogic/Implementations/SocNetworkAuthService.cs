@@ -2,9 +2,10 @@
 using System.Linq;
 using OAuth2;
 using System.Collections.Specialized;
-using OnlinerTracker.DataAccess.Enteties;
+using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Models;
 
-namespace OnlinerTracker.BusinessLogic.Interfaces
+namespace OnlinerTracker.BusinessLogic.Implementations
 {
 	public class SocNetworkAuthService : ISocNetworkAuthService
 	{
@@ -15,7 +16,7 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 			this.authRoot = authRoot;
 		}
 
-		public string GetRequestToken(string serviceName)
+		public string GetAuthUrl(string serviceName)
 		{
 			var client = authRoot.Clients.FirstOrDefault(x => x.Name == serviceName);
 
@@ -27,7 +28,7 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 			return client.GetLoginLinkUri();
 		}
 
-		public User GetUserInfo(NameValueCollection queryString, string serviceName)
+		public UserInfo GetUserInfo(NameValueCollection queryString, string serviceName)
 		{
 			var client = authRoot.Clients.FirstOrDefault(x => x.Name == serviceName);
 
@@ -38,7 +39,7 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 
 			var result = client.GetUserInfo(queryString);
 
-			return new User
+			return new UserInfo
 			{
 				FirstName = result.FirstName,
 				UserId = result.Id,

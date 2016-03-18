@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using OnlinerTracker.DataAccess.Enteties;
+using OnlinerTracker.DataAccess.Enteties.Basis;
 using OnlinerTracker.DataAccess.Interfaces;
 
 namespace OnlinerTracker.DataAccess.Implementations.Ef
 {
-	public class EfUserRepository : IRepository<User>
+	public class EfGenericRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
 	{
-		internal readonly DbSet<User> DbSet;
+		internal readonly DbSet<TEntity> DbSet;
 		internal readonly EfDbContext Context;
 
-		public EfUserRepository(EfDbContext context)
+		public EfGenericRepository(EfDbContext context)
 		{
-			DbSet = context.Set<User>();
 			Context = context;
+			DbSet = context.Set<TEntity>();
 		}
 
-		public IEnumerable<User> GetEntities(Expression<Func<User, bool>> filters = null)
+		public IEnumerable<TEntity> GetEntities(Expression<Func<TEntity, bool>> filters = null)
 		{
-			IQueryable<User> query = DbSet;
+			IQueryable<TEntity> query = DbSet;
 			if (filters != null)
 			{
 				query = query.Where(filters);
@@ -30,12 +30,12 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 			return query.AsEnumerable();
 		}
 
-		public void Create(User entity)
+		public void Create(TEntity entity)
 		{
 			DbSet.Add(entity);
 		}
 
-		public void Delete(User entity)
+		public void Delete(TEntity entity)
 		{
 			if (Context.Entry(entity).State == EntityState.Detached)
 			{
@@ -51,15 +51,15 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 			Delete(entity);
 		}
 
-		public void Update(User entity)
+		public void Update(TEntity entity)
 		{
 			DbSet.Attach(entity);
 			Context.Entry(entity).State = EntityState.Modified;
 		}
 
-		public User FindBy(Expression<Func<User, bool>> filters = null)
+		public TEntity FindBy(Expression<Func<TEntity, bool>> filters = null)
 		{
-			IQueryable<User> query = DbSet;
+			IQueryable<TEntity> query = DbSet;
 			if (filters != null)
 			{
 				query = query.Where(filters);

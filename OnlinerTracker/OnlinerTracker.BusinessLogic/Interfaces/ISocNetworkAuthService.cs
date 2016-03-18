@@ -1,12 +1,12 @@
 ﻿using System.Collections.Specialized;
-using OnlinerTracker.DataAccess.Enteties;
+using OnlinerTracker.BusinessLogic.Models;
 
 namespace OnlinerTracker.BusinessLogic.Interfaces
 {
 	public interface ISocNetworkAuthService
 	{
-		string GetRequestToken(string serviceName);
+		string GetAuthUrl(string serviceName);
 
-		User GetUserInfo(NameValueCollection queryString, string serviceName);
+		UserInfo GetUserInfo(NameValueCollection queryString, string serviceName);
 	}
 }

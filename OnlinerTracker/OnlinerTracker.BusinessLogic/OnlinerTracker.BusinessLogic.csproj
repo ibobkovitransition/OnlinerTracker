@@ -53,10 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\MD5HashService.cs" />
-    <Compile Include="Interfaces\IContentSearchService.cs" />
+    <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interfaces\IHashService.cs" />
     <Compile Include="Interfaces\ISocNetworkAuthService.cs" />
     <Compile Include="Implementations\SocNetworkAuthService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Models\UsefInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,9 +70,7 @@
       <Name>OnlinerTracker.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

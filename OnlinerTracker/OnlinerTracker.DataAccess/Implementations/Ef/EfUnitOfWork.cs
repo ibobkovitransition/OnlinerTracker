@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Interfaces;
 
@@ -7,15 +8,16 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 	public class EfUnitOfWork : IUnitOfWork
 	{
 		private readonly EfDbContext context;
-		private IRepository<User> userRepository;
+
+		public IRepository<User> UserRepository { get; }
+
 		private bool disposed;
 
-		public EfUnitOfWork(EfDbContext context)
+		public EfUnitOfWork(EfDbContext context, IRepository<User> userRepository)
 		{
 			this.context = context;
+			UserRepository = userRepository;
 		}
-
-		public IRepository<User> UserRepository => userRepository ?? new EfUserRepository(context);
 
 		public void Commit()
 		{

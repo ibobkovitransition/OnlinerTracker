@@ -240,6 +240,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Implementations\CookieService.cs" />
+    <Compile Include="Interaces\ICookieService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -257,8 +259,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Infrastructure\" />
     <Folder Include="Models\" />
     <Folder Include="scripts\App\Home\Controllers\" />
   </ItemGroup>
