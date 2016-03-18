@@ -25,6 +25,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 				return NotFound();
 			}
 
+			// stuff
 			return Ok(authService.GetRequestToken(socNetwork));
 		}
 	}
