@@ -12,11 +12,6 @@
 				$window.location.href = response.data;
 			}
 
-			var config = {
-				method: "GET",
-				url: "/signin/" + socNetwork
-			};
-
-			$http(config).then(accessFn, rejectFn);
+			$http.get("/signin/" + socNetwork).then(accessFn, rejectFn);
 		}
 	});

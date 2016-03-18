@@ -1,0 +1,25 @@
+﻿<div ng-controller="SearchCtrl">
+	<div class="">
+		<div class="form-group">
+			<input ng-model="searchQuery" class="form-control" ng-change="searchRequest()" placeholder="Search for ..."/>
+		</div>
+	</div>
+
+	<ul class="list-group">
+		<li class="list-group-item" ng-repeat="item in data">
+			<div class="row">
+				<div class="col-md-2">
+					<img ng-src="{{item.images.icon == null ? item.images.icon : item.images.header}}" class="img-responsive"/>
+				</div>
+				<div class="col-md-8">
+					<h3>{{item.Name}}</h3>
+					<p>{{item.Description}}</p>
+				</div>
+				<div class="col-md-2">
+					<b>min {{item.prices.min}}</b>
+					<a ng-href="{{item.html_url}}" class="btn btn-warning">More</a>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>

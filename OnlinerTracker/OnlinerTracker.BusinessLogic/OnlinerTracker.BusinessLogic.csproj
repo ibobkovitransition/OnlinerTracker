@@ -53,11 +53,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\Base64HashService.cs" />
+    <Compile Include="Implementations\ProductService.cs" />
+    <Compile Include="Interfaces\IProductService.cs" />
+    <Compile Include="Implementations\OnlinerProductSearchService.cs" />
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interfaces\IHashService.cs" />
+    <Compile Include="Interfaces\IProductSearchService.cs" />
     <Compile Include="Interfaces\ISocNetworkAuthService.cs" />
     <Compile Include="Implementations\SocNetworkAuthService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\Page.cs" />
+    <Compile Include="Models\Price.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\UsefInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

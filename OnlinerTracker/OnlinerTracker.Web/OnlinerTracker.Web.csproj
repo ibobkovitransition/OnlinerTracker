@@ -221,7 +221,8 @@
     <Content Include="scripts\App\Application.js" />
     <Content Include="scripts\App\Account\Controllers\AccountCtrl.js" />
     <Content Include="scripts\App\Account\Views\SignIn.html" />
-    <Content Include="scripts\App\Home\Views\Home.html" />
+    <Content Include="scripts\App\Home\Controllers\SearchCtrl.js" />
+    <Content Include="scripts\App\Home\Views\Search.html" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
@@ -234,6 +235,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Mvc\AccountController.cs" />
     <Compile Include="Controllers\Mvc\HomeController.cs" />
     <Compile Include="Controllers\Api\AccountController.cs" />
@@ -260,7 +262,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="scripts\App\Home\Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlinerTracker.BusinessLogic\OnlinerTracker.BusinessLogic.csproj">

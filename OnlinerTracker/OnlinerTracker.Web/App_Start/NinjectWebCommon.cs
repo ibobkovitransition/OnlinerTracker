@@ -70,17 +70,24 @@ namespace OnlinerTracker.Web.App_Start
 		/// <param name="kernel">The kernel.</param>
 		private static void RegisterServices(IKernel kernel)
 		{
-			// self binding
+			// self BL & DA
 			kernel.Bind<AuthorizationRoot>().ToSelf();
 			kernel.Bind<Context>().ToSelf().InSingletonScope().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
 
-			kernel.Bind<IRepository<User>>().To<Repository<User>>();
-			kernel.Bind<IUserService>().To<UserService>();
-			kernel.Bind<ICookieService>().To<CookieService>();
-
-			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+			// direct BL
 			kernel.Bind<ISocNetworkAuthService>().To<SocNetworkAuthService>();
+			kernel.Bind<ICookieService>().To<CookieService>();
 			kernel.Bind<IHashService>().To<Base64HashService>();
+			kernel.Bind<IProductSearchService>().To<OnlinerProductSearchService>();
+
+			// indirectly DAL
+			kernel.Bind<IRepository<User>>().To<Repository<User>>();
+			kernel.Bind<IRepository<Product>>().To<Repository<Product>>();
+			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+
+			// indirectly BLL
+			kernel.Bind<IUserService>().To<UserService>();
+			kernel.Bind<IProductService>().To<ProductService>();
 		}
 	}
 }

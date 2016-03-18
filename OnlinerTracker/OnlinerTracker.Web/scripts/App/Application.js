@@ -2,7 +2,7 @@
 angular.module("HomeModule", []);
 angular.module("AdminModule", []);
 
-var main = angular.module("MainApp", ["ngRoute", "AccountModule"]);
+var main = angular.module("MainApp", ["ngRoute", "AccountModule", "HomeModule"]);
 
 main.config(function ($routeProvider, $locationProvider) {
 	$routeProvider.when("/Account", {
@@ -11,16 +11,11 @@ main.config(function ($routeProvider, $locationProvider) {
 	});
 
 	$routeProvider.when("/Home", {
-		templateUrl: "/scripts/App/Home/Views/Home.html",
-		controller: "AccountCtrl"
+		templateUrl: "/scripts/App/Home/Views/Search.html",
+		controller: "SearchCtrl"
 	});
 
 	$routeProvider.otherwise({
 		redirectTo: "/Account"
 	});
-
-	//$locationProvider.html5Mode({
-	//	enabled: true,
-	//	requireBase: false
-	//});
 });

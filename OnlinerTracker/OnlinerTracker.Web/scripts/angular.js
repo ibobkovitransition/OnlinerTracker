@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license AngularJS v1.5.0
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
@@ -1351,7 +1351,7 @@ function tryDecodeURIComponent(value) {
 
 
 /**
- * Parses an escaped url query string into key-value pairs.
+ * Parses an escaped url productName string into key-value pairs.
  * @returns {Object.<string,boolean|Array>}
  */
 function parseKeyValue(/**string*/keyValue) {
@@ -1418,10 +1418,10 @@ function encodeUriSegment(val) {
 
 
 /**
- * This method is intended for encoding *key* or *value* parts of query component. We need a custom
+ * This method is intended for encoding *key* or *value* parts of productName component. We need a custom
  * method because encodeURIComponent is too aggressive and encodes stuff that doesn't have to be
  * encoded per http://tools.ietf.org/html/rfc3986:
- *    query       = *( pchar / "/" / "?" )
+ *    productName       = *( pchar / "/" / "?" )
  *    pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
  *    unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
  *    pct-encoded   = "%" HEXDIG HEXDIG
@@ -3950,9 +3950,9 @@ function annotate(fn, strictDi, name) {
  * @name $injector#has
  *
  * @description
- * Allows the user to query if the particular service exists.
+ * Allows the user to productName if the particular service exists.
  *
- * @param {string} name Name of the service to query.
+ * @param {string} name Name of the service to productName.
  * @returns {boolean} `true` if injector has given service.
  */
 

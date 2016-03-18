@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license AngularJS v1.5.0
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
@@ -1222,7 +1222,7 @@ angular.mock.dump = function(object) {
  *
  * ### Query parameters
  *
- * By default, query parameters on request URLs are parsed into the `params` object. So a request URL
+ * By default, productName parameters on request URLs are parsed into the `params` object. So a request URL
  * of `/list?q=searchstr&orderby=-name` would set `params` to be `{q: 'searchstr', orderby: '-name'}`.
  *
  * ### Regex parameter matching
@@ -1252,9 +1252,9 @@ angular.mock.dump = function(object) {
  * ## Matching route requests
  *
  * For extra convenience, `whenRoute` and `expectRoute` shortcuts are available. These methods offer colon
- * delimited matching of the url path, ignoring the query string. This allows declarations
+ * delimited matching of the url path, ignoring the productName string. This allows declarations
  * similar to how application routes are configured with `$routeProvider`. Because these methods convert
- * the definition url to regex, declaration order is important. Combined with query parameter parsing,
+ * the definition url to regex, declaration order is important. Combined with productName parameter parsing,
  * the following is possible:
  *
   ```js
@@ -1272,7 +1272,7 @@ angular.mock.dump = function(object) {
         // paged api response '/v1/users?page=2'
         params.page = Number(params.page) || 1;
 
-        // query for last names '/v1/users?q=Archer'
+        // productName for last names '/v1/users?q=Archer'
         if (params.q) {
           userList = $filter('filter')({lastName: params.q});
         }

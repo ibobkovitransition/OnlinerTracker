@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license AngularJS v1.5.0
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
@@ -109,7 +109,7 @@ function shallowClearAndCopy(src, dst) {
  *   when a param value needs to be obtained for a request (unless the param was overridden).
  *
  *   Each key value in the parameter object is first bound to url template if present and then any
- *   excess keys are appended to the url search query after the `?`.
+ *   excess keys are appended to the url search productName after the `?`.
  *
  *   Given a template `/path/:verb` and parameter `{verb:'greet', salutation:'Hello'}` results in
  *   URL `/path/greet?salutation=Hello`.
@@ -190,7 +190,7 @@ function shallowClearAndCopy(src, dst) {
  *   ```js
  *   { 'get':    {method:'GET'},
  *     'save':   {method:'POST'},
- *     'query':  {method:'GET', isArray:true},
+ *     'productName':  {method:'GET', isArray:true},
  *     'remove': {method:'DELETE'},
  *     'delete': {method:'DELETE'} };
  *   ```
@@ -268,7 +268,7 @@ function shallowClearAndCopy(src, dst) {
       });
 
      // We can retrieve a collection from the server
-     var cards = CreditCard.query(function() {
+     var cards = CreditCard.productName(function() {
        // GET: /user/123/card
        // server returns: [ {id:456, number:'1234', name:'Smith'} ];
 
@@ -317,7 +317,7 @@ function shallowClearAndCopy(src, dst) {
      });
    ```
  *
- * It's worth noting that the success callback for `get`, `query` and other methods gets passed
+ * It's worth noting that the success callback for `get`, `productName` and other methods gets passed
  * in the response that came from the server as well as $http header getter function, so one
  * could rewrite the above example and get access to http headers as:
  *
@@ -384,8 +384,8 @@ function shallowClearAndCopy(src, dst) {
    ```js
      // ...defining the `Hotel` resource...
      var Hotel = $resource('/api/hotel/:id', {id: '@id'}, {
-       // Let's make the `query()` method cancellable
-       query: {method: 'get', isArray: true, cancellable: true}
+       // Let's make the `productName()` method cancellable
+       productName: {method: 'get', isArray: true, cancellable: true}
      });
 
      // ...somewhere in the PlanVacationController...
@@ -395,9 +395,9 @@ function shallowClearAndCopy(src, dst) {
        // in a different destination any more
        this.availableHotels.$cancelRequest();
 
-       // Let's query for hotels in '<destination>'
+       // Let's productName for hotels in '<destination>'
        // (calls: /api/hotel?location=<destination>)
-       this.availableHotels = Hotel.query({location: destination});
+       this.availableHotels = Hotel.productName({location: destination});
      };
    ```
  *
@@ -449,10 +449,10 @@ angular.module('ngResource', ['ng']).
 
 
       /**
-       * This method is intended for encoding *key* or *value* parts of query component. We need a
+       * This method is intended for encoding *key* or *value* parts of productName component. We need a
        * custom method because encodeURIComponent is too aggressive and encodes stuff that doesn't
        * have to be encoded per http://tools.ietf.org/html/rfc3986:
-       *    query       = *( pchar / "/" / "?" )
+       *    productName       = *( pchar / "/" / "?" )
        *    pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
        *    unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
        *    pct-encoded   = "%" HEXDIG HEXDIG
@@ -529,7 +529,7 @@ angular.module('ngResource', ['ng']).
             url = url.replace(/\/+$/, '') || '/';
           }
 
-          // then replace collapse `/.` if found in the last URL path segment before the query
+          // then replace collapse `/.` if found in the last URL path segment before the productName
           // E.g. `http://url.com/id./format?q=x` becomes `http://url.com/id.format?q=x`
           url = url.replace(/\/\.(?=\w+($|\?))/, '.');
           // replace escaped `/\.` with `/.`

@@ -19,7 +19,9 @@ namespace OnlinerTracker.Web.App_Start
 				
 				.Include("~/scripts/App/Application.js")
 				.Include("~/scripts/App/Account/Controllers/AccountCtrl.js")
-				);
+				.Include("~/scripts/App/Home/Controllers/SearchCtrl.js")
+				
+			);
 
 			bundles.Add(new ScriptBundle("~/bundles/jquery")
 				.Include("~/scripts/jquery-1.9.1.js"));
