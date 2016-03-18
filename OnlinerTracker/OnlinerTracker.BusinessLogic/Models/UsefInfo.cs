@@ -1,8 +1,6 @@
-﻿using OnlinerTracker.DataAccess.Enteties.Basis;
-
-namespace OnlinerTracker.DataAccess.Enteties
+﻿namespace OnlinerTracker.BusinessLogic.Models
 {
-	public class User : BaseEntity
+	public class UserInfo 
 	{
 		public string FirstName { get; set; }
 		public string UserId { get; set; }

@@ -1,8 +1,11 @@
 using OAuth2;
-using OnlinerTracker.BusinessLogic.Abstract;
-using OnlinerTracker.BusinessLogic.Concrete;
-using OnlinerTracker.DataAccess.Abstract;
-using OnlinerTracker.DataAccess.Concrete;
+using OnlinerTracker.BusinessLogic.Implementations;
+using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.DataAccess.Enteties;
+using OnlinerTracker.DataAccess.Implementations.Ef;
+using OnlinerTracker.DataAccess.Interfaces;
+using OnlinerTracker.Web.Implementations;
+using OnlinerTracker.Web.Interaces;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -67,9 +70,17 @@ namespace OnlinerTracker.Web.App_Start
 		/// <param name="kernel">The kernel.</param>
 		private static void RegisterServices(IKernel kernel)
 		{
+			// self binding
 			kernel.Bind<AuthorizationRoot>().ToSelf();
+			kernel.Bind<Context>().ToSelf().InSingletonScope().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
+
+			kernel.Bind<IRepository<User>>().To<Repository<User>>();
+			kernel.Bind<IUserService>().To<UserService>();
+			kernel.Bind<ICookieService>().To<CookieService>();
+
 			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-			kernel.Bind<ISocialNetworkAuthService>().To<SocialNetworkAuthService>();
+			kernel.Bind<ISocNetworkAuthService>().To<SocNetworkAuthService>();
+			kernel.Bind<IHashService>().To<Base64HashService>();
 		}
 	}
 }
