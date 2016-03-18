@@ -1,5 +1,5 @@
 ﻿using System.Collections.Specialized;
-using OnlinerTracker.BusinessLogic.Models;
+using OnlinerTracker.DataAccess.Enteties;
 
 namespace OnlinerTracker.BusinessLogic.Interfaces
 {
@@ -7,6 +7,6 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 	{
 		string GetRequestToken(string serviceName);
 
-		UserInfo GetUserInfo(NameValueCollection queryString, string serviceName);
+		User GetUserInfo(NameValueCollection queryString, string serviceName);
 	}
 }

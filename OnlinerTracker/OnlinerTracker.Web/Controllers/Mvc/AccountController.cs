@@ -40,7 +40,8 @@ namespace OnlinerTracker.Web.Controllers.Mvc
 
 			if (user == null)
 			{
-				repository.Create(new User{
+				repository.Create(new User
+				{
 					FirstName = authedUser.FirstName,
 					CreatedOn = DateTime.Now,
 					PhotoUri = authedUser.PhotoUri,
@@ -51,8 +52,10 @@ namespace OnlinerTracker.Web.Controllers.Mvc
 			}
 
 			var userHash = hashService.Encrypt(authedUser.UserId);
-			HttpCookie cookie = new HttpCookie("auth_cookie");
-			cookie.Value = userHash;
+			HttpCookie cookie = new HttpCookie("auth_cookie")
+			{
+				Value = userHash
+			};
 			ControllerContext.HttpContext.Response.Cookies.Add(cookie);
 
 			return Redirect("/#/Home");

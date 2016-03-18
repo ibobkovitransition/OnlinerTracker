@@ -2,7 +2,7 @@
 using System.Linq;
 using OAuth2;
 using System.Collections.Specialized;
-using OnlinerTracker.BusinessLogic.Models;
+using OnlinerTracker.DataAccess.Enteties;
 
 namespace OnlinerTracker.BusinessLogic.Interfaces
 {
@@ -27,7 +27,7 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 			return client.GetLoginLinkUri();
 		}
 
-		public UserInfo GetUserInfo(NameValueCollection queryString, string serviceName)
+		public User GetUserInfo(NameValueCollection queryString, string serviceName)
 		{
 			var client = authRoot.Clients.FirstOrDefault(x => x.Name == serviceName);
 
@@ -38,7 +38,7 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 
 			var result = client.GetUserInfo(queryString);
 
-			return new UserInfo
+			return new User
 			{
 				FirstName = result.FirstName,
 				UserId = result.Id,
