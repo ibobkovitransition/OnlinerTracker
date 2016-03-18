@@ -8,12 +8,12 @@ using OnlinerTracker.DataAccess.Interfaces;
 
 namespace OnlinerTracker.DataAccess.Implementations.Ef
 {
-	public class EfGenericRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
+	public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
 	{
 		internal readonly DbSet<TEntity> DbSet;
-		internal readonly EfDbContext Context;
+		internal readonly Context Context;
 
-		public EfGenericRepository(EfDbContext context)
+		public Repository(Context context)
 		{
 			Context = context;
 			DbSet = context.Set<TEntity>();

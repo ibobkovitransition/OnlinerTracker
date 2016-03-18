@@ -1,25 +1,26 @@
 ﻿using System;
+using System.Collections.Specialized;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.BusinessLogic.Models;
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Interfaces;
 
-namespace OnlinerTracker.BusinessLogic.Implementations
+namespace OnlinerTracker.Web.Implementations
 {
 	public class UserService : IUserService
 	{
 		private readonly IUnitOfWork uow;
-
-		public ISocNetworkAuthService AuthService { get; }
+		private readonly ISocNetworkAuthService authService;
 
 		public UserService(IUnitOfWork uow, ISocNetworkAuthService authService)
 		{
 			this.uow = uow;
-			AuthService = authService;
+			this.authService = authService;
 		}
 
-		public void AuthUser(UserInfo user)
+		public string AddUser(NameValueCollection queryString, string serviceName)
 		{
+			var user = authService.GetUserInfo(queryString, serviceName);
 			var isUserExists = uow.UserRepository.FindBy(x => x.UserId == user.UserId) != null;
 
 			if (!isUserExists)
@@ -33,6 +34,8 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 				});
 				uow.Commit();
 			}
+
+			return user.UserId;
 		}
 	}
 }

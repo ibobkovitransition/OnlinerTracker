@@ -1,13 +1,10 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using OnlinerTracker.BusinessLogic.Interfaces;
-using System.Web;
 using OnlinerTracker.Web.Interaces;
 
 namespace OnlinerTracker.Web.Controllers.Mvc
 {
-	[RoutePrefix("api/v1/account")]
 	public class AccountController : Controller
 	{
 		private readonly IUserService userService;
@@ -29,9 +26,14 @@ namespace OnlinerTracker.Web.Controllers.Mvc
 				return HttpNotFound();
 			}
 
-			var authedUser = userService.AuthService.GetUserInfo(Request.QueryString, socNetwork);
-			var encryptedId = hashService.Encrypt(authedUser.UserId);
-			userService.AuthUser(authedUser);
+			var userId = userService.AddUser(Request.QueryString, socNetwork);
+
+			if (userId.IsNullOrWhiteSpace())
+			{
+				return HttpNotFound();
+			}
+
+			var encryptedId = hashService.Encrypt(userId);
 			cookieService.PutCookie(ControllerContext.HttpContext.Response, "onliner_tracker", encryptedId, 10);
 
 			return Redirect("/#/Home");

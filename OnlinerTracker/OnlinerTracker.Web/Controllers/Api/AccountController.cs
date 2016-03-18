@@ -5,7 +5,6 @@ using OnlinerTracker.BusinessLogic.Interfaces;
 
 namespace OnlinerTracker.Web.Controllers.Api
 {
-	[RoutePrefix("api/v1/account")]
 	public class AccountController : ApiController
 	{
 		private readonly ISocNetworkAuthService authService;
@@ -15,7 +14,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 			this.authService = authService;
 		}
 
-		[Route("signIn/{socNetwork}")]
+		[Route("signin/{socNetwork}")]
 		[HttpGet]
 		[ResponseType(typeof(string))]
 		public IHttpActionResult AuthUrl(string socNetwork)

@@ -54,9 +54,9 @@
     <Compile Include="Enteties\Basis\BaseEntity.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Implementations\Ef\EfDbContext.cs" />
-    <Compile Include="Implementations\Ef\EfUnitOfWork.cs" />
-    <Compile Include="Implementations\Ef\EfGenericRepository.cs" />
+    <Compile Include="Implementations\Ef\Context.cs" />
+    <Compile Include="Implementations\Ef\UnitOfWork.cs" />
+    <Compile Include="Implementations\Ef\Repository.cs" />
     <Compile Include="Enteties\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

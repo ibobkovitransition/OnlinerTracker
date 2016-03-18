@@ -72,13 +72,13 @@ namespace OnlinerTracker.Web.App_Start
 		{
 			// self binding
 			kernel.Bind<AuthorizationRoot>().ToSelf();
-			kernel.Bind<EfDbContext>().ToSelf().InSingletonScope().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
+			kernel.Bind<Context>().ToSelf().InSingletonScope().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
 
-			kernel.Bind<IRepository<User>>().To<EfGenericRepository<User>>();
+			kernel.Bind<IRepository<User>>().To<Repository<User>>();
 			kernel.Bind<IUserService>().To<UserService>();
 			kernel.Bind<ICookieService>().To<CookieService>();
 
-			kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>();
+			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 			kernel.Bind<ISocNetworkAuthService>().To<SocNetworkAuthService>();
 			kernel.Bind<IHashService>().To<MD5HashService>();
 		}

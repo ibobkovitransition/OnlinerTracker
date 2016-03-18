@@ -14,7 +14,7 @@
 
 			var config = {
 				method: "GET",
-				url: "/api/v1/account/signIn/" + socNetwork
+				url: "/signin/" + socNetwork
 			};
 
 			$http(config).then(accessFn, rejectFn);

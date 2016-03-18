@@ -1,13 +1,12 @@
 using System.Data.Entity.ModelConfiguration.Conventions;
 using OnlinerTracker.DataAccess.Enteties;
+using System.Data.Entity;
 
 namespace OnlinerTracker.DataAccess.Implementations.Ef
 {
-	using System.Data.Entity;
-
-	public class EfDbContext : DbContext
+	public class Context : DbContext
 	{
-		public EfDbContext(string connectionName)
+		public Context(string connectionName)
 			: base($"name={connectionName}")
 		{
 		}
