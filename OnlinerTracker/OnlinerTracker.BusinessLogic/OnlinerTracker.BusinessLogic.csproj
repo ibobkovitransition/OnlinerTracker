@@ -52,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\MD5HashService.cs" />
+    <Compile Include="Implementations\Base64HashService.cs" />
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interfaces\IHashService.cs" />
     <Compile Include="Interfaces\ISocNetworkAuthService.cs" />

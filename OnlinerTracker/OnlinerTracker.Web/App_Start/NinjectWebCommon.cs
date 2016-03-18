@@ -80,7 +80,7 @@ namespace OnlinerTracker.Web.App_Start
 
 			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 			kernel.Bind<ISocNetworkAuthService>().To<SocNetworkAuthService>();
-			kernel.Bind<IHashService>().To<MD5HashService>();
+			kernel.Bind<IHashService>().To<Base64HashService>();
 		}
 	}
 }
