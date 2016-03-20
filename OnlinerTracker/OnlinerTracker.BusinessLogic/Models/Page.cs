@@ -4,6 +4,7 @@ namespace OnlinerTracker.BusinessLogic.Models
 {
 	public class Page
 	{
+		[JsonProperty("current")]
 		public int Current { get; set; }
 
 		[JsonProperty("last")]

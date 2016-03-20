@@ -30,12 +30,12 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 			return query.AsEnumerable();
 		}
 
-		public void Create(TEntity entity)
+		public void Attach(TEntity entity)
 		{
 			DbSet.Add(entity);
 		}
 
-		public void Delete(TEntity entity)
+		public void Detach(TEntity entity)
 		{
 			if (Context.Entry(entity).State == EntityState.Detached)
 			{
@@ -45,10 +45,10 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 			DbSet.Remove(entity);
 		}
 
-		public void Delete(int id)
+		public void Detach(int id)
 		{
 			var entity = DbSet.Find(id);
-			Delete(entity);
+			Detach(entity);
 		}
 
 		public void Update(TEntity entity)
@@ -65,7 +65,7 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 				query = query.Where(filters);
 			}
 
-			return query.FirstOrDefault();
+			return query.FirstOrDefault(); 
 		}
 	}
 }

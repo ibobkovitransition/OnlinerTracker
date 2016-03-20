@@ -9,11 +9,11 @@ namespace OnlinerTracker.DataAccess.Interfaces
 	{
 		IEnumerable<TEntity> GetEntities(Expression<Func<TEntity, bool>> filters = null);
 
-		void Create(TEntity entity);
+		void Attach(TEntity entity);
 
-		void Delete(TEntity entity);
+		void Detach(TEntity entity);
 
-		void Delete(int id);
+		void Detach(int id);
 
 		void Update(TEntity entity);
 

@@ -6,6 +6,7 @@ using OnlinerTracker.DataAccess.Implementations.Ef;
 using OnlinerTracker.DataAccess.Interfaces;
 using OnlinerTracker.Web.Implementations;
 using OnlinerTracker.Web.Interaces;
+using Product = OnlinerTracker.DataAccess.Enteties.Product;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -83,10 +84,12 @@ namespace OnlinerTracker.Web.App_Start
 			// indirectly DAL
 			kernel.Bind<IRepository<User>>().To<Repository<User>>();
 			kernel.Bind<IRepository<Product>>().To<Repository<Product>>();
+			kernel.Bind<IRepository<TrackedProduct>>().To<Repository<TrackedProduct>>();
 			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 
 			// indirectly BLL
 			kernel.Bind<IUserService>().To<UserService>();
+			kernel.Bind<ITrackedProductService>().To<TrackedProductService>();
 			kernel.Bind<IProductService>().To<ProductService>();
 		}
 	}

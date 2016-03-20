@@ -5,8 +5,8 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 {
 	public interface ISocNetworkAuthService
 	{
-		string GetAuthUrl(string serviceName);
+		string AuthUrl(string serviceName);
 
-		UserInfo GetUserInfo(NameValueCollection queryString, string serviceName);
+		UserInfo UserInfo(NameValueCollection queryString, string serviceName);
 	}
 }

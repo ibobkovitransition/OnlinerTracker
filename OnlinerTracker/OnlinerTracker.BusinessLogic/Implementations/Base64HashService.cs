@@ -12,7 +12,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			return Convert.ToBase64String(bytes);
 		}
 
-		public string Decript(string content)
+		public string Decrypt(string content)
 		{
 			var bytes = Convert.FromBase64String(content);
 			return Encoding.UTF8.GetString(bytes);

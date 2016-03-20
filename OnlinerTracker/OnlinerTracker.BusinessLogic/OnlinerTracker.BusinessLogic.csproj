@@ -54,7 +54,9 @@
   <ItemGroup>
     <Compile Include="Implementations\Base64HashService.cs" />
     <Compile Include="Implementations\ProductService.cs" />
+    <Compile Include="Implementations\TrackedProductService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
+    <Compile Include="Interfaces\ITrackedProductService.cs" />
     <Compile Include="Implementations\OnlinerProductSearchService.cs" />
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interfaces\IHashService.cs" />

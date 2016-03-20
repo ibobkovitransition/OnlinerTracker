@@ -5,11 +5,13 @@ namespace OnlinerTracker.BusinessLogic.Models
 {
 	public class SearchResult
 	{
+		[JsonProperty("products")]
 		public IEnumerable<Product> Products { get; set; }
 
 		[JsonProperty("total")]
 		public int TotalItems { get; set; }
 
-		public Page	Page { get; set; }
+		[JsonProperty("page")]
+		public Page Page { get; set; }
 	}
 }

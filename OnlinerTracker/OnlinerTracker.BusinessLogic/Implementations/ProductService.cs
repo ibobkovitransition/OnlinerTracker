@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.BusinessLogic.Models;
 using OnlinerTracker.DataAccess.Interfaces;
@@ -8,32 +10,88 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 	public class ProductService : IProductService
 	{
 		private readonly IProductSearchService searchService;
+		private readonly IHashService hashService;
 		private readonly IUnitOfWork uow;
 
-		public ProductService(IProductSearchService searchService, IUnitOfWork uow)
+		public ProductService(IProductSearchService searchService, IHashService hashService, IUnitOfWork uow)
 		{
 			this.searchService = searchService;
+			this.hashService = hashService;
 			this.uow = uow;
 		}
 
-		public SearchResult Search(string productName, int page, int size)
+		public SearchResult Search(string productName, int page, string hashedSocNetworkUserId)
 		{
-			return searchService.Search(productName, page, size);
+			var userId = GetUserIdByHashedId(hashedSocNetworkUserId);
+			var result = searchService.Search(productName, page);
+			MarkTrackedProducts(userId, result.Products);
+
+			return result;
 		}
 
-		public void Track(int id)
+		public void Add(Product product)
 		{
-			throw new NotImplementedException();
+			uow.ProductRepository.Attach(CreateEntityProduct(product));
+			uow.Commit();
 		}
 
-		public void Untrack(int id)
+		public void AddIfNotExsists(Product product)
 		{
-			throw new NotImplementedException();
+			var entry = uow.ProductRepository.FindBy(x => x.Id == product.Id);
+			if (entry == null)
+			{
+				Add(product);
+			}
 		}
 
-		public void Remove(int id)
+		public void Delete(int productId)
 		{
-			throw new NotImplementedException();
+			uow.ProductRepository.Detach(productId);
+			uow.Commit();
+		}
+
+		public void Update(Product product)
+		{
+			uow.ProductRepository.Update(CreateEntityProduct(product));
+			uow.Commit();
+		}
+
+		private DataAccess.Enteties.Product CreateEntityProduct(Product product)
+		{
+			return new DataAccess.Enteties.Product
+			{
+				Id = product.Id,
+				CreatedOn = DateTime.Now,
+				Name = product.Name,
+				FullName = product.FullName,
+				Description = product.Description,
+				HtmlUrl = product.HtmlUrl//,
+				//MinPrice = product.Price.Min,
+				//MaxPrice = product.Price.Max,
+				//ImageUrl = product.Image.Icon ?? product.Image.Header
+			};
+		}
+
+		private int GetUserIdByHashedId(string hashedSocNetworkUserId)
+		{
+			var socialId = hashService.Decrypt(hashedSocNetworkUserId);
+			var result = uow.UserRepository.FindBy(x => x.SocialId == socialId);
+			return result.Id;
+		}
+
+		private void MarkTrackedProducts(int userId, IEnumerable<Product> productsToMark)
+		{
+			var trackedProducts = uow.TrackedProducts.GetEntities(x => x.UserId == userId);
+
+			foreach (var product in productsToMark)
+			{
+				var entry = trackedProducts.FirstOrDefault(x => x.ProductId == product.Id);
+				if (entry != null)
+				{
+					product.IsTracked = entry.IsTracked;
+					product.IsAdded = true;
+				}
+			}
 		}
 	}
 }

@@ -19,14 +19,14 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 
 		public string AddUser(NameValueCollection queryString, string serviceName)
 		{
-			var user = authService.GetUserInfo(queryString, serviceName);
-			var isUserExists = uow.UserRepository.FindBy(x => x.UserId == user.UserId) != null;
+			var user = authService.UserInfo(queryString, serviceName);
+			var isExists = uow.UserRepository.FindBy(x => x.SocialId == user.UserId) != null;
 
-			if (!isUserExists)
+			if (!isExists)
 			{
-				uow.UserRepository.Create(new User
+				uow.UserRepository.Attach(new User
 				{
-					UserId = user.UserId,
+					SocialId = user.UserId,
 					FirstName = user.FirstName,
 					PhotoUri = user.PhotoUri,
 					CreatedOn = DateTime.Now

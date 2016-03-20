@@ -1238,9 +1238,9 @@ angular.mock.dump = function(object) {
  *
  *
  * ```js
- *   $httpBackend.expect('GET', /\/user\/(.+)/, undefined, undefined, ['id'])
+ *   $httpBackend.expect('GET', /\/user\/(.+)/, undefined, undefined, ['productId'])
  *     .respond(function(method, url, data, headers, params) {
- *       // for requested url of '/user/1234' params is {id: '1234'}
+ *       // for requested url of '/user/1234' params is {productId: '1234'}
  *     });
  *
  *   $httpBackend.whenPATCH(/\/user\/(.+)\/article\/(.+)/, undefined, undefined, ['user', 'article'])
@@ -1258,9 +1258,9 @@ angular.mock.dump = function(object) {
  * the following is possible:
  *
   ```js
-    $httpBackend.whenRoute('GET', '/users/:id')
+    $httpBackend.whenRoute('GET', '/users/:productId')
       .respond(function(method, url, data, headers, params) {
-        return [200, MockUserList[Number(params.id)]];
+        return [200, MockUserList[Number(params.productId)]];
       });
 
     $httpBackend.whenRoute('GET', '/users')
@@ -2055,7 +2055,7 @@ angular.mock.$TimeoutDecorator = ['$delegate', '$browser', function($delegate, $
   function formatPendingTasksAsString(tasks) {
     var result = [];
     angular.forEach(tasks, function(task) {
-      result.push('{id: ' + task.id + ', ' + 'time: ' + task.time + '}');
+      result.push('{productId: ' + task.id + ', ' + 'time: ' + task.time + '}');
     });
 
     return result.join(', ');

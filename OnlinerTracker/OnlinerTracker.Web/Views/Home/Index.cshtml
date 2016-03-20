@@ -14,11 +14,13 @@
 	@Scripts.Render("~/bundles/application")
 
 	@Styles.Render("~/bundles/bootstrap-css")
+	@Styles.Render("~/bundles/styles")
+	
 	<title>Index</title>
 </head>
 <body>
-	<div class="container" style="padding-top: 75px;">
-		<ng-view />
-	</div>
+
+	<ng-view />
+
 </body>
 </html>

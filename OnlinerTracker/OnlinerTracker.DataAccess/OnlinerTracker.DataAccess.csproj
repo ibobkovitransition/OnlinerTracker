@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Enteties\Basis\BaseEntity.cs" />
     <Compile Include="Enteties\Product.cs" />
+    <Compile Include="Enteties\TrackedProduct.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Implementations\Ef\Context.cs" />

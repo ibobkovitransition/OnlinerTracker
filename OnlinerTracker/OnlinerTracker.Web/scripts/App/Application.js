@@ -2,9 +2,8 @@
 angular.module("HomeModule", []);
 angular.module("AdminModule", []);
 
-var main = angular.module("MainApp", ["ngRoute", "AccountModule", "HomeModule"]);
-
-main.config(function ($routeProvider, $locationProvider) {
+angular.module("MainApp", ["ngRoute", "AccountModule", "HomeModule", "AdminModule"])
+.config(function ($routeProvider) {
 	$routeProvider.when("/Account", {
 		templateUrl: "/scripts/App/Account/Views/SignIn.html",
 		controller: "AccountCtrl"

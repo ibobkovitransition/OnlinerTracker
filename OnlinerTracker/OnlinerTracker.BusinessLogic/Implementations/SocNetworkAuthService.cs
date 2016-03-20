@@ -16,7 +16,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			this.authRoot = authRoot;
 		}
 
-		public string GetAuthUrl(string serviceName)
+		public string AuthUrl(string serviceName)
 		{
 			var client = authRoot.Clients.FirstOrDefault(x => x.Name == serviceName);
 
@@ -28,7 +28,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			return client.GetLoginLinkUri();
 		}
 
-		public UserInfo GetUserInfo(NameValueCollection queryString, string serviceName)
+		public UserInfo UserInfo(NameValueCollection queryString, string serviceName)
 		{
 			var client = authRoot.Clients.FirstOrDefault(x => x.Name == serviceName);
 

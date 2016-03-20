@@ -7,6 +7,10 @@ namespace OnlinerTracker.DataAccess.Interfaces
 	{
 		IRepository<User> UserRepository { get; }
 
+		IRepository<Product> ProductRepository { get; }
+
+		IRepository<TrackedProduct> TrackedProducts { get; } 
+
 		void Commit();
 	}
 }

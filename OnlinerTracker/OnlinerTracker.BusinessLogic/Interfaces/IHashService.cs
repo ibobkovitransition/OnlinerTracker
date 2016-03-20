@@ -4,6 +4,6 @@
 	{
 		string Encrypt(string content);
 
-		string Decript(string content);
+		string Decrypt(string content);
 	}
 }

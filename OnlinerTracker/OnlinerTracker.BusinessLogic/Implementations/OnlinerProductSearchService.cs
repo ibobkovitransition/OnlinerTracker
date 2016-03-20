@@ -9,9 +9,9 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 {
 	public class OnlinerProductSearchService : IProductSearchService
 	{
-		public SearchResult Search(string productName, int page, int size)
+		public SearchResult Search(string productName, int page)
 		{
-			var request = (HttpWebRequest)WebRequest.Create($"https://catalog.api.onliner.by/search/products?query={productName}&page={page}&limit={size}");
+			var request = (HttpWebRequest)WebRequest.Create($"https://catalog.api.onliner.by/search/products?query={productName}&page={page}");
 			request.Method = "GET";
 			request.Accept = "application/json";
 			var response = request.GetResponse();

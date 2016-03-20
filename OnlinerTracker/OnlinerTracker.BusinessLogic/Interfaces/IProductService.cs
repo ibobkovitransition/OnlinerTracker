@@ -1,15 +1,18 @@
-﻿using OnlinerTracker.BusinessLogic.Models;
+﻿using System.Collections.Generic;
+using OnlinerTracker.BusinessLogic.Models;
 
 namespace OnlinerTracker.BusinessLogic.Interfaces
 {
 	public interface IProductService
 	{
-		SearchResult Search(string productName, int page, int size);
+		SearchResult Search(string productName, int page, string hashedSocNetworkUserId);
 
-		void Track(int id);
+		void Add(Product product);
 
-		void Untrack(int id);
+		void AddIfNotExsists(Product product);
 
-		void Remove(int id);
+		void Delete(int productId);
+
+		void Update(Product product);
 	}
 }

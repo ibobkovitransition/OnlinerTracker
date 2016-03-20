@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Http;
 using System.Web.Optimization;
-using OnlinerTracker.DataAccess.Implementations.Ef;
 using OnlinerTracker.Web.App_Start;
 
 namespace OnlinerTracker.Web

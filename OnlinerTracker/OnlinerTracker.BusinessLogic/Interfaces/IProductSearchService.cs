@@ -4,6 +4,6 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 {
 	public interface IProductSearchService
 	{
-		SearchResult Search(string productName, int page, int size);
+		SearchResult Search(string productName, int page);
 	}
 }
