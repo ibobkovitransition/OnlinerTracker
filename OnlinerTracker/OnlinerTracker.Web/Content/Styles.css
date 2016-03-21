@@ -17,65 +17,40 @@
         width: 970px;
     }
 
-    .item-wrapper {
-        /*cursor: pointer;*/
-        height: 128px;
-        /*background-color: #ff4500;*/
-        margin-bottom: 14px;
+    .row > div {
+        height: 94px;
+        cursor: pointer;
     }
 
-    .item-wrapper > .img-wrapper {
-        text-align: center;
-        position: relative;
-        height: 100%;
-    }
-
-    .item-wrapper > .img-wrapper > input {
-        top: 32px;
-    }
-
-    .item-wrapper > img {
+    .row > div > img {
         max-width: 100%;
-        max-height: 128px;
+        max-height: 94px;
         vertical-align: middle;
         margin: auto;
         display: block;
+    }
+
+    .list-group-item {
+        margin: 6px;
+    }
+
+    .checkbox {
+        height: 24px;
+        width: 24px;
+        top: 25px;
+        cursor: pointer;
     }
 }
 
 body {
     padding-top: 75px;
-    background-color: #F2F2F2;
+    background-color: #FBFBFB;
 }
 
-.list-group > li:hover {
-    background-color: #F0F0F0;
+.list-group-item-added {
+    background-color: #E8E8E8;
 }
 
-.status-wrapper > label {
-    display: block;
-    text-align: center;
-}
-
-.status-wrapper > label > input {
-    display: inline-block;
-}
-
-.btn-default, .form-control {
-    border-radius: 0px;
-    background: #FFFFFF;
-}
-
-.navbar-fixed-top {
-    /*background: #DEDEDE;*/
-}
-
-.status-ok {
-    color: green;
-    font-weight: bold;
-}
-
-.status-bad {
-    color: brown;
-    font-weight: bold;
+.list-group-item-tracked {
+    background-color: #B6FFA9;
 }

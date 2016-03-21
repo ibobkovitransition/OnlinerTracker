@@ -15,7 +15,8 @@ namespace OnlinerTracker.Web.App_Start
 				.Include("~/scripts/angular-resource.js")
 				.Include("~/scripts/angular-route.js"));
 
-			bundles.Add(new StyleBundle("~/bundles/styles").Include("~/content/styles.css"));
+			bundles.Add(new StyleBundle("~/bundles/styles")
+				.Include("~/content/styles.css"));
 
 			bundles.Add(new ScriptBundle("~/bundles/application")
 				
@@ -30,6 +31,9 @@ namespace OnlinerTracker.Web.App_Start
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap")
 				.Include("~/scripts/bootstrap.js"));
+
+			bundles.Add(new ScriptBundle("~/bundles/modernizr")
+				.Include("~/scripts/jmodernizr-2.8.3.js"));
 
 			bundles.Add(new StyleBundle("~/bundles/bootstrap-css")
 				.Include("~/content/bootstrap.css")

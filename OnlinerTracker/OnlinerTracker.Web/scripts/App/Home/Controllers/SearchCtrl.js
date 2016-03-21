@@ -1,13 +1,7 @@
 ﻿angular.module("HomeModule")
-	.controller("SearchCtrl", function ($scope, $http, $log) {
+	.controller("SearchCtrl", function ($scope, $http, $log, $window) {
 		$scope.searchQuery = null;
 		$scope.data = [];
-		$scope.page = {
-			current: 0,
-			last: 0,
-			totalItems: 0
-		};
-		$scope.totalItems = 0;
 
 		var searchSuccess = function (response) {
 			$log.log("Search success: ", response);
@@ -49,21 +43,19 @@
 			product.is_added = true;
 		}
 
-		$scope.findProducts = function (page) {
+		$scope.findProducts = function () {
 			if (!$scope.searchQuery) {
 				$scope.data = [];
 			} else {
-				var pageNumber = page === 0 ? 1 : page;
-				var url = "/search/products/" + $scope.searchQuery + "/page/" + pageNumber;
+				var pageNumber = 1;
+				var pageSize = 25;
+				var url = "/search/products/" + $scope.searchQuery + "/page/" + pageNumber + "/size/" + pageSize;
 				$http.get(url).then(searchSuccess, searchError);
 			}
 		}
 
-		$scope.selectPage = function() {
-			var pageNumber = prompt("Total pages: " + $scope.page.last);
-			if (!isNaN(pageNumber) && pageNumber > 0 && pageNumber <= $scope.page.last) {
-				$scope.page.current = pageNumber;
-				$scope.findProducts(pageNumber);
-			}
+		$scope.getCssClass = function (product) {
+			return product.is_tracked ?
+				"list-group-item-tracked" : product.is_added ? "list-group-item-added" : "";
 		}
 	});

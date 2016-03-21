@@ -20,9 +20,9 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			this.productTrackingService = productTrackingService;
 		}
 
-		public SearchResult Search(string productName, int page, int userId)
+		public SearchResult Search(string productName, int page, int size, int userId)
 		{
-			var result = productSearchService.Search(productName, page);
+			var result = productSearchService.Search(productName, page, size);
 			MarkTrackedProducts(userId, result.Products);
 			return result;
 		}
