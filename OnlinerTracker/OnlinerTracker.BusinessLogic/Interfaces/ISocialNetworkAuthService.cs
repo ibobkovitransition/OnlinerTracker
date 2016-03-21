@@ -3,7 +3,7 @@ using OnlinerTracker.BusinessLogic.Models;
 
 namespace OnlinerTracker.BusinessLogic.Interfaces
 {
-	public interface ISocNetworkAuthService
+	public interface ISocialNetworkAuthService
 	{
 		string AuthUrl(string serviceName);
 

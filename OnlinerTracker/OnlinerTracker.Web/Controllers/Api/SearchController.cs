@@ -3,13 +3,12 @@ using System.Web.Http.Description;
 using Microsoft.Ajax.Utilities;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.BusinessLogic.Models;
-using OnlinerTracker.Web.Filters;
 using OnlinerTracker.Web.Filters.Api;
 
 namespace OnlinerTracker.Web.Controllers.Api
 {
 	[Authentication]
-	public class SearchController : ApiController
+	public class SearchController : ApiControllerBase
 	{
 		private readonly IProductService productService;
 
@@ -28,9 +27,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 				return BadRequest();
 			}
 
-			var user = (PrincipalUser)User;
-
-			return Ok(productService.Search(productName, page, user.UserId));
+			return Ok(productService.Search(productName, page, PrincipalUser.Id));
 		}
 	}
 }

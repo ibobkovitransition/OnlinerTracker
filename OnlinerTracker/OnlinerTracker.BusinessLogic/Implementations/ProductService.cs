@@ -11,13 +11,13 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 	{
 		private readonly IProductSearchService productSearchService;
 		private readonly IUnitOfWork unitOfWork;
-		private readonly ITrackingProductService trackingProductService;
+		private readonly IProductTrackingService productTrackingService;
 
-		public ProductService(IProductSearchService productSearchService, IUnitOfWork unitOfWork, ITrackingProductService trackingProductService)
+		public ProductService(IProductSearchService productSearchService, IUnitOfWork unitOfWork, IProductTrackingService productTrackingService)
 		{
 			this.productSearchService = productSearchService;
 			this.unitOfWork = unitOfWork;
-			this.trackingProductService = trackingProductService;
+			this.productTrackingService = productTrackingService;
 		}
 
 		public SearchResult Search(string productName, int page, int userId)
@@ -30,7 +30,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 		public void Add(Product product, int userId)
 		{
 			AddIfNotExsists(product);
-			trackingProductService.Track(product.Id, userId);
+			productTrackingService.Track(product.Id, userId);
 		}
 
 		public void Delete(int productId)

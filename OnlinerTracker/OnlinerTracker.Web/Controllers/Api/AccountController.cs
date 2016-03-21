@@ -2,20 +2,19 @@
 using System.Web.Http.Description;
 using Microsoft.Ajax.Utilities;
 using OnlinerTracker.BusinessLogic.Interfaces;
-using OnlinerTracker.Web.Filters.Api;
 
 namespace OnlinerTracker.Web.Controllers.Api
 {
-	public class AccountController : ApiController
+	public class AccountController : ApiControllerBase
 	{
-		private readonly ISocNetworkAuthService authService;
+		private readonly ISocialNetworkAuthService authService;
 
-		public AccountController(ISocNetworkAuthService authService)
+		public AccountController(ISocialNetworkAuthService authService)
 		{
 			this.authService = authService;
 		}
 
-		[Authentication(AllowAnonymous = true)]
+		[AllowAnonymous]
 		[Route("signin/{socNetwork}")]
 		[HttpGet]
 		[ResponseType(typeof(string))]

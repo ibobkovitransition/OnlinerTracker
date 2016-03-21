@@ -74,19 +74,19 @@ namespace OnlinerTracker.Web.App_Start
 			kernel.Bind<AuthorizationRoot>().ToSelf();
 			kernel.Bind<Context>().ToSelf().InSingletonScope().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
 
-			kernel.Bind<ISocNetworkAuthService>().To<SocNetworkAuthService>();
+			kernel.Bind<ISocialNetworkAuthService>().To<SocialNetworkAuthService>();
 			kernel.Bind<ICookieService>().To<CookieService>();
 			kernel.Bind<IHashService>().To<Base64HashService>();
 			kernel.Bind<IProductSearchService>().To<OnlinerProductSearchService>();
 
 			kernel.Bind<IRepository<User>>().To<Repository<User>>();
 			kernel.Bind<IRepository<Product>>().To<Repository<Product>>();
-			kernel.Bind<IRepository<TrackingProduct>>().To<Repository<TrackingProduct>>();
+			kernel.Bind<IRepository<ProductTracking>>().To<Repository<ProductTracking>>();
 			kernel.Bind<IRepository<UserSettings>>().To<Repository<UserSettings>>();
 			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 			
 			kernel.Bind<IUserService>().To<UserService>();
-			kernel.Bind<ITrackingProductService>().To<TrackingProductService>();
+			kernel.Bind<IProductTrackingService>().To<ProductTrackingService>();
 			kernel.Bind<IProductService>().To<ProductService>();
 		}
 	}

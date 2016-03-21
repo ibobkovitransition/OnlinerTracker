@@ -1,6 +1,6 @@
 ﻿namespace OnlinerTracker.BusinessLogic.Interfaces
 {
-	public interface ITrackingProductService
+	public interface IProductTrackingService
 	{
 		void Track(int productId, int userId);
 

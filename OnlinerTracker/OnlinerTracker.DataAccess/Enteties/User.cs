@@ -17,11 +17,11 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		//public int SettingsId { get; set; }
 
-		public ICollection<TrackingProduct> TrackedProducts { get; set; }
+		public ICollection<ProductTracking> TrackedProducts { get; set; }
 
 		public User()
 		{
-			TrackedProducts = new List<TrackingProduct>();
+			TrackedProducts = new List<ProductTracking>();
 		}
 	}
 }

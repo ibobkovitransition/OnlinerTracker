@@ -9,9 +9,9 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 	public class UserService : IUserService
 	{
 		private readonly IUnitOfWork unitOfWork;
-		private readonly ISocNetworkAuthService authService;
+		private readonly ISocialNetworkAuthService authService;
 
-		public UserService(IUnitOfWork unitOfWork, ISocNetworkAuthService authService)
+		public UserService(IUnitOfWork unitOfWork, ISocialNetworkAuthService authService)
 		{
 			this.unitOfWork = unitOfWork;
 			this.authService = authService;

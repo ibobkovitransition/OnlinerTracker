@@ -55,15 +55,15 @@
     <Compile Include="Extensions\Parsers.cs" />
     <Compile Include="Implementations\Base64HashService.cs" />
     <Compile Include="Implementations\ProductService.cs" />
-    <Compile Include="Implementations\TrackingProductService.cs" />
+    <Compile Include="Implementations\ProductTrackingService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
-    <Compile Include="Interfaces\ITrackingProductService.cs" />
+    <Compile Include="Interfaces\IProductTrackingService.cs" />
     <Compile Include="Implementations\OnlinerProductSearchService.cs" />
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interfaces\IHashService.cs" />
     <Compile Include="Interfaces\IProductSearchService.cs" />
-    <Compile Include="Interfaces\ISocNetworkAuthService.cs" />
-    <Compile Include="Implementations\SocNetworkAuthService.cs" />
+    <Compile Include="Interfaces\ISocialNetworkAuthService.cs" />
+    <Compile Include="Implementations\SocialNetworkAuthService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Page.cs" />
@@ -74,15 +74,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\OnlinerTracker.DataAccess\OnlinerTracker.DataAccess.csproj">
       <Project>{F73A59E1-CC0C-4F02-BBA8-7A8022B2078D}</Project>
       <Name>OnlinerTracker.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

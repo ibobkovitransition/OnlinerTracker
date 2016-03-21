@@ -9,12 +9,12 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 		public IRepository<User> UserRepository { get; }
 
 		public IRepository<Product> ProductRepository { get; }
-		public IRepository<TrackingProduct> TrackedProducts { get; }
+		public IRepository<ProductTracking> TrackedProducts { get; }
 
 		private readonly Context context;
 		private bool disposed;
 
-		public UnitOfWork(Context context, IRepository<User> userRepository, IRepository<Product> productRepository, IRepository<TrackingProduct> trackedProducts)
+		public UnitOfWork(Context context, IRepository<User> userRepository, IRepository<Product> productRepository, IRepository<ProductTracking> trackedProducts)
 		{
 			this.context = context;
 			UserRepository = userRepository;

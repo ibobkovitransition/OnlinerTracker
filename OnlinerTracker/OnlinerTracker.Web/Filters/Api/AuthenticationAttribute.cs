@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Http;
 using System.Web.Http.Filters;
 using Ninject;
 using OnlinerTracker.BusinessLogic.Interfaces;
@@ -13,8 +14,6 @@ namespace OnlinerTracker.Web.Filters.Api
 	{
 		public bool AllowMultiple => false;
 
-		public bool AllowAnonymous { get; set; } = false;
-
 		private readonly string cookieName = "onliner_tracker";
 
 		[Inject]
@@ -25,13 +24,13 @@ namespace OnlinerTracker.Web.Filters.Api
 
 		public Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
 		{
-			// аттрибут allow anonymous не работает, гугл не спас
-			if (AllowAnonymous)
+			var isAnonymousAllowed = context.ActionContext.ActionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Any();
+
+			if (isAnonymousAllowed)
 			{
 				return Task.FromResult(0);
 			}
 
-			// is there cookie set
 			var cookies = context.Request.Headers.GetCookies(cookieName);
 
 			if (!cookies.Any())
@@ -40,7 +39,6 @@ namespace OnlinerTracker.Web.Filters.Api
 				return Task.FromResult(0);
 			}
 
-			// is there onliner_tracker cookies
 			var entry = cookies[0].Cookies.FirstOrDefault(x => x.Name == cookieName);
 
 			if (string.IsNullOrWhiteSpace(entry?.Name))
@@ -49,9 +47,8 @@ namespace OnlinerTracker.Web.Filters.Api
 				return Task.FromResult(0);
 			}
 
-			// is there user in db
-			var hashedSocialNetworkUserId = HashService.Decrypt(entry.Value);
-			var user = UnitOfWork.UserRepository.FindBy(x => x.SocialId == hashedSocialNetworkUserId);
+			var userId = HashService.Decrypt(entry.Value);
+			var user = UnitOfWork.UserRepository.FindBy(x => x.SocialId == userId);
 
 			if (user == null)
 			{

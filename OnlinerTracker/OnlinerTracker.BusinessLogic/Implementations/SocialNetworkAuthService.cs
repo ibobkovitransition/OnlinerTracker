@@ -7,11 +7,11 @@ using OnlinerTracker.BusinessLogic.Models;
 
 namespace OnlinerTracker.BusinessLogic.Implementations
 {
-	public class SocNetworkAuthService : ISocNetworkAuthService
+	public class SocialNetworkAuthService : ISocialNetworkAuthService
 	{
 		private readonly AuthorizationRoot authRoot;
 
-		public SocNetworkAuthService(AuthorizationRoot authRoot)
+		public SocialNetworkAuthService(AuthorizationRoot authRoot)
 		{
 			this.authRoot = authRoot;
 		}

@@ -5,11 +5,11 @@ using OnlinerTracker.DataAccess.Interfaces;
 
 namespace OnlinerTracker.BusinessLogic.Implementations
 {
-	public class TrackingProductService : ITrackingProductService
+	public class ProductTrackingService : IProductTrackingService
 	{
 		private readonly IUnitOfWork unitOfWork;
 
-		public TrackingProductService(IUnitOfWork unitOfWork)
+		public ProductTrackingService(IUnitOfWork unitOfWork)
 		{
 			this.unitOfWork = unitOfWork;
 		}
@@ -20,7 +20,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 
 			if (trackedProduct == null)
 			{
-				unitOfWork.TrackedProducts.Attach(new TrackingProduct
+				unitOfWork.TrackedProducts.Attach(new ProductTracking
 				{
 					CreatedOn = DateTime.Now,
 					UserId = userId,
@@ -64,7 +64,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			unitOfWork.Commit();
 		}
 
-		private TrackingProduct GetTrackedProduct(int productId, int userId)
+		private ProductTracking GetTrackedProduct(int productId, int userId)
 		{
 			var trackedProduct = unitOfWork.TrackedProducts
 				.FindBy(x => x.ProductId == productId && x.UserId == userId);

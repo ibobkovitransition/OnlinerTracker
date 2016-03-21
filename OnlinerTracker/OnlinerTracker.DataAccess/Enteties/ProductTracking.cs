@@ -2,7 +2,7 @@
 
 namespace OnlinerTracker.DataAccess.Enteties
 {
-	public class TrackingProduct : BaseEntity
+	public class ProductTracking : BaseEntity
 	{
 		public int ProductId { get; set; }
 

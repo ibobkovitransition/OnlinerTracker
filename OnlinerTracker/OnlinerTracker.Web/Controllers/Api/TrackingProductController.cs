@@ -1,24 +1,19 @@
 ﻿using System.Web.Http;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.BusinessLogic.Models;
-using OnlinerTracker.Web.Filters;
 using OnlinerTracker.Web.Filters.Api;
-using OnlinerTracker.Web.Interaces;
 
 namespace OnlinerTracker.Web.Controllers.Api
 {
 	[Authentication]
-	public class TrackingProductController : ApiController
+	public class TrackingProductController : ApiControllerBase
 	{
-		private readonly ITrackingProductService trackingProductService;
+		private readonly IProductTrackingService trackingProductService;
 		private readonly IProductService productService;
-		private readonly ICookieService cookieService;
-		private readonly string cookieName = "onliner_tracker";
 
-		public TrackingProductController(ITrackingProductService trackingProductService, ICookieService cookieService, IProductService productService)
+		public TrackingProductController(IProductTrackingService trackingProductService, IProductService productService)
 		{
 			this.trackingProductService = trackingProductService;
-			this.cookieService = cookieService;
 			this.productService = productService;
 		}
 
@@ -29,8 +24,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 		[HttpPost]
 		public IHttpActionResult Track(int id, Product product)
 		{
-			var user = (PrincipalUser)User;
-			productService.Add(product, user.UserId);
+			productService.Add(product, PrincipalUser.Id);
 			return Ok();
 		}
 
@@ -38,8 +32,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 		[HttpPut]
 		public IHttpActionResult Untrack(int id)
 		{
-			var user = (PrincipalUser)User;
-			trackingProductService.Untrack(id, user.UserId);
+			trackingProductService.Untrack(id, PrincipalUser.Id);
 			return Ok();
 		}
 		
@@ -47,8 +40,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 		[HttpDelete]
 		public IHttpActionResult Remove(int id)
 		{
-			var user = (PrincipalUser)User;
-			trackingProductService.Remove(id, user.UserId);
+			trackingProductService.Remove(id, PrincipalUser.Id);
 			return Ok();
 		}
 	}
