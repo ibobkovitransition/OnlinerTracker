@@ -72,7 +72,7 @@ var
 	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
 
 	// A simple way to check for HTML strings
-	// Prioritize #productId over <tag> to avoid XSS via location.hash (#9521)
+	// Prioritize #id over <tag> to avoid XSS via location.hash (#9521)
 	// Strict HTML recognition (#11290: must start with <)
 	rquickExpr = /^(?:(<[\w\W]+>)[^>]*|#([\w-]*))$/,
 
@@ -138,7 +138,7 @@ jQuery.fn = jQuery.prototype = {
 				match = rquickExpr.exec( selector );
 			}
 
-			// Match html or make sure no context is specified for #productId
+			// Match html or make sure no context is specified for #id
 			if ( match && (match[1] || !context) ) {
 
 				// HANDLE: $(html) -> $(array)
@@ -168,7 +168,7 @@ jQuery.fn = jQuery.prototype = {
 
 					return this;
 
-				// HANDLE: $(#productId)
+					// HANDLE: $(#id)
 				} else {
 					elem = document.getElementById( match[2] );
 
@@ -2566,7 +2566,7 @@ if ( !getSetAttribute ) {
 	nodeHook = jQuery.valHooks.button = {
 		get: function( elem, name ) {
 			var ret = elem.getAttributeNode( name );
-			return ret && ( name === "productId" || name === "name" || name === "coords" ? ret.value !== "" : ret.specified ) ?
+			return ret && ( name === "id" || name === "name" || name === "coords" ? ret.value !== "" : ret.specified ) ?
 				ret.value :
 				undefined;
 		},
@@ -3963,12 +3963,12 @@ function Sizzle( selector, context, results, seed ) {
 			if ( nodeType === 1 && context.nodeName.toLowerCase() !== "object" ) {
 				groups = tokenize( selector );
 
-				if ( (old = context.getAttribute("productId")) ) {
+				if ( (old = context.getAttribute("id")) ) {
 					nid = old.replace( rescape, "\\$&" );
 				} else {
-					context.setAttribute( "productId", nid );
+					context.setAttribute( "id", nid );
 				}
-				nid = "[productId='" + nid + "'] ";
+				nid = "[id='" + nid + "'] ";
 
 				i = groups.length;
 				while ( i-- ) {
@@ -3987,7 +3987,7 @@ function Sizzle( selector, context, results, seed ) {
 				} catch(qsaError) {
 				} finally {
 					if ( !old ) {
-						context.removeAttribute("productId");
+						context.removeAttribute("id");
 					}
 				}
 			}
@@ -4107,7 +4107,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		Expr.filter["ID"] = function( id ) {
 			var attrId = id.replace( runescape, funescape );
 			return function( elem ) {
-				return elem.getAttribute("productId") === attrId;
+				return elem.getAttribute("id") === attrId;
 			};
 		};
 	} else {
@@ -4116,7 +4116,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 				var m = context.getElementById( id );
 
 				return m ?
-					m.id === id || typeof m.getAttributeNode !== strundefined && m.getAttributeNode("productId").value === id ?
+					m.id === id || typeof m.getAttributeNode !== strundefined && m.getAttributeNode("id").value === id ?
 						[m] :
 						undefined :
 					[];
@@ -4125,7 +4125,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		Expr.filter["ID"] =  function( id ) {
 			var attrId = id.replace( runescape, funescape );
 			return function( elem ) {
-				var node = typeof elem.getAttributeNode !== strundefined && elem.getAttributeNode("productId");
+				var node = typeof elem.getAttributeNode !== strundefined && elem.getAttributeNode("id");
 				return node && node.value === attrId;
 			};
 		};
@@ -7069,8 +7069,8 @@ function getWidthOrHeight( elem, name, extra ) {
 		isBorderBox = jQuery.support.boxSizing && jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
 
 	// some non-html elements return undefined for offsetWidth, so check for null/undefined
-	// svg - https://bugzilla.mozilla.org/show_bug.cgi?productId=649285
-	// MathML - https://bugzilla.mozilla.org/show_bug.cgi?productId=491668
+	// svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
+	// MathML - https://bugzilla.mozilla.org/show_bug.cgi?id=491668
 	if ( val <= 0 || val == null ) {
 		// Fall back to computed then uncomputed css if necessary
 		val = curCSS( elem, name, styles );
@@ -7232,7 +7232,7 @@ jQuery(function() {
 		};
 	}
 
-	// Webkit bug: https://bugs.webkit.org/show_bug.cgi?productId=29084
+	// Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
 	// getComputedStyle returns percent when specified for top/left/bottom/right
 	// rather than make the css module depend on the offset module, we just check for it here
 	if ( !jQuery.support.pixelPosition && jQuery.fn.position ) {
