@@ -168,7 +168,7 @@ jQuery.fn = jQuery.prototype = {
 
 					return this;
 
-				// HANDLE: $(#id)
+					// HANDLE: $(#id)
 				} else {
 					elem = document.getElementById( match[2] );
 
@@ -3843,7 +3843,7 @@ function isNative( fn ) {
 }
 
 /**
- * Create key-value caches of limited size
+ * Create key-value caches of limited pageSize
  * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
  *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
  *	deleting the oldest entry
@@ -4759,7 +4759,7 @@ Expr = Sizzle.selectors = {
 							}
 						}
 
-						// Incorporate the offset, then check against cycle size
+						// Incorporate the offset, then check against cycle pageSize
 						diff -= last;
 						return diff === first || ( diff % first === 0 && diff / first >= 0 );
 					}
@@ -7331,7 +7331,7 @@ jQuery.fn.extend({
 });
 
 //Serialize an array of form elements or a set of
-//key/values into a query string
+//key/values into a productName string
 jQuery.param = function( a, traditional ) {
 	var prefix,
 		s = [],

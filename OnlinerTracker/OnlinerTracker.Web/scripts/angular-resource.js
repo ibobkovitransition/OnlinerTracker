@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license AngularJS v1.5.0
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
@@ -98,7 +98,7 @@ function shallowClearAndCopy(src, dst) {
  *   `http://example.com:8080/api`), it will be respected.
  *
  *   If you are using a url with a suffix, just add the suffix, like this:
- *   `$resource('http://example.com/resource.json')` or `$resource('http://example.com/:id.json')`
+ *   `$resource('http://example.com/resource.json')` or `$resource('http://example.com/:productId.json')`
  *   or even `$resource('http://example.com/resource/:resource_id.:format')`
  *   If the parameter before the suffix is empty, :resource_id in this case, then the `/.` will be
  *   collapsed down to a single `.`.  If you need this sequence to appear and not collapse then you
@@ -109,7 +109,7 @@ function shallowClearAndCopy(src, dst) {
  *   when a param value needs to be obtained for a request (unless the param was overridden).
  *
  *   Each key value in the parameter object is first bound to url template if present and then any
- *   excess keys are appended to the url search query after the `?`.
+ *   excess keys are appended to the url search productName after the `?`.
  *
  *   Given a template `/path/:verb` and parameter `{verb:'greet', salutation:'Hello'}` results in
  *   URL `/path/greet?salutation=Hello`.
@@ -190,7 +190,7 @@ function shallowClearAndCopy(src, dst) {
  *   ```js
  *   { 'get':    {method:'GET'},
  *     'save':   {method:'POST'},
- *     'query':  {method:'GET', isArray:true},
+ *     'productName':  {method:'GET', isArray:true},
  *     'remove': {method:'DELETE'},
  *     'delete': {method:'DELETE'} };
  *   ```
@@ -201,7 +201,7 @@ function shallowClearAndCopy(src, dst) {
  *   as  methods with the `$` prefix. This allows you to easily perform CRUD operations (create,
  *   read, update, delete) on server-side data like this:
  *   ```js
- *   var User = $resource('/user/:userId', {userId:'@id'});
+ *   var User = $resource('/user/:userId', {userId:'@productId'});
  *   var user = User.get({userId:123}, function() {
  *     user.abc = true;
  *     user.$save();
@@ -263,14 +263,14 @@ function shallowClearAndCopy(src, dst) {
  * ```js
      // Define CreditCard class
      var CreditCard = $resource('/user/:userId/card/:cardId',
-      {userId:123, cardId:'@id'}, {
+      {userId:123, cardId:'@productId'}, {
        charge: {method:'POST', params:{charge:true}}
       });
 
      // We can retrieve a collection from the server
-     var cards = CreditCard.query(function() {
+     var cards = CreditCard.productName(function() {
        // GET: /user/123/card
-       // server returns: [ {id:456, number:'1234', name:'Smith'} ];
+       // server returns: [ {productId:456, number:'1234', name:'Smith'} ];
 
        var card = cards[0];
        // each item is an instance of CreditCard
@@ -278,12 +278,12 @@ function shallowClearAndCopy(src, dst) {
        card.name = "J. Smith";
        // non GET methods are mapped onto the instances
        card.$save();
-       // POST: /user/123/card/456 {id:456, number:'1234', name:'J. Smith'}
-       // server returns: {id:456, number:'1234', name: 'J. Smith'};
+       // POST: /user/123/card/456 {productId:456, number:'1234', name:'J. Smith'}
+       // server returns: {productId:456, number:'1234', name: 'J. Smith'};
 
        // our custom method is mapped as well.
        card.$charge({amount:9.99});
-       // POST: /user/123/card/456?amount=9.99&charge=true {id:456, number:'1234', name:'J. Smith'}
+       // POST: /user/123/card/456?amount=9.99&charge=true {productId:456, number:'1234', name:'J. Smith'}
      });
 
      // we can create an instance as well
@@ -291,8 +291,8 @@ function shallowClearAndCopy(src, dst) {
      newCard.name = "Mike Smith";
      newCard.$save();
      // POST: /user/123/card {number:'0123', name:'Mike Smith'}
-     // server returns: {id:789, number:'0123', name: 'Mike Smith'};
-     expect(newCard.id).toEqual(789);
+     // server returns: {productId:789, number:'0123', name: 'Mike Smith'};
+     expect(newCard.productId).toEqual(789);
  * ```
  *
  * The object returned from this function execution is a resource "class" which has "static" method
@@ -310,19 +310,19 @@ function shallowClearAndCopy(src, dst) {
  * operations (create, read, update, delete) on server-side data.
 
    ```js
-     var User = $resource('/user/:userId', {userId:'@id'});
+     var User = $resource('/user/:userId', {userId:'@productId'});
      User.get({userId:123}, function(user) {
        user.abc = true;
        user.$save();
      });
    ```
  *
- * It's worth noting that the success callback for `get`, `query` and other methods gets passed
+ * It's worth noting that the success callback for `get`, `productName` and other methods gets passed
  * in the response that came from the server as well as $http header getter function, so one
  * could rewrite the above example and get access to http headers as:
  *
    ```js
-     var User = $resource('/user/:userId', {userId:'@id'});
+     var User = $resource('/user/:userId', {userId:'@productId'});
      User.get({userId:123}, function(user, getResponseHeaders){
        user.abc = true;
        user.$save(function(user, putResponseHeaders) {
@@ -335,7 +335,7 @@ function shallowClearAndCopy(src, dst) {
  * You can also access the raw `$http` promise via the `$promise` property on the object returned
  *
    ```
-     var User = $resource('/user/:userId', {userId:'@id'});
+     var User = $resource('/user/:userId', {userId:'@productId'});
      User.get({userId:123})
          .$promise.then(function(user) {
            $scope.user = user;
@@ -353,7 +353,7 @@ function shallowClearAndCopy(src, dst) {
  *    // Some APIs expect a PUT request in the format URL/object/ID
  *    // Here we are creating an 'update' method
  *    app.factory('Notes', ['$resource', function($resource) {
- *    return $resource('/notes/:id', null,
+ *    return $resource('/notes/:productId', null,
  *        {
  *            'update': { method:'PUT' }
  *        });
@@ -364,11 +364,11 @@ function shallowClearAndCopy(src, dst) {
  *    app.controller('NotesCtrl', ['$scope', '$routeParams', 'Notes',
                                       function($scope, $routeParams, Notes) {
  *    // First get a note object from the factory
- *    var note = Notes.get({ id:$routeParams.id });
- *    $id = note.id;
+ *    var note = Notes.get({ productId:$routeParams.productId });
+ *    $productId = note.productId;
  *
  *    // Now call update passing in the ID first then the object you are updating
- *    Notes.update({ id:$id }, note);
+ *    Notes.update({ productId:$productId }, note);
  *
  *    // This will PUT /notes/ID with the note object in the request payload
  *    }]);
@@ -383,9 +383,9 @@ function shallowClearAndCopy(src, dst) {
  *
    ```js
      // ...defining the `Hotel` resource...
-     var Hotel = $resource('/api/hotel/:id', {id: '@id'}, {
-       // Let's make the `query()` method cancellable
-       query: {method: 'get', isArray: true, cancellable: true}
+     var Hotel = $resource('/api/hotel/:productId', {productId: '@productId'}, {
+       // Let's make the `productName()` method cancellable
+       productName: {method: 'get', isArray: true, cancellable: true}
      });
 
      // ...somewhere in the PlanVacationController...
@@ -395,9 +395,9 @@ function shallowClearAndCopy(src, dst) {
        // in a different destination any more
        this.availableHotels.$cancelRequest();
 
-       // Let's query for hotels in '<destination>'
+       // Let's productName for hotels in '<destination>'
        // (calls: /api/hotel?location=<destination>)
-       this.availableHotels = Hotel.query({location: destination});
+       this.availableHotels = Hotel.productName({location: destination});
      };
    ```
  *
@@ -449,10 +449,10 @@ angular.module('ngResource', ['ng']).
 
 
       /**
-       * This method is intended for encoding *key* or *value* parts of query component. We need a
+       * This method is intended for encoding *key* or *value* parts of productName component. We need a
        * custom method because encodeURIComponent is too aggressive and encodes stuff that doesn't
        * have to be encoded per http://tools.ietf.org/html/rfc3986:
-       *    query       = *( pchar / "/" / "?" )
+       *    productName       = *( pchar / "/" / "?" )
        *    pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
        *    unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
        *    pct-encoded   = "%" HEXDIG HEXDIG
@@ -529,8 +529,8 @@ angular.module('ngResource', ['ng']).
             url = url.replace(/\/+$/, '') || '/';
           }
 
-          // then replace collapse `/.` if found in the last URL path segment before the query
-          // E.g. `http://url.com/id./format?q=x` becomes `http://url.com/id.format?q=x`
+          // then replace collapse `/.` if found in the last URL path segment before the productName
+          // E.g. `http://url.com/productId./format?q=x` becomes `http://url.com/productId.format?q=x`
           url = url.replace(/\/\.(?=\w+($|\?))/, '.');
           // replace escaped `/\.` with `/.`
           config.url = protocolAndDomain + url.replace(/\/\\\./, '/.');

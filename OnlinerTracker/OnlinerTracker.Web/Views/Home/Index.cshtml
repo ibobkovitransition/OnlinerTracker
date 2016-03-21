@@ -5,27 +5,22 @@
 
 <!DOCTYPE html>
 
-<html>
+<html ng-app="MainApp">
 <head>
 	<meta name="viewport" content="width=device-width" />
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/bootstrap")
 	@Scripts.Render("~/bundles/angular")
-	@Scripts.Render("~/bundles/angular/application")
+	@Scripts.Render("~/bundles/application")
 
 	@Styles.Render("~/bundles/bootstrap-css")
+	@Styles.Render("~/bundles/styles")
+	
 	<title>Index</title>
 </head>
 <body>
-	<div class="container">
-		<div>
-			<a class="btn btn-group btn-social btn-twitter">
-				<span class="fa fa-twitter-square"></span>
-				Twitter
-			</a>
-		</div>
 
-		<ng-view />
-	</div>
+	<ng-view />
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license AngularJS v1.5.0
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
@@ -1351,7 +1351,7 @@ function tryDecodeURIComponent(value) {
 
 
 /**
- * Parses an escaped url query string into key-value pairs.
+ * Parses an escaped url productName string into key-value pairs.
  * @returns {Object.<string,boolean|Array>}
  */
 function parseKeyValue(/**string*/keyValue) {
@@ -1418,10 +1418,10 @@ function encodeUriSegment(val) {
 
 
 /**
- * This method is intended for encoding *key* or *value* parts of query component. We need a custom
+ * This method is intended for encoding *key* or *value* parts of productName component. We need a custom
  * method because encodeURIComponent is too aggressive and encodes stuff that doesn't have to be
  * encoded per http://tools.ietf.org/html/rfc3986:
- *    query       = *( pchar / "/" / "?" )
+ *    productName       = *( pchar / "/" / "?" )
  *    pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
  *    unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
  *    pct-encoded   = "%" HEXDIG HEXDIG
@@ -3669,7 +3669,7 @@ function $$jqLiteProvider() {
  * Hash of a:
  *  string is string
  *  number is number as string
- *  object is either result of calling $$hashKey function on the object or uniquely generated id,
+ *  object is either result of calling $$hashKey function on the object or uniquely generated productId,
  *         that is also assigned to the $$hashKey property of the object.
  *
  * @param obj
@@ -3950,9 +3950,9 @@ function annotate(fn, strictDi, name) {
  * @name $injector#has
  *
  * @description
- * Allows the user to query if the particular service exists.
+ * Allows the user to productName if the particular service exists.
  *
- * @param {string} name Name of the service to query.
+ * @param {string} name Name of the service to productName.
  * @returns {boolean} `true` if injector has given service.
  */
 
@@ -4699,7 +4699,7 @@ function $AnchorScrollProvider() {
    *   the top of the page to the element's bottom will be used as offset.<br />
    *   **Note**: The element will be taken into account only as long as its `position` is set to
    *   `fixed`. This option is useful, when dealing with responsive navbars/headers that adjust
-   *   their height and/or positioning according to the viewport's size.
+   *   their height and/or positioning according to the viewport's pageSize.
    *
    * <br />
    * <div class="alert alert-warning">
@@ -4710,9 +4710,9 @@ function $AnchorScrollProvider() {
    * @example
      <example module="anchorScrollExample">
        <file name="index.html">
-         <div id="scrollArea" ng-controller="ScrollController">
+         <div productId="scrollArea" ng-controller="ScrollController">
            <a ng-click="gotoBottom()">Go to bottom</a>
-           <a id="bottom"></a> You're at the bottom!
+           <a productId="bottom"></a> You're at the bottom!
          </div>
        </file>
        <file name="script.js">
@@ -4720,7 +4720,7 @@ function $AnchorScrollProvider() {
            .controller('ScrollController', ['$scope', '$location', '$anchorScroll',
              function ($scope, $location, $anchorScroll) {
                $scope.gotoBottom = function() {
-                 // set the location.hash to the id of
+                 // set the location.hash to the productId of
                  // the element you wish to scroll to.
                  $location.hash('bottom');
 
@@ -4754,7 +4754,7 @@ function $AnchorScrollProvider() {
              Go to anchor {{x}}
            </a>
          </div>
-         <div id="anchor{{x}}" class="anchor" ng-repeat="x in [1,2,3,4,5]">
+         <div productId="anchor{{x}}" class="anchor" ng-repeat="x in [1,2,3,4,5]">
            Anchor {{x}} of 5
          </div>
        </file>
@@ -4877,7 +4877,7 @@ function $AnchorScrollProvider() {
       // empty hash, scroll to the top of the page
       if (!hash) scrollTo(null);
 
-      // element with given id
+      // element with given productId
       else if ((elm = document.getElementById(hash))) scrollTo(elm);
 
       // first anchor with given name :-D
@@ -5922,7 +5922,7 @@ function Browser(window, document, $log, $sniffer) {
       // - pendingLocation is needed as browsers don't allow to read out
       //   the new location.href if a reload happened or if there is a bug like in iOS 9 (see
       //   https://openradar.appspot.com/22186109).
-      // - the replacement is a workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=407172
+      // - the replacement is a workaround for https://bugzilla.mozilla.org/show_bug.cgi?productId=407172
       return pendingLocation || location.href.replace(/%27/g,"'");
     }
   };
@@ -6132,19 +6132,19 @@ function $BrowserProvider() {
  *  cache.put("another key", "another value");
  *
  *  // We've specified no options on creation
- *  expect(cache.info()).toEqual({id: 'cacheId', size: 2});
+ *  expect(cache.info()).toEqual({productId: 'cacheId', pageSize: 2});
  *
  * ```
  *
  *
- * @param {string} cacheId Name or id of the newly created cache.
+ * @param {string} cacheId Name or productId of the newly created cache.
  * @param {object=} options Options object that specifies the cache behavior. Properties:
  *
  *   - `{number=}` `capacity` — turns the cache into LRU cache.
  *
  * @returns {object} Newly created cache object with the following set of methods:
  *
- * - `{object}` `info()` — Returns id, size, and options of cache.
+ * - `{object}` `info()` — Returns productId, pageSize, and options of cache.
  * - `{{*}}` `put({string} key, {*} value)` — Puts a new key-value pair into the cache and returns
  *   it.
  * - `{{*}}` `get({string} key)` — Returns cached value for `key` or undefined for cache miss.
@@ -6237,8 +6237,8 @@ function $CacheFactoryProvider() {
        *    superCache.put('another key', 'another value');
        *
        *    expect(superCache.info()).toEqual({
-       *      id: 'super-cache',
-       *      size: 2
+       *      productId: 'super-cache',
+       *      pageSize: 2
        *    });
        *
        *    superCache.remove('another key');
@@ -6246,8 +6246,8 @@ function $CacheFactoryProvider() {
        *
        *    superCache.removeAll();
        *    expect(superCache.info()).toEqual({
-       *      id: 'super-cache',
-       *      size: 0
+       *      productId: 'super-cache',
+       *      pageSize: 0
        *    });
        *  }));
        * ```
@@ -6261,7 +6261,7 @@ function $CacheFactoryProvider() {
          *
          * @description
          * Inserts a named entry into the {@link $cacheFactory.Cache Cache} object to be
-         * retrieved later, and incrementing the size of the cache if the key was not already
+         * retrieved later, and incrementing the pageSize of the cache if the key was not already
          * present in the cache. If behaving like an LRU cache, it will also remove stale
          * entries from the set.
          *
@@ -6387,8 +6387,8 @@ function $CacheFactoryProvider() {
          *
          * @returns {object} an object with the following properties:
          *   <ul>
-         *     <li>**id**: the id of the cache instance</li>
-         *     <li>**size**: the number of entries kept in the cache instance</li>
+         *     <li>**productId**: the productId of the cache instance</li>
+         *     <li>**pageSize**: the number of entries kept in the cache instance</li>
          *     <li>**...**: any additional properties from the options object when creating the
          *       cache.</li>
          *   </ul>
@@ -6455,7 +6455,7 @@ function $CacheFactoryProvider() {
    * @description
    * Get access to a cache object by the `cacheId` used when it was created.
    *
-   * @param {string} cacheId Name or id of a cache to access.
+   * @param {string} cacheId Name or productId of a cache to access.
    * @returns {object} Cache object identified by the cacheId or undefined if no such cache.
    */
     cacheFactory.get = function(cacheId) {
@@ -6479,7 +6479,7 @@ function $CacheFactoryProvider() {
  * Adding via the `script` tag:
  *
  * ```html
- *   <script type="text/ng-template" id="templateId.html">
+ *   <script type="text/ng-template" productId="templateId.html">
  *     <p>This is the content of the template</p>
  *   </script>
  * ```
@@ -10823,15 +10823,15 @@ function $HttpProvider() {
       <option>GET</option>
       <option>JSONP</option>
     </select>
-    <input type="text" ng-model="url" size="80" aria-label="URL" />
-    <button id="fetchbtn" ng-click="fetch()">fetch</button><br>
-    <button id="samplegetbtn" ng-click="updateModel('GET', 'http-hello.html')">Sample GET</button>
-    <button id="samplejsonpbtn"
+    <input type="text" ng-model="url" pageSize="80" aria-label="URL" />
+    <button productId="fetchbtn" ng-click="fetch()">fetch</button><br>
+    <button productId="samplegetbtn" ng-click="updateModel('GET', 'http-hello.html')">Sample GET</button>
+    <button productId="samplejsonpbtn"
       ng-click="updateModel('JSONP',
                     'https://angularjs.org/greet.php?callback=JSON_CALLBACK&name=Super%20Hero')">
       Sample JSONP
     </button>
-    <button id="invalidjsonpbtn"
+    <button productId="invalidjsonpbtn"
       ng-click="updateModel('JSONP', 'https://angularjs.org/doesntexist&callback=JSON_CALLBACK')">
         Invalid JSONP
       </button>
@@ -10872,10 +10872,10 @@ function $HttpProvider() {
 <file name="protractor.js" type="protractor">
   var status = element(by.binding('status'));
   var data = element(by.binding('data'));
-  var fetchBtn = element(by.id('fetchbtn'));
-  var sampleGetBtn = element(by.id('samplegetbtn'));
-  var sampleJsonpBtn = element(by.id('samplejsonpbtn'));
-  var invalidJsonpBtn = element(by.id('invalidjsonpbtn'));
+  var fetchBtn = element(by.productId('fetchbtn'));
+  var sampleGetBtn = element(by.productId('samplegetbtn'));
+  var sampleJsonpBtn = element(by.productId('samplejsonpbtn'));
+  var invalidJsonpBtn = element(by.productId('invalidjsonpbtn'));
 
   it('should make an xhr GET request', function() {
     sampleGetBtn.click();
@@ -11427,7 +11427,7 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
           xhr.responseType = responseType;
         } catch (e) {
           // WebKit added support for the json responseType value on 09/03/2013
-          // https://bugs.webkit.org/show_bug.cgi?id=73648. Versions of Safari prior to 7 are
+          // https://bugs.webkit.org/show_bug.cgi?productId=73648. Versions of Safari prior to 7 are
           // known to throw when setting the value "json" as the response type. Other older
           // browsers implementing the responseType
           //
@@ -12090,7 +12090,7 @@ function $IntervalProvider() {
  * $locale service provides localization rules for various Angular components. As of right now the
  * only public api is:
  *
- * * `id` – `{string}` – locale id formatted as `languageId-countryId` (e.g. `en-us`)
+ * * `productId` – `{string}` – locale productId formatted as `languageId-countryId` (e.g. `en-us`)
  */
 
 var PATH_MATCH = /^([^\?#]*)(\?([^#]*))?(#(.*))?$/,
@@ -15977,7 +15977,7 @@ function $RootScopeProvider() {
       // The code below works around IE9 and V8's memory leaks
       //
       // See:
-      // - https://code.google.com/p/v8/issues/detail?id=2073#c26
+      // - https://code.google.com/p/v8/issues/detail?productId=2073#c26
       // - https://github.com/angular/angular.js/issues/6794#issuecomment-38648909
       // - https://github.com/angular/angular.js/issues/1313#issuecomment-10378451
 
@@ -16040,7 +16040,7 @@ function $RootScopeProvider() {
 
     /**
      * @ngdoc property
-     * @name $rootScope.Scope#$id
+     * @name $rootScope.Scope#$productId
      *
      * @description
      * Unique scope ID (monotonically increasing) useful for debugging.
@@ -16327,7 +16327,7 @@ function $RootScopeProvider() {
         }
 
         if (watchExpressions.length === 1) {
-          // Special case size of one
+          // Special case pageSize of one
           return this.$watch(watchExpressions[0], function watchGroupAction(value, oldValue, scope) {
             newValues[0] = value;
             oldValues[0] = oldValue;
@@ -17901,7 +17901,7 @@ function $SceDelegateProvider() {
  * <example module="mySceApp" deps="angular-sanitize.js">
  * <file name="index.html">
  *   <div ng-controller="AppController as myCtrl">
- *     <i ng-bind-html="myCtrl.explicitlyTrustedHtml" id="explicitlyTrustedHtml"></i><br><br>
+ *     <i ng-bind-html="myCtrl.explicitlyTrustedHtml" productId="explicitlyTrustedHtml"></i><br><br>
  *     <b>User comments</b><br>
  *     By default, HTML that isn't explicitly trusted (e.g. Alice's comment) is sanitized when
  *     $sanitize is available.  If $sanitize isn't available, this results in an error instead of an
@@ -17950,7 +17950,7 @@ function $SceDelegateProvider() {
  *     });
  *
  *     it('should NOT sanitize explicitly trusted values', function() {
- *       expect(element(by.id('explicitlyTrustedHtml')).getInnerHtml()).toBe(
+ *       expect(element(by.productId('explicitlyTrustedHtml')).getInnerHtml()).toBe(
  *           '<span onmouseover="this.textContent=&quot;Explicitly trusted HTML bypasses ' +
  *           'sanitization.&quot;">Hover over this text.</span>');
  *     });
@@ -18433,7 +18433,7 @@ function $SnifferProvider() {
     return {
       // Android has history.pushState, but it does not update location correctly
       // so let's not use the history API at all.
-      // http://code.google.com/p/android/issues/detail?id=17471
+      // http://code.google.com/p/android/issues/detail?productId=17471
       // https://github.com/angular/angular.js/issues/904
 
       // older webkit browser (533.9) on Boxee box has exactly the same problem as Android has
@@ -19214,7 +19214,7 @@ function $FilterProvider($provide) {
                                 {name:'Juliette', phone:'555-5678'}]"></div>
 
        <label>Search: <input ng-model="searchText"></label>
-       <table id="searchTextResults">
+       <table productId="searchTextResults">
          <tr><th>Name</th><th>Phone</th></tr>
          <tr ng-repeat="friend in friends | filter:searchText">
            <td>{{friend.name}}</td>
@@ -19226,7 +19226,7 @@ function $FilterProvider($provide) {
        <label>Name only <input ng-model="search.name"></label><br>
        <label>Phone only <input ng-model="search.phone"></label><br>
        <label>Equality <input type="checkbox" ng-model="strict"></label><br>
-       <table id="searchObjResults">
+       <table productId="searchObjResults">
          <tr><th>Name</th><th>Phone</th></tr>
          <tr ng-repeat="friendObj in friends | filter:search:strict">
            <td>{{friendObj.name}}</td>
@@ -19414,7 +19414,7 @@ var ZERO_CHAR = '0';
  *
  * @param {number} amount Input to filter.
  * @param {string=} symbol Currency symbol or identifier to be displayed.
- * @param {number=} fractionSize Number of decimal places to round the amount to, defaults to default max fraction size for current locale
+ * @param {number=} fractionSize Number of decimal places to round the amount to, defaults to default max fraction pageSize for current locale
  * @returns {string} Formatted number.
  *
  *
@@ -19429,16 +19429,16 @@ var ZERO_CHAR = '0';
        </script>
        <div ng-controller="ExampleController">
          <input type="number" ng-model="amount" aria-label="amount"> <br>
-         default currency symbol ($): <span id="currency-default">{{amount | currency}}</span><br>
-         custom currency identifier (USD$): <span id="currency-custom">{{amount | currency:"USD$"}}</span>
-         no fractions (0): <span id="currency-no-fractions">{{amount | currency:"USD$":0}}</span>
+         default currency symbol ($): <span productId="currency-default">{{amount | currency}}</span><br>
+         custom currency identifier (USD$): <span productId="currency-custom">{{amount | currency:"USD$"}}</span>
+         no fractions (0): <span productId="currency-no-fractions">{{amount | currency:"USD$":0}}</span>
        </div>
      </file>
      <file name="protractor.js" type="protractor">
        it('should init with 1234.56', function() {
-         expect(element(by.id('currency-default')).getText()).toBe('$1,234.56');
-         expect(element(by.id('currency-custom')).getText()).toBe('USD$1,234.56');
-         expect(element(by.id('currency-no-fractions')).getText()).toBe('USD$1,235');
+         expect(element(by.productId('currency-default')).getText()).toBe('$1,234.56');
+         expect(element(by.productId('currency-custom')).getText()).toBe('USD$1,234.56');
+         expect(element(by.productId('currency-no-fractions')).getText()).toBe('USD$1,235');
        });
        it('should update', function() {
          if (browser.params.browser == 'safari') {
@@ -19448,9 +19448,9 @@ var ZERO_CHAR = '0';
          }
          element(by.model('amount')).clear();
          element(by.model('amount')).sendKeys('-1234');
-         expect(element(by.id('currency-default')).getText()).toBe('-$1,234.00');
-         expect(element(by.id('currency-custom')).getText()).toBe('-USD$1,234.00');
-         expect(element(by.id('currency-no-fractions')).getText()).toBe('-USD$1,234');
+         expect(element(by.productId('currency-default')).getText()).toBe('-$1,234.00');
+         expect(element(by.productId('currency-custom')).getText()).toBe('-USD$1,234.00');
+         expect(element(by.productId('currency-no-fractions')).getText()).toBe('-USD$1,234');
        });
      </file>
    </example>
@@ -19490,7 +19490,7 @@ function currencyFilter($locale) {
  *
  * @param {number|string} number Number to format.
  * @param {(number|string)=} fractionSize Number of decimal places to round the number to.
- * If this is not provided then the fraction size is computed from the current locale's number
+ * If this is not provided then the fraction pageSize is computed from the current locale's number
  * formatting pattern. In the case of the default locale, it will be 3.
  * @returns {string} Number rounded to fractionSize and places a “,” after each third digit.
  *
@@ -19505,14 +19505,14 @@ function currencyFilter($locale) {
        </script>
        <div ng-controller="ExampleController">
          <label>Enter number: <input ng-model='val'></label><br>
-         Default formatting: <span id='number-default'>{{val | number}}</span><br>
+         Default formatting: <span productId='number-default'>{{val | number}}</span><br>
          No fractions: <span>{{val | number:0}}</span><br>
          Negative number: <span>{{-val | number:4}}</span>
        </div>
      </file>
      <file name="protractor.js" type="protractor">
        it('should format numbers', function() {
-         expect(element(by.id('number-default')).getText()).toBe('1,234.568');
+         expect(element(by.productId('number-default')).getText()).toBe('1,234.568');
          expect(element(by.binding('val | number:0')).getText()).toBe('1,235');
          expect(element(by.binding('-val | number:4')).getText()).toBe('-1,234.5679');
        });
@@ -19520,7 +19520,7 @@ function currencyFilter($locale) {
        it('should update', function() {
          element(by.model('val')).clear();
          element(by.model('val')).sendKeys('3374.333');
-         expect(element(by.id('number-default')).getText()).toBe('3,374.333');
+         expect(element(by.productId('number-default')).getText()).toBe('3,374.333');
          expect(element(by.binding('val | number:0')).getText()).toBe('3,374');
          expect(element(by.binding('-val | number:4')).getText()).toBe('-3,374.3330');
       });
@@ -19661,7 +19661,7 @@ function roundNumber(parsedNumber, fractionSize, minFrac, maxFrac) {
  *         }} pattern
  * @param  {string} groupSep     The string to separate groups of number (e.g. `,`)
  * @param  {string} decimalSep   The string to act as the decimal separator (e.g. `.`)
- * @param  {[type]} fractionSize The size of the fractional part of the number
+ * @param  {[type]} fractionSize The pageSize of the fractional part of the number
  * @return {string}              The number formatted as a string
  */
 function formatNumber(number, pattern, groupSep, decimalSep, fractionSize) {
@@ -20039,13 +20039,13 @@ function dateFilter($locale) {
  * @example
    <example>
      <file name="index.html">
-       <pre id="default-spacing">{{ {'name':'value'} | json }}</pre>
-       <pre id="custom-spacing">{{ {'name':'value'} | json:4 }}</pre>
+       <pre productId="default-spacing">{{ {'name':'value'} | json }}</pre>
+       <pre productId="custom-spacing">{{ {'name':'value'} | json:4 }}</pre>
      </file>
      <file name="protractor.js" type="protractor">
        it('should jsonify filtered objects', function() {
-         expect(element(by.id('default-spacing')).getText()).toMatch(/\{\n  "name": ?"value"\n}/);
-         expect(element(by.id('custom-spacing')).getText()).toMatch(/\{\n    "name": ?"value"\n}/);
+         expect(element(by.productId('default-spacing')).getText()).toMatch(/\{\n  "name": ?"value"\n}/);
+         expect(element(by.productId('custom-spacing')).getText()).toMatch(/\{\n    "name": ?"value"\n}/);
        });
      </file>
    </example>
@@ -20166,7 +20166,7 @@ var uppercaseFilter = valueFn(uppercase);
        //   expect(limitedLongNumber.getText()).toEqual('Output long number: 342');
        // });
 
-       it('should not exceed the maximum size of input array', function() {
+       it('should not exceed the maximum pageSize of input array', function() {
          numLimitInput.clear();
          numLimitInput.sendKeys('100');
          letterLimitInput.clear();
@@ -20601,30 +20601,30 @@ var htmlAnchorDirective = valueFn({
     <example>
       <file name="index.html">
         <input ng-model="value" /><br />
-        <a id="link-1" href ng-click="value = 1">link 1</a> (link, don't reload)<br />
-        <a id="link-2" href="" ng-click="value = 2">link 2</a> (link, don't reload)<br />
-        <a id="link-3" ng-href="/{{'123'}}">link 3</a> (link, reload!)<br />
-        <a id="link-4" href="" name="xx" ng-click="value = 4">anchor</a> (link, don't reload)<br />
-        <a id="link-5" name="xxx" ng-click="value = 5">anchor</a> (no link)<br />
-        <a id="link-6" ng-href="{{value}}">link</a> (link, change location)
+        <a productId="link-1" href ng-click="value = 1">link 1</a> (link, don't reload)<br />
+        <a productId="link-2" href="" ng-click="value = 2">link 2</a> (link, don't reload)<br />
+        <a productId="link-3" ng-href="/{{'123'}}">link 3</a> (link, reload!)<br />
+        <a productId="link-4" href="" name="xx" ng-click="value = 4">anchor</a> (link, don't reload)<br />
+        <a productId="link-5" name="xxx" ng-click="value = 5">anchor</a> (no link)<br />
+        <a productId="link-6" ng-href="{{value}}">link</a> (link, change location)
       </file>
       <file name="protractor.js" type="protractor">
         it('should execute ng-click but not reload when href without value', function() {
-          element(by.id('link-1')).click();
+          element(by.productId('link-1')).click();
           expect(element(by.model('value')).getAttribute('value')).toEqual('1');
-          expect(element(by.id('link-1')).getAttribute('href')).toBe('');
+          expect(element(by.productId('link-1')).getAttribute('href')).toBe('');
         });
 
         it('should execute ng-click but not reload when href empty string', function() {
-          element(by.id('link-2')).click();
+          element(by.productId('link-2')).click();
           expect(element(by.model('value')).getAttribute('value')).toEqual('2');
-          expect(element(by.id('link-2')).getAttribute('href')).toBe('');
+          expect(element(by.productId('link-2')).getAttribute('href')).toBe('');
         });
 
         it('should execute ng-click and change url when ng-href specified', function() {
-          expect(element(by.id('link-3')).getAttribute('href')).toMatch(/\/123$/);
+          expect(element(by.productId('link-3')).getAttribute('href')).toMatch(/\/123$/);
 
-          element(by.id('link-3')).click();
+          element(by.productId('link-3')).click();
 
           // At this point, we navigate away from an Angular page, so we need
           // to use browser.driver to get the base webdriver.
@@ -20637,23 +20637,23 @@ var htmlAnchorDirective = valueFn({
         });
 
         it('should execute ng-click but not reload when href empty string and name specified', function() {
-          element(by.id('link-4')).click();
+          element(by.productId('link-4')).click();
           expect(element(by.model('value')).getAttribute('value')).toEqual('4');
-          expect(element(by.id('link-4')).getAttribute('href')).toBe('');
+          expect(element(by.productId('link-4')).getAttribute('href')).toBe('');
         });
 
         it('should execute ng-click but not reload when no href but name specified', function() {
-          element(by.id('link-5')).click();
+          element(by.productId('link-5')).click();
           expect(element(by.model('value')).getAttribute('value')).toEqual('5');
-          expect(element(by.id('link-5')).getAttribute('href')).toBe(null);
+          expect(element(by.productId('link-5')).getAttribute('href')).toBe(null);
         });
 
         it('should only change url when only ng-href', function() {
           element(by.model('value')).clear();
           element(by.model('value')).sendKeys('6');
-          expect(element(by.id('link-6')).getAttribute('href')).toMatch(/\/6$/);
+          expect(element(by.productId('link-6')).getAttribute('href')).toMatch(/\/6$/);
 
-          element(by.id('link-6')).click();
+          element(by.productId('link-6')).click();
 
           // At this point, we navigate away from an Angular page, so we need
           // to use browser.driver to get the base webdriver.
@@ -20773,13 +20773,13 @@ var htmlAnchorDirective = valueFn({
     <example>
       <file name="index.html">
         <label>Check me to check both: <input type="checkbox" ng-model="master"></label><br/>
-        <input id="checkSlave" type="checkbox" ng-checked="master" aria-label="Slave input">
+        <input productId="checkSlave" type="checkbox" ng-checked="master" aria-label="Slave input">
       </file>
       <file name="protractor.js" type="protractor">
         it('should check both checkBoxes', function() {
-          expect(element(by.id('checkSlave')).getAttribute('checked')).toBeFalsy();
+          expect(element(by.productId('checkSlave')).getAttribute('checked')).toBeFalsy();
           element(by.model('master')).click();
-          expect(element(by.id('checkSlave')).getAttribute('checked')).toBeTruthy();
+          expect(element(by.productId('checkSlave')).getAttribute('checked')).toBeTruthy();
         });
       </file>
     </example>
@@ -20843,14 +20843,14 @@ var htmlAnchorDirective = valueFn({
         <label>Check me to select: <input type="checkbox" ng-model="selected"></label><br/>
         <select aria-label="ngSelected demo">
           <option>Hello!</option>
-          <option id="greet" ng-selected="selected">Greetings!</option>
+          <option productId="greet" ng-selected="selected">Greetings!</option>
         </select>
       </file>
       <file name="protractor.js" type="protractor">
         it('should select Greetings!', function() {
-          expect(element(by.id('greet')).getAttribute('selected')).toBeFalsy();
+          expect(element(by.productId('greet')).getAttribute('selected')).toBeFalsy();
           element(by.model('selected')).click();
-          expect(element(by.id('greet')).getAttribute('selected')).toBeTruthy();
+          expect(element(by.productId('greet')).getAttribute('selected')).toBeTruthy();
         });
       </file>
     </example>
@@ -20877,15 +20877,15 @@ var htmlAnchorDirective = valueFn({
      <example>
        <file name="index.html">
          <label>Check me check multiple: <input type="checkbox" ng-model="open"></label><br/>
-         <details id="details" ng-open="open">
+         <details productId="details" ng-open="open">
             <summary>Show/Hide me</summary>
          </details>
        </file>
        <file name="protractor.js" type="protractor">
          it('should toggle open', function() {
-           expect(element(by.id('details')).getAttribute('open')).toBeFalsy();
+           expect(element(by.productId('details')).getAttribute('open')).toBeFalsy();
            element(by.model('open')).click();
-           expect(element(by.id('details')).getAttribute('open')).toBeTruthy();
+           expect(element(by.productId('details')).getAttribute('open')).toBeTruthy();
          });
        </file>
      </example>
@@ -21720,7 +21720,7 @@ var inputType = {
        </script>
        <form name="myForm" ng-controller="DateController as dateCtrl">
           <label for="exampleInput">Pick a date in 2013:</label>
-          <input type="date" id="exampleInput" name="input" ng-model="example.value"
+          <input type="date" productId="exampleInput" name="input" ng-model="example.value"
               placeholder="yyyy-MM-dd" min="2013-01-01" max="2013-12-31" required />
           <div role="alert">
             <span class="error" ng-show="myForm.input.$error.required">
@@ -21823,7 +21823,7 @@ var inputType = {
       </script>
       <form name="myForm" ng-controller="DateController as dateCtrl">
         <label for="exampleInput">Pick a date between in 2013:</label>
-        <input type="datetime-local" id="exampleInput" name="input" ng-model="example.value"
+        <input type="datetime-local" productId="exampleInput" name="input" ng-model="example.value"
             placeholder="yyyy-MM-ddTHH:mm:ss" min="2001-01-01T00:00:00" max="2013-12-31T00:00:00" required />
         <div role="alert">
           <span class="error" ng-show="myForm.input.$error.required">
@@ -21927,7 +21927,7 @@ var inputType = {
      </script>
      <form name="myForm" ng-controller="DateController as dateCtrl">
         <label for="exampleInput">Pick a between 8am and 5pm:</label>
-        <input type="time" id="exampleInput" name="input" ng-model="example.value"
+        <input type="time" productId="exampleInput" name="input" ng-model="example.value"
             placeholder="HH:mm:ss" min="08:00:00" max="17:00:00" required />
         <div role="alert">
           <span class="error" ng-show="myForm.input.$error.required">
@@ -22030,7 +22030,7 @@ var inputType = {
       </script>
       <form name="myForm" ng-controller="DateController as dateCtrl">
         <label>Pick a date between in 2013:
-          <input id="exampleInput" type="week" name="input" ng-model="example.value"
+          <input productId="exampleInput" type="week" name="input" ng-model="example.value"
                  placeholder="YYYY-W##" min="2012-W32"
                  max="2013-W52" required />
         </label>
@@ -22136,7 +22136,7 @@ var inputType = {
      </script>
      <form name="myForm" ng-controller="DateController as dateCtrl">
        <label for="exampleInput">Pick a month in 2013:</label>
-       <input id="exampleInput" type="month" name="input" ng-model="example.value"
+       <input productId="exampleInput" type="month" name="input" ng-model="example.value"
           placeholder="yyyy-MM" min="2013-01" max="2013-12" required />
        <div role="alert">
          <span class="error" ng-show="myForm.input.$error.required">
@@ -22525,7 +22525,7 @@ var inputType = {
                  name: 'blue'
                };
                $scope.specialValue = {
-                 "id": "12345",
+                 "productId": "12345",
                  "value": "green"
                };
              }]);
@@ -23269,7 +23269,7 @@ var CONSTANT_VALUE_REGEXP = /^(true|false|\d+)$/;
               <input type="radio"
                      ng-model="my.favorite"
                      ng-value="name"
-                     id="{{name}}"
+                     productId="{{name}}"
                      name="favorite">
             </label>
           <div>You chose {{my.favorite}}</div>
@@ -23552,8 +23552,8 @@ var ngBindHtmlDirective = ['$sce', '$parse', '$compile', function($sce, $parse, 
  *         }]);
  *     </script>
  *     <div ng-controller="ExampleController">
- *       <input type="checkbox" ng-model="confirmed" ng-change="change()" id="ng-change-example1" />
- *       <input type="checkbox" ng-model="confirmed" id="ng-change-example2" />
+ *       <input type="checkbox" ng-model="confirmed" ng-change="change()" productId="ng-change-example1" />
+ *       <input type="checkbox" ng-model="confirmed" productId="ng-change-example2" />
  *       <label for="ng-change-example2">Confirmed</label><br />
  *       <tt>debug = {{confirmed}}</tt><br/>
  *       <tt>counter = {{counter}}</tt><br/>
@@ -23566,14 +23566,14 @@ var ngBindHtmlDirective = ['$sce', '$parse', '$compile', function($sce, $parse, 
  *     it('should evaluate the expression if changing from view', function() {
  *       expect(counter.getText()).toContain('0');
  *
- *       element(by.id('ng-change-example1')).click();
+ *       element(by.productId('ng-change-example1')).click();
  *
  *       expect(counter.getText()).toContain('1');
  *       expect(debug.getText()).toContain('true');
  *     });
  *
  *     it('should not evaluate the expression if changing from model', function() {
- *       element(by.id('ng-change-example2')).click();
+ *       element(by.productId('ng-change-example2')).click();
 
  *       expect(counter.getText()).toContain('0');
  *       expect(debug.getText()).toContain('true');
@@ -23846,8 +23846,8 @@ function classDirective(name, selector) {
 
    <example module="ngAnimate" deps="angular-animate.js" animations="true">
      <file name="index.html">
-      <input id="setbtn" type="button" value="set" ng-click="myVar='my-class'">
-      <input id="clearbtn" type="button" value="clear" ng-click="myVar=''">
+      <input productId="setbtn" type="button" value="set" ng-click="myVar='my-class'">
+      <input productId="clearbtn" type="button" value="clear" ng-click="myVar=''">
       <br>
       <span class="base-class" ng-class="myVar">Sample Text</span>
      </file>
@@ -23858,7 +23858,7 @@ function classDirective(name, selector) {
 
        .base-class.my-class {
          color: red;
-         font-size:3em;
+         font-pageSize:3em;
        }
      </file>
      <file name="protractor.js" type="protractor">
@@ -23866,12 +23866,12 @@ function classDirective(name, selector) {
          expect(element(by.css('.base-class')).getAttribute('class')).not.
            toMatch(/my-class/);
 
-         element(by.id('setbtn')).click();
+         element(by.productId('setbtn')).click();
 
          expect(element(by.css('.base-class')).getAttribute('class')).
            toMatch(/my-class/);
 
-         element(by.id('clearbtn')).click();
+         element(by.productId('clearbtn')).click();
 
          expect(element(by.css('.base-class')).getAttribute('class')).not.
            toMatch(/my-class/);
@@ -24023,8 +24023,8 @@ var ngClassEvenDirective = classDirective('Even', 1);
  * @example
    <example>
      <file name="index.html">
-        <div id="template1" ng-cloak>{{ 'hello' }}</div>
-        <div id="template2" class="ng-cloak">{{ 'world' }}</div>
+        <div productId="template1" ng-cloak>{{ 'hello' }}</div>
+        <div productId="template2" class="ng-cloak">{{ 'world' }}</div>
      </file>
      <file name="protractor.js" type="protractor">
        it('should remove the template directive and css class', function() {
@@ -24107,13 +24107,13 @@ var ngCloakDirective = ngDirective({
  *
  * <example name="ngControllerAs" module="controllerAsExample">
  *   <file name="index.html">
- *    <div id="ctrl-as-exmpl" ng-controller="SettingsController1 as settings">
+ *    <div productId="ctrl-as-exmpl" ng-controller="SettingsController1 as settings">
  *      <label>Name: <input type="text" ng-model="settings.name"/></label>
  *      <button ng-click="settings.greet()">greet</button><br/>
  *      Contact:
  *      <ul>
  *        <li ng-repeat="contact in settings.contacts">
- *          <select ng-model="contact.type" aria-label="Contact method" id="select_{{$index}}">
+ *          <select ng-model="contact.type" aria-label="Contact method" productId="select_{{$index}}">
  *             <option>phone</option>
  *             <option>email</option>
  *          </select>
@@ -24156,7 +24156,7 @@ var ngCloakDirective = ngDirective({
  *   </file>
  *   <file name="protractor.js" type="protractor">
  *     it('should check controller as', function() {
- *       var container = element(by.id('ctrl-as-exmpl'));
+ *       var container = element(by.productId('ctrl-as-exmpl'));
  *         expect(container.element(by.model('settings.name'))
  *           .getAttribute('value')).toBe('John Smith');
  *
@@ -24190,13 +24190,13 @@ var ngCloakDirective = ngDirective({
  *
  * <example name="ngController" module="controllerExample">
  *  <file name="index.html">
- *   <div id="ctrl-exmpl" ng-controller="SettingsController2">
+ *   <div productId="ctrl-exmpl" ng-controller="SettingsController2">
  *     <label>Name: <input type="text" ng-model="name"/></label>
  *     <button ng-click="greet()">greet</button><br/>
  *     Contact:
  *     <ul>
  *       <li ng-repeat="contact in contacts">
- *         <select ng-model="contact.type" id="select_{{$index}}">
+ *         <select ng-model="contact.type" productId="select_{{$index}}">
  *            <option>phone</option>
  *            <option>email</option>
  *         </select>
@@ -24239,7 +24239,7 @@ var ngCloakDirective = ngDirective({
  *  </file>
  *  <file name="protractor.js" type="protractor">
  *    it('should check controller', function() {
- *      var container = element(by.id('ctrl-exmpl'));
+ *      var container = element(by.productId('ctrl-exmpl'));
  *
  *      expect(container.element(by.model('name'))
  *          .getAttribute('value')).toBe('John Smith');
@@ -24365,15 +24365,15 @@ var ngControllerDirective = [function() {
         <file name="index.html">
           <div ng-controller="MainController as ctrl">
             <div>
-              <button ng-click="ctrl.inc()" id="inc">Increment</button>
-              <span id="counter">
+              <button ng-click="ctrl.inc()" productId="inc">Increment</button>
+              <span productId="counter">
                 {{ctrl.counter}}
               </span>
             </div>
 
             <div>
-              <button ng-click="ctrl.evil()" id="evil">Evil</button>
-              <span id="evilError">
+              <button ng-click="ctrl.evil()" productId="evil">Evil</button>
+              <span productId="evilError">
                 {{ctrl.evilError}}
               </span>
             </div>
@@ -24399,10 +24399,10 @@ var ngControllerDirective = [function() {
         <file name="protractor.js" type="protractor">
           var util, webdriver;
 
-          var incBtn = element(by.id('inc'));
-          var counter = element(by.id('counter'));
-          var evilBtn = element(by.id('evil'));
-          var evilError = element(by.id('evilError'));
+          var incBtn = element(by.productId('inc'));
+          var counter = element(by.productId('counter'));
+          var evilBtn = element(by.productId('evil'));
+          var evilError = element(by.productId('evilError'));
 
           function getAndClearSevereErrors() {
             return browser.manage().logs().get('browser').then(function(browserLog) {
@@ -24838,7 +24838,7 @@ forEach(
       <form ng-submit="submit()" ng-controller="ExampleController">
         Enter text and hit enter:
         <input type="text" ng-model="text" name="text" />
-        <input type="submit" id="submit" value="Submit" />
+        <input type="submit" productId="submit" value="Submit" />
         <pre>list={{list}}</pre>
       </form>
      </file>
@@ -25376,7 +25376,7 @@ var ngIncludeFillContentDirective = ['$compile',
       require: 'ngInclude',
       link: function(scope, $element, $attr, ctrl) {
         if (toString.call($element[0]).match(/SVG/)) {
-          // WebKit: https://bugs.webkit.org/show_bug.cgi?id=135698 --- SVG elements do not
+          // WebKit: https://bugs.webkit.org/show_bug.cgi?productId=135698 --- SVG elements do not
           // support innerHTML, so detect this here and try to generate the contents
           // specially.
           $element.empty();
@@ -26091,14 +26091,14 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    *
    *       <form name="myForm" ng-model-options="{ updateOn: 'blur' }">
    *         <div>
-   *        <p id="inputDescription1">Without $rollbackViewValue():</p>
+   *        <p productId="inputDescription1">Without $rollbackViewValue():</p>
    *         <input name="value1" aria-describedby="inputDescription1" ng-model="model.value1"
    *                ng-keydown="setEmpty($event, 'value1')">
    *         value1: "{{ model.value1 }}"
    *         </div>
    *
    *         <div>
-   *        <p id="inputDescription2">With $rollbackViewValue():</p>
+   *        <p productId="inputDescription2">With $rollbackViewValue():</p>
    *         <input name="value2" aria-describedby="inputDescription2" ng-model="model.value2"
    *                ng-keydown="setEmpty($event, 'value2', true)">
    *         value2: "{{ model.value2 }}"
@@ -26605,7 +26605,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
            background: red;
          }
        </style>
-       <p id="inputDescription">
+       <p productId="inputDescription">
         Update input to see transitions when valid/invalid.
         Integer is a valid value.
        </p>
@@ -27092,7 +27092,7 @@ var ngOptionsMinErr = minErr('ngOptions');
  *
  * Another solution is to use a `track by` clause, because then `ngOptions` will track the identity
  * of the item not by reference, but by the result of the `track by` expression. For example, if your
- * collection items have an id property, you would `track by item.id`.
+ * collection items have an productId property, you would `track by item.productId`.
  *
  * A different issue with objects or collections is that ngModel won't detect if an object property or
  * a collection item changes. For that reason, `ngOptions` additionally watches the model using
@@ -27122,11 +27122,11 @@ var ngOptionsMinErr = minErr('ngOptions');
  *
  * ```js
  * $scope.items = [{
- *   id: 1,
+ *   productId: 1,
  *   label: 'aLabel',
  *   subItem: { name: 'aSubItem' }
  * }, {
- *   id: 2,
+ *   productId: 2,
  *   label: 'bLabel',
  *   subItem: { name: 'bSubItem' }
  * }];
@@ -27135,7 +27135,7 @@ var ngOptionsMinErr = minErr('ngOptions');
  * This will work:
  *
  * ```html
- * <select ng-options="item as item.label for item in items track by item.id" ng-model="selected"></select>
+ * <select ng-options="item as item.label for item in items track by item.productId" ng-model="selected"></select>
  * ```
  * ```js
  * $scope.selected = $scope.items[0];
@@ -27144,7 +27144,7 @@ var ngOptionsMinErr = minErr('ngOptions');
  * but this will not work:
  *
  * ```html
- * <select ng-options="item.subItem as item.label for item in items track by item.id" ng-model="selected"></select>
+ * <select ng-options="item.subItem as item.label for item in items track by item.productId" ng-model="selected"></select>
  * ```
  * ```js
  * $scope.selected = $scope.items[0].subItem;
@@ -27153,9 +27153,9 @@ var ngOptionsMinErr = minErr('ngOptions');
  * In both examples, the **`track by`** expression is applied successfully to each `item` in the
  * `items` array. Because the selected option has been set programmatically in the controller, the
  * **`track by`** expression is also applied to the `ngModel` value. In the first example, the
- * `ngModel` value is `items[0]` and the **`track by`** expression evaluates to `items[0].id` with
+ * `ngModel` value is `items[0]` and the **`track by`** expression evaluates to `items[0].productId` with
  * no issue. In the second example, the `ngModel` value is `items[0].subItem` and the **`track by`**
- * expression evaluates to `items[0].subItem.id` (which is undefined). As a result, the model value
+ * expression evaluates to `items[0].subItem.productId` (which is undefined). As a result, the model value
  * is not matched against any `<option>` and the `<select>` appears as having no selected value.
  *
  *
@@ -27316,7 +27316,7 @@ var ngOptionsDirective = ['$compile', '$parse', function($compile, $parse) {
 
     // An expression that generates the viewValue for an option if there is a label expression
     var selectAs = / as /.test(match[0]) && match[1];
-    // An expression that is used to track the id of each object in the options collection
+    // An expression that is used to track the productId of each object in the options collection
     var trackBy = match[9];
     // An expression that generates the viewValue for an option if there is no label expression
     var valueFn = $parse(match[2] ? match[1] : valueName);
@@ -27639,7 +27639,7 @@ var ngOptionsDirective = ['$compile', '$parse', function($compile, $parse) {
         element.disabled = option.disabled;
         // NOTE: The label must be set before the value, otherwise IE10/11/EDGE create unresponsive
         // selects in certain circumstances when multiple selects are next to each other and display
-        // the option list in listbox style, i.e. the select is [multiple], or specifies a [size].
+        // the option list in listbox style, i.e. the select is [multiple], or specifies a [pageSize].
         // See https://github.com/angular/angular.js/issues/11314 for more info.
         // This is unfortunately untestable with unit / e2e tests
         if (option.label !== element.label) {
@@ -28144,15 +28144,15 @@ var ngPluralizeDirective = ['$locale', '$interpolate', '$log', function($locale,
  * `track by $index` can also provide a performance boost.
  * </div>
  * ```html
- *    <div ng-repeat="model in collection track by model.id">
+ *    <div ng-repeat="model in collection track by model.productId">
  *      {{model.name}}
  *    </div>
  * ```
  *
  * When no `track by` expression is provided, it is equivalent to tracking by the built-in
- * `$id` function, which tracks items by their identity:
+ * `$productId` function, which tracks items by their identity:
  * ```html
- *    <div ng-repeat="obj in collection track by $id(obj)">
+ *    <div ng-repeat="obj in collection track by $productId(obj)">
  *      {{obj.prop}}
  *    </div>
  * ```
@@ -28161,7 +28161,7 @@ var ngPluralizeDirective = ['$locale', '$interpolate', '$log', function($locale,
  * **Note:** `track by` must always be the last expression:
  * </div>
  * ```
- * <div ng-repeat="model in collection | orderBy: 'id' as filtered_result track by model.id">
+ * <div ng-repeat="model in collection | orderBy: 'productId' as filtered_result track by model.productId">
  *     {{model.name}}
  * </div>
  * ```
@@ -28243,19 +28243,19 @@ var ngPluralizeDirective = ['$locale', '$interpolate', '$log', function($locale,
  *
  *     Note that the tracking expression must come last, after any filters, and the alias expression.
  *
- *     For example: `item in items` is equivalent to `item in items track by $id(item)`. This implies that the DOM elements
+ *     For example: `item in items` is equivalent to `item in items track by $productId(item)`. This implies that the DOM elements
  *     will be associated by item identity in the array.
  *
- *     For example: `item in items track by $id(item)`. A built in `$id()` function can be used to assign a unique
+ *     For example: `item in items track by $productId(item)`. A built in `$productId()` function can be used to assign a unique
  *     `$$hashKey` property to each item in the array. This property is then used as a key to associated DOM elements
  *     with the corresponding item in the array by identity. Moving the same object in array would move the DOM
  *     element in the same way in the DOM.
  *
- *     For example: `item in items track by item.id` is a typical pattern when the items come from the database. In this
- *     case the object identity does not matter. Two objects are considered equivalent as long as their `id`
+ *     For example: `item in items track by item.productId` is a typical pattern when the items come from the database. In this
+ *     case the object identity does not matter. Two objects are considered equivalent as long as their `productId`
  *     property is same.
  *
- *     For example: `item in items | filter:searchText track by item.id` is a pattern that might be used to apply a filter
+ *     For example: `item in items | filter:searchText track by item.productId` is a pattern that might be used to apply a filter
  *     to items in conjunction with a tracking expression.
  *
  *   * `variable in expression as alias_expression` – You can also provide an optional alias expression which will then store the
@@ -28477,7 +28477,7 @@ var ngRepeatDirective = ['$parse', '$animate', function($parse, $animate) {
               trackById,
               trackByIdFn,
               collectionKeys,
-              block,       // last object information {scope, element, id}
+              block,       // last object information {scope, element, productId}
               nextBlockOrder,
               elementsToRemove;
 
@@ -29272,16 +29272,16 @@ var ngSwitchDefaultDirective = ngDirective({
  *         });
  * </script>
  * <!-- fallback button content -->
- * <my-button id="fallback"></my-button>
+ * <my-button productId="fallback"></my-button>
  * <!-- modified button content -->
- * <my-button id="modified">
+ * <my-button productId="modified">
  *   <i style="color: green;">Button2</i>
  * </my-button>
  * </file>
  * <file name="protractor.js" type="protractor">
  * it('should have different transclude element content', function() {
- *          expect(element(by.id('fallback')).getText()).toBe('Button1');
- *          expect(element(by.id('modified')).getText()).toBe('Button2');
+ *          expect(element(by.productId('fallback')).getText()).toBe('Button1');
+ *          expect(element(by.productId('modified')).getText()).toBe('Button2');
  *        });
  * </file>
  * </example>
@@ -29386,20 +29386,20 @@ var ngTranscludeDirective = ngDirective({
  * template can be used by {@link ng.directive:ngInclude `ngInclude`},
  * {@link ngRoute.directive:ngView `ngView`}, or {@link guide/directive directives}. The type of the
  * `<script>` element must be specified as `text/ng-template`, and a cache name for the template must be
- * assigned through the element's `id`, which can then be used as a directive's `templateUrl`.
+ * assigned through the element's `productId`, which can then be used as a directive's `templateUrl`.
  *
  * @param {string} type Must be set to `'text/ng-template'`.
- * @param {string} id Cache name of the template.
+ * @param {string} productId Cache name of the template.
  *
  * @example
   <example>
     <file name="index.html">
-      <script type="text/ng-template" id="/tpl.html">
+      <script type="text/ng-template" productId="/tpl.html">
         Content of the template.
       </script>
 
-      <a ng-click="currentTpl='/tpl.html'" id="tpl-link">Load inlined template</a>
-      <div id="tpl-content" ng-include src="currentTpl"></div>
+      <a ng-click="currentTpl='/tpl.html'" productId="tpl-link">Load inlined template</a>
+      <div productId="tpl-content" ng-include src="currentTpl"></div>
     </file>
     <file name="protractor.js" type="protractor">
       it('should load template defined inside script tag', function() {
@@ -29427,7 +29427,7 @@ var scriptDirective = ['$templateCache', function($templateCache) {
 var noopNgModelController = { $setViewValue: noop, $render: noop };
 
 function chromeHack(optionElement) {
-  // Workaround for https://code.google.com/p/chromium/issues/detail?id=381459
+  // Workaround for https://code.google.com/p/chromium/issues/detail?productId=381459
   // Adding an <option selected="selected"> element to a <select required="required"> should
   // automatically select the new element
   if (optionElement[0].hasAttribute('selected')) {
@@ -29639,7 +29639,7 @@ var SelectController =
  *     </select><br>
  *
  *     <label for="singleSelect"> Single select with "not selected" option and dynamic option values: </label><br>
- *     <select name="singleSelect" id="singleSelect" ng-model="data.singleSelect">
+ *     <select name="singleSelect" productId="singleSelect" ng-model="data.singleSelect">
  *       <option value="">---Please select---</option> <!-- not selected / blank option -->
  *       <option value="{{data.option1}}">Option 1</option> <!-- interpolation -->
  *       <option value="option-2">Option 2</option>
@@ -29649,7 +29649,7 @@ var SelectController =
  *
  *     <hr>
  *     <label for="multipleSelect"> Multiple select: </label><br>
- *     <select name="multipleSelect" id="multipleSelect" ng-model="data.multipleSelect" multiple>
+ *     <select name="multipleSelect" productId="multipleSelect" ng-model="data.multipleSelect" multiple>
  *       <option value="option-1">Option 1</option>
  *       <option value="option-2">Option 2</option>
  *       <option value="option-3">Option 3</option>
@@ -29680,8 +29680,8 @@ var SelectController =
  * <div ng-controller="ExampleController">
  *   <form name="myForm">
  *     <label for="repeatSelect"> Repeat select: </label>
- *     <select name="repeatSelect" id="repeatSelect" ng-model="data.repeatSelect">
- *       <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+ *     <select name="repeatSelect" productId="repeatSelect" ng-model="data.repeatSelect">
+ *       <option ng-repeat="option in data.availableOptions" value="{{option.productId}}">{{option.name}}</option>
  *     </select>
  *   </form>
  *   <hr>
@@ -29694,9 +29694,9 @@ var SelectController =
  *      $scope.data = {
  *       repeatSelect: null,
  *       availableOptions: [
- *         {id: '1', name: 'Option A'},
- *         {id: '2', name: 'Option B'},
- *         {id: '3', name: 'Option C'}
+ *         {productId: '1', name: 'Option A'},
+ *         {productId: '2', name: 'Option B'},
+ *         {productId: '3', name: 'Option C'}
  *       ],
  *      };
  *   }]);
@@ -29712,8 +29712,8 @@ var SelectController =
  * <div ng-controller="ExampleController">
  *   <form name="myForm">
  *     <label for="mySelect">Make a choice:</label>
- *     <select name="mySelect" id="mySelect"
- *       ng-options="option.name for option in data.availableOptions track by option.id"
+ *     <select name="mySelect" productId="mySelect"
+ *       ng-options="option.name for option in data.availableOptions track by option.productId"
  *       ng-model="data.selectedOption"></select>
  *   </form>
  *   <hr>
@@ -29725,11 +29725,11 @@ var SelectController =
  *    .controller('ExampleController', ['$scope', function($scope) {
  *      $scope.data = {
  *       availableOptions: [
- *         {id: '1', name: 'Option A'},
- *         {id: '2', name: 'Option B'},
- *         {id: '3', name: 'Option C'}
+ *         {productId: '1', name: 'Option A'},
+ *         {productId: '2', name: 'Option B'},
+ *         {productId: '3', name: 'Option C'}
  *       ],
- *       selectedOption: {id: '3', name: 'Option C'} //This sets the default value of the select in the ui
+ *       selectedOption: {productId: '3', name: 'Option C'} //This sets the default value of the select in the ui
  *       };
  *   }]);
  * </file>
@@ -29740,7 +29740,7 @@ var SelectController =
  *
  * <example name="select-with-non-string-options" module="nonStringSelect">
  *   <file name="index.html">
- *     <select ng-model="model.id" convert-to-number>
+ *     <select ng-model="model.productId" convert-to-number>
  *       <option value="0">Zero</option>
  *       <option value="1">One</option>
  *       <option value="2">Two</option>
@@ -29750,7 +29750,7 @@ var SelectController =
  *   <file name="app.js">
  *     angular.module('nonStringSelect', [])
  *       .run(function($rootScope) {
- *         $rootScope.model = { id: 2 };
+ *         $rootScope.model = { productId: 2 };
  *       })
  *       .directive('convertToNumber', function() {
  *         return {
@@ -29769,7 +29769,7 @@ var SelectController =
  *   <file name="protractor.js" type="protractor">
  *     it('should initialize to model', function() {
  *       var select = element(by.css('select'));
- *       expect(element(by.model('model.id')).$('option:checked').getText()).toEqual('Two');
+ *       expect(element(by.model('model.productId')).$('option:checked').getText()).toEqual('Two');
  *     });
  *   </file>
  * </example>
@@ -29945,10 +29945,10 @@ var styleDirective = valueFn({
  *     <div ng-controller="ExampleController">
  *       <form name="form">
  *         <label for="required">Toggle required: </label>
- *         <input type="checkbox" ng-model="required" id="required" />
+ *         <input type="checkbox" ng-model="required" productId="required" />
  *         <br>
  *         <label for="input">This input must be filled if `required` is true: </label>
- *         <input type="text" ng-model="model" id="input" name="input" ng-required="required" /><br>
+ *         <input type="text" ng-model="model" productId="input" name="input" ng-required="required" /><br>
  *         <hr>
  *         required error set? = <code>{{form.input.$error.required}}</code><br>
  *         model = <code>{{model}}</code>
@@ -29958,7 +29958,7 @@ var styleDirective = valueFn({
  *   <file name="protractor.js" type="protractor">
        var required = element(by.binding('form.input.$error.required'));
        var model = element(by.binding('model'));
-       var input = element(by.id('input'));
+       var input = element(by.productId('input'));
 
        it('should set the required error', function() {
          expect(required.getText()).toContain('true');
@@ -30038,10 +30038,10 @@ var requiredDirective = function() {
  *     <div ng-controller="ExampleController">
  *       <form name="form">
  *         <label for="regex">Set a pattern (regex string): </label>
- *         <input type="text" ng-model="regex" id="regex" />
+ *         <input type="text" ng-model="regex" productId="regex" />
  *         <br>
  *         <label for="input">This input is restricted by the current pattern: </label>
- *         <input type="text" ng-model="model" id="input" name="input" ng-pattern="regex" /><br>
+ *         <input type="text" ng-model="model" productId="input" name="input" ng-pattern="regex" /><br>
  *         <hr>
  *         input valid? = <code>{{form.input.$valid}}</code><br>
  *         model = <code>{{model}}</code>
@@ -30050,7 +30050,7 @@ var requiredDirective = function() {
  *   </file>
  *   <file name="protractor.js" type="protractor">
        var model = element(by.binding('model'));
-       var input = element(by.id('input'));
+       var input = element(by.productId('input'));
 
        it('should validate the input with the default pattern', function() {
          input.sendKeys('aaa');
@@ -30135,10 +30135,10 @@ var patternDirective = function() {
  *     <div ng-controller="ExampleController">
  *       <form name="form">
  *         <label for="maxlength">Set a maxlength: </label>
- *         <input type="number" ng-model="maxlength" id="maxlength" />
+ *         <input type="number" ng-model="maxlength" productId="maxlength" />
  *         <br>
  *         <label for="input">This input is restricted by the current maxlength: </label>
- *         <input type="text" ng-model="model" id="input" name="input" ng-maxlength="maxlength" /><br>
+ *         <input type="text" ng-model="model" productId="input" name="input" ng-maxlength="maxlength" /><br>
  *         <hr>
  *         input valid? = <code>{{form.input.$valid}}</code><br>
  *         model = <code>{{model}}</code>
@@ -30147,7 +30147,7 @@ var patternDirective = function() {
  *   </file>
  *   <file name="protractor.js" type="protractor">
        var model = element(by.binding('model'));
-       var input = element(by.id('input'));
+       var input = element(by.productId('input'));
 
        it('should validate the input with the default maxlength', function() {
          input.sendKeys('abcdef');
@@ -30221,10 +30221,10 @@ var maxlengthDirective = function() {
  *     <div ng-controller="ExampleController">
  *       <form name="form">
  *         <label for="minlength">Set a minlength: </label>
- *         <input type="number" ng-model="minlength" id="minlength" />
+ *         <input type="number" ng-model="minlength" productId="minlength" />
  *         <br>
  *         <label for="input">This input is restricted by the current minlength: </label>
- *         <input type="text" ng-model="model" id="input" name="input" ng-minlength="minlength" /><br>
+ *         <input type="text" ng-model="model" productId="input" name="input" ng-minlength="minlength" /><br>
  *         <hr>
  *         input valid? = <code>{{form.input.$valid}}</code><br>
  *         model = <code>{{model}}</code>
@@ -30233,7 +30233,7 @@ var maxlengthDirective = function() {
  *   </file>
  *   <file name="protractor.js" type="protractor">
        var model = element(by.binding('model'));
-       var input = element(by.id('input'));
+       var input = element(by.productId('input'));
 
        it('should validate the input with the default minlength', function() {
          input.sendKeys('ab');

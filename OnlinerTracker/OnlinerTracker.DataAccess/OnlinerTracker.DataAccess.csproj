@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,10 +51,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IRepository.cs" />
-    <Compile Include="Abstract\IUnitOfWork.cs" />
-    <Compile Include="Concrete\UnitOfWork.cs" />
-    <Compile Include="Concrete\UserRepository.cs" />
+    <Compile Include="Enteties\Basis\BaseEntity.cs" />
+    <Compile Include="Enteties\Product.cs" />
+    <Compile Include="Enteties\TrackedProduct.cs" />
+    <Compile Include="Enteties\UserSettings.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Implementations\Ef\Context.cs" />
+    <Compile Include="Implementations\Ef\UnitOfWork.cs" />
+    <Compile Include="Implementations\Ef\Repository.cs" />
     <Compile Include="Enteties\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

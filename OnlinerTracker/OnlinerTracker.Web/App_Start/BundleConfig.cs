@@ -15,8 +15,15 @@ namespace OnlinerTracker.Web.App_Start
 				.Include("~/scripts/angular-resource.js")
 				.Include("~/scripts/angular-route.js"));
 
+			bundles.Add(new StyleBundle("~/bundles/styles").Include("~/content/styles.css"));
+
 			bundles.Add(new ScriptBundle("~/bundles/application")
-				.Include("~/scripts/app/application.js"));
+				
+				.Include("~/scripts/App/Application.js")
+				.Include("~/scripts/App/Account/Controllers/AccountCtrl.js")
+				.Include("~/scripts/App/Home/Controllers/SearchCtrl.js")
+				
+			);
 
 			bundles.Add(new ScriptBundle("~/bundles/jquery")
 				.Include("~/scripts/jquery-1.9.1.js"));
