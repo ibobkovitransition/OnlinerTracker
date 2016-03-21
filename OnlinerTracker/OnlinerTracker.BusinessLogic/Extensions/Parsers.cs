@@ -24,5 +24,17 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 					string.Empty
 			};
 		}
+
+		public static User ParseToEntity(this Models.UserInfo user, DateTime? createdOn = null)
+		{
+			return new User
+			{
+				SocialId = user.UserId,
+				FirstName = user.FirstName,
+				PhotoUri = user.PhotoUri,
+				CreatedOn = createdOn ?? DateTime.Now
+			};
+		}
+
 	}
 }
