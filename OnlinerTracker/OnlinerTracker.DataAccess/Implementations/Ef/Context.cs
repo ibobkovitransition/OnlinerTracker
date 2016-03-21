@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using OnlinerTracker.DataAccess.Enteties;
 using System.Data.Entity;
@@ -17,5 +18,11 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 		}
 
 		public virtual DbSet<User> Users { get; set; }
+
+		public virtual DbSet<Product> Products { get; set; }
+
+		public virtual DbSet<TrackedProduct> TrackedProducts { get; set; }
+
+		//public virtual  DbSet<UserSettings> UserSettings { get; set; }
 	}
 }

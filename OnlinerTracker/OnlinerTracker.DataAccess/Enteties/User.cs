@@ -14,7 +14,9 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public string Email { get; set; }
 
-		public TimeSpan PreferedTime { get; set; }
+		//public UserSettings Settings { get; set; }
+
+		//public int SettingsId { get; set; }
 
 		public ICollection<TrackedProduct> TrackedProducts { get; set; }
 

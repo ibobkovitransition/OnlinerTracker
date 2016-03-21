@@ -9,8 +9,5 @@ namespace OnlinerTracker.BusinessLogic.Models
 
 		[JsonProperty("last")]
 		public int PagesLeft { get; set; }
-
-		[JsonProperty("limit")]
-		public int PageSize { get; set; }
 	}
 }

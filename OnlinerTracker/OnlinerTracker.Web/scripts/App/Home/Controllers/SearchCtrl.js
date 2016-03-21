@@ -5,7 +5,6 @@
 		$scope.page = {
 			current: 0,
 			last: 0,
-			limit: 10,
 			totalItems: 0
 		};
 		$scope.totalItems = 0;
@@ -50,22 +49,21 @@
 			product.is_added = true;
 		}
 
-		$scope.searchRequest = function () {
+		$scope.findProducts = function (page) {
 			if (!$scope.searchQuery) {
 				$scope.data = [];
 			} else {
-				var pageNumber = $scope.page.current === 0 ? 1 : $scope.page.current;
+				var pageNumber = page === 0 ? 1 : page;
 				var url = "/search/products/" + $scope.searchQuery + "/page/" + pageNumber;
 				$http.get(url).then(searchSuccess, searchError);
 			}
 		}
 
-		$scope.setPage = function() {
+		$scope.selectPage = function() {
 			var pageNumber = prompt("Total pages: " + $scope.page.last);
 			if (!isNaN(pageNumber) && pageNumber > 0 && pageNumber <= $scope.page.last) {
 				$scope.page.current = pageNumber;
-				$scope.searchRequest();
+				$scope.findProducts(pageNumber);
 			}
 		}
-
 	});

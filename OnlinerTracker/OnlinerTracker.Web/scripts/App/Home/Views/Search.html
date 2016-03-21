@@ -5,7 +5,7 @@
 				<form class="navbar-form">
 					<div class="form-group">
 						<input ng-model="searchQuery" class="form-control" placeholder="Search for ..." />
-						<button class="btn btn-default" type="submit" ng-click="searchRequest()">
+						<button class="btn btn-default" type="submit" ng-click="findProducts(1)">
 							<span class="glyphicon glyphicon-search"></span>
 						</button>
 					</div>
@@ -22,7 +22,7 @@
 			</li>
 
 			<li>
-				<a ng-click="setPage()" style="cursor: pointer; font-weight: bold;">
+				<a ng-click="selectPage()" style="cursor: pointer; font-weight: bold;">
 					<span class="glyphicon glyphicon-search"></span>
 					<span>Page {{page.current}}</span>
 				</a>
@@ -73,6 +73,15 @@
 						<div class="text-right" ng-class="item.is_tracked ? 'status-ok' : 'status-bad'">
 							<span>{{item.is_tracked ? 'Tracked' : 'Untracked'}}</span>
 							<span class="glyphicon" ng-class="item.is_tracked ? 'glyphicon-eye-open' : 'glyphicon-eye-close'"></span>
+						</div>
+						<hr/>
+						<div>
+							<b>Min:</b>
+							<span class="pull-right">{{item.prices.min}}</span>
+						</div>
+						<div>
+							<b>Max:</b>
+							<span class="pull-right">{{item.prices.max}}</span>
 						</div>
 					</div>
 				</div>

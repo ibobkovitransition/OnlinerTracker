@@ -65,10 +65,14 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 				Name = product.Name,
 				FullName = product.FullName,
 				Description = product.Description,
-				HtmlUrl = product.HtmlUrl//,
-				//MinPrice = product.Price.Min,
-				//MaxPrice = product.Price.Max,
-				//ImageUrl = product.Image.Icon ?? product.Image.Header
+				HtmlUrl = product.HtmlUrl,
+				MinPrice = product.Price?.Min ?? 0,
+				MaxPrice = product.Price?.Max ?? 0,
+				ImageUrl = product.Image != null ?
+					!string.IsNullOrWhiteSpace(product.Image.Icon) ? 
+						product.Image.Icon : 
+						product.Image.Header :
+					string.Empty
 			};
 		}
 
