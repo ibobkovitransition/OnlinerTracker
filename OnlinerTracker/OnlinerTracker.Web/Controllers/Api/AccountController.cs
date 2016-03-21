@@ -2,6 +2,7 @@
 using System.Web.Http.Description;
 using Microsoft.Ajax.Utilities;
 using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.Web.Filters.Api;
 
 namespace OnlinerTracker.Web.Controllers.Api
 {
@@ -14,6 +15,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 			this.authService = authService;
 		}
 
+		[Authentication(AllowAnonymous = true)]
 		[Route("signin/{socNetwork}")]
 		[HttpGet]
 		[ResponseType(typeof(string))]

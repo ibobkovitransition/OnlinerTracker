@@ -8,30 +8,30 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 {
 	public class UserService : IUserService
 	{
-		private readonly IUnitOfWork uow;
+		private readonly IUnitOfWork unitOfWork;
 		private readonly ISocNetworkAuthService authService;
 
-		public UserService(IUnitOfWork uow, ISocNetworkAuthService authService)
+		public UserService(IUnitOfWork unitOfWork, ISocNetworkAuthService authService)
 		{
-			this.uow = uow;
+			this.unitOfWork = unitOfWork;
 			this.authService = authService;
 		}
 
 		public string AddUser(NameValueCollection queryString, string serviceName)
 		{
 			var user = authService.UserInfo(queryString, serviceName);
-			var isExists = uow.UserRepository.FindBy(x => x.SocialId == user.UserId) != null;
+			var isExists = unitOfWork.UserRepository.FindBy(x => x.SocialId == user.UserId) != null;
 
 			if (!isExists)
 			{
-				uow.UserRepository.Attach(new User
+				unitOfWork.UserRepository.Attach(new User
 				{
 					SocialId = user.UserId,
 					FirstName = user.FirstName,
 					PhotoUri = user.PhotoUri,
 					CreatedOn = DateTime.Now
 				});
-				uow.Commit();
+				unitOfWork.Commit();
 			}
 
 			return user.UserId;

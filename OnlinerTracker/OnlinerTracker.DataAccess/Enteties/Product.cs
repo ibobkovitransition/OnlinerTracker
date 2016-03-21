@@ -24,11 +24,11 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public string ImageUrl { get; set; }
 
-		public ICollection<TrackedProduct> TrackedProducts { get; set; }
+		public ICollection<TrackingProduct> TrackedProducts { get; set; }
 
 		public Product()
 		{
-			TrackedProducts = new List<TrackedProduct>();
+			TrackedProducts = new List<TrackingProduct>();
 		}
 	}
 }

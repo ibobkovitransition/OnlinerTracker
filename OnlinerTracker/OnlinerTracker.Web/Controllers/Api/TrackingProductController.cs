@@ -1,21 +1,23 @@
 ﻿using System.Web.Http;
-using Microsoft.Ajax.Utilities;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.BusinessLogic.Models;
+using OnlinerTracker.Web.Filters;
+using OnlinerTracker.Web.Filters.Api;
 using OnlinerTracker.Web.Interaces;
 
 namespace OnlinerTracker.Web.Controllers.Api
 {
-	public class TrackedProductController : ApiController
+	[Authentication]
+	public class TrackingProductController : ApiController
 	{
-		private readonly ITrackedProductService trackService;
+		private readonly ITrackingProductService trackingProductService;
 		private readonly IProductService productService;
 		private readonly ICookieService cookieService;
 		private readonly string cookieName = "onliner_tracker";
 
-		public TrackedProductController(ITrackedProductService trackService, ICookieService cookieService, IProductService productService)
+		public TrackingProductController(ITrackingProductService trackingProductService, ICookieService cookieService, IProductService productService)
 		{
-			this.trackService = trackService;
+			this.trackingProductService = trackingProductService;
 			this.cookieService = cookieService;
 			this.productService = productService;
 		}
@@ -27,15 +29,8 @@ namespace OnlinerTracker.Web.Controllers.Api
 		[HttpPost]
 		public IHttpActionResult Track(int id, Product product)
 		{
-			string hashedId = cookieService.GetCookie(Request.Headers, cookieName);
-			if (hashedId.IsNullOrWhiteSpace())
-			{
-				return Unauthorized();
-			}
-
-			productService.AddIfNotExsists(product);
-			trackService.Track(id, hashedId);
-
+			var user = (PrincipalUser)User;
+			productService.Add(product, user.UserId);
 			return Ok();
 		}
 
@@ -43,14 +38,8 @@ namespace OnlinerTracker.Web.Controllers.Api
 		[HttpPut]
 		public IHttpActionResult Untrack(int id)
 		{
-			string hashedId = cookieService.GetCookie(Request.Headers, cookieName);
-			if (hashedId.IsNullOrWhiteSpace())
-			{
-				return Unauthorized();
-			}
-
-			trackService.Untrack(id, hashedId);
-
+			var user = (PrincipalUser)User;
+			trackingProductService.Untrack(id, user.UserId);
 			return Ok();
 		}
 		
@@ -58,14 +47,8 @@ namespace OnlinerTracker.Web.Controllers.Api
 		[HttpDelete]
 		public IHttpActionResult Remove(int id)
 		{
-			string hashedId = cookieService.GetCookie(Request.Headers, cookieName);
-			if (hashedId.IsNullOrWhiteSpace())
-			{
-				return Unauthorized();
-			}
-
-			trackService.Remove(id, hashedId);
-
+			var user = (PrincipalUser)User;
+			trackingProductService.Remove(id, user.UserId);
 			return Ok();
 		}
 	}

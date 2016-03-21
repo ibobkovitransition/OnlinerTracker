@@ -236,15 +236,20 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="App_Start\WebApiFiltersConfig.cs" />
+    <Compile Include="Controllers\Api\Basic\ExtendedApiController.cs" />
     <Compile Include="Controllers\Api\SearchController.cs" />
-    <Compile Include="Controllers\Api\TrackedProductController.cs" />
+    <Compile Include="Controllers\Api\TrackingProductController.cs" />
     <Compile Include="Controllers\Mvc\AccountController.cs" />
     <Compile Include="Controllers\Mvc\HomeController.cs" />
     <Compile Include="Controllers\Api\AccountController.cs" />
+    <Compile Include="Filters\Api\AuthenticationAttribute.cs" />
+    <Compile Include="Filters\AuthenticationFailureResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Implementations\CookieService.cs" />
+    <Compile Include="Filters\PrincipalUser.cs" />
     <Compile Include="Interaces\ICookieService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -263,6 +268,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Filters\Mvc\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

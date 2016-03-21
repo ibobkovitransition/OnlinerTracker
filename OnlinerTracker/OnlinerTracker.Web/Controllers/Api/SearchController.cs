@@ -3,39 +3,34 @@ using System.Web.Http.Description;
 using Microsoft.Ajax.Utilities;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.BusinessLogic.Models;
-using OnlinerTracker.Web.Interaces;
+using OnlinerTracker.Web.Filters;
+using OnlinerTracker.Web.Filters.Api;
 
 namespace OnlinerTracker.Web.Controllers.Api
 {
+	[Authentication]
 	public class SearchController : ApiController
 	{
 		private readonly IProductService productService;
-		private readonly ICookieService cookieService;
-		private readonly string cookieName = "onliner_tracker";
 
-		public SearchController(ICookieService cookieService, IProductService productService)
+		public SearchController(IProductService productService)
 		{
-			this.cookieService = cookieService;
 			this.productService = productService;
 		}
-
+		
 		[Route("search/products/{productName}/page/{page:int:min(1)}")]
 		[HttpGet]
 		[ResponseType(typeof(SearchResult))]
 		public IHttpActionResult Search(string productName, int page)
 		{
-			string hashedId = cookieService.GetCookie(Request.Headers, cookieName);
-			if (hashedId.IsNullOrWhiteSpace())
-			{
-				return Unauthorized();
-			}
-
 			if (productName.IsNullOrWhiteSpace())
 			{
 				return BadRequest();
 			}
 
-			return Ok(productService.Search(productName, page, hashedId));
+			var user = (PrincipalUser)User;
+
+			return Ok(productService.Search(productName, page, user.UserId));
 		}
 	}
 }
