@@ -2,7 +2,7 @@
 
 namespace OnlinerTracker.DataAccess.Enteties
 {
-	public class TrackedProduct : BaseEntity
+	public class ProductTracking : BaseEntity
 	{
 		public int ProductId { get; set; }
 
@@ -12,6 +12,6 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public User User { get; set; }
 
-		public bool IsTracked { get; set; }
+		public bool Enabled { get; set; }
 	}
 }

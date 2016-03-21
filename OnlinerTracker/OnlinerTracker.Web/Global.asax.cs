@@ -19,6 +19,7 @@ namespace OnlinerTracker.Web
 			GlobalConfiguration.Configure(WebApiConfig.Register);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
+			WebApiFiltersConfig.Register(GlobalConfiguration.Configuration.Filters);
 			Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Context>());
 		}
 	}
