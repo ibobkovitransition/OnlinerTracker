@@ -2,6 +2,7 @@
 	.controller("SearchCtrl", function ($scope, $http, $log, $window) {
 		$scope.searchQuery = null;
 		$scope.data = [];
+		$scope.page = {};
 
 		var searchSuccess = function (response) {
 			$log.log("Search success: ", response);
@@ -58,4 +59,10 @@
 			return product.is_tracked ?
 				"list-group-item-tracked" : product.is_added ? "list-group-item-added" : "";
 		}
+
+		// плагин для скролинга
+		// https://sroze.github.io/ngInfiniteScroll/
+		// организация файлов  
+		// https://habrahabr.ru/post/180837/
+		// https://github.com/mgechev/angularjs-style-guide/blob/master/README-ru-ru.md
 	});
