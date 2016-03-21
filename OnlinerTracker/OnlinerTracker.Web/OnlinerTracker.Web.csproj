@@ -239,7 +239,7 @@
     <Compile Include="App_Start\WebApiFiltersConfig.cs" />
     <Compile Include="Controllers\Api\ApiControllerBase.cs" />
     <Compile Include="Controllers\Api\SearchController.cs" />
-    <Compile Include="Controllers\Api\TrackingProductController.cs" />
+    <Compile Include="Controllers\Api\ProductTrackingController.cs" />
     <Compile Include="Controllers\Mvc\AccountController.cs" />
     <Compile Include="Controllers\Mvc\HomeController.cs" />
     <Compile Include="Controllers\Api\AccountController.cs" />

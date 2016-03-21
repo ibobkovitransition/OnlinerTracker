@@ -6,12 +6,12 @@ using OnlinerTracker.Web.Filters.Api;
 namespace OnlinerTracker.Web.Controllers.Api
 {
 	[Authentication]
-	public class TrackingProductController : ApiControllerBase
+	public class ProductTrackingController : ApiControllerBase
 	{
 		private readonly IProductTrackingService trackingProductService;
 		private readonly IProductService productService;
 
-		public TrackingProductController(IProductTrackingService trackingProductService, IProductService productService)
+		public ProductTrackingController(IProductTrackingService trackingProductService, IProductService productService)
 		{
 			this.trackingProductService = trackingProductService;
 			this.productService = productService;

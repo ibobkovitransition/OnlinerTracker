@@ -66,10 +66,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 
 		private ProductTracking GetTrackedProduct(int productId, int userId)
 		{
-			var trackedProduct = unitOfWork.TrackedProducts
-				.FindBy(x => x.ProductId == productId && x.UserId == userId);
-
-			return trackedProduct;
+			return unitOfWork.TrackedProducts.FindBy(x => x.ProductId == productId && x.UserId == userId);
 		}
 	}
 }
