@@ -1,13 +1,5 @@
-﻿angular.module("AccountModule", []);
-angular.module("HomeModule", []);
-angular.module("AdminModule", []);
-
-var mod;
-
-mod = angular.module('infinite-scroll', []);
-
-mod.directive('infiniteScroll', [
-  '$rootScope', '$window', '$timeout', function ($rootScope, $window, $timeout) {
+﻿angular.module("infiniteScroll").directive("infiniteScroll", [
+  "$rootScope", "$window", "$timeout", function ($rootScope, $window, $timeout) {
   	return {
   		link: function (scope, elem, attrs) {
   			var checkWhenEnabled, handler, scrollDistance, scrollEnabled;
@@ -45,9 +37,9 @@ mod.directive('infiniteScroll', [
   					return checkWhenEnabled = true;
   				}
   			};
-  			$window.on('scroll', handler);
-  			scope.$on('$destroy', function () {
-  				return $window.off('scroll', handler);
+  			$window.on("scroll", handler);
+  			scope.$on("$destroy", function () {
+  				return $window.off("scroll", handler);
   			});
   			return $timeout((function () {
   				if (attrs.infiniteScrollImmediateCheck) {
@@ -62,21 +54,3 @@ mod.directive('infiniteScroll', [
   	};
   }
 ]);
-
-
-angular.module("MainApp", ["ngRoute", "AccountModule", "HomeModule", "AdminModule", "infinite-scroll"])
-.config(function ($routeProvider) {
-	$routeProvider.when("/Account", {
-		templateUrl: "/scripts/App/Account/Views/SignIn.html",
-		controller: "AccountCtrl"
-	});
-
-	$routeProvider.when("/Home", {
-		templateUrl: "/scripts/App/Home/Views/Search.html",
-		controller: "SearchCtrl"
-	});
-
-	$routeProvider.otherwise({
-		redirectTo: "/Account"
-	});
-});

@@ -1,4 +1,5 @@
-﻿<nav class="navbar navbar-default navbar-fixed-top">
+﻿<!-- вынести в nav view -->
+<nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="nav navbar-nav">
 			<div class="navbar-form">
@@ -6,7 +7,7 @@
 					<div class="form-group">
 						<input type="text" placeholder="Type product name"
 							   ng-model="searchQuery"
-							   ng-model-options="{ debounce: 500 }"
+							   ng-model-options="{ debounce: 200 }"
 							   ng-change="findProducts()" />
 					</div>
 				</form>
@@ -32,7 +33,8 @@
 	</div>
 </nav>
 
-<div class="container content-container" infinite-scroll="uploadPage()" infinite-scroll-distance="2" infinite-scroll-disabled="isLoading">
+<!-- вынести в list view -->
+<div class="container content-container" infinite-scroll="getNewProducts()" infinite-scroll-distance="2">
 	<ul class="list-group" style="list-style: none;">
 		<li ng-repeat="item in items" class="list-group-item" ng-class="getCssClass(item)">
 			<div class="row">
