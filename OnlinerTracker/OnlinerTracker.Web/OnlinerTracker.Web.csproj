@@ -219,15 +219,21 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="scripts\App\Application.js" />
-    <Content Include="scripts\App\Account\Controllers\AccountCtrl.js" />
-    <Content Include="scripts\App\Account\Views\SignIn.html" />
-    <Content Include="scripts\App\Home\Controllers\SearchCtrl.js" />
-    <Content Include="scripts\App\Home\Views\Search.html" />
+    <Content Include="scripts\app\app.js" />
+    <Content Include="scripts\app\controllers\account\SignInCtrl.js" />
+    <Content Include="scripts\app\directives\home\infiniteScroll.js" />
+    <Content Include="scripts\app\services\account\signIn.js" />
+    <Content Include="scripts\app\services\home\productSearch.js" />
+    <Content Include="scripts\app\services\home\productTracking.js" />
+    <Content Include="scripts\app\services\home\productUpload.js" />
+    <Content Include="scripts\app\views\account\signin.html" />
+    <Content Include="scripts\app\controllers\home\ProductSearchCtrl.js" />
+    <Content Include="scripts\app\views\home\search.html" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
@@ -270,6 +276,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Filters\Mvc\" />
     <Folder Include="Models\" />
+    <Folder Include="scripts\app\filters\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlinerTracker.BusinessLogic\OnlinerTracker.BusinessLogic.csproj">

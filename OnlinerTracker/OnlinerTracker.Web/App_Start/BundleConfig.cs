@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace OnlinerTracker.Web.App_Start
 {
@@ -15,14 +11,20 @@ namespace OnlinerTracker.Web.App_Start
 				.Include("~/scripts/angular-resource.js")
 				.Include("~/scripts/angular-route.js"));
 
-			bundles.Add(new StyleBundle("~/bundles/styles").Include("~/content/styles.css"));
+			bundles.Add(new StyleBundle("~/bundles/styles")
+				.Include("~/content/styles.css"));
 
 			bundles.Add(new ScriptBundle("~/bundles/application")
-				
-				.Include("~/scripts/App/Application.js")
-				.Include("~/scripts/App/Account/Controllers/AccountCtrl.js")
-				.Include("~/scripts/App/Home/Controllers/SearchCtrl.js")
-				
+				.Include("~/scripts/app/app.js")
+				.Include("~/scripts/app/controllers/account/SignInCtrl.js")
+				.Include("~/scripts/app/controllers/home/ProductSearchCtrl.js")
+
+				.Include("~/scripts/app/services/account/signIn.js")
+				.Include("~/scripts/app/services/home/productSearch.js")
+				.Include("~/scripts/app/services/home/productUpload.js")
+				.Include("~/scripts/app/services/home/productTracking.js")
+
+				.Include("~/scripts/app/directives/home/InfiniteScroll.js")
 			);
 
 			bundles.Add(new ScriptBundle("~/bundles/jquery")
@@ -30,6 +32,9 @@ namespace OnlinerTracker.Web.App_Start
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap")
 				.Include("~/scripts/bootstrap.js"));
+
+			bundles.Add(new ScriptBundle("~/bundles/modernizr")
+				.Include("~/scripts/jmodernizr-2.8.3.js"));
 
 			bundles.Add(new StyleBundle("~/bundles/bootstrap-css")
 				.Include("~/content/bootstrap.css")

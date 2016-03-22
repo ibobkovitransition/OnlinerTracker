@@ -17,17 +17,17 @@ namespace OnlinerTracker.Web.Controllers.Api
 			this.productService = productService;
 		}
 		
-		[Route("search/products/{productName}/page/{page:int:min(1)}")]
+		[Route("search/products/{productName}/page/{page:int:min(1)}/size/{size:int:min(1)}")]
 		[HttpGet]
 		[ResponseType(typeof(SearchResult))]
-		public IHttpActionResult Search(string productName, int page)
+		public IHttpActionResult Search(string productName, int page, int size)
 		{
 			if (productName.IsNullOrWhiteSpace())
 			{
 				return BadRequest();
 			}
 
-			return Ok(productService.Search(productName, page, PrincipalUser.Id));
+			return Ok(productService.Search(productName, page, size, PrincipalUser.Id));
 		}
 	}
 }
