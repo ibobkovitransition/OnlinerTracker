@@ -6,7 +6,7 @@
 					<div class="form-group">
 						<input type="text" placeholder="Type product name"
 							   ng-model="searchQuery"
-							   ng-model-options="{ debounce: 400 }"
+							   ng-model-options="{ debounce: 500 }"
 							   ng-change="findProducts()" />
 					</div>
 				</form>
@@ -28,13 +28,13 @@
 				</a>
 			</li>
 		</ul>
+
 	</div>
 </nav>
 
-<div class="container content-container">
+<div class="container content-container" infinite-scroll="uploadPage()" infinite-scroll-distance="2" infinite-scroll-disabled="isLoading">
 	<ul class="list-group" style="list-style: none;">
-		<li ng-repeat="item in data" class="list-group-item" ng-class="getCssClass(item)">
-
+		<li ng-repeat="item in items" class="list-group-item" ng-class="getCssClass(item)">
 			<div class="row">
 				<div class="col-md-1">
 					<div class="img-wrapper">
@@ -45,21 +45,15 @@
 					<img ng-src="{{item.images.icon != null ? item.images.header : item.images.icon }}" />
 				</div>
 				<div class="col-md-7">
-					<b>
-						{{item.full_name}}
-					</b>
-					<p>
-						{{item.description}}
-					</p>
+					<b>{{item.full_name}}</b>
+					<p>{{item.description}}</p>
 				</div>
 				<div class="col-md-2">
 					<div>
-						<b>Min:</b>
-						<span class="pull-right">{{item.prices.min}}</span>
+						<b>Min:</b><span class="pull-right">{{item.prices.min}}</span>
 					</div>
 					<div>
-						<b>Max:</b>
-						<span class="pull-right">{{item.prices.max}}</span>
+						<b>Max:</b><span class="pull-right">{{item.prices.max}}</span>
 					</div>
 				</div>
 			</div>

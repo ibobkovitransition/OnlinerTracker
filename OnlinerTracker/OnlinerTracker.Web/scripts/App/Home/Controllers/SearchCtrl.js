@@ -1,68 +1,84 @@
-﻿angular.module("HomeModule")
-	.controller("SearchCtrl", function ($scope, $http, $log, $window) {
-		$scope.searchQuery = null;
-		$scope.data = [];
-		$scope.page = {};
+﻿var homeModule = angular.module("HomeModule");
 
-		var searchSuccess = function (response) {
-			$log.log("Search success: ", response);
-			$scope.data = response.data.products;
-			$scope.page = response.data.page;
-			$scope.totalItems = response.data.total;
+homeModule.controller("SearchCtrl", function ($scope, $http, $log, $window) {
+
+	// вынести в модель
+	$scope.searchQuery = "";
+
+	$scope.items = [];
+
+	$scope.page = {
+		current: 0,
+		last: 0
+	};
+
+	var searchSuccess = function (response) {
+		$log.log("Search success: ", response);
+		$scope.items = response.data.products;
+		$scope.page = response.data.page;
+	}
+
+	$scope.trackProduct = function (product) {
+		var trackUrl = "/tracking/start";
+		var untrackUrl = "/tracking/stop";
+		product.is_added = true;
+
+		if (product.is_tracked) {
+			$http.post(trackUrl + "/" + product.id, product);
+		} else {
+			$http.put(untrackUrl + "/" + product.id, product);
+		}
+	}
+
+	$scope.findProducts = function () {
+		if (!$scope.searchQuery) {
+			$scope.data = [];
+		} else {
+			var pageNumber = 1;
+			var pageSize = 25;
+			var url = "/search/products/" + $scope.searchQuery + "/page/" + pageNumber + "/size/" + pageSize;
+			$http.get(url).then(searchSuccess, function (reponse) { $log.log("Search rejected ", reponse) });
+		}
+	}
+
+	$scope.getCssClass = function (product) {
+		return product.is_tracked ?
+			"list-group-item-tracked" : product.is_added ? "list-group-item-added" : "";
+	}
+
+	// отдельный модуль
+	$scope.isLoading = false;
+
+	$scope.uploadPage = function () {
+
+		if ($scope.page.current >= $scope.page.last || $scope.page.current === 0) {
+			return;
 		}
 
-		var searchError = function (response) {
-			$log.error("Search error:", response);
-		}
+		$scope.isLoading = true;
 
-		var trackSuccess = function (response) {
-			$log.log("Track success: ", response);
-		}
+		$scope.page.current++;
+		var pageSize = 25;
+		var url = "/search/products/" + $scope.searchQuery + "/page/" + $scope.page.current + "/size/" + pageSize;
+		$http.get(url).then(function (response) {
 
-		var trackError = function (response) {
-			$log.error("Track error: ", response);
-		}
-
-		var untrackSuccess = function (response) {
-			$log.log("Untrack success: ", response);
-		}
-
-		var untrackError = function (response) {
-			$log.error("Untrack error: ", response);
-		}
-
-		$scope.trackProduct = function (product) {
-			var trackUrl = "/tracking/start";
-			var untrackUrl = "/tracking/stop";
-
-			if (product.is_tracked) {
-				$http.post(trackUrl + "/" + product.id, product).then(trackSuccess, trackError);
-			} else {
-				$http.put(untrackUrl + "/" + product.id, product).then(untrackSuccess, untrackError);
+			$log.log("success", response);
+			// заметстиь concato'm или похожим
+			for (var i = 0; i < response.data.products.length; i++) {
+				$scope.items.push(response.data.products[i]);
 			}
 
-			product.is_added = true;
-		}
+			$scope.isLoading = false;
+		}, function (response) {
+			console.log("bad ", response);
+			$scope.isLoading = false;
+		});
 
-		$scope.findProducts = function () {
-			if (!$scope.searchQuery) {
-				$scope.data = [];
-			} else {
-				var pageNumber = 1;
-				var pageSize = 25;
-				var url = "/search/products/" + $scope.searchQuery + "/page/" + pageNumber + "/size/" + pageSize;
-				$http.get(url).then(searchSuccess, searchError);
-			}
-		}
+	}
 
-		$scope.getCssClass = function (product) {
-			return product.is_tracked ?
-				"list-group-item-tracked" : product.is_added ? "list-group-item-added" : "";
-		}
-
-		// плагин для скролинга
-		// https://sroze.github.io/ngInfiniteScroll/
-		// организация файлов  
-		// https://habrahabr.ru/post/180837/
-		// https://github.com/mgechev/angularjs-style-guide/blob/master/README-ru-ru.md
-	});
+	// плагин для скролинга
+	// https://sroze.github.io/ngInfiniteScroll/
+	// организация файлов  
+	// https://habrahabr.ru/post/180837/
+	// https://github.com/mgechev/angularjs-style-guide/blob/master/README-ru-ru.md
+});
