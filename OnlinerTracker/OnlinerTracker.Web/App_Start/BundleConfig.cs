@@ -17,6 +17,7 @@ namespace OnlinerTracker.Web.App_Start
 			bundles.Add(new ScriptBundle("~/bundles/application")
 				.Include("~/scripts/app/app.js")
 				.Include("~/scripts/app/controllers/account/SignInCtrl.js")
+				.Include("~/scripts/app/controllers/home/RootCtrl.js")
 				.Include("~/scripts/app/controllers/home/ProductSearchCtrl.js")
 
 				.Include("~/scripts/app/services/account/signIn.js")

@@ -1,4 +1,4 @@
-﻿function SearchCtrl($scope, $http, $log, productSearch, productUpload, productTracking) {
+﻿function ProductSearchCtrl($scope, $log, productSearch, productUpload, productTracking) {
 
 	// вынести во внешний контроллер
 	$scope.searchQuery = "";
@@ -48,4 +48,4 @@
 	}
 };
 
-angular.module("home").controller("ProductSearchCtrl", SearchCtrl);
+angular.module("home").controller("ProductSearchCtrl", ProductSearchCtrl);
