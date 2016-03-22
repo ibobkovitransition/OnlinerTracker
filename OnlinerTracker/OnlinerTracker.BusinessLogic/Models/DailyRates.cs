@@ -13,7 +13,7 @@ namespace OnlinerTracker.BusinessLogic.Models
 
 		// TODO: допилить потом 
 		// дата в формате dd.mm.yyyy
-		[XmlAttributeAttribute()]
+		[XmlAttribute]
 		public string Date { get; set; }
 	}
 }

@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Interfaces;
+using Product = OnlinerTracker.BusinessLogic.Models.Product;
 
 namespace OnlinerTracker.BusinessLogic.Implementations
 {
@@ -12,6 +16,12 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 		public ProductTrackingService(IUnitOfWork unitOfWork)
 		{
 			this.unitOfWork = unitOfWork;
+		}
+
+		public IEnumerable<Product> Get(int userId)
+		{
+			var productsTracking = unitOfWork.TrackedProducts.GetEntities(x => x.UserId == userId, property => property.Product);
+			return productsTracking.Select(x => x.ToModel());
 		}
 
 		public void Track(int productId, int userId)

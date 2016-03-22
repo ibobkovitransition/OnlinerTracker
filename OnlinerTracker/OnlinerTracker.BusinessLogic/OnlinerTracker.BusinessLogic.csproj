@@ -57,6 +57,7 @@
     <Compile Include="Implementations\CurrencyService.cs" />
     <Compile Include="Implementations\ProductService.cs" />
     <Compile Include="Implementations\ProductTrackingService.cs" />
+    <Compile Include="Implementations\UserInfoService.cs" />
     <Compile Include="Interfaces\ICurrencyService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Interfaces\IProductTrackingService.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Interfaces\IProductSearchService.cs" />
     <Compile Include="Interfaces\ISocialNetworkAuthService.cs" />
     <Compile Include="Implementations\SocialNetworkAuthService.cs" />
+    <Compile Include="Interfaces\IUserInfoService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\DailyRates.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Models\Price.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SearchResult.cs" />
+    <Compile Include="Models\UserSettings.cs" />
     <Compile Include="Models\UsefInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -16,16 +16,17 @@ namespace OnlinerTracker.Web.App_Start
 
 			bundles.Add(new ScriptBundle("~/bundles/application")
 				.Include("~/scripts/app/app.js")
-				.Include("~/scripts/app/controllers/account/SignInCtrl.js")
-				.Include("~/scripts/app/controllers/home/RootCtrl.js")
-				.Include("~/scripts/app/controllers/home/ProductSearchCtrl.js")
+				.Include("~/scripts/app/controllers/account/SignInController.js")
+				.Include("~/scripts/app/controllers/home/SearchController.js")
+				.Include("~/scripts/app/controllers/admin/ManageController.js")
 
 				.Include("~/scripts/app/services/account/signIn.js")
 				.Include("~/scripts/app/services/home/productSearch.js")
 				.Include("~/scripts/app/services/home/productUpload.js")
 				.Include("~/scripts/app/services/home/productTracking.js")
+				.Include("~/scripts/app/services/settingsUploader.js")
 
-				.Include("~/scripts/app/directives/home/InfiniteScroll.js")
+				.Include("~/scripts/app/directives/home/infiniteScroll.js")
 			);
 
 			bundles.Add(new ScriptBundle("~/bundles/jquery")

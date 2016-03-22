@@ -13,9 +13,9 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public string Email { get; set; }
 
-		//public UserSettings Settings { get; set; }
+		public UserSettings UserSettings { get; set; }
 
-		//public int SettingsId { get; set; }
+		public int UserSettingsId { get; set; }
 
 		public ICollection<ProductTracking> TrackedProducts { get; set; }
 

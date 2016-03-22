@@ -20,24 +20,32 @@ namespace OnlinerTracker.Web.Controllers.Api
 		// положу что бы не потерять
 		// http://www.restapitutorial.com/lessons/httpmethods.html
 
-		[Route("tracking/start/{id:int:min(1)}")]
+		[HttpGet]
+		[Route("tracking/products")]
+		public IHttpActionResult Get()
+		{
+			var result = trackingProductService.Get(PrincipalUser.Id);
+			return Ok(result);
+		}
+
 		[HttpPost]
+		[Route("tracking/start/{id:int:min(1)}")]
 		public IHttpActionResult Track(int id, Product product)
 		{
 			productService.Add(product, PrincipalUser.Id);
 			return Ok();
 		}
 
-		[Route("tracking/stop/{id:int:min(1)}")]
 		[HttpPut]
+		[Route("tracking/stop/{id:int:min(1)}")]
 		public IHttpActionResult Untrack(int id)
 		{
 			trackingProductService.Untrack(id, PrincipalUser.Id);
 			return Ok();
 		}
-		
-		[Route("tracking/remove/{id:int:min(1)}")]
+
 		[HttpDelete]
+		[Route("tracking/remove/{id:int:min(1)}")]
 		public IHttpActionResult Remove(int id)
 		{
 			trackingProductService.Remove(id, PrincipalUser.Id);

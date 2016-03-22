@@ -30,9 +30,9 @@
 							<span class="glyphicon glyphicon-search"></span>
 						</span>
 						<input type="text" placeholder="Type product name" class="form-control"
-						       ng-model="searchQuery"
-						       ng-model-options="{ debounce: 200 }"
-						       ng-change="findProducts()"/>
+							   ng-model="searchQuery"
+							   ng-model-options="{ debounce: 200 }"
+							   ng-change="findProducts()" />
 					</div>
 				</div>
 			</form>
@@ -40,7 +40,6 @@
 	</div>
 </nav>
 <!-- вынести в list view -->
-
 
 <div class="container" infinite-scroll="getNewProducts()" infinite-scroll-distance="2">
 	<ul class="list-group">

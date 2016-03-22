@@ -1,56 +1,56 @@
 ﻿.form-signin {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
 }
 
 .form-signin-wrapper {
-    margin-top: 35px;
+	margin-top: 35px;
 }
 
 .content-container {
-    padding-left: 30px;
+	padding-left: 30px;
 }
 
 @media (min-width: 1200px) {
-    .container {
-        width: 970px;
-    }
+	.container {
+		width: 970px;
+	}
 
-    .row > div {
-        height: 94px;
-        cursor: pointer;
-    }
+	.navbar-form {
+		padding: 0px;
+	}
 
-    .row > div > img {
-        max-width: 100%;
-        max-height: 94px;
-        vertical-align: middle;
-        margin: auto;
-        display: block;
-    }
+	.row > div {
+		height: 94px;
+		cursor: pointer;
+	}
 
-    .list-group-item {
-        margin: 6px;
-    }
+	.row > div > img {
+		max-width: 100%;
+		max-height: 94px;
+		vertical-align: middle;
+		margin: auto;
+		display: block;
+	}
 
-    .checkbox {
-        height: 24px;
-        width: 24px;
-        top: 25px;
-        cursor: pointer;
-    }
+	.checkbox {
+		height: 24px;
+		width: 24px;
+		top: 25px;
+		cursor: pointer;
+	}
 }
 
 body {
-    padding-top: 75px;
-    /*background-color: #F6F6F6;*/
+	padding-top: 75px;
+	background-color: #F6F6F6;
 }
 
 .list-group-item-added {
-    background-color: #F0F0F0;
+	background-color: #F0F0F0;
 }
 
 .list-group-item-tracked {
-    background-color: #E4FFDF;
+	background-color: #E4FFDF;
 }

@@ -15,9 +15,9 @@ namespace OnlinerTracker.Web.Controllers.Api
 		}
 
 		[AllowAnonymous]
-		[Route("signin/{socNetwork}")]
 		[HttpGet]
 		[ResponseType(typeof(string))]
+		[Route("signin/{socNetwork}")]
 		public IHttpActionResult AuthUrl(string socNetwork)
 		{
 			if (socNetwork.IsNullOrWhiteSpace())

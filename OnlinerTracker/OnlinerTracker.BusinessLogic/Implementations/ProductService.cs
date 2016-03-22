@@ -41,7 +41,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 
 		public void Update(Product product)
 		{
-			unitOfWork.ProductRepository.Update(product.ParseToEntity());
+			unitOfWork.ProductRepository.Update(product.ToEntity());
 			unitOfWork.Commit();
 		}
 
@@ -50,7 +50,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			var entry = unitOfWork.ProductRepository.FindBy(x => x.Id == product.Id);
 			if (entry == null)
 			{
-				var parsed = product.ParseToEntity();
+				var parsed = product.ToEntity();
 				unitOfWork.ProductRepository.Attach(parsed);
 				unitOfWork.Commit();
 			}

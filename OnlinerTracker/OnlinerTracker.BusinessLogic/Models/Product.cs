@@ -7,9 +7,6 @@ namespace OnlinerTracker.BusinessLogic.Models
 		[JsonProperty("id")]
 		public int Id { get; set; }
 
-		[JsonProperty("name")]
-		public string Name { get; set; }
-
 		[JsonProperty("full_name")]
 		public string FullName { get; set; }
 
@@ -21,9 +18,6 @@ namespace OnlinerTracker.BusinessLogic.Models
 
 		[JsonProperty("description")]
 		public string Description { get; set; }
-
-		[JsonProperty("html_url")]
-		public string HtmlUrl { get; set; }
 
 		[JsonProperty("prices")]
 		public Price Price { get; set; }

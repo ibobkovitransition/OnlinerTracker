@@ -15,9 +15,9 @@ namespace OnlinerTracker.Web.Controllers.Api
 			this.currencyService = currencyService;
 		}
 
-		[Route("currency")]
 		[HttpGet]
 		[ResponseType(typeof (IEnumerable<Currency>))]
+		[Route("currency")]
 		public IHttpActionResult CurrencyList()
 		{
 			return Ok(currencyService.CurrencyList());

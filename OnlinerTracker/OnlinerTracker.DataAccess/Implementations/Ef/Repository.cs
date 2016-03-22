@@ -19,12 +19,17 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 			DbSet = context.Set<TEntity>();
 		}
 
-		public IEnumerable<TEntity> GetEntities(Expression<Func<TEntity, bool>> filters = null)
+		public IEnumerable<TEntity> GetEntities(Expression<Func<TEntity, bool>> filters = null, params Expression<Func<TEntity, object>>[] includedProperties)
 		{
 			IQueryable<TEntity> query = DbSet;
 			if (filters != null)
 			{
 				query = query.Where(filters);
+			}
+
+			foreach (var property in includedProperties)
+			{
+				query.Include(property);
 			}
 
 			return query.AsEnumerable();

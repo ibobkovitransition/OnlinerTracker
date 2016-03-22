@@ -23,7 +23,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 
 			if (!isExists)
 			{
-				unitOfWork.UserRepository.Attach(user.ParseToEntity());
+				unitOfWork.UserRepository.Attach(user.ToEntity());
 				unitOfWork.Commit();
 			}
 

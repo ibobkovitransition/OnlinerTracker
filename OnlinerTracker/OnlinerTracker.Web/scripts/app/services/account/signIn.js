@@ -1,18 +1,13 @@
 ﻿angular.module("account")
-.factory("signIn", function ($http, $window, $log) {
+.factory("signIn", function ($http, $log) {
 	var url = "/signin/";
-
-	var redirectToSocialNetworkPage = function (response) {
-		$log.log("Redirecting to ", response.data);
-		$window.location.href = response.data;
-	}
 
 	var printError = function(response) {
 		$log.error("SignIn error", response);
 	}
 
-	var getRequestUrl = function (socialNetworkName) {
-		$http.get(url + socialNetworkName).then(redirectToSocialNetworkPage, printError);
+	var getRequestUrl = function (socialNetworkName, callback) {
+		$http.get(url + socialNetworkName).then(callback, printError);
 	}
 
 	return {
