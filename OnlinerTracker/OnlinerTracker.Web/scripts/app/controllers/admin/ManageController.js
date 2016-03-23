@@ -58,8 +58,6 @@
 	$scope.trackDecrease = function (product) {
 		productTracking.trackDecrease(product);
 	}
-
-
 };
 
 angular.module("admin").controller("ManageController", ManageController);

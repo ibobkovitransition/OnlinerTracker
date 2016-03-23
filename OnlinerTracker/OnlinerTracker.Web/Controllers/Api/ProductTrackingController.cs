@@ -64,7 +64,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 		}
 
 		[HttpPut]
-		[Route("tracking/increase/{id:int:min(1)}")]
+		[Route("tracking/decrease/{id:int:min(1)}")]
 		public IHttpActionResult TrackDecrease(int id, Product product)
 		{
 			trackingProductService.Decrease(id, PrincipalUser.Id, product.Decrease);

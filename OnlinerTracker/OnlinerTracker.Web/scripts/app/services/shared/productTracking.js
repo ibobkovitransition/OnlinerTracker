@@ -14,18 +14,20 @@
 	}
 
 	var untrackProduct = function (product) {
-		$http.put(untrackUrl + "/" + product.id, product).then(function () { $log.log("Done (untrack)") }, function (response) { $log.error("Error (untrack) ", response) });
+		$http.put(untrackUrl + "/" + product.id).then(function () { $log.log("Done (untrack)") }, function (response) { $log.error("Error (untrack) ", response) });
 	}
 
 	var removeProduct = function (product) {
 		$http.delete(removeUrl + "/" + product.id).then(function () { $log.log("Done (remove)") }, function (response) { $log.error("Error (remove) ", response) });
 	}
 
-	var trackIncrease = function(product) {
+	var trackIncrease = function (product) {
+		//$log.log(increaseUrl + "/" + product.id);
 		$http.put(increaseUrl + "/" + product.id, product).then(function () { $log.log("Done (TrackIncrease)") }, function (response) { $log.error("Error (TrackIncrease) ", response) });
 	}
 
 	var trackDecrease = function (product) {
+		//$log.log(decreaseUrl + "/" + product.id);
 		$http.put(decreaseUrl + "/" + product.id, product).then(function () { $log.log("Done (TrackDecrease)") }, function (response) { $log.error("Error (TrackDecrease) ", response) });
 	}
 
