@@ -9,8 +9,6 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public string SocialId { get; set; }
 
-		public string PhotoUri { get; set; }
-
 		public string Email { get; set; }
 
 		public UserSettings UserSettings { get; set; }

@@ -1,5 +1,5 @@
-﻿angular.module("home")
-.factory("productSearch", function ($http, $log) {
+﻿angular.module("OnlinerTracker.Services")
+.factory("productSearchService", function ($http, $log) {
 	var pageNumber = 1;
 	var pageSize = 25;
 	var isLoading = false;

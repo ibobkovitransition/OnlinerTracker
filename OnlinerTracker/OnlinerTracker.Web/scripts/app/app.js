@@ -1,10 +1,16 @@
 ﻿angular.module("infiniteScroll", []);
-angular.module("account", []);
-angular.module("home", ["ui.bootstrap", "infiniteScroll"]);
-angular.module("admin", ["ui.bootstrap", "ui.bootstrap.tpls"]);
 
-angular.module("main", ["ngRoute", "account", "home", "admin"])
-.config(function ($routeProvider) {
+angular.module("OnlinerTracker.Repositories", []);
+angular.module("OnlinerTracker.Services", []);
+angular.module("OnlinerTracker.Controllers", ["ui.bootstrap", "infiniteScroll", "infiniteScroll"]);
+
+var main = angular.module("OnlinerTracker", [
+	"ngRoute",
+	"OnlinerTracker.Controllers",
+	"OnlinerTracker.Services",
+	"OnlinerTracker.Repositories"]);
+
+main.config(function ($routeProvider) {
 	$routeProvider.when("/Account", {
 		templateUrl: "/scripts/app/views/account/signin.html",
 		controller: "SignInController"
@@ -24,6 +30,10 @@ angular.module("main", ["ngRoute", "account", "home", "admin"])
 		redirectTo: "/Account"
 	});
 });
+
+//main.run
+
+//console.log("load");
 
 // run directive
 // init storage

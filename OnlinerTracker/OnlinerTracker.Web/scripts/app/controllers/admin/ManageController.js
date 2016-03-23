@@ -1,33 +1,42 @@
-﻿function ManageController($scope, $http, $uibModal, $location, productTracking) {
+﻿function ManageController($scope, $http, $uibModal, $location, productTrackingService, userInfoService) {
 
 	// вынести во внешний контроллер
 	$scope.filterQuery = "";
 	$scope.items = [];
+	$scope.userInfo = {};
 	$scope.page = {
 		current: 0,
 		last: 0
 	};
 
 	(function () {
-		$http.get("/tracking/products").then(function (response) {
-			console.log(response);
-			$scope.items = response.data;
-		}, function () {
-
+		userInfoService.load(function (userInfo) {
+			$scope.userInfo = userInfo;
 		});
 	})();
 
-	var applyUserChanges = function(response) {
-		console.log(response);
+	(function () {
+		productTrackingService.get(function(response) {
+			$scope.items = response;
+		});
+	})();
+
+	var applyUserChanges = function (response) {
+		userInfoService.update(response);
 	}
 
 	$scope.showSettingsWindow = function () {
 		var seettingsModalInstanse = $uibModal.open({
-			animation: false,
+			animation: true,
 			templateUrl: "scripts/app/views/admin/settings.html",
-			//size: "lg",
+			size: "lg",
 			controller: "SettingsController",
-			backdrop: false
+			backdrop: false,
+			resolve: {
+				userInfo: function() {
+					return $scope.userInfo;
+				}
+			}
 		});
 
 		seettingsModalInstanse.result.then(applyUserChanges);
@@ -39,25 +48,24 @@
 
 	$scope.trackProduct = function(product) {
 		if (product.is_tracked) {
-			productTracking.track(product);
+			productTrackingService.track(product);
 		} else {
-			productTracking.untrack(product);
+			productTrackingService.untrack(product);
 		}
 	}
 
 	$scope.removeProduct = function(product, index) {
-		productTracking.remove(product);
+		productTrackingService.remove(product);
 		$scope.items.splice(index, 1);
 	}
 
 	$scope.trackIncrease = function (product) {
-		productTracking.trackIncrease(product);
-		console.log(product.increase);
+		productTrackingService.trackIncrease(product);
 	}
 
 	$scope.trackDecrease = function (product) {
-		productTracking.trackDecrease(product);
+		productTrackingService.trackDecrease(product);
 	}
 };
 
-angular.module("admin").controller("ManageController", ManageController);
+angular.module("OnlinerTracker.Controllers").controller("ManageController", ManageController);

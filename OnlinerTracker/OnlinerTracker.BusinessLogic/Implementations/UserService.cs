@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
 using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.BusinessLogic.Models;
@@ -17,10 +18,21 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			this.authService = authService;
 		}
 
-		public UserInfo GetUserInfo(int userId)
+		public UserInfo GetInfo(int userId)
 		{
 			var user = unitOfWork.UserRepository.FindBy(x => x.Id == userId);
 			return user.ToModel();
+		}
+
+		public void Update(int userId, UserInfo userInfo)
+		{
+			var entity = unitOfWork.UserRepository.FindBy(x => x.Id == userId, x => x.UserSettings);
+			entity.Email = userInfo.Email;
+			entity.UserSettings.SelectedCurrency = userInfo.UserSettings?.SelectedCurrency;
+			entity.UserSettings.PreferedTime = userInfo.UserSettings?.PreferedTime ?? TimeSpan.Zero;
+
+			unitOfWork.UserRepository.Update(entity);
+			unitOfWork.Commit();
 		}
 
 		public string AddUser(NameValueCollection queryString, string serviceName)

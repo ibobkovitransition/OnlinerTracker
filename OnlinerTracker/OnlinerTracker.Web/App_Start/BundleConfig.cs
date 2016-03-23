@@ -23,10 +23,11 @@ namespace OnlinerTracker.Web.App_Start
 				.Include("~/scripts/app/controllers/admin/ManageController.js")
 				.Include("~/scripts/app/controllers/admin/SettingsController.js")
 
-				.Include("~/scripts/app/services/account/signIn.js")
-				.Include("~/scripts/app/services/home/productSearch.js")
-				.Include("~/scripts/app/services/home/productUpload.js")
-				.Include("~/scripts/app/services/shared/productTracking.js")
+				.Include("~/scripts/app/services/account/authService.js")
+				.Include("~/scripts/app/services/home/productSearchService.js")
+				.Include("~/scripts/app/services/home/productUploadService.js")
+				.Include("~/scripts/app/services/shared/productTrackingService.js")
+				.Include("~/scripts/app/services/shared/userInfoService.js")
 
 				.Include("~/scripts/app/directives/home/infiniteScroll.js")
 			);

@@ -59,13 +59,15 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 			Context.Entry(entity).State = EntityState.Modified;
 		}
 
-		public TEntity FindBy(Expression<Func<TEntity, bool>> filters = null)
+		public TEntity FindBy(Expression<Func<TEntity, bool>> filters = null, params Expression<Func<TEntity, object>>[] includedProperties)
 		{
 			IQueryable<TEntity> query = DbSet;
 			if (filters != null)
 			{
 				query = query.Where(filters);
 			}
+
+			query = includedProperties.Aggregate(query, (current, property) => current.Include(property));
 
 			return query.FirstOrDefault(); 
 		}

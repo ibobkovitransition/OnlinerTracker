@@ -1,13 +1,15 @@
-﻿function SettingsController($scope, $uibModalInstance) {
+﻿function SettingsController($scope, $uibModalInstance, userInfo) {
 
-	$scope.userInfo = {
-		first_name: "",
-		email: "",
-		settings: {
-			default_currency: "",
-			prefered_time: new Date()
-		}
-	};
+	$scope.userInfo = userInfo;
+
+	//	{
+	//	first_name: "",
+	//	email: "",
+	//	settings: {
+	//		default_currency: "",
+	//		prefered_time: new Date()
+	//	}
+	//};
 
 
 	// returns userinfo
@@ -20,4 +22,4 @@
 	}
 };
 
-angular.module("admin").controller("SettingsController", SettingsController);
+angular.module("OnlinerTracker.Controllers").controller("SettingsController", SettingsController);

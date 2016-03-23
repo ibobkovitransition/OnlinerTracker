@@ -5,6 +5,10 @@ namespace OnlinerTracker.BusinessLogic.Models
 
 	public class UserInfo 
 	{
+		// нужна для парсинга между доменной и бизнес моделью
+		[JsonIgnore]
+		public int Id { get; set; }
+
 		[JsonProperty("first_name")]
 		public string FirstName { get; set; }
 

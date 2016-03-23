@@ -233,10 +233,12 @@
     <Content Include="scripts\app\controllers\admin\ManageController.js" />
     <Content Include="scripts\app\controllers\admin\SettingsController.js" />
     <Content Include="scripts\app\directives\home\infiniteScroll.js" />
-    <Content Include="scripts\app\services\account\signIn.js" />
-    <Content Include="scripts\app\services\home\productSearch.js" />
-    <Content Include="scripts\app\services\shared\productTracking.js" />
-    <Content Include="scripts\app\services\home\productUpload.js" />
+    <Content Include="scripts\app\repositories.js" />
+    <Content Include="scripts\app\services\account\authService.js" />
+    <Content Include="scripts\app\services\home\productSearchService.js" />
+    <Content Include="scripts\app\services\shared\productTrackingService.js" />
+    <Content Include="scripts\app\services\home\productUploadService.js" />
+    <Content Include="scripts\app\services\shared\userInfoService.js" />
     <Content Include="scripts\app\views\account\signin.html" />
     <Content Include="scripts\app\controllers\home\SearchController.js" />
     <Content Include="scripts\app\views\admin\manage.html" />

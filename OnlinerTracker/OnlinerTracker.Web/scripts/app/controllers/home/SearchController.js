@@ -1,4 +1,4 @@
-﻿function SearchController($scope, $log, $location, productSearch, productUpload, productTracking) {
+﻿function SearchController($scope, $log, $location, productSearchService, productUploadService, productTrackingService, userInfoService) {
 
 	// вынести во внешний контроллер
 	$scope.searchQuery = "";
@@ -7,8 +7,16 @@
 		current: 0,
 		last: 0
 	};
+	$scope.userInfo = {};
 
-	// вынес бизнесс логику в сервисы
+	(function () {
+		userInfoService.load(function(userInfo) {
+			$scope.userInfo = userInfo;
+			console.log($scope.userInfo);
+		});
+	})();
+
+	// вынес логику в сервисы
 	// https://github.com/mgechev/angularjs-style-guide/blob/master/README-ru-ru.md
 
 	var loadPage = function (data) {
@@ -26,14 +34,14 @@
 
 	$scope.trackProduct = function (product) {
 		if (product.is_tracked) {
-			productTracking.track(product);
+			productTrackingService.track(product);
 		} else {
-			productTracking.untrack(product);
+			productTrackingService.untrack(product);
 		}
 	}
 
 	$scope.findProducts = function () {
-		productSearch.find($scope.searchQuery, loadPage);
+		productSearchService.find($scope.searchQuery, loadPage);
 	}
 
 	$scope.getCssClass = function (product) {
@@ -41,17 +49,15 @@
 			"list-group-item-tracked" : product.is_added ? "list-group-item-added" : "";
 	}
 
-	$scope.getNewProducts = function () {
-		console.log("GET NEW PRODUCTS");
+	$scope.uploadProducts = function () {
 		if ($scope.page.current >= $scope.page.last || $scope.page.current === 0) {
-			$log.info("Nothing to upload");
 			return;
 		}
 
 		$scope.page.current++;
-		productUpload.getPage($scope.searchQuery, $scope.page.current, $scope.page.last, uploadPage);
+		productUploadService.getPage($scope.searchQuery, $scope.page.current, $scope.page.last, uploadPage);
 	}
 
 };
 
-angular.module("home").controller("SearchController", SearchController);
+angular.module("OnlinerTracker.Controllers").controller("SearchController", SearchController);

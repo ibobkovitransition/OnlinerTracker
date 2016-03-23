@@ -2,6 +2,7 @@
 using OnlinerTracker.BusinessLogic.Models;
 using OnlinerTracker.DataAccess.Enteties;
 using Product = OnlinerTracker.DataAccess.Enteties.Product;
+using UserSettings = OnlinerTracker.DataAccess.Enteties.UserSettings;
 
 namespace OnlinerTracker.BusinessLogic.Extensions
 {
@@ -26,9 +27,17 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 		{
 			return new User
 			{
-				SocialId = user.UserId,
+				Id = user.Id,
+				CreatedOn = createdOn ?? DateTime.Now,
 				FirstName = user.FirstName,
-				CreatedOn = createdOn ?? DateTime.Now
+				SocialId = user.UserId,
+				Email = user.Email,
+				UserSettings = new UserSettings
+				{
+					CreatedOn = DateTime.Now,
+					PreferedTime = user.UserSettings?.PreferedTime ?? TimeSpan.Zero,
+					SelectedCurrency = user.UserSettings?.SelectedCurrency
+				}
 			};
 		}
 
@@ -55,8 +64,8 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				Description = productTracking.Product.Description,
 				IsAdded = true,
 				IsTracked = productTracking.Enabled,
-				Image = new Image {Icon = productTracking.Product.IconImageUrl, Header = productTracking.Product.HeaderImageUrl},
-				Price = new Price {Min = productTracking.Product.MinPrice, Max = productTracking.Product.MaxPrice},
+				Image = new Image { Icon = productTracking.Product.IconImageUrl, Header = productTracking.Product.HeaderImageUrl },
+				Price = new Price { Min = productTracking.Product.MinPrice, Max = productTracking.Product.MaxPrice },
 				Increase = productTracking.Increase,
 				Decrease = productTracking.Decrease
 			};
