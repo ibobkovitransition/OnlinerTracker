@@ -7,6 +7,12 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 	{
 		IEnumerable<Product> Get(int userId);
 
+		// мне название не нравится, но лучше не придумал
+		void Increase(int productId, int userId, bool track);
+
+		// мне название не нравится, но лучше не придумал
+		void Decrease(int productId, int userId, bool track);
+
 		void Track(int productId, int userId);
 
 		void Untrack(int productId, int userId);

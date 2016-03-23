@@ -8,43 +8,20 @@
 	margin-top: 35px;
 }
 
-.content-container {
-	padding-left: 30px;
+.checkbox-wrapper {
+	vertical-align: middle !important;
 }
 
-@media (min-width: 1200px) {
-	.container {
-		width: 970px;
-	}
-
-	.navbar-form {
-		padding: 0px;
-	}
-
-	.row > div {
-		height: 94px;
-		cursor: pointer;
-	}
-
-	.row > div > img {
-		max-width: 100%;
-		max-height: 94px;
-		vertical-align: middle;
-		margin: auto;
-		display: block;
-	}
-
-	.checkbox {
-		height: 24px;
-		width: 24px;
-		top: 25px;
-		cursor: pointer;
-	}
+a {
+	cursor: pointer;
 }
 
-body {
-	padding-top: 75px;
-	background-color: #F6F6F6;
+img {
+	max-width: 100%;
+	max-height: 94px;
+	vertical-align: middle;
+	margin: auto;
+	display: block;
 }
 
 .list-group-item-added {
@@ -53,4 +30,9 @@ body {
 
 .list-group-item-tracked {
 	background-color: #E4FFDF;
+}
+
+
+body {
+	padding-top: 50px;
 }

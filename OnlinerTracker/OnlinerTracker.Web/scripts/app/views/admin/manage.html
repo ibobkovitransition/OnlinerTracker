@@ -1,24 +1,30 @@
-﻿<!-- вынести в nav view -->
-
-<nav class="navbar navbar-default navbar-fixed-top">
+﻿<header class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
-		<div class="navbar-collapse ">
+		<div class="navbar-header">
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a ng-click="toHome()" class="navbar-brand" style="cursor: pointer;">Onliner tracker</a>
+		</div>
+		<nav class="collapse navbar-collapse" role="navigation">
 			<ul class="nav navbar-nav navbar-right">
-				<li ng-hide="userConfig.email">
-					<a ng-click="" style="cursor: pointer; font-weight: bold; color: #CA5353;">
-						<span class="glyphicon glyphicon-envelope"></span>
-						<span>Set email</span>
+				<li>
+					<a ng-click="showSettingsWindow()">
+						Settings
+						<b class="glyphicon glyphicon-cog"></b>
 					</a>
 				</li>
 
-				<li class="dropdown" role="presentation">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="" role="button">
-						<span class="glyphicon glyphicon-arrow-down"></span>
-						{{userConfig.name}}
+				<li class="dropdown" uib-dropdown>
+					<a class="dropdown-toggle" data-toggle="dropdown" role="button" uib-dropdown-toggle>
+						User name
+						<b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a>Manage</a></li>
-						<li><a>Logout</a></li>
+						<li><a ng-click="logout()">Logout</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -29,43 +35,53 @@
 						<span class="input-group-addon" style="width: 1%;">
 							<span class="glyphicon glyphicon-search"></span>
 						</span>
-						<input type="text" placeholder="Type product name" class="form-control"
-							   ng-model="searchQuery"
-							   ng-model-options="{ debounce: 200 }"
-							   ng-change="findProducts()" />
+						<input type="text" placeholder="Type and filter" class="form-control" ng-model="filterQuery" />
 					</div>
 				</div>
 			</form>
-		</div>
+		</nav>
 	</div>
-</nav>
-<!-- вынести в list view -->
+</header>
 
-<div class="container" infinite-scroll="getNewProducts()" infinite-scroll-distance="2">
-	<ul class="list-group">
-		<li ng-repeat="item in items" class="list-group-item" ng-class="getCssClass(item)">
-			<div class="row">
-				<div class="col-md-1">
-					<div class="img-wrapper">
-						<input type="checkbox" class="checkbox" ng-model="item.is_tracked" ng-change="trackProduct(item)" />
-					</div>
-				</div>
-				<div class="col-md-2">
+<div class="container">
+	<table class="table">
+		<tbody>
+			<tr ng-repeat="item in items | filter: {full_name: filterQuery}">
+				<td class="checkbox-wrapper">
+					<input type="checkbox" class="checkbox" ng-model="item.is_tracked" ng-change="trackProduct(item)" />
+				</td>
+				<td>
 					<img ng-src="{{item.images.icon != null ? item.images.header : item.images.icon }}" />
-				</div>
-				<div class="col-md-7">
+				</td>
+				<td>
 					<b>{{item.full_name}}</b>
 					<p>{{item.description}}</p>
-				</div>
-				<div class="col-md-2">
+				</td>
+				<td>
 					<div>
-						<b>Min:</b><span class="pull-right">{{item.prices.min}}</span>
+						<!--<span class="text-right">Min</span>-->
+						<span>{{item.prices.min}}</span>
 					</div>
 					<div>
-						<b>Max:</b><span class="pull-right">{{item.prices.max}}</span>
+						<!--<span class="text-right">Max</span>-->
+						<span>{{item.prices.max}}</span>
 					</div>
-				</div>
-			</div>
-		</li>
-	</ul>
+
+					<a ng-click="removeProduct(item, $index)">Remove</a>
+
+
+					<label>
+						<input type="checkbox" ng-model="item.increase" ng-change="trackIncrease(item)" />
+						Increase
+					</label>
+						<br/>
+					<label>
+						<input type="checkbox" ng-model="item.decrease" ng-change="trackDecrease(item)" />
+						Decrease
+					</label>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </div>

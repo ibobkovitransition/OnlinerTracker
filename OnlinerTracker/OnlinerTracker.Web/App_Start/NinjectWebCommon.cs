@@ -89,7 +89,6 @@ namespace OnlinerTracker.Web.App_Start
 			kernel.Bind<IUserService>().To<UserService>();
 			kernel.Bind<IProductTrackingService>().To<ProductTrackingService>();
 			kernel.Bind<IProductService>().To<ProductService>();
-			kernel.Bind<IUserInfoService>().To<UserInfoService>();
 		}
 	}
 }

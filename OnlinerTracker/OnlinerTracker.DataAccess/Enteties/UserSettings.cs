@@ -14,10 +14,6 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public TimeSpan PreferedTime { get; set; }
 
-		public bool Increase { get; set; }
-
-		public bool Decrease { get; set; }
-
 		public string SelectedCurrency { get; set; }
 	}
 }

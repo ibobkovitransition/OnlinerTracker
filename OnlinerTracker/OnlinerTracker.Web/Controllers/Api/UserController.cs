@@ -5,21 +5,24 @@ using OnlinerTracker.BusinessLogic.Models;
 
 namespace OnlinerTracker.Web.Controllers.Api
 {
-	public class UserInfoController : ApiControllerBase
+	public class UserController : ApiControllerBase
 	{
-		private readonly IUserInfoService userInfoService;
+		private readonly IUserService userService;
 
-		public UserInfoController(IUserInfoService userInfoService)
+		public UserController(IUserService userService)
 		{
-			this.userInfoService = userInfoService;
+			this.userService = userService;
 		}
 
 		[HttpGet]
 		[ResponseType(typeof(UserInfo))]
-		[Route("userinfo")]
+		[Route("user/info")]
 		public IHttpActionResult UserInfo()
 		{
-			return Ok(userInfoService.UserInfo(PrincipalUser.Id));
+			return Ok(userService.GetUserInfo(PrincipalUser.Id));
 		}
+
+		//[HttpPut]
+		//[Route("user/email")]
 	}
 }

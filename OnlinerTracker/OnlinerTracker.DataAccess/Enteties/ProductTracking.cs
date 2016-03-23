@@ -13,5 +13,9 @@ namespace OnlinerTracker.DataAccess.Enteties
 		public User User { get; set; }
 
 		public bool Enabled { get; set; }
+
+		public bool Increase { get; set; }
+
+		public bool Decrease { get; set; }
 	}
 }

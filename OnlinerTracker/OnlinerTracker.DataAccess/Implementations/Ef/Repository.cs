@@ -27,10 +27,7 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 				query = query.Where(filters);
 			}
 
-			foreach (var property in includedProperties)
-			{
-				query.Include(property);
-			}
+			query = includedProperties.Aggregate(query, (current, property) => current.Include(property));
 
 			return query.AsEnumerable();
 		}

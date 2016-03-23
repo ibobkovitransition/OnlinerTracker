@@ -1,6 +1,7 @@
 ﻿using System.Collections.Specialized;
 using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Models;
 using OnlinerTracker.DataAccess.Interfaces;
 
 namespace OnlinerTracker.BusinessLogic.Implementations
@@ -14,6 +15,12 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 		{
 			this.unitOfWork = unitOfWork;
 			this.authService = authService;
+		}
+
+		public UserInfo GetUserInfo(int userId)
+		{
+			var user = unitOfWork.UserRepository.FindBy(x => x.Id == userId);
+			return user.ToModel();
 		}
 
 		public string AddUser(NameValueCollection queryString, string serviceName)

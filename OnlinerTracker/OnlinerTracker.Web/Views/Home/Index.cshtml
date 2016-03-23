@@ -5,13 +5,13 @@
 
 <!DOCTYPE html>
 
-<html ng-app="MainApp">
+<html ng-app="main">
 <head>
-	<meta name="viewport" content="width=device-width" />
-	@Scripts.Render("~/bundles/jquery")
-	@Scripts.Render("~/bundles/bootstrap")
+	<meta name="viewport" content="width=device-width"/>
+
+	@* endless scroll Юзает jquery ?! *@
 	@Scripts.Render("~/bundles/angular")
-	@Scripts.Render("~/bundles/modernizr")
+	@*@Scripts.Render("~/bundles/modernizr")*@
 	@Scripts.Render("~/bundles/application")
 
 	@Styles.Render("~/bundles/bootstrap-css")
@@ -22,6 +22,7 @@
 <body>
 
 	<ng-view />
+
 
 </body>
 </html>

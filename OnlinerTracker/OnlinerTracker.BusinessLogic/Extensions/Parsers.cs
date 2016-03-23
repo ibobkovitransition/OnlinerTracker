@@ -41,8 +41,6 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				UserSettings = new Models.UserSettings
 				{
 					SelectedCurrency = user.UserSettings?.SelectedCurrency,
-					Increase = user.UserSettings?.Increase ?? false,
-					Decrease = user.UserSettings?.Decrease ?? false,
 					PreferedTime = user.UserSettings?.PreferedTime ?? TimeSpan.Zero
 				}
 			};
@@ -58,7 +56,9 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				IsAdded = true,
 				IsTracked = productTracking.Enabled,
 				Image = new Image {Icon = productTracking.Product.IconImageUrl, Header = productTracking.Product.HeaderImageUrl},
-				Price = new Price {Min = productTracking.Product.MinPrice, Max = productTracking.Product.MaxPrice}
+				Price = new Price {Min = productTracking.Product.MinPrice, Max = productTracking.Product.MaxPrice},
+				Increase = productTracking.Increase,
+				Decrease = productTracking.Decrease
 			};
 		}
 	}

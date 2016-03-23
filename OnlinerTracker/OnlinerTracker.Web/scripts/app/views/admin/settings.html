@@ -1,0 +1,28 @@
+﻿<div class="modal-header">
+	<h4>User settings</h4>
+</div>
+
+<div class="modal-body">
+
+	<div class="form-group">
+		<label>Your email</label>
+		<input type="email" class="form-control" ng-model="userInfo.email" />
+	</div>
+
+	<div class="form-group">
+		<label>Your prefer time</label>
+		<input class="form-control" uib-datepicker-popup="HH/mm" ng-model="userInfo.settings.prefered_time" />
+	</div>
+
+	<div class="form-group">
+		<label>Your prefer currency</label>
+		<input class="form-control" ng-model="userInfo.settings.currency" />
+	</div>
+
+</div>
+
+<div class="modal-footer">
+
+	<button class="btn btn-success" type="button" ng-click="save()">Save</button>
+	<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

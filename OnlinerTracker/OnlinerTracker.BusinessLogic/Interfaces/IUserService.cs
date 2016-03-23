@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using OnlinerTracker.BusinessLogic.Models;
 
 namespace OnlinerTracker.BusinessLogic.Interfaces
 {
@@ -11,5 +12,7 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 		/// <param name="serviceName">Facebook, Twitter, Vk</param>
 		/// <returns>Social network userid</returns>
 		string AddUser(NameValueCollection queryString, string serviceName);
+
+		UserInfo GetUserInfo(int userId);
 	}
 }

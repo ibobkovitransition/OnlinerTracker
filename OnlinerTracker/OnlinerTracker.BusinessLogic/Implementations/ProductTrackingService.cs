@@ -20,8 +20,26 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 
 		public IEnumerable<Product> Get(int userId)
 		{
-			var productsTracking = unitOfWork.TrackedProducts.GetEntities(x => x.UserId == userId, property => property.Product);
+			var productsTracking = unitOfWork.TrackedProducts.GetEntities(x => x.UserId == userId, x => x.Product, x => x.User);
 			return productsTracking.Select(x => x.ToModel());
+		}
+
+		// мне название не нравится, но лучше не придумал
+		public void Increase(int productId, int userId, bool track)
+		{
+			var trackedProduct = GetTrackedProduct(productId, userId);
+			trackedProduct.Increase = track;
+			unitOfWork.TrackedProducts.Update(trackedProduct);
+			unitOfWork.Commit();
+		}
+
+		// мне название не нравится, но лучше не придумал
+		public void Decrease(int productId, int userId, bool track)
+		{
+			var trackedProduct = GetTrackedProduct(productId, userId);
+			trackedProduct.Decrease = track;
+			unitOfWork.TrackedProducts.Update(trackedProduct);
+			unitOfWork.Commit();
 		}
 
 		public void Track(int productId, int userId)

@@ -1,4 +1,4 @@
-﻿function SearchController($scope, $log, productSearch, productUpload, productTracking) {
+﻿function SearchController($scope, $log, $location, productSearch, productUpload, productTracking) {
 
 	// вынести во внешний контроллер
 	$scope.searchQuery = "";
@@ -20,6 +20,10 @@
 		Array.prototype.push.apply($scope.items, data.products);
 	}
 
+	$scope.toAdmin = function () {
+		$location.path("/Admin");
+	}
+
 	$scope.trackProduct = function (product) {
 		if (product.is_tracked) {
 			productTracking.track(product);
@@ -38,6 +42,7 @@
 	}
 
 	$scope.getNewProducts = function () {
+		console.log("GET NEW PRODUCTS");
 		if ($scope.page.current >= $scope.page.last || $scope.page.current === 0) {
 			$log.info("Nothing to upload");
 			return;
@@ -46,6 +51,7 @@
 		$scope.page.current++;
 		productUpload.getPage($scope.searchQuery, $scope.page.current, $scope.page.last, uploadPage);
 	}
+
 };
 
 angular.module("home").controller("SearchController", SearchController);

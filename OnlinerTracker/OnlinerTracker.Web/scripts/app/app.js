@@ -1,10 +1,9 @@
 ﻿angular.module("infiniteScroll", []);
-
 angular.module("account", []);
-angular.module("home", ["infiniteScroll"]);
-angular.module("admin", ["infiniteScroll"]);
+angular.module("home", ["ui.bootstrap", "infiniteScroll"]);
+angular.module("admin", ["ui.bootstrap", "ui.bootstrap.tpls"]);
 
-angular.module("MainApp", ["ngRoute", "account", "home", "admin"])
+angular.module("main", ["ngRoute", "account", "home", "admin"])
 .config(function ($routeProvider) {
 	$routeProvider.when("/Account", {
 		templateUrl: "/scripts/app/views/account/signin.html",
@@ -18,10 +17,13 @@ angular.module("MainApp", ["ngRoute", "account", "home", "admin"])
 
 	$routeProvider.when("/Admin", {
 		templateUrl: "/scripts/app/views/admin/manage.html",
-		controller: "AdminController"
+		controller: "ManageController"
 	});
 
 	$routeProvider.otherwise({
 		redirectTo: "/Account"
 	});
 });
+
+// run directive
+// init storage

@@ -9,7 +9,9 @@ namespace OnlinerTracker.Web.App_Start
 			bundles.Add(new ScriptBundle("~/bundles/angular")
 				.Include("~/scripts/angular.js")
 				.Include("~/scripts/angular-resource.js")
-				.Include("~/scripts/angular-route.js"));
+				.Include("~/scripts/angular-route.js")
+				.Include("~/scripts/angular-animate.js")
+				.Include("~/scripts/angular-ui/ui-bootstrap-tpls.js"));
 
 			bundles.Add(new StyleBundle("~/bundles/styles")
 				.Include("~/content/styles.css"));
@@ -19,24 +21,27 @@ namespace OnlinerTracker.Web.App_Start
 				.Include("~/scripts/app/controllers/account/SignInController.js")
 				.Include("~/scripts/app/controllers/home/SearchController.js")
 				.Include("~/scripts/app/controllers/admin/ManageController.js")
+				.Include("~/scripts/app/controllers/admin/SettingsController.js")
 
 				.Include("~/scripts/app/services/account/signIn.js")
 				.Include("~/scripts/app/services/home/productSearch.js")
 				.Include("~/scripts/app/services/home/productUpload.js")
-				.Include("~/scripts/app/services/home/productTracking.js")
-				.Include("~/scripts/app/services/settingsUploader.js")
+				.Include("~/scripts/app/services/shared/productTracking.js")
 
 				.Include("~/scripts/app/directives/home/infiniteScroll.js")
 			);
 
-			bundles.Add(new ScriptBundle("~/bundles/jquery")
-				.Include("~/scripts/jquery-1.9.1.js"));
+			// выкосить
+			//bundles.Add(new ScriptBundle("~/bundles/jquery")
+			//	.Include("~/scripts/jquery-1.9.1.js"));
 
-			bundles.Add(new ScriptBundle("~/bundles/bootstrap")
-				.Include("~/scripts/bootstrap.js"));
+			//bundles.Add(new ScriptBundle("~/bundles/bootstrap")
+			//	.Include("~/scripts/bootstrap.js"));
+			//// 
 
-			bundles.Add(new ScriptBundle("~/bundles/modernizr")
-				.Include("~/scripts/jmodernizr-2.8.3.js"));
+			//bundles.Add(new ScriptBundle("~/bundles/modernizr")
+			//	.Include("~/scripts/jmodernizr-2.8.3.js"));
+			
 
 			bundles.Add(new StyleBundle("~/bundles/bootstrap-css")
 				.Include("~/content/bootstrap.css")

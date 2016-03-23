@@ -24,5 +24,12 @@ namespace OnlinerTracker.BusinessLogic.Models
 
 		[JsonProperty("images")]
 		public Image Image { get; set; }
+
+		[JsonProperty("increase")]
+		public bool Increase { get; set; }
+
+		[JsonProperty("decrease")]
+		public bool Decrease { get; set; }
+
 	}
 }

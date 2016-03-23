@@ -10,11 +10,5 @@ namespace OnlinerTracker.BusinessLogic.Models
 
 		[JsonProperty("selected_currency")]
 		public string SelectedCurrency { get; set; }
-
-		[JsonProperty("increase")]
-		public bool Increase { get; set; }
-
-		[JsonProperty("decrease")]
-		public bool Decrease { get; set; }
 	}
 }
