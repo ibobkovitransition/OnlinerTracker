@@ -58,7 +58,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 
 		private void MarkTrackedProducts(int userId, IEnumerable<Product> productsToMark)
 		{
-			var trackedProducts = unitOfWork.TrackedProducts.GetEntities(x => x.UserId == userId);
+			var trackedProducts = unitOfWork.ProductTrackingRepository.GetEntities(x => x.UserId == userId);
 
 			foreach (var product in productsToMark)
 			{

@@ -8,7 +8,7 @@ namespace OnlinerTracker.BusinessLogic.Models
 	[XmlRoot(Namespace = "", IsNullable = false)]
 	public class DailyExRates
 	{
-		[XmlElementAttribute("Currency")]
+		[XmlElement("Currency")]
 		public Currency[] Currency { get; set; }
 
 		// TODO: допилить потом 

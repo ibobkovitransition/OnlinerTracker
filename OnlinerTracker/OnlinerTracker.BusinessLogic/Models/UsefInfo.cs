@@ -5,14 +5,13 @@ namespace OnlinerTracker.BusinessLogic.Models
 
 	public class UserInfo 
 	{
-		// нужна для парсинга между доменной и бизнес моделью
-		[JsonIgnore]
+		[JsonProperty("id")]
 		public int Id { get; set; }
 
 		[JsonProperty("first_name")]
 		public string FirstName { get; set; }
 
-		// т.к. данный класс - обретка над OAuth.UserInfo, то это поле не нужно отдавать пользователю т.к. палим id-ник
+		// не отдаем клиенту id его соц сети - она тащится из кук
 		[JsonIgnore]
 		public string UserId { get; set; }
 

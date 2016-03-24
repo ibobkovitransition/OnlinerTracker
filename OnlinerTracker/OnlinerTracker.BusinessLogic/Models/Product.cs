@@ -30,6 +30,5 @@ namespace OnlinerTracker.BusinessLogic.Models
 
 		[JsonProperty("decrease")]
 		public bool Decrease { get; set; }
-
 	}
 }

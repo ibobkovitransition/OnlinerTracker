@@ -13,7 +13,7 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 		/// <returns>Social network userid</returns>
 		string AddUser(NameValueCollection queryString, string serviceName);
 
-		UserInfo GetInfo(int userId);
+		UserInfo Get(int userId);
 
 		void Update(int userId, UserInfo userInfo);
 	}

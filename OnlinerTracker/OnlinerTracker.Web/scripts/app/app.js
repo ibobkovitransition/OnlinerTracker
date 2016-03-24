@@ -31,9 +31,15 @@ main.config(function ($routeProvider) {
 	});
 });
 
-//main.run
+main.run(function () {
+	// инициализировать хранилище
+	// в данном приложение вызывается два раза
+	// первый раз в auth, второй после авторизации
+	
+	// 
+	console.log("run");
+});
 
-//console.log("load");
 
 // run directive
 // init storage

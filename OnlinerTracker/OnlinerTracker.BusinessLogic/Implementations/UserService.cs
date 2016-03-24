@@ -18,7 +18,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			this.authService = authService;
 		}
 
-		public UserInfo GetInfo(int userId)
+		public UserInfo Get(int userId)
 		{
 			var user = unitOfWork.UserRepository.FindBy(x => x.Id == userId);
 			return user.ToModel();
@@ -27,6 +27,8 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 		public void Update(int userId, UserInfo userInfo)
 		{
 			var entity = unitOfWork.UserRepository.FindBy(x => x.Id == userId, x => x.UserSettings);
+
+			// TODO: вынести в to entity
 			entity.Email = userInfo.Email;
 			entity.UserSettings.SelectedCurrency = userInfo.UserSettings?.SelectedCurrency;
 			entity.UserSettings.PreferedTime = userInfo.UserSettings?.PreferedTime ?? TimeSpan.Zero;

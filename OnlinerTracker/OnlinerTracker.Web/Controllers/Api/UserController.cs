@@ -19,16 +19,21 @@ namespace OnlinerTracker.Web.Controllers.Api
 		[Route("user/info")]
 		public IHttpActionResult UserInfo()
 		{
-			return Ok(userService.GetInfo(PrincipalUser.Id));
+			return Ok(userService.Get(PrincipalUser.Id));
 		}
 
 		[HttpPut]
-		[Route("user/update")]
-		public IHttpActionResult Update(UserInfo userInfo)
+		[Route("user/update/{id:int:min(0)}")]
+		public IHttpActionResult Update(int id, UserInfo userInfo)
 		{
-			// финт ушами, можно сделать роут типо: user/update/id, но это только для красоты
-			// т.к. любой пользователь, в этом случае, сможет изменить данные любого другого
-			userService.Update(PrincipalUser.Id, userInfo);
+			// роут можно убрать
+			// проверяем что бы пользователь 1, зная id пользователя 2 не смог изменить его данные подсовыванием его id-ка
+			if (id != PrincipalUser.Id)
+			{
+				return BadRequest("Wrong user id");
+			}
+
+			userService.Update(id, userInfo);
 			return Ok();
 		}
 	}

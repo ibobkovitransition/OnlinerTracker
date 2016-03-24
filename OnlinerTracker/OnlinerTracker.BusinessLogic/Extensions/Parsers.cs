@@ -2,7 +2,6 @@
 using OnlinerTracker.BusinessLogic.Models;
 using OnlinerTracker.DataAccess.Enteties;
 using Product = OnlinerTracker.DataAccess.Enteties.Product;
-using UserSettings = OnlinerTracker.DataAccess.Enteties.UserSettings;
 
 namespace OnlinerTracker.BusinessLogic.Extensions
 {
@@ -27,17 +26,17 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 		{
 			return new User
 			{
-				Id = user.Id,
+				//Id = user.Id,
 				CreatedOn = createdOn ?? DateTime.Now,
 				FirstName = user.FirstName,
 				SocialId = user.UserId,
-				Email = user.Email,
-				UserSettings = new UserSettings
-				{
-					CreatedOn = DateTime.Now,
-					PreferedTime = user.UserSettings?.PreferedTime ?? TimeSpan.Zero,
-					SelectedCurrency = user.UserSettings?.SelectedCurrency
-				}
+				Email = user.Email//,
+				//UserSettings = new UserSettings
+				//{
+				//	CreatedOn = DateTime.Now,
+				//	PreferedTime = user.UserSettings?.PreferedTime ?? TimeSpan.Zero,
+				//	SelectedCurrency = user.UserSettings?.SelectedCurrency
+				//}
 			};
 		}
 
@@ -45,6 +44,7 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 		{
 			return new UserInfo
 			{
+				Id = user.Id,
 				FirstName = user.FirstName,
 				Email = user.Email,
 				UserSettings = new Models.UserSettings
