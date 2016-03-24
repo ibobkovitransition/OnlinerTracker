@@ -1,18 +1,5 @@
 ﻿function SettingsController($scope, $uibModalInstance, userInfo, currency) {
 
-	// set currency
-	if (userInfo.settings.selected_currency) {
-		for (var i = 0; i < currency.length; i++) {
-
-			if (currency[i].CharCode === userInfo.settings.selected_currency) {
-				userInfo.settings.selected_currency = currency[i];
-				break;
-			}
-		}
-	} else {
-		userInfo.settings.selected_currency = currency[0];
-	}
-
 	$scope.userInfo = userInfo;
 	$scope.currency = currency;
 

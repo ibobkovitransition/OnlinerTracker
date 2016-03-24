@@ -22,21 +22,15 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 			};
 		}
 
-		public static User ToEntity(this UserInfo user, DateTime? createdOn = null)
+		public static User ToEntity(this UserInfo user, int? id = null, DateTime? createdOn = null)
 		{
 			return new User
 			{
-				//Id = user.Id,
+				Id = id ?? user.Id,
 				CreatedOn = createdOn ?? DateTime.Now,
 				FirstName = user.FirstName,
-				SocialId = user.UserId,
-				Email = user.Email//,
-				//UserSettings = new UserSettings
-				//{
-				//	CreatedOn = DateTime.Now,
-				//	PreferedTime = user.UserSettings?.PreferedTime ?? TimeSpan.Zero,
-				//	SelectedCurrency = user.UserSettings?.SelectedCurrency
-				//}
+				SocialId = user.SocialNetworkUserId,
+				Email = user.Email
 			};
 		}
 

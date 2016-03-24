@@ -13,8 +13,6 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public UserSettings UserSettings { get; set; }
 
-		public int UserSettingsId { get; set; }
-
 		public ICollection<ProductTracking> TrackedProducts { get; set; }
 
 		public User()

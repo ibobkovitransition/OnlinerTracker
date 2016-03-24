@@ -4,6 +4,7 @@ using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.BusinessLogic.Models;
 using OnlinerTracker.DataAccess.Interfaces;
+using UserSettings = OnlinerTracker.DataAccess.Enteties.UserSettings;
 
 namespace OnlinerTracker.BusinessLogic.Implementations
 {
@@ -27,12 +28,16 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 		public void Update(int userId, UserInfo userInfo)
 		{
 			var entity = unitOfWork.UserRepository.FindBy(x => x.Id == userId, x => x.UserSettings);
-
-			// TODO: вынести в to entity
 			entity.Email = userInfo.Email;
+
+			entity.UserSettings = entity.UserSettings ?? new UserSettings
+			{
+				Id = userId,
+				CreatedOn = DateTime.Now
+			};
+
 			entity.UserSettings.SelectedCurrency = userInfo.UserSettings?.SelectedCurrency;
 			entity.UserSettings.PreferedTime = userInfo.UserSettings?.PreferedTime ?? TimeSpan.Zero;
-
 			unitOfWork.UserRepository.Update(entity);
 			unitOfWork.Commit();
 		}
@@ -40,15 +45,22 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 		public string AddUser(NameValueCollection queryString, string serviceName)
 		{
 			var user = authService.UserInfo(queryString, serviceName);
-			var isExists = unitOfWork.UserRepository.FindBy(x => x.SocialId == user.UserId) != null;
+			var isExists = unitOfWork.UserRepository.FindBy(x => x.SocialId == user.SocialNetworkUserId) != null;
 
 			if (!isExists)
 			{
-				unitOfWork.UserRepository.Attach(user.ToEntity());
+				var entity = user.ToEntity();
+				entity.UserSettings = new UserSettings
+				{
+					CreatedOn = DateTime.Now,
+					PreferedTime = TimeSpan.Zero,
+				};
+
+				unitOfWork.UserRepository.Attach(entity);
 				unitOfWork.Commit();
 			}
 
-			return user.UserId;
+			return user.SocialNetworkUserId;
 		}
 	}
 }

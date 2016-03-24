@@ -4,15 +4,11 @@
 	var userInfoCallback = function (response) {
 		$log.log("User info (success)");
 		$localStorage.userInfo = response.data;
-		$localStorage.userInfo.settings.prefered_time = new Date("2000-01-01T" + $localStorage.userInfo.settings.prefered_time);
 	}
 
 	var currencyCallback = function (response) {
 		$log.log("Currency (success)");
 		$localStorage.currency = response.data;
-		$localStorage.currency.unshift({
-			CharCode: "BUR"
-		});
 	}
 
 	var productTrackingCallback = function (response) {
@@ -20,21 +16,46 @@
 		$localStorage.productTracking = response.data;
 	}
 
+	var setupData = function () {
+		console.log("Init");
+
+		$localStorage.currency.unshift({
+			CharCode: "BUR"
+		});
+
+		$localStorage.userInfo.settings.prefered_time = new Date("2000-01-01T" + $localStorage.userInfo.settings.prefered_time);
+		
+		if ($localStorage.userInfo.settings.selected_currency) {
+			for (var i = 0; i < $localStorage.currency.length; i++) {
+
+				if ($localStorage.currency[i].CharCode === $localStorage.userInfo.settings.selected_currency) {
+					$localStorage.userInfo.settings.selected_currency = $localStorage.currency[i];
+					break;
+				}
+			}
+		} else {
+			$localStorage.userInfo.settings.selected_currency = $localStorage.currency[0];
+		}
+	}
+
+	var rejected = function (response) {
+		$log.error("Loading error", response);
+	}
+
 	var load = function () {
-		$log.log("User info (start)");
-		$http.get(URLS.USER_INFO).then(userInfoCallback, function (response) {
-			$log.error("User info (rejected)", response);
-		});
-
-		$log.log("Currency (start)");
-		$http.get(URLS.CURRENCY).then(currencyCallback, function (response) {
-			$log.error("Currency (rejected)", response);
-		});
-
-		$log.log("ProductTracking (start)");
-		$http.get(URLS.PRODUCT_TRACKING).then(productTrackingCallback, function (response) {
-			$log.error("ProductTracking (rejected)", response);
-		});
+		$http.get(URLS.CURRENCY)
+			.then(function (response) {
+				currencyCallback(response);
+				return $http.get(URLS.PRODUCT_TRACKING);
+			}, rejected)
+			.then(function (response) {
+				productTrackingCallback(response);
+				return $http.get(URLS.USER_INFO);
+			}, rejected)
+			.then(function (response) {
+				userInfoCallback(response);
+				setupData();
+			}, rejected);
 	}
 
 	return {

@@ -64,23 +64,13 @@
 		</div>
 		<div class="col-lg-2">
 			<div>
-				<p>
-					Min<span class="pull-right">{{item.prices.min}}</span>
-				</p>
-				<p>
-					Max<span class="pull-right">{{item.prices.max}}</span>
-				</p>
+				<p>Min<span class="pull-right">{{item.prices.min}}</span></p>
+				<p>Max<span class="pull-right">{{item.prices.max}}</span></p>
 			</div>
 
 			<div>
-				<p>
-					Increase
-					<input type="checkbox" class="pull-right" ng-model="item.increase" ng-change="trackIncrease(item)" />
-				</p>
-				<p>
-					Decrease
-					<input type="checkbox" class="pull-right" ng-model="item.decrease" ng-change="trackDecrease(item)" />
-				</p>
+				<p>Increase<input type="checkbox" class="pull-right" ng-model="item.increase" ng-change="trackIncrease(item)" /></p>
+				<p>Decrease<input type="checkbox" class="pull-right" ng-model="item.decrease" ng-change="trackDecrease(item)" /></p>
 			</div>
 		</div>
 	</div>
