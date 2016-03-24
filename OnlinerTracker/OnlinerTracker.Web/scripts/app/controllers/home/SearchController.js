@@ -1,13 +1,16 @@
-﻿function SearchController($scope, $log, $location, ProductSearchService, ProductUploadService, ProductTrackingService, UserInfoService) {
+﻿function SearchController($scope, $log, $location, ProductSearchService, ProductUploadService, ProductTrackingService, UserInfoService, ROUTES) {
 
-	// вынести во внешний контроллер
+	// TODO:
+	// дать одинаковое с аналогичным полем в ManageController
+	// и строку поиска\фильтрации вынести в директиву
 	$scope.searchQuery = "";
+
 	$scope.items = [];
+	$scope.userInfo = UserInfoService.get();
 	$scope.page = {
 		current: 0,
 		last: 0
 	};
-	$scope.userInfo = UserInfoService.get();
 
 	// вынес логику в сервисы
 	// https://github.com/mgechev/angularjs-style-guide/blob/master/README-ru-ru.md
@@ -22,7 +25,7 @@
 	}
 
 	$scope.toAdmin = function () {
-		$location.path("/Admin");
+		$location.path(ROUTES.ADMIN);
 	}
 
 	$scope.trackProduct = function (product) {

@@ -1,6 +1,5 @@
-﻿function ManageController($scope, $http, $uibModal, $location, ProductTrackingService, UserInfoService) {
+﻿function ManageController($scope, $http, $uibModal, $location, ProductTrackingService, UserInfoService, ROUTES, VIEW_URLS) {
 
-	// вынести во внешний контроллер
 	$scope.filterQuery = "";
 	$scope.items = ProductTrackingService.get();
 	$scope.userInfo = UserInfoService.get();
@@ -16,7 +15,7 @@
 	$scope.showSettingsWindow = function () {
 		var seettingsModalInstanse = $uibModal.open({
 			animation: true,
-			templateUrl: "scripts/app/views/admin/settings.html",
+			templateUrl: VIEW_URLS.SETTINGS,
 			size: "lg",
 			controller: "SettingsController",
 			backdrop: false,
@@ -31,7 +30,7 @@
 	};
 
 	$scope.toHome = function () {
-		$location.path("/Home");
+		$location.path(ROUTES.HOME);
 	}
 
 	$scope.trackProduct = function(product) {
@@ -44,7 +43,6 @@
 
 	$scope.removeProduct = function(product, index) {
 		ProductTrackingService.remove(product);
-		// to storage
 	}
 
 	$scope.trackIncrease = function (product) {

@@ -1,10 +1,9 @@
 ﻿angular.module("OnlinerTracker.Services")
-.factory("AuthService", function ($http, $log) {
-	var signInUrl = "/signin/";
+.factory("AuthService", function ($http, $log, URLS) {
 
 	var getRequestUrl = function (socialNetworkName, callback) {
 		$log.log("start", socialNetworkName);
-		$http.get(signInUrl + socialNetworkName).then(function (response) {
+		$http.get(URLS.SIGN_IN + socialNetworkName).then(function (response) {
 			$log.log("Redirecting to ", response.data);
 			callback(response);
 		}, function (response) {

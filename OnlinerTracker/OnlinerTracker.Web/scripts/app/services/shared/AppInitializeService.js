@@ -1,9 +1,5 @@
 ﻿angular.module("OnlinerTracker.Services")
-.factory("AppInitializeService", function ($http, $log, $localStorage) {
-
-	var userInfoUrl = "/user/info";
-	var currencyInfoUrl = "/currency";
-	var productTrackingUrl = "/tracking/products";
+.factory("AppInitializeService", function ($http, $log, $localStorage, URLS) {
 
 	var userInfoCallback = function (response) {
 		$log.log("User info (success)");
@@ -22,17 +18,17 @@
 
 	var load = function () {
 		$log.log("User info (start)");
-		$http.get(userInfoUrl).then(userInfoCallback, function (response) {
+		$http.get(URLS.USER_INFO).then(userInfoCallback, function (response) {
 			$log.error("User info (rejected)", response);
 		});
 
 		$log.log("Currency (start)");
-		$http.get(currencyInfoUrl).then(currencyCallback, function (response) {
+		$http.get(URLS.CURRENCY).then(currencyCallback, function (response) {
 			$log.error("Currency (rejected)", response);
 		});
 
 		$log.log("ProductTracking (start)");
-		$http.get(productTrackingUrl).then(productTrackingCallback, function (response) {
+		$http.get(URLS.PRODUCT_TRACKING).then(productTrackingCallback, function (response) {
 			$log.error("ProductTracking (rejected)", response);
 		});
 	}

@@ -1,5 +1,5 @@
 ﻿angular.module("OnlinerTracker.Services")
-.factory("ProductSearchService", function ($http, $log) {
+.factory("ProductSearchService", function ($http, $log, URLS) {
 	var pageNumber = 1;
 	var pageSize = 25;
 	var isLoading = false;
@@ -36,7 +36,8 @@
 
 		isLoading = true;
 
-		var url = "/search/products/" + productName + "/page/" + pageNumber + "/size/" + pageSize;
+		// TODO: ЗАПИЛИТЬ ФОРМАТИРОВАНИЕ СТРОКИ $interpolate в помощь
+		var url = URLS.SEARCH_PRODUCTS + productName + "/page/" + pageNumber + "/size/" + pageSize;
 		$http.get(url).then(function (response) {
 			isLoading = false;
 			callback(response.data);

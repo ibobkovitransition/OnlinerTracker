@@ -42,7 +42,6 @@ repositories.factory("ProductTrackingRepository", function ($log, $localStorage)
 		var index = getPositionById(product);
 		if (index !== -1) {
 			$localStorage.productTracking.splice(index, 1);
-			console.log($localStorage.productTracking);
 			return true;
 		}
 

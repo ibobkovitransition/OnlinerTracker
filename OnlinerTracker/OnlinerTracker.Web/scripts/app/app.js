@@ -11,24 +11,50 @@ var main = angular.module("OnlinerTracker", [
 	"OnlinerTracker.Services",
 	"OnlinerTracker.Repositories"]);
 
-main.config(function ($routeProvider) {
-	$routeProvider.when("/Account", {
-		templateUrl: "/scripts/app/views/account/signin.html",
+main.constant("ROUTES", {
+	AUTH: "/Account",
+	HOME: "/Home",
+	ADMIN: "/Admin"
+});
+
+main.constant("URLS", {
+	SIGN_IN: "/signin/",
+	SEARCH_PRODUCTS: "/search/products/",
+	USER_INFO: "/user/info",
+	CURRENCY: "/currency",
+	PRODUCT_TRACKING: "/tracking/products",
+	TRACK: "/tracking/start",
+	UNTRACK: "/tracking/stop",
+	REMOVE: "/tracking/remove",
+	INCREASE: "/tracking/increase",
+	DECREASE: "/tracking/decrease"
+});
+
+main.constant("VIEW_URLS", {
+	SIGN_IN: "/scripts/app/views/account/signin.html",
+	SEARCH: "/scripts/app/views/home/search.html",
+	ADMIN: "/scripts/app/views/admin/manage.html",
+	SETTINGS: "/scripts/app/views/admin/settings.html"
+});
+
+main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
+	$routeProvider.when(ROUTES.AUTH, {
+		templateUrl: VIEW_URLS.SIGN_IN,
 		controller: "SignInController"
 	});
 
-	$routeProvider.when("/Home", {
-		templateUrl: "/scripts/app/views/home/search.html",
+	$routeProvider.when(ROUTES.HOME, {
+		templateUrl: VIEW_URLS.SEARCH,
 		controller: "SearchController"
 	});
 
-	$routeProvider.when("/Admin", {
-		templateUrl: "/scripts/app/views/admin/manage.html",
+	$routeProvider.when(ROUTES.ADMIN, {
+		templateUrl: VIEW_URLS.ADMIN,
 		controller: "ManageController"
 	});
 
 	$routeProvider.otherwise({
-		redirectTo: "/Account"
+		redirectTo: ROUTES.AUTH
 	});
 });
 
