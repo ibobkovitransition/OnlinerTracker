@@ -3,6 +3,7 @@
 	$scope.filterQuery = "";
 	$scope.items = ProductTrackingService.get();
 	$scope.userInfo = UserInfoService.get();
+	$scope.currency = CurrencyService.get();
 	$scope.page = {
 		current: 0,
 		last: 0

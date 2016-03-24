@@ -1,10 +1,10 @@
-﻿function SearchController($scope, $log, $window, $location, $anchorScroll, ProductSearchService, ProductUploadService, ProductTrackingService, UserInfoService, ROUTES) {
+﻿function SearchController($scope, $log, $window, $location, $anchorScroll, ProductSearchService, ProductUploadService, ProductTrackingService, UserInfoService, CurrencyService, ROUTES) {
 
 	// TODO:
 	// дать одинаковое с аналогичным полем в ManageController
 	// и строку поиска\фильтрации вынести в директиву
 	$scope.searchQuery = "";
-
+	$scope.currency = CurrencyService.get();
 	$scope.items = [];
 	$scope.userInfo = UserInfoService.get();
 	$scope.page = {
