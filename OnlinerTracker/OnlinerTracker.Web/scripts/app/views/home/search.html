@@ -1,5 +1,4 @@
-﻿<!-- вынести в nav view -->
-<header class="navbar navbar-default navbar-fixed-top">
+﻿<header class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
 			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -33,40 +32,42 @@
 						<span class="input-group-addon" style="width: 1%;">
 							<span class="glyphicon glyphicon-search"></span>
 						</span>
-						<input type="text" placeholder="Type and search" class="form-control" ng-model="searchQuery" ng-model-options="{ debounce: 200 }" ng-change="findProducts()" />
+						<input type="text" placeholder="Type and search" class="form-control" ng-model="searchQuery" ng-model-options="{ debounce: 400 }" ng-change="findProducts()" />
 					</div>
 				</div>
 			</form>
 		</nav>
 	</div>
 </header>
+<a id="top"></a>
 
-<div class="container">
-	<table class="table">
-		<!-- infinite-scroll="getNewProducts()" infinite-scroll-distance="2" -->
-		<tbody >
-		<tr ng-repeat="item in items" ng-class="getCssClass(item)">
-			<td class="checkbox-wrapper">
-				<input type="checkbox" class="checkbox" ng-model="item.is_tracked" ng-change="trackProduct(item)"/>
-			</td>
-			<td>
-				<img ng-src="{{item.images.icon != null ? item.images.header : item.images.icon }}"/>
-			</td>
-			<td>
-				<b>{{item.full_name}}</b>
-				<p>{{item.description}}</p>
-			</td>
-			<td>
-				<div>
-					<span class="text-right">Min</span>
-					<span>{{item.prices.min}}</span>
-				</div>
-				<div>
-					<span class="text-right">Max</span>
-					<span>{{item.prices.max}}</span>
-				</div>
-			</td>
-		</tr>
-		</tbody>
-	</table>
+<div style="position: fixed; bottom: 45px; right: 45px;" ng-hide="page.current <= 1">
+	<a ng-click="anchorTop(top)">
+		<b class="glyphicon glyphicon-arrow-up" style="font-size: 36px;"></b>
+	</a>
+</div>
+
+<div class="container list-group" infinite-scroll="uploadProducts()" infinite-scroll-distance="2">
+	<div ng-repeat="item in items" ng-class="getCssClass(item)" class="row item-wrapper list-group-item">
+		<div class="col-lg-1">
+			<input type="checkbox" class="checkbox" ng-model="item.is_tracked" ng-change="trackProduct(item)" />
+		</div>
+		<div class="col-lg-2">
+			<img ng-src="{{item.images.icon != null ? item.images.header : item.images.icon }}" />
+		</div>
+		<div class="col-lg-7">
+			<b>{{item.full_name}}</b>
+			<p>{{item.description}}</p>
+		</div>
+		<div class="col-lg-2">
+			<div>
+				<p>
+					Min<span class="pull-right">{{item.prices.min}}</span>
+				</p>
+				<p>
+					Max<span class="pull-right">{{item.prices.max}}</span>
+				</p>
+			</div>
+		</div>
+	</div>
 </div>

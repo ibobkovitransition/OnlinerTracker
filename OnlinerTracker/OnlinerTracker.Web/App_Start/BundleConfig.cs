@@ -31,13 +31,14 @@ namespace OnlinerTracker.Web.App_Start
 				.Include("~/scripts/app/services/shared/ProductTrackingService.js")
 				.Include("~/scripts/app/services/shared/UserInfoService.js")
 				.Include("~/scripts/app/services/shared/AppInitializeService.js")
+				.Include("~/scripts/app/services/shared/CurrencyService.js")
 
 				.Include("~/scripts/app/directives/home/infiniteScroll.js")
 			);
 
 			// выкосить
-			//bundles.Add(new ScriptBundle("~/bundles/jquery")
-			//	.Include("~/scripts/jquery-1.9.1.js"));
+			bundles.Add(new ScriptBundle("~/bundles/jquery")
+				.Include("~/scripts/jquery-1.9.1.js"));
 
 			//bundles.Add(new ScriptBundle("~/bundles/bootstrap")
 			//	.Include("~/scripts/bootstrap.js"));
@@ -45,7 +46,7 @@ namespace OnlinerTracker.Web.App_Start
 
 			//bundles.Add(new ScriptBundle("~/bundles/modernizr")
 			//	.Include("~/scripts/jmodernizr-2.8.3.js"));
-			
+
 
 			bundles.Add(new StyleBundle("~/bundles/bootstrap-css")
 				.Include("~/content/bootstrap.css")

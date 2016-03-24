@@ -1,4 +1,4 @@
-﻿function ManageController($scope, $http, $uibModal, $location, ProductTrackingService, UserInfoService, ROUTES, VIEW_URLS) {
+﻿function ManageController($scope, $http, $uibModal, $location, ProductTrackingService, CurrencyService,  UserInfoService, ROUTES, VIEW_URLS) {
 
 	$scope.filterQuery = "";
 	$scope.items = ProductTrackingService.get();
@@ -22,6 +22,9 @@
 			resolve: {
 				userInfo: function() {
 					return $scope.userInfo;
+				},
+				currency: function() {
+					return CurrencyService.get();
 				}
 			}
 		});

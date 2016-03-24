@@ -1,4 +1,4 @@
-﻿function SearchController($scope, $log, $location, ProductSearchService, ProductUploadService, ProductTrackingService, UserInfoService, ROUTES) {
+﻿function SearchController($scope, $log, $window, $location, $anchorScroll, ProductSearchService, ProductUploadService, ProductTrackingService, UserInfoService, ROUTES) {
 
 	// TODO:
 	// дать одинаковое с аналогичным полем в ManageController
@@ -18,10 +18,21 @@
 	var loadPage = function (data) {
 		$scope.items = data.products;
 		$scope.page = data.page;
+		console.log($scope.page);
 	}
 
 	var uploadPage = function (data) {
 		Array.prototype.push.apply($scope.items, data.products);
+	}
+
+	$scope.anchorTop = function(id) {
+		$location.hash(id);
+		$anchorScroll();
+	}
+
+	$scope.debug = function () {
+		var window = angular.element($window);
+		console.log($scope.scrollY);
 	}
 
 	$scope.toAdmin = function () {

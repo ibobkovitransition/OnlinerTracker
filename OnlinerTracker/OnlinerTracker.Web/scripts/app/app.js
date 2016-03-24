@@ -2,7 +2,7 @@
 
 angular.module("OnlinerTracker.Repositories", []);
 angular.module("OnlinerTracker.Services", []);
-angular.module("OnlinerTracker.Controllers", ["ui.bootstrap", "infiniteScroll", "infiniteScroll"]);
+angular.module("OnlinerTracker.Controllers", ["ui.bootstrap", "infiniteScroll"]);
 
 var main = angular.module("OnlinerTracker", [
 	"ngRoute",
@@ -21,6 +21,7 @@ main.constant("URLS", {
 	SIGN_IN: "/signin/",
 	SEARCH_PRODUCTS: "/search/products/",
 	USER_INFO: "/user/info",
+	USER_UPDATE: "/user/update/",
 	CURRENCY: "/currency",
 	PRODUCT_TRACKING: "/tracking/products",
 	TRACK: "/tracking/start",

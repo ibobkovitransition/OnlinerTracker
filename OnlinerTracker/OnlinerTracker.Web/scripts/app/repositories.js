@@ -21,7 +21,8 @@ repositories.factory("ProductTrackingRepository", function ($log, $localStorage)
 			return [];
 		}
 
-		// TODO: научить клонировать, если понадобится
+		//var result = [];
+		//angular.copy($localStorage.productTracking, result);
 		return $localStorage.productTracking;
 	}
 
@@ -122,7 +123,7 @@ repositories.factory("UserInfoRepository", function ($log, $localStorage) {
 
 repositories.factory("CurrencyRepository", function ($log, $localStorage) {
 
-	var get = function() {
+	var get = function () {
 		if (!$localStorage.currency) {
 			return [];
 		}

@@ -237,6 +237,7 @@
     <Content Include="scripts\app\services\account\AuthService.js" />
     <Content Include="scripts\app\services\home\ProductSearchService.js" />
     <Content Include="scripts\app\services\shared\AppInitializeService.js" />
+    <Content Include="scripts\app\services\shared\CurrencyService.js" />
     <Content Include="scripts\app\services\shared\ProductTrackingService.js" />
     <Content Include="scripts\app\services\home\ProductUploadService.js" />
     <Content Include="scripts\app\services\shared\UserInfoService.js" />

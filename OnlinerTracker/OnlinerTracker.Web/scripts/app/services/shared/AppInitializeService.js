@@ -4,11 +4,15 @@
 	var userInfoCallback = function (response) {
 		$log.log("User info (success)");
 		$localStorage.userInfo = response.data;
+		$localStorage.userInfo.settings.prefered_time = new Date("2000-01-01T" + $localStorage.userInfo.settings.prefered_time);
 	}
 
 	var currencyCallback = function (response) {
 		$log.log("Currency (success)");
 		$localStorage.currency = response.data;
+		$localStorage.currency.unshift({
+			CharCode: "BUR"
+		});
 	}
 
 	var productTrackingCallback = function (response) {

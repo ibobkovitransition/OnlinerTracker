@@ -12,27 +12,52 @@
 	vertical-align: middle !important;
 }
 
+.btn {
+	border-radius: 0px;
+}
+
 a {
 	cursor: pointer;
 }
 
 img {
 	max-width: 100%;
-	max-height: 94px;
+	max-height: 78px;
 	vertical-align: middle;
 	margin: auto;
 	display: block;
 }
 
+.row {
+	height: 128px;
+}
+
 .list-group-item-added {
-	background-color: #F0F0F0;
+	background-color: #F5F5F5;
 }
 
 .list-group-item-tracked {
-	background-color: #E4FFDF;
+	background-color: #E3F0EC;
 }
-
 
 body {
 	padding-top: 50px;
 }
+
+.ng-invalid {
+	border-color: #ff6347;
+}
+
+.item-hidden-controlls {
+	display: none;
+}
+
+.item-wrapper:hover {
+	background-color: #faf6fb;
+}
+
+.item-wrapper:hover .item-hidden-controlls {
+	display: block
+}
+
+
