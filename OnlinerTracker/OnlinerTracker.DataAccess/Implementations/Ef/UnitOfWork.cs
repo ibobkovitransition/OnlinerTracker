@@ -2,6 +2,7 @@
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Interfaces;
 
+// TODO: ИЛИ ВЫПИЛИТЬ ИЗ ПРОЕКТА И СОХРАНЯТЬ ЧЕРЕЗ РЕПОЗИТОРИЙ, ИЛИ УБРАТЬ СИНГЛЕТНЫЙ КОНТЕКСТ И СОЗДАВАТЬ ЗДЕСЬ
 namespace OnlinerTracker.DataAccess.Implementations.Ef
 {
 	public class UnitOfWork : IUnitOfWork

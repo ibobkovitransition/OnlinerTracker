@@ -1,28 +1,16 @@
-﻿function ManageController($scope, $http, $uibModal, $location, productTrackingService, userInfoService) {
+﻿function ManageController($scope, $http, $uibModal, $location, ProductTrackingService, UserInfoService) {
 
 	// вынести во внешний контроллер
 	$scope.filterQuery = "";
-	$scope.items = [];
-	$scope.userInfo = {};
+	$scope.items = ProductTrackingService.get();
+	$scope.userInfo = UserInfoService.get();
 	$scope.page = {
 		current: 0,
 		last: 0
 	};
 
-	(function () {
-		userInfoService.load(function (userInfo) {
-			$scope.userInfo = userInfo;
-		});
-	})();
-
-	(function () {
-		productTrackingService.get(function(response) {
-			$scope.items = response;
-		});
-	})();
-
 	var applyUserChanges = function (response) {
-		userInfoService.update(response);
+		UserInfoService.update(response);
 	}
 
 	$scope.showSettingsWindow = function () {
@@ -48,23 +36,23 @@
 
 	$scope.trackProduct = function(product) {
 		if (product.is_tracked) {
-			productTrackingService.track(product);
+			ProductTrackingService.track(product);
 		} else {
-			productTrackingService.untrack(product);
+			ProductTrackingService.untrack(product);
 		}
 	}
 
 	$scope.removeProduct = function(product, index) {
-		productTrackingService.remove(product);
-		$scope.items.splice(index, 1);
+		ProductTrackingService.remove(product);
+		// to storage
 	}
 
 	$scope.trackIncrease = function (product) {
-		productTrackingService.trackIncrease(product);
+		ProductTrackingService.trackIncrease(product);
 	}
 
 	$scope.trackDecrease = function (product) {
-		productTrackingService.trackDecrease(product);
+		ProductTrackingService.trackDecrease(product);
 	}
 };
 

@@ -1,5 +1,5 @@
 ﻿angular.module("OnlinerTracker.Services")
-.factory("productUploadService", function ($http, $log) {
+.factory("ProductUploadService", function ($http, $log) {
 	var pageSize = 25;
 	var isLoading = false;
 

@@ -1,10 +1,10 @@
-﻿function SignInController($scope, authService, $window) {
+﻿function SignInController($scope, AuthService, $window) {
 	var redirectToSocialNetworkPage = function (response) {
 		$window.location.href = response.data;
 	}
 
 	$scope.signInWith = function(socialNetworkName) {
-		authService.getRequestUrl(socialNetworkName, redirectToSocialNetworkPage);
+		AuthService.getRequestUrl(socialNetworkName, redirectToSocialNetworkPage);
 	}
 }
 

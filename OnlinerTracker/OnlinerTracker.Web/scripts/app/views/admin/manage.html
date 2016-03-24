@@ -67,8 +67,7 @@
 						<span>{{item.prices.max}}</span>
 					</div>
 
-					<a ng-click="removeProduct(item, $index)">Remove</a>
-
+					<a ng-click="removeProduct(item)">Remove</a>
 
 					<label>
 						<input type="checkbox" ng-model="item.increase" ng-change="trackIncrease(item)" />
@@ -79,7 +78,6 @@
 						<input type="checkbox" ng-model="item.decrease" ng-change="trackDecrease(item)" />
 						Decrease
 					</label>
-
 				</td>
 			</tr>
 		</tbody>

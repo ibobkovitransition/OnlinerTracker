@@ -32,17 +32,12 @@ main.config(function ($routeProvider) {
 	});
 });
 
-main.run(function ($localStorage, $sessionStorage) {
-	// инициализировать хранилище
-	// в данном приложение вызывается два раза
-	// первый раз в auth, второй после авторизации
-	
-	// 
-	console.log("run");
-	console.log($localStorage);
-	console.log($sessionStorage);
+// https://docs.angularjs.org/guide/module
+main.config(["$localStorageProvider", function ($localStorageProvider) {
+	// TODO: ВЫСТАВИТЬ ПРЕФИКС
+}]);
+
+// сюда экземпляры
+main.run(function (AppInitializeService) {
+	AppInitializeService.init();
 });
-
-
-// run directive
-// init storage

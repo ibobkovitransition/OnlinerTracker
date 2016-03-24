@@ -1,4 +1,4 @@
-﻿function SearchController($scope, $log, $location, productSearchService, productUploadService, productTrackingService, userInfoService) {
+﻿function SearchController($scope, $log, $location, ProductSearchService, ProductUploadService, ProductTrackingService, UserInfoService) {
 
 	// вынести во внешний контроллер
 	$scope.searchQuery = "";
@@ -7,14 +7,7 @@
 		current: 0,
 		last: 0
 	};
-	$scope.userInfo = {};
-
-	(function () {
-		userInfoService.load(function(userInfo) {
-			$scope.userInfo = userInfo;
-			console.log($scope.userInfo);
-		});
-	})();
+	$scope.userInfo = UserInfoService.get();
 
 	// вынес логику в сервисы
 	// https://github.com/mgechev/angularjs-style-guide/blob/master/README-ru-ru.md
@@ -34,14 +27,14 @@
 
 	$scope.trackProduct = function (product) {
 		if (product.is_tracked) {
-			productTrackingService.track(product);
+			ProductTrackingService.track(product);
 		} else {
-			productTrackingService.untrack(product);
+			ProductTrackingService.untrack(product);
 		}
 	}
 
 	$scope.findProducts = function () {
-		productSearchService.find($scope.searchQuery, loadPage);
+		ProductSearchService.find($scope.searchQuery, loadPage);
 	}
 
 	$scope.getCssClass = function (product) {
@@ -55,9 +48,8 @@
 		}
 
 		$scope.page.current++;
-		productUploadService.getPage($scope.searchQuery, $scope.page.current, $scope.page.last, uploadPage);
+		ProductUploadService.getPage($scope.searchQuery, $scope.page.current, $scope.page.last, uploadPage);
 	}
-
 };
 
 angular.module("OnlinerTracker.Controllers").controller("SearchController", SearchController);
