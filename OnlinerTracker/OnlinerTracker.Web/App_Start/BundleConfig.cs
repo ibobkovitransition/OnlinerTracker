@@ -11,6 +11,7 @@ namespace OnlinerTracker.Web.App_Start
 				.Include("~/scripts/angular-resource.js")
 				.Include("~/scripts/angular-route.js")
 				.Include("~/scripts/angular-animate.js")
+				.Include("~/scripts/ngStorage.js")
 				.Include("~/scripts/angular-ui/ui-bootstrap-tpls.js"));
 
 			bundles.Add(new StyleBundle("~/bundles/styles")

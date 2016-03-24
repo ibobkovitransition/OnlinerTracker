@@ -20,7 +20,7 @@
 
 	var update = function (userInfo) {
 		$log.log(userInfo);
-		$http.put("/user/update", userInfo).then(function(response) {
+		$http.put("/user/update/" + userInfo.id, userInfo).then(function(response) {
 			$log.log(response);
 		}, function(response) {
 			$log.log(response);

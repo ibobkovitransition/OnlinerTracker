@@ -249,6 +249,8 @@
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="scripts\modernizr-2.8.3.js" />
+    <Content Include="scripts\ngStorage.js" />
+    <Content Include="scripts\ngStorage.min.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>

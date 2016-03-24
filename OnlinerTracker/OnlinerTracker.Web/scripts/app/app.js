@@ -6,6 +6,7 @@ angular.module("OnlinerTracker.Controllers", ["ui.bootstrap", "infiniteScroll", 
 
 var main = angular.module("OnlinerTracker", [
 	"ngRoute",
+	"ngStorage",
 	"OnlinerTracker.Controllers",
 	"OnlinerTracker.Services",
 	"OnlinerTracker.Repositories"]);
@@ -31,13 +32,15 @@ main.config(function ($routeProvider) {
 	});
 });
 
-main.run(function () {
+main.run(function ($localStorage, $sessionStorage) {
 	// инициализировать хранилище
 	// в данном приложение вызывается два раза
 	// первый раз в auth, второй после авторизации
 	
 	// 
 	console.log("run");
+	console.log($localStorage);
+	console.log($sessionStorage);
 });
 
 
