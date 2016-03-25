@@ -233,6 +233,7 @@
     <Content Include="scripts\app\controllers\admin\ManageController.js" />
     <Content Include="scripts\app\controllers\admin\SettingsController.js" />
     <Content Include="scripts\app\directives\home\infiniteScroll.js" />
+    <Content Include="scripts\app\filters\shared\exchangeFilter.js" />
     <Content Include="scripts\app\repositories.js" />
     <Content Include="scripts\app\services\account\AuthService.js" />
     <Content Include="scripts\app\services\home\ProductSearchService.js" />
@@ -296,8 +297,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Filters\Mvc\" />
     <Folder Include="Models\" />
-    <Folder Include="scripts\app\filters\" />
     <Folder Include="scripts\app\services\admin\" />
+    <Folder Include="scripts\app\views\shared\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlinerTracker.BusinessLogic\OnlinerTracker.BusinessLogic.csproj">

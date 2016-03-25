@@ -16,14 +16,20 @@ repositories.factory("ProductTrackingRepository", function ($log, $localStorage)
 		return -1;
 	}
 
+	var clone = function (product) {
+		var result = {};
+		angular.copy(product, result);
+		return result;
+	}
+
 	var get = function () {
 		if (!$localStorage.productTracking) {
 			return [];
 		}
 
-		//var result = [];
-		//angular.copy($localStorage.productTracking, result);
-		return $localStorage.productTracking;
+		var result = [];
+		angular.copy($localStorage.productTracking, result);
+		return result;
 	}
 
 	var add = function (product) {
@@ -31,7 +37,7 @@ repositories.factory("ProductTrackingRepository", function ($log, $localStorage)
 			return false;
 		}
 
-		$localStorage.productTracking.push(product);
+		$localStorage.productTracking.push(clone(product));
 		return true;
 	}
 
@@ -54,8 +60,9 @@ repositories.factory("ProductTrackingRepository", function ($log, $localStorage)
 			return false;
 		}
 
-		var index = getPositionById(product);
-		$localStorage.productTracking[index] = product;
+		var cloned = clone(product);
+		var index = getPositionById(cloned);
+		$localStorage.productTracking[index] = cloned;
 
 		return true;
 	}
@@ -89,7 +96,7 @@ repositories.factory("UserInfoRepository", function ($log, $localStorage) {
 
 	var emptyResult = {
 		id: null,
-		first_name: "",
+		first_name: null,
 		email: null,
 		settings: {
 			prefered_time: null,
@@ -97,13 +104,18 @@ repositories.factory("UserInfoRepository", function ($log, $localStorage) {
 		}
 	};
 
+	var clone = function (userInfo) {
+		var result = {};
+		angular.copy(userInfo, result);
+		return result;
+	}
+
 	var get = function () {
 		if (!$localStorage.userInfo) {
-			// TODO: clone
-			return emptyResult;
+			return clone(emptyResult);
 		}
 
-		return $localStorage.userInfo;
+		return clone($localStorage.userInfo);
 	}
 
 	var update = function (userInfo) {
@@ -111,7 +123,7 @@ repositories.factory("UserInfoRepository", function ($log, $localStorage) {
 			return false;
 		}
 
-		$localStorage.userInfo = userInfo;
+		$localStorage.userInfo = clone(userInfo);
 		return true;
 	}
 
@@ -123,12 +135,18 @@ repositories.factory("UserInfoRepository", function ($log, $localStorage) {
 
 repositories.factory("CurrencyRepository", function ($log, $localStorage) {
 
+	var clone = function (currency) {
+		var result = [];
+		angular.copy(currency, result);
+		return result;
+	}
+
 	var get = function () {
 		if (!$localStorage.currency) {
 			return [];
 		}
 
-		return $localStorage.currency;
+		return clone($localStorage.currency);
 	}
 
 	return {

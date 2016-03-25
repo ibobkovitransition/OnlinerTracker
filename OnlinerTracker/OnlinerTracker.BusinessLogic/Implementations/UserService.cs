@@ -36,7 +36,6 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 				CreatedOn = DateTime.Now
 			};
 
-			entity.UserSettings.SelectedCurrency = userInfo.UserSettings?.SelectedCurrency;
 			entity.UserSettings.PreferedTime = userInfo.UserSettings?.PreferedTime ?? TimeSpan.Zero;
 			unitOfWork.UserRepository.Update(entity);
 			unitOfWork.Commit();

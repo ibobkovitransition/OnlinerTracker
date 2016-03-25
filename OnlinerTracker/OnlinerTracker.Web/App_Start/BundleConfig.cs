@@ -33,6 +33,8 @@ namespace OnlinerTracker.Web.App_Start
 				.Include("~/scripts/app/services/shared/AppInitializeService.js")
 				.Include("~/scripts/app/services/shared/CurrencyService.js")
 
+				.Include("~/scripts/app/filters/shared/exchangeFilter.js")
+
 				.Include("~/scripts/app/directives/home/infiniteScroll.js")
 			);
 

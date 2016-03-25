@@ -20,26 +20,17 @@
 		console.log("Init");
 
 		$localStorage.currency.unshift({
-			CharCode: "BUR"
+			CharCode: "BUR",
+			Rate: 1
 		});
 
 		$localStorage.userInfo.settings.prefered_time = new Date("2000-01-01T" + $localStorage.userInfo.settings.prefered_time);
-		
-		if ($localStorage.userInfo.settings.selected_currency) {
-			for (var i = 0; i < $localStorage.currency.length; i++) {
-
-				if ($localStorage.currency[i].CharCode === $localStorage.userInfo.settings.selected_currency) {
-					$localStorage.userInfo.settings.selected_currency = $localStorage.currency[i];
-					break;
-				}
-			}
-		} else {
-			$localStorage.userInfo.settings.selected_currency = $localStorage.currency[0];
-		}
+		$localStorage.userInfo.settings.selected_currency = $localStorage.currency[0];
 	}
 
 	var rejected = function (response) {
 		$log.error("Loading error", response);
+		//$log.info("Clear storage");
 	}
 
 	var load = function () {

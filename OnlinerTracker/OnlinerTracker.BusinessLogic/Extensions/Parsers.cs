@@ -43,7 +43,6 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				Email = user.Email,
 				UserSettings = new Models.UserSettings
 				{
-					SelectedCurrency = user.UserSettings?.SelectedCurrency,
 					PreferedTime = user.UserSettings?.PreferedTime ?? TimeSpan.Zero
 				}
 			};

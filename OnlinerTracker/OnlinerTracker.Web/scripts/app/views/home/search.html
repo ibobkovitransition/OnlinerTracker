@@ -14,19 +14,6 @@
 				<li ng-hide="userInfo.email">
 					<a uib-tooltip="Move to admin page, select settings and set email!" style="color: crimson" tooltip-placement="bottom">Set email</a>
 				</li>
-
-				<li class="dropdown" uib-dropdown>
-					<a class="dropdown-toggle" data-toggle="dropdown" role="button" uib-dropdown-toggle>
-						{{userInfo.settings.selected_currency.CharCode}}
-						<b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-						<li ng-repeat="item in currency">
-							<a>{{item.CharCode}}</a>
-						</li>
-					</ul>
-				</li>
-
 				<li class="dropdown" uib-dropdown>
 					<a class="dropdown-toggle" data-toggle="dropdown" role="button" uib-dropdown-toggle>
 						{{userInfo.first_name}}
@@ -39,13 +26,19 @@
 				</li>
 			</ul>
 
+			<form class="navbar-form pull-right">
+				<select ng-model="userInfo.settings.selected_currency" ng-options="item.CharCode for item in currency track by item.CharCode" class="form-control"></select>
+			</form>
+
 			<form class="navbar-form">
 				<div class="form-group" style="display: inline">
 					<div class="input-group" style="display: table">
 						<span class="input-group-addon" style="width: 1%;">
 							<span class="glyphicon glyphicon-search"></span>
 						</span>
-						<input type="text" placeholder="Type and search" class="form-control" ng-model="searchQuery" ng-model-options="{ debounce: 400 }" ng-change="findProducts()" />
+						<input type="text" placeholder="Type and search" class="form-control" ng-model="filterQuery" ng-model-options="{ debounce: 400 }" ng-change="findProducts()"/>
+						<span class="input-group-addon navbar-btn" style="width: 1%;">
+						</span>
 					</div>
 				</div>
 			</form>
@@ -62,20 +55,20 @@
 
 <div class="container list-group" infinite-scroll="uploadProducts()" infinite-scroll-distance="2">
 	<div ng-repeat="item in items" ng-class="getCssClass(item)" class="row item-wrapper list-group-item">
-		<div class="col-lg-1">
-			<input type="checkbox" class="checkbox" ng-model="item.is_tracked" ng-change="trackProduct(item)" />
-		</div>
 		<div class="col-lg-2">
 			<img ng-src="{{item.images.icon != null ? item.images.header : item.images.icon }}" />
 		</div>
-		<div class="col-lg-7">
+		<div class="col-lg-8">
 			<b>{{item.full_name}}</b>
 			<p>{{item.description}}</p>
 		</div>
 		<div class="col-lg-2">
 			<div>
-				<p>Min<span class="pull-right">{{item.prices.min}}</span></p>
-				<p>Max<span class="pull-right">{{item.prices.max}}</span></p>
+				<p>Min<span class="pull-right">{{item.prices.min | exchangeFilter : userInfo.settings.selected_currency.Rate}}</span></p>
+				<p>Max<span class="pull-right">{{item.prices.max | exchangeFilter : userInfo.settings.selected_currency.Rate}}</span></p>
+			</div>
+			<div>
+				<p>Track<input type="checkbox" class="pull-right" ng-model="item.is_tracked" ng-change="trackProduct(item)" /></p>
 			</div>
 		</div>
 	</div>

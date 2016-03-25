@@ -13,7 +13,5 @@ namespace OnlinerTracker.DataAccess.Enteties
 		public virtual User User { get; set; }
 
 		public TimeSpan PreferedTime { get; set; }
-
-		public string SelectedCurrency { get; set; }
 	}
 }

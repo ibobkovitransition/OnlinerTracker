@@ -22,7 +22,7 @@ a {
 
 img {
 	max-width: 100%;
-	max-height: 78px;
+	max-height: 86px;
 	vertical-align: middle;
 	margin: auto;
 	display: block;
@@ -44,6 +44,10 @@ body {
 	padding-top: 50px;
 }
 
+p {
+	margin: 0 0 2px;
+}
+
 .ng-invalid {
 	border-color: #ff6347;
 }
@@ -55,6 +59,8 @@ body {
 .item-wrapper:hover {
 	background-color: #faf6fb;
 }
+
+
 
 .item-wrapper:hover .item-hidden-controlls {
 	display: block

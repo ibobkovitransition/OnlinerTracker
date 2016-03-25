@@ -2,6 +2,7 @@
 
 angular.module("OnlinerTracker.Repositories", []);
 angular.module("OnlinerTracker.Services", []);
+angular.module("OnlinerTracker.Filters", []);
 angular.module("OnlinerTracker.Controllers", ["ui.bootstrap", "infiniteScroll"]);
 
 var main = angular.module("OnlinerTracker", [
@@ -9,7 +10,8 @@ var main = angular.module("OnlinerTracker", [
 	"ngStorage",
 	"OnlinerTracker.Controllers",
 	"OnlinerTracker.Services",
-	"OnlinerTracker.Repositories"]);
+	"OnlinerTracker.Repositories",
+	"OnlinerTracker.Filters"]);
 
 main.constant("ROUTES", {
 	AUTH: "/Account",

@@ -5,7 +5,7 @@
 	// TODO:
 	// дать одинаковое с аналогичным полем в ManageController
 	// и строку поиска\фильтрации вынести в директиву
-	$scope.searchQuery = "";
+	$scope.filterQuery = "";
 	$scope.currency = CurrencyService.get();
 	$scope.items = [];
 	$scope.userInfo = UserInfoService.get();
@@ -32,11 +32,6 @@
 		$anchorScroll();
 	}
 
-	$scope.debug = function () {
-		var window = angular.element($window);
-		console.log($scope.scrollY);
-	}
-
 	$scope.toAdmin = function () {
 		$location.path(ROUTES.ADMIN);
 	}
@@ -50,7 +45,7 @@
 	}
 
 	$scope.findProducts = function () {
-		ProductSearchService.find($scope.searchQuery, loadPage);
+		ProductSearchService.find($scope.filterQuery, loadPage);
 	}
 
 	$scope.getCssClass = function (product) {
@@ -64,7 +59,7 @@
 		}
 
 		$scope.page.current++;
-		ProductUploadService.getPage($scope.searchQuery, $scope.page.current, $scope.page.last, uploadPage);
+		ProductUploadService.getPage($scope.filterQuery, $scope.page.current, $scope.page.last, uploadPage);
 	}
 };
 

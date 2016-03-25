@@ -7,8 +7,5 @@ namespace OnlinerTracker.BusinessLogic.Models
 	{
 		[JsonProperty("prefered_time")]
 		public TimeSpan PreferedTime { get; set; }
-
-		[JsonProperty("selected_currency")]
-		public string SelectedCurrency { get; set; }
 	}
 }

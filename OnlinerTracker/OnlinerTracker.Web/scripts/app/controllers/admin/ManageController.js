@@ -21,11 +21,11 @@
 			controller: "SettingsController",
 			backdrop: false,
 			resolve: {
-				userInfo: function() {
+				userInfo: function () {
 					return $scope.userInfo;
 				},
 				currency: function() {
-					return CurrencyService.get();
+					return $scope.currency;
 				}
 			}
 		});
@@ -47,6 +47,7 @@
 
 	$scope.removeProduct = function(product, index) {
 		ProductTrackingService.remove(product);
+		$scope.items.splice(index, 1);	
 	}
 
 	$scope.trackIncrease = function (product) {

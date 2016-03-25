@@ -11,10 +11,6 @@
 		<label>Your prefer time</label>
 		<uib-timepicker ng-model="userInfo.settings.prefered_time" show-meridian="ismeridian" arrowkeys="false"></uib-timepicker>
 		<br />
-
-		<label>Your prefer currency</label>
-		<select class="form-control" ng-model="userInfo.settings.selected_currency" ng-options="item.CharCode for item in currency track by item.CharCode" required></select>
-		<br/>
 	</div>
 
 	<div class="modal-footer">
