@@ -3,11 +3,9 @@ using System.Web.Http.Description;
 using Microsoft.Ajax.Utilities;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.BusinessLogic.Models;
-using OnlinerTracker.Web.Filters.Api;
 
 namespace OnlinerTracker.Web.Controllers.Api
 {
-	[Authentication]
 	public class SearchController : ApiControllerBase
 	{
 		private readonly IProductService productService;

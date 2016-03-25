@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Interfaces;
+using Product = OnlinerTracker.BusinessLogic.Models.Product;
 
 namespace OnlinerTracker.BusinessLogic.Implementations
 {
@@ -14,13 +18,37 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			this.unitOfWork = unitOfWork;
 		}
 
+		public IEnumerable<Product> Get(int userId)
+		{
+			var productsTracking = unitOfWork.ProductTrackingRepository.GetEntities(x => x.UserId == userId, x => x.Product, x => x.User);
+			return productsTracking.Select(x => x.ToModel());
+		}
+
+		// мне название не нравится, но лучше не придумал
+		public void Increase(int productId, int userId, bool track)
+		{
+			var trackedProduct = GetTrackedProduct(productId, userId);
+			trackedProduct.Increase = track;
+			unitOfWork.ProductTrackingRepository.Update(trackedProduct);
+			unitOfWork.Commit();
+		}
+
+		// мне название не нравится, но лучше не придумал
+		public void Decrease(int productId, int userId, bool track)
+		{
+			var trackedProduct = GetTrackedProduct(productId, userId);
+			trackedProduct.Decrease = track;
+			unitOfWork.ProductTrackingRepository.Update(trackedProduct);
+			unitOfWork.Commit();
+		}
+
 		public void Track(int productId, int userId)
 		{
 			var trackedProduct = GetTrackedProduct(productId, userId);
 
 			if (trackedProduct == null)
 			{
-				unitOfWork.TrackedProducts.Attach(new ProductTracking
+				unitOfWork.ProductTrackingRepository.Attach(new ProductTracking
 				{
 					CreatedOn = DateTime.Now,
 					UserId = userId,
@@ -31,7 +59,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			else
 			{
 				trackedProduct.Enabled = true;
-				unitOfWork.TrackedProducts.Update(trackedProduct);
+				unitOfWork.ProductTrackingRepository.Update(trackedProduct);
 			}
 
 			unitOfWork.Commit();
@@ -47,7 +75,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			}
 
 			trackedProduct.Enabled = false;
-			unitOfWork.TrackedProducts.Update(trackedProduct);
+			unitOfWork.ProductTrackingRepository.Update(trackedProduct);
 			unitOfWork.Commit();
 		}
 
@@ -60,13 +88,13 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 				throw new ArgumentException("arguments");
 			}
 
-			unitOfWork.TrackedProducts.Detach(trackedProduct);
+			unitOfWork.ProductTrackingRepository.Detach(trackedProduct);
 			unitOfWork.Commit();
 		}
 
 		private ProductTracking GetTrackedProduct(int productId, int userId)
 		{
-			return unitOfWork.TrackedProducts.FindBy(x => x.ProductId == productId && x.UserId == userId);
+			return unitOfWork.ProductTrackingRepository.FindBy(x => x.ProductId == productId && x.UserId == userId);
 		}
 	}
 }

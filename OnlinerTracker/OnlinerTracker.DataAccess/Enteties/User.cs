@@ -9,13 +9,9 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public string SocialId { get; set; }
 
-		public string PhotoUri { get; set; }
-
 		public string Email { get; set; }
 
-		//public UserSettings Settings { get; set; }
-
-		//public int SettingsId { get; set; }
+		public UserSettings UserSettings { get; set; }
 
 		public ICollection<ProductTracking> TrackedProducts { get; set; }
 

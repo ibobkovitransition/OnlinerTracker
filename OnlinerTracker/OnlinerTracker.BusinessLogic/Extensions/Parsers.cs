@@ -1,40 +1,67 @@
 ﻿using System;
+using OnlinerTracker.BusinessLogic.Models;
 using OnlinerTracker.DataAccess.Enteties;
+using Product = OnlinerTracker.DataAccess.Enteties.Product;
 
 namespace OnlinerTracker.BusinessLogic.Extensions
 {
 	public static class Parsers
 	{
-		public static Product ParseToEntity(this Models.Product product, DateTime? createdOn = null)
+		public static Product ToEntity(this Models.Product product, DateTime? createdOn = null)
 		{
 			return new Product
 			{
 				Id = product.Id,
 				CreatedOn = createdOn ?? DateTime.Now,
-				Name = product.Name,
 				FullName = product.FullName,
 				Description = product.Description,
-				HtmlUrl = product.HtmlUrl,
 				MinPrice = product.Price?.Min ?? 0,
 				MaxPrice = product.Price?.Max ?? 0,
-				ImageUrl = product.Image != null ?
-					!string.IsNullOrWhiteSpace(product.Image.Icon) ?
-						product.Image.Icon :
-						product.Image.Header :
-					string.Empty
+				IconImageUrl = product.Image?.Icon,
+				HeaderImageUrl = product.Image?.Header
 			};
 		}
 
-		public static User ParseToEntity(this Models.UserInfo user, DateTime? createdOn = null)
+		public static User ToEntity(this UserInfo user, int? id = null, DateTime? createdOn = null)
 		{
 			return new User
 			{
-				SocialId = user.UserId,
+				Id = id ?? user.Id,
+				CreatedOn = createdOn ?? DateTime.Now,
 				FirstName = user.FirstName,
-				PhotoUri = user.PhotoUri,
-				CreatedOn = createdOn ?? DateTime.Now
+				SocialId = user.SocialNetworkUserId,
+				Email = user.Email
 			};
 		}
 
+		public static UserInfo ToModel(this User user)
+		{
+			return new UserInfo
+			{
+				Id = user.Id,
+				FirstName = user.FirstName,
+				Email = user.Email,
+				UserSettings = new Models.UserSettings
+				{
+					PreferedTime = user.UserSettings?.PreferedTime ?? TimeSpan.Zero
+				}
+			};
+		}
+
+		public static Models.Product ToModel(this ProductTracking productTracking)
+		{
+			return new Models.Product
+			{
+				Id = productTracking.ProductId,
+				FullName = productTracking.Product.FullName,
+				Description = productTracking.Product.Description,
+				IsAdded = true,
+				IsTracked = productTracking.Enabled,
+				Image = new Image { Icon = productTracking.Product.IconImageUrl, Header = productTracking.Product.HeaderImageUrl },
+				Price = new Price { Min = productTracking.Product.MinPrice, Max = productTracking.Product.MaxPrice },
+				Increase = productTracking.Increase,
+				Decrease = productTracking.Decrease
+			};
+		}
 	}
 }

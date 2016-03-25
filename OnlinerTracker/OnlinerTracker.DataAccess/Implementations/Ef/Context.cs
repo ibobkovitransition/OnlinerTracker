@@ -23,6 +23,6 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 
 		public virtual DbSet<ProductTracking> TrackedProducts { get; set; }
 
-		//public virtual  DbSet<UserSettings> UserSettings { get; set; }
+		public virtual DbSet<UserSettings> UserSettings { get; set; }
 	}
 }

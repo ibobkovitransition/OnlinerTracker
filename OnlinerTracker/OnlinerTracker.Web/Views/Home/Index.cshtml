@@ -1,27 +1,24 @@
-﻿
-@{
+﻿@{
 	Layout = null;
 }
 
 <!DOCTYPE html>
 
-<html ng-app="MainApp">
+<html ng-app="OnlinerTracker">
 <head>
-	<meta name="viewport" content="width=device-width" />
+	<meta name="viewport" content="width=device-width"/>
+
+	@* TODO: переисать под JQLITE *@
 	@Scripts.Render("~/bundles/jquery")
-	@Scripts.Render("~/bundles/bootstrap")
 	@Scripts.Render("~/bundles/angular")
-	@Scripts.Render("~/bundles/modernizr")
 	@Scripts.Render("~/bundles/application")
 
 	@Styles.Render("~/bundles/bootstrap-css")
 	@Styles.Render("~/bundles/styles")
-	
+
 	<title>Index</title>
 </head>
 <body>
-
-	<ng-view />
-
+	<div ng-view></div>
 </body>
 </html>

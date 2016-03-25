@@ -15,17 +15,17 @@ namespace OnlinerTracker.Web.Controllers.Api
 		}
 
 		[AllowAnonymous]
-		[Route("signin/{socNetwork}")]
 		[HttpGet]
 		[ResponseType(typeof(string))]
-		public IHttpActionResult AuthUrl(string socNetwork)
+		[Route("signin/{socialNetwork}")]
+		public IHttpActionResult AuthUrl(string socialNetwork)
 		{
-			if (socNetwork.IsNullOrWhiteSpace())
+			if (socialNetwork.IsNullOrWhiteSpace())
 			{
 				return NotFound();
 			}
 
-			return Ok(authService.AuthUrl(socNetwork));
+			return Ok(authService.AuthUrl(socialNetwork));
 		}
 	}
 }

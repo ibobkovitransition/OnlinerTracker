@@ -1,0 +1,23 @@
+﻿<form novalidate class="form-group" name="userInfoForm">
+	<div class="modal-header">
+		<h4>User settings</h4>
+	</div>
+
+	<div class="modal-body">
+		<label>Your email</label>
+		<input class="form-control" type="email" ng-model="userInfo.email" required />
+		<br />
+
+		<label>Your prefer time</label>
+		<uib-timepicker ng-model="userInfo.settings.prefered_time" show-meridian="ismeridian" arrowkeys="false"></uib-timepicker>
+		<br />
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-success" type="button" ng-click="save()" ng-disabled="userInfoForm.$invalid">Save</button>
+		<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+	</div>
+</form>
+
+
+

@@ -9,7 +9,7 @@ namespace OnlinerTracker.DataAccess.Interfaces
 
 		IRepository<Product> ProductRepository { get; }
 
-		IRepository<ProductTracking> TrackedProducts { get; } 
+		IRepository<ProductTracking> ProductTrackingRepository { get; } 
 
 		void Commit();
 	}

@@ -2,6 +2,7 @@
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Interfaces;
 
+// TODO: ИЛИ ВЫПИЛИТЬ ИЗ ПРОЕКТА И СОХРАНЯТЬ ЧЕРЕЗ РЕПОЗИТОРИЙ, ИЛИ УБРАТЬ СИНГЛЕТНЫЙ КОНТЕКСТ И СОЗДАВАТЬ ЗДЕСЬ
 namespace OnlinerTracker.DataAccess.Implementations.Ef
 {
 	public class UnitOfWork : IUnitOfWork
@@ -9,17 +10,17 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 		public IRepository<User> UserRepository { get; }
 
 		public IRepository<Product> ProductRepository { get; }
-		public IRepository<ProductTracking> TrackedProducts { get; }
+		public IRepository<ProductTracking> ProductTrackingRepository { get; }
 
 		private readonly Context context;
 		private bool disposed;
 
-		public UnitOfWork(Context context, IRepository<User> userRepository, IRepository<Product> productRepository, IRepository<ProductTracking> trackedProducts)
+		public UnitOfWork(Context context, IRepository<User> userRepository, IRepository<Product> productRepository, IRepository<ProductTracking> productTrackingRepository)
 		{
 			this.context = context;
 			UserRepository = userRepository;
 			ProductRepository = productRepository;
-			TrackedProducts = trackedProducts;
+			ProductTrackingRepository = productTrackingRepository;
 		}
 
 		public void Commit()

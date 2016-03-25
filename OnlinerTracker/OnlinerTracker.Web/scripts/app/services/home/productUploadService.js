@@ -1,5 +1,7 @@
-﻿angular.module("home")
-.factory("productUpload", function ($http, $log) {
+﻿angular.module("OnlinerTracker.Services")
+.factory("ProductUploadService", function ($http, $log, URLS) {
+
+	// использоваеть другой принцип построения, для конфигурации размера страницы
 	var pageSize = 25;
 	var isLoading = false;
 
@@ -35,7 +37,7 @@
 
 		isLoading = true;
 
-		var url = "/search/products/" + productName + "/page/" + currentPage + "/size/" + pageSize;
+		var url = URLS.SEARCH_PRODUCTS + productName + "/page/" + currentPage + "/size/" + pageSize;
 		$http.get(url).then(function (response) {
 			isLoading = false;
 			callback(response.data);

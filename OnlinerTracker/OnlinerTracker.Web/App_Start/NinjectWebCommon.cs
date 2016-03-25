@@ -78,6 +78,7 @@ namespace OnlinerTracker.Web.App_Start
 			kernel.Bind<ICookieService>().To<CookieService>();
 			kernel.Bind<IHashService>().To<Base64HashService>();
 			kernel.Bind<IProductSearchService>().To<OnlinerProductSearchService>();
+			kernel.Bind<ICurrencyService>().To<CurrencyService>();
 
 			kernel.Bind<IRepository<User>>().To<Repository<User>>();
 			kernel.Bind<IRepository<Product>>().To<Repository<Product>>();
