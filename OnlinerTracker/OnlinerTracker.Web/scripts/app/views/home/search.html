@@ -37,8 +37,6 @@
 							<span class="glyphicon glyphicon-search"></span>
 						</span>
 						<input type="text" placeholder="Type and search" class="form-control" ng-model="filterQuery" ng-model-options="{ debounce: 400 }" ng-change="findProducts()"/>
-						<span class="input-group-addon navbar-btn" style="width: 1%;">
-						</span>
 					</div>
 				</div>
 			</form>
@@ -68,7 +66,8 @@
 				<p>Max<span class="pull-right">{{item.prices.max | exchangeFilter : userInfo.settings.selected_currency.Rate}}</span></p>
 			</div>
 			<div>
-				<p>Track<input type="checkbox" class="pull-right" ng-model="item.is_tracked" ng-change="trackProduct(item)" /></p>
+				<p>Track<input type="checkbox" class="pull-right" ng-model="item.is_tracked" ng-change="trackProduct(item)"/>
+				</p>
 			</div>
 		</div>
 	</div>

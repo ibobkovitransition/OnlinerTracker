@@ -1,4 +1,13 @@
-﻿function ManageController($scope, $http, $uibModal, $location, ProductTrackingService, CurrencyService,  UserInfoService, ROUTES, VIEW_URLS) {
+﻿function ManageController(
+	$scope,
+	$uibModal,
+	$location,
+	AuthService,
+	ProductTrackingService,
+	CurrencyService,
+	UserInfoService,
+	ROUTES,
+	VIEW_URLS) {
 
 	$scope.filterQuery = "";
 	$scope.items = ProductTrackingService.get();
@@ -35,6 +44,11 @@
 
 	$scope.toHome = function () {
 		$location.path(ROUTES.HOME);
+	}
+
+	$scope.logout = function() {
+		$location.path(ROUTES.AUTH);
+		AuthService.logout();
 	}
 
 	$scope.trackProduct = function(product) {

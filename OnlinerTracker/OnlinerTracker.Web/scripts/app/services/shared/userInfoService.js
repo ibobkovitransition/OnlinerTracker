@@ -1,7 +1,6 @@
 ﻿angular.module("OnlinerTracker.Services")
 .factory("UserInfoService", function ($http, $log, UserInfoRepository, URLS, $filter) {
 
-	// ссылка на юзверя
 	var currentUser = null;
 
 	var get = function () {
@@ -9,7 +8,6 @@
 			currentUser = UserInfoRepository.get();
 		}
 
-		console.log(currentUser);
 		return currentUser;
 	}
 

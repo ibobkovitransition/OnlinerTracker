@@ -8,6 +8,7 @@ angular.module("OnlinerTracker.Controllers", ["ui.bootstrap", "infiniteScroll"])
 var main = angular.module("OnlinerTracker", [
 	"ngRoute",
 	"ngStorage",
+	"ngCookies",
 	"OnlinerTracker.Controllers",
 	"OnlinerTracker.Services",
 	"OnlinerTracker.Repositories",
@@ -40,6 +41,9 @@ main.constant("VIEW_URLS", {
 	SETTINGS: "/scripts/app/views/admin/settings.html"
 });
 
+// https://github.com/mgechev/angularjs-style-guide/blob/master/README-ru-ru.md
+// TODO: будет время - сделать https://github.com/angular-ui/ui-router
+
 main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
 	$routeProvider.when(ROUTES.AUTH, {
 		templateUrl: VIEW_URLS.SIGN_IN,
@@ -66,7 +70,6 @@ main.config(["$localStorageProvider", function ($localStorageProvider) {
 	// TODO: ВЫСТАВИТЬ ПРЕФИКС
 }]);
 
-// сюда экземпляры
 main.run(function (AppInitializeService) {
 	AppInitializeService.init();
 });

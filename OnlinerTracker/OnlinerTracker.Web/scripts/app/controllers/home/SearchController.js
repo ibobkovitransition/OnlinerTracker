@@ -1,10 +1,15 @@
-﻿function SearchController($scope, $log, $window, $location, $anchorScroll, ProductSearchService, ProductUploadService, ProductTrackingService, UserInfoService, CurrencyService, ROUTES) {
+﻿function SearchController(
+	$scope,
+	$location,
+	$anchorScroll,
+	AuthService,
+	ProductSearchService,
+	ProductUploadService,
+	ProductTrackingService,
+	UserInfoService,
+	CurrencyService,
+	ROUTES) {
 
-
-	// если будет время, то сделать https://github.com/angular-ui/ui-router
-	// TODO:
-	// дать одинаковое с аналогичным полем в ManageController
-	// и строку поиска\фильтрации вынести в директиву
 	$scope.filterQuery = "";
 	$scope.currency = CurrencyService.get();
 	$scope.items = [];
@@ -14,20 +19,21 @@
 		last: 0
 	};
 
-	// вынес логику в сервисы
-	// https://github.com/mgechev/angularjs-style-guide/blob/master/README-ru-ru.md
-
 	var loadPage = function (data) {
 		$scope.items = data.products;
 		$scope.page = data.page;
-		console.log($scope.page);
 	}
 
 	var uploadPage = function (data) {
 		Array.prototype.push.apply($scope.items, data.products);
 	}
 
-	$scope.anchorTop = function(id) {
+	$scope.logout = function () {
+		$location.path(ROUTES.AUTH);
+		AuthService.logout();
+	}
+
+	$scope.anchorTop = function (id) {
 		$location.hash(id);
 		$anchorScroll();
 	}
