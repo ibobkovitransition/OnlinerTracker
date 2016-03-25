@@ -1,5 +1,7 @@
 ﻿function SearchController($scope, $log, $window, $location, $anchorScroll, ProductSearchService, ProductUploadService, ProductTrackingService, UserInfoService, CurrencyService, ROUTES) {
 
+
+	// если будет время, то сделать https://github.com/angular-ui/ui-router
 	// TODO:
 	// дать одинаковое с аналогичным полем в ManageController
 	// и строку поиска\фильтрации вынести в директиву
