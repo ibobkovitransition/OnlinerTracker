@@ -1,5 +1,5 @@
 ﻿angular.module("OnlinerTracker.Services")
-.factory("AuthService", function ($http, $log, URLS) {
+.factory("AuthService", function ($http, $log, $cookies, AppInitializeService, URLS) {
 
 	var getRequestUrl = function (socialNetworkName, callback) {
 		$log.log("start", socialNetworkName);
@@ -12,7 +12,8 @@
 	}
 
 	var logout = function () {
-		// remove cookie
+		$cookies.remove("onliner_tracker");
+		AppInitializeService.clear();
 	}
 
 	return {

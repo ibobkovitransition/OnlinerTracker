@@ -19,6 +19,9 @@
 	var setupData = function () {
 		console.log("Init");
 
+		console.log($localStorage);
+		debugger;
+
 		$localStorage.currency.unshift({
 			CharCode: "BUR",
 			Rate: 1
@@ -30,10 +33,15 @@
 
 	var rejected = function (response) {
 		$log.error("Loading error", response);
-		//$log.info("Clear storage");
+	}
+
+	var clearStore = function () {
+		$log.info("Clear storage");
+		$localStorage.$reset();
 	}
 
 	var load = function () {
+		// грузить синхронно
 		$http.get(URLS.CURRENCY)
 			.then(function (response) {
 				currencyCallback(response);
@@ -50,6 +58,7 @@
 	}
 
 	return {
-		init: load
+		init: load,
+		clear: clearStore
 	}
 });

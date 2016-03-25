@@ -65,11 +65,6 @@ main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
 	});
 });
 
-// https://docs.angularjs.org/guide/module
-main.config(["$localStorageProvider", function ($localStorageProvider) {
-	// TODO: ВЫСТАВИТЬ ПРЕФИКС
-}]);
-
 main.run(function (AppInitializeService) {
 	AppInitializeService.init();
 });

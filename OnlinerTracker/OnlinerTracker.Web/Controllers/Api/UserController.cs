@@ -26,8 +26,6 @@ namespace OnlinerTracker.Web.Controllers.Api
 		[Route("user/update/{id:int:min(0)}")]
 		public IHttpActionResult Update(int id, UserInfo userInfo)
 		{
-			// роут можно убрать
-			// проверяем что бы пользователь 1, зная id пользователя 2 не смог изменить его данные подсовыванием его id-ка
 			if (id != PrincipalUser.Id)
 			{
 				return BadRequest("Wrong user id");
