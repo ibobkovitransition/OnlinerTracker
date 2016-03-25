@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentScheduler, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b76503528a14ebd1, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentScheduler.4.0.0\lib\net40\FluentScheduler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -55,17 +59,26 @@
     <Compile Include="Extensions\Parsers.cs" />
     <Compile Include="Implementations\Base64HashService.cs" />
     <Compile Include="Implementations\CurrencyService.cs" />
+    <Compile Include="Implementations\GoogleEmailProvider.cs" />
+    <Compile Include="Implementations\PriceChangedTrackingService.cs" />
     <Compile Include="Implementations\ProductService.cs" />
     <Compile Include="Implementations\ProductTrackingService.cs" />
+    <Compile Include="Implementations\ScheduleService.cs" />
+    <Compile Include="Implementations\UserNotificationService.cs" />
     <Compile Include="Interfaces\ICurrencyService.cs" />
+    <Compile Include="Interfaces\IEmailProvider.cs" />
+    <Compile Include="Interfaces\INotifyMessageCreatorService.cs" />
+    <Compile Include="Interfaces\IPriceChangedTrackingService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Interfaces\IProductTrackingService.cs" />
     <Compile Include="Implementations\OnlinerProductSearchService.cs" />
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interfaces\IHashService.cs" />
     <Compile Include="Interfaces\IProductSearchService.cs" />
+    <Compile Include="Interfaces\IScheduleService.cs" />
     <Compile Include="Interfaces\ISocialNetworkAuthService.cs" />
     <Compile Include="Implementations\SocialNetworkAuthService.cs" />
+    <Compile Include="Interfaces\IUserNotificationService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\DailyRates.cs" />
@@ -73,6 +86,7 @@
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\Price.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductTracking.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\UserSettings.cs" />
     <Compile Include="Models\UsefInfo.cs" />
@@ -87,6 +101,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
