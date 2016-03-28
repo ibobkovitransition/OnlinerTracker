@@ -1,6 +1,10 @@
 ﻿using Ninject;
-using OnlinerTracker.BusinessLogic.Implementations;
-using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Implementations.Common;
+using OnlinerTracker.BusinessLogic.Implementations.ModelWrappers;
+using OnlinerTracker.BusinessLogic.Implementations.Tracking;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
+using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
+using OnlinerTracker.BusinessLogic.Interfaces.Tracking;
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Implementations.Ef;
 using OnlinerTracker.DataAccess.Interfaces;

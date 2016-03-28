@@ -1,12 +1,13 @@
 using OAuth2;
-using OnlinerTracker.BusinessLogic.Implementations;
-using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Implementations.Common;
+using OnlinerTracker.BusinessLogic.Implementations.ModelWrappers;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
+using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Implementations.Ef;
 using OnlinerTracker.DataAccess.Interfaces;
 using OnlinerTracker.Web.Implementations;
 using OnlinerTracker.Web.Interaces;
-using Product = OnlinerTracker.DataAccess.Enteties.Product;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Stop")]

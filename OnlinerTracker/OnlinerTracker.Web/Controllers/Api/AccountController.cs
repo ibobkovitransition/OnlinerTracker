@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.Ajax.Utilities;
-using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
 
 namespace OnlinerTracker.Web.Controllers.Api
 {

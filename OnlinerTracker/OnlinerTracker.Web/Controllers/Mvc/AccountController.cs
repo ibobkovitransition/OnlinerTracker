@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
-using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
+using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.Web.Interaces;
 
 namespace OnlinerTracker.Web.Controllers.Mvc

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Filters;
 using Ninject;
-using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
 using OnlinerTracker.DataAccess.Interfaces;
 
 namespace OnlinerTracker.Web.Filters.Api
