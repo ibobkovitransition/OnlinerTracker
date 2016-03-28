@@ -27,6 +27,11 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			return result;
 		}
 
+		public IEnumerable<Product> Get()
+		{
+			return unitOfWork.ProductRepository.GetEntities().Select(x => x.ToModel());
+		}
+
 		public void Add(Product product, int userId)
 		{
 			AddIfNotExsists(product);
@@ -42,6 +47,15 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 		public void Update(Product product)
 		{
 			unitOfWork.ProductRepository.Update(product.ToEntity());
+			unitOfWork.Commit();
+		}
+
+		public void Update(IEnumerable<Product> products)
+		{
+			foreach (var product in products)
+			{
+				unitOfWork.ProductRepository.Update(product.ToEntity());
+			}
 			unitOfWork.Commit();
 		}
 

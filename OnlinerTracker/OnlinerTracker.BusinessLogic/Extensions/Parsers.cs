@@ -2,17 +2,19 @@
 using OnlinerTracker.BusinessLogic.Models;
 using OnlinerTracker.DataAccess.Enteties;
 using Product = OnlinerTracker.DataAccess.Enteties.Product;
+using ProductPriceHistory = OnlinerTracker.DataAccess.Enteties.ProductPriceHistory;
 using ProductTracking = OnlinerTracker.DataAccess.Enteties.ProductTracking;
 
 namespace OnlinerTracker.BusinessLogic.Extensions
 {
 	public static class Parsers
 	{
-		public static Product ToEntity(this Models.Product product, DateTime? createdOn = null)
+		// TODO: привести к общему виду
+		public static Product ToEntity(this Models.Product product, int? id = null, DateTime? createdOn = null)
 		{
 			return new Product
 			{
-				Id = product.Id,
+				Id = id ?? product.Id,
 				CreatedOn = createdOn ?? DateTime.Now,
 				FullName = product.FullName,
 				Description = product.Description,
@@ -32,6 +34,32 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				FirstName = user.FirstName,
 				SocialId = user.SocialNetworkUserId,
 				Email = user.Email
+			};
+		}
+
+		public static ProductPriceHistory ToEntity(this Models.ProductPriceHistory productPriceHistory, int? id = null, DateTime? createdOn = null)
+		{
+			return new ProductPriceHistory
+			{
+				Id = id ?? productPriceHistory.Id,
+				CreatedOn = createdOn ?? DateTime.Now,
+				ProductId = productPriceHistory.Product.Id,
+				MinPrice = productPriceHistory.MinPrice,
+				MaxPrice = productPriceHistory.MaxPrice
+			};
+		}
+
+		public static Models.Product ToModel(this Product product)
+		{
+			return new Models.Product
+			{
+				Id = product.Id,
+				CreatedOn = product.CreatedOn,
+				FullName = product.FullName,
+				Description = product.Description,
+				IsAdded = true,
+				Image = new Image { Icon = product.IconImageUrl, Header = product.HeaderImageUrl },
+				Price = new Price { Min = product.MinPrice, Max = product.MaxPrice }
 			};
 		}
 

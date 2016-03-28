@@ -24,7 +24,6 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			return productsTracking.Select(x => x.ToModel());
 		}
 
-		// мне название не нравится, но лучше не придумал
 		public void Increase(int productId, int userId, bool track)
 		{
 			var trackedProduct = GetTrackedProduct(productId, userId);
@@ -33,7 +32,6 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			unitOfWork.Commit();
 		}
 
-		// мне название не нравится, но лучше не придумал
 		public void Decrease(int productId, int userId, bool track)
 		{
 			var trackedProduct = GetTrackedProduct(productId, userId);

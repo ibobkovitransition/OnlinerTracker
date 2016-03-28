@@ -60,15 +60,15 @@
     <Compile Include="Implementations\Base64HashService.cs" />
     <Compile Include="Implementations\CurrencyService.cs" />
     <Compile Include="Implementations\GoogleEmailProvider.cs" />
-    <Compile Include="Implementations\PriceTrackingService.cs" />
+    <Compile Include="Implementations\ProductPriceHistoryService.cs" />
+    <Compile Include="Implementations\ProductPriceTrackingService.cs" />
     <Compile Include="Implementations\ProductService.cs" />
     <Compile Include="Implementations\ProductTrackingService.cs" />
-    <Compile Include="Implementations\ScheduleService.cs" />
-    <Compile Include="Implementations\UserNotificationService.cs" />
+    <Compile Include="Implementations\PriceScheduleService.cs" />
     <Compile Include="Interfaces\ICurrencyService.cs" />
     <Compile Include="Interfaces\IEmailProvider.cs" />
-    <Compile Include="Interfaces\INotifyMessageCreatorService.cs" />
-    <Compile Include="Interfaces\IProductPriceTrackingService.cs" />
+    <Compile Include="Interfaces\IPriceTrackingService.cs" />
+    <Compile Include="Interfaces\IProductPriceHistoryService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Interfaces\IProductTrackingService.cs" />
     <Compile Include="Implementations\OnlinerProductSearchService.cs" />
@@ -78,15 +78,14 @@
     <Compile Include="Interfaces\IScheduleService.cs" />
     <Compile Include="Interfaces\ISocialNetworkAuthService.cs" />
     <Compile Include="Implementations\SocialNetworkAuthService.cs" />
-    <Compile Include="Interfaces\IUserNotifyService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Models\Currency.cs" />
-    <Compile Include="Models\DailyRates.cs" />
+    <Compile Include="Models\DailyExchangeRates.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\Price.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductTracking.cs" />
+    <Compile Include="Models\ProductPriceHistory.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\UserSettings.cs" />
     <Compile Include="Models\UsefInfo.cs" />
@@ -101,9 +100,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Facades\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

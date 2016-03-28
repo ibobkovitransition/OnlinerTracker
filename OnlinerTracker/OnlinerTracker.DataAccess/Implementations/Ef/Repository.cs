@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using OnlinerTracker.DataAccess.Enteties.Basis;
@@ -55,8 +57,9 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 
 		public void Update(TEntity entity)
 		{
-			DbSet.Attach(entity);
-			Context.Entry(entity).State = EntityState.Modified;
+			DbSet.AddOrUpdate(entity);
+			//DbSet.Attach(entity);
+			//Context.Entry(entity).State = EntityState.Modified;
 		}
 
 		public TEntity FindBy(Expression<Func<TEntity, bool>> filters = null, params Expression<Func<TEntity, object>>[] includedProperties)

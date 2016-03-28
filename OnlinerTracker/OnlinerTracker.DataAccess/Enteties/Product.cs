@@ -22,11 +22,14 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public string HeaderImageUrl { get; set; }
 
-		public ICollection<ProductTracking> TrackedProducts { get; set; }
+		public ICollection<ProductTracking> ProductTracking { get; set; }
+
+		public ICollection<ProductPriceHistory> ProductPriceHistory { get; set; }
 
 		public Product()
 		{
-			TrackedProducts = new List<ProductTracking>();
+			ProductTracking = new List<ProductTracking>();
+			ProductPriceHistory = new List<ProductPriceHistory>();
 		}
 	}
 }
