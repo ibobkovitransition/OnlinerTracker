@@ -1,21 +1,19 @@
 ﻿using System;
-using OnlinerTracker.BusinessLogic.Models;
+using OnlinerTracker.BusinessLogic.Models.Onliner;
+using OnlinerTracker.BusinessLogic.Models.User;
 using OnlinerTracker.DataAccess.Enteties;
 using Product = OnlinerTracker.DataAccess.Enteties.Product;
-using ProductPriceHistory = OnlinerTracker.DataAccess.Enteties.ProductPriceHistory;
-using ProductTracking = OnlinerTracker.DataAccess.Enteties.ProductTracking;
 
 namespace OnlinerTracker.BusinessLogic.Extensions
 {
 	public static class Parsers
 	{
-		// TODO: привести к общему виду
-		public static Product ToEntity(this Models.Product product, int? id = null, DateTime? createdOn = null)
+		public static Product ToEntity(this Models.Onliner.Product product)
 		{
 			return new Product
 			{
-				Id = id ?? product.Id,
-				CreatedOn = createdOn ?? DateTime.Now,
+				Id = product.Id,
+				CreatedAt = product.CreatedAt,
 				FullName = product.FullName,
 				Description = product.Description,
 				MinPrice = product.Price?.Min ?? 0,
@@ -25,36 +23,36 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 			};
 		}
 
-		public static User ToEntity(this UserInfo user, int? id = null, DateTime? createdOn = null)
+		public static User ToEntity(this Models.User.UserInfo user)
 		{
 			return new User
 			{
-				Id = id ?? user.Id,
-				CreatedOn = createdOn ?? DateTime.Now,
+				Id = user.Id,
+				CreatedAt = user.CreatedAt,
 				FirstName = user.FirstName,
 				SocialId = user.SocialNetworkUserId,
 				Email = user.Email
 			};
 		}
 
-		public static ProductPriceHistory ToEntity(this Models.ProductPriceHistory productPriceHistory, int? id = null, DateTime? createdOn = null)
+		public static PriceHistory ToEntity(this Models.PriceHistory productPriceHistory)
 		{
-			return new ProductPriceHistory
+			return new PriceHistory
 			{
-				Id = id ?? productPriceHistory.Id,
-				CreatedOn = createdOn ?? DateTime.Now,
+				Id = productPriceHistory.Id,
+				CreatedAt = productPriceHistory.CreatedOn,
 				ProductId = productPriceHistory.Product.Id,
 				MinPrice = productPriceHistory.MinPrice,
 				MaxPrice = productPriceHistory.MaxPrice
 			};
 		}
 
-		public static Models.Product ToModel(this Product product)
+		public static Models.Onliner.Product ToModel(this Product product)
 		{
-			return new Models.Product
+			return new Models.Onliner.Product
 			{
 				Id = product.Id,
-				CreatedOn = product.CreatedOn,
+				CreatedAt = product.CreatedAt,
 				FullName = product.FullName,
 				Description = product.Description,
 				IsAdded = true,
@@ -70,16 +68,16 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				Id = user.Id,
 				FirstName = user.FirstName,
 				Email = user.Email,
-				UserSettings = new Models.UserSettings
+				UserSettings = new Models.User.UserSettings
 				{
 					PreferedTime = user.UserSettings?.PreferedTime ?? TimeSpan.Zero
 				}
 			};
 		}
 
-		public static Models.Product ToModel(this ProductTracking productTracking)
+		public static Models.Onliner.Product ToModel(this ProductTracking productTracking)
 		{
-			return new Models.Product
+			return new Models.Onliner.Product
 			{
 				Id = productTracking.ProductId,
 				FullName = productTracking.Product.FullName,

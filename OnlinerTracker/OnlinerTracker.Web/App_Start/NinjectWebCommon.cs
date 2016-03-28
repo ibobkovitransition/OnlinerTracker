@@ -1,12 +1,13 @@
 using OAuth2;
-using OnlinerTracker.BusinessLogic.Implementations;
-using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Implementations.Common;
+using OnlinerTracker.BusinessLogic.Implementations.ModelWrappers;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
+using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Implementations.Ef;
 using OnlinerTracker.DataAccess.Interfaces;
 using OnlinerTracker.Web.Implementations;
 using OnlinerTracker.Web.Interaces;
-using Product = OnlinerTracker.DataAccess.Enteties.Product;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -84,7 +85,7 @@ namespace OnlinerTracker.Web.App_Start
 			kernel.Bind<IRepository<Product>>().To<Repository<Product>>();
 			kernel.Bind<IRepository<ProductTracking>>().To<Repository<ProductTracking>>();
 			kernel.Bind<IRepository<UserSettings>>().To<Repository<UserSettings>>();
-			kernel.Bind<IRepository<ProductPriceHistory>>().To<Repository<ProductPriceHistory>>();
+			kernel.Bind<IRepository<PriceHistory>>().To<Repository<PriceHistory>>();
 			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 			
 			kernel.Bind<IUserService>().To<UserService>();

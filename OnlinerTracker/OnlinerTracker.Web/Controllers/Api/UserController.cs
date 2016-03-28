@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using System.Web.Http.Description;
-using OnlinerTracker.BusinessLogic.Interfaces;
-using OnlinerTracker.BusinessLogic.Models;
+using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
+using OnlinerTracker.BusinessLogic.Models.User;
 
 namespace OnlinerTracker.Web.Controllers.Api
 {
