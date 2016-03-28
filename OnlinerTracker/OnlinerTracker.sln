@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlinerTracker.DataAccess",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlinerTracker.Web", "OnlinerTracker.Web\OnlinerTracker.Web.csproj", "{164657AC-A346-4D66-8E38-A54E1F7B58AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlinerTracker.ProductPriceTracker", "OnlinerTracker.ProductPriceTracker\OnlinerTracker.ProductPriceTracker.csproj", "{05E20879-112B-4B4A-A14A-2D5199FD9435}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{164657AC-A346-4D66-8E38-A54E1F7B58AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{164657AC-A346-4D66-8E38-A54E1F7B58AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{164657AC-A346-4D66-8E38-A54E1F7B58AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05E20879-112B-4B4A-A14A-2D5199FD9435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05E20879-112B-4B4A-A14A-2D5199FD9435}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05E20879-112B-4B4A-A14A-2D5199FD9435}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05E20879-112B-4B4A-A14A-2D5199FD9435}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

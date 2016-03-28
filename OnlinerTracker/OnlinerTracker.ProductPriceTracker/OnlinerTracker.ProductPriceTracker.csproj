@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F73A59E1-CC0C-4F02-BBA8-7A8022B2078D}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{05E20879-112B-4B4A-A14A-2D5199FD9435}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OnlinerTracker.DataAccess</RootNamespace>
-    <AssemblyName>OnlinerTracker.DataAccess</AssemblyName>
+    <RootNamespace>OnlinerTracker.ProductPriceTracker</RootNamespace>
+    <AssemblyName>OnlinerTracker.ProductPriceTracker</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -38,11 +41,17 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentScheduler, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b76503528a14ebd1, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentScheduler.4.0.0\lib\net40\FluentScheduler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,22 +60,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enteties\Basis\BaseEntity.cs" />
-    <Compile Include="Enteties\Product.cs" />
-    <Compile Include="Enteties\ProductPriceHistory.cs" />
-    <Compile Include="Enteties\ProductTracking.cs" />
-    <Compile Include="Enteties\UserSettings.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Implementations\Ef\Context.cs" />
-    <Compile Include="Implementations\Ef\UnitOfWork.cs" />
-    <Compile Include="Implementations\Ef\Repository.cs" />
-    <Compile Include="Enteties\User.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnlinerTracker.BusinessLogic\OnlinerTracker.BusinessLogic.csproj">
+      <Project>{a6d4d69a-4a6e-47d3-a255-13adb09a0920}</Project>
+      <Name>OnlinerTracker.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlinerTracker.DataAccess\OnlinerTracker.DataAccess.csproj">
+      <Project>{f73a59e1-cc0c-4f02-bba8-7a8022b2078d}</Project>
+      <Name>OnlinerTracker.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

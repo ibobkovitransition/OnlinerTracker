@@ -11,6 +11,8 @@ namespace OnlinerTracker.DataAccess.Interfaces
 
 		IRepository<ProductTracking> ProductTrackingRepository { get; } 
 
+		IRepository<ProductPriceHistory> ProductPriceHistoryRepository { get; } 
+
 		void Commit();
 	}
 }
