@@ -18,11 +18,11 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			return result.Currency;
 		}
 
-		private DailyExRates DeserializeResponseStream(Stream stream)
+		private DailyExchangeRates DeserializeResponseStream(Stream stream)
 		{
 			var reader = new StreamReader(stream);
-			var serializer = new XmlSerializer(typeof (DailyExRates));
-			var result = (DailyExRates) serializer.Deserialize(reader);
+			var serializer = new XmlSerializer(typeof (DailyExchangeRates));
+			var result = (DailyExchangeRates) serializer.Deserialize(reader);
 			reader.Close();
 
 			return result;

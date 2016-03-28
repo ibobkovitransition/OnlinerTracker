@@ -80,7 +80,7 @@
     <Compile Include="Implementations\SocialNetworkAuthService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Models\Currency.cs" />
-    <Compile Include="Models\DailyRates.cs" />
+    <Compile Include="Models\DailyExchangeRates.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\Price.cs" />
