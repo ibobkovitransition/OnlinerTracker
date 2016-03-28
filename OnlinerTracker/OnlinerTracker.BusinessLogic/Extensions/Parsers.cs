@@ -23,12 +23,12 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 			};
 		}
 
-		public static User ToEntity(this Models.User.UserInfo user)
+		public static User ToEntity(this UserInfo user)
 		{
 			return new User
 			{
 				Id = user.Id,
-				CreatedAt = user.CreatedAt,
+				CreatedAt = user.CreatedAt ?? DateTime.Now,
 				FirstName = user.FirstName,
 				SocialId = user.SocialNetworkUserId,
 				Email = user.Email
@@ -52,7 +52,7 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 			return new Models.Onliner.Product
 			{
 				Id = product.Id,
-				CreatedAt = product.CreatedAt,
+				CreatedAt = product.CreatedAt ?? DateTime.Now,
 				FullName = product.FullName,
 				Description = product.Description,
 				IsAdded = true,
