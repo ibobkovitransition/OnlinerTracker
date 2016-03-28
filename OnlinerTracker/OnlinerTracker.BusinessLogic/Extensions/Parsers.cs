@@ -66,6 +66,7 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 			return new UserInfo
 			{
 				Id = user.Id,
+				CreatedAt = user.CreatedAt,
 				FirstName = user.FirstName,
 				Email = user.Email,
 				UserSettings = new Models.User.UserSettings

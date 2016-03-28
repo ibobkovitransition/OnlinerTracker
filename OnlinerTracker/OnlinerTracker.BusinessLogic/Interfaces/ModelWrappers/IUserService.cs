@@ -15,6 +15,8 @@ namespace OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers
 
 		UserInfo Get(int userId);
 
+		UserInfo GetBySocialId(string socialId);
+
 		void Update(int userId, UserInfo userInfo);
 	}
 }
