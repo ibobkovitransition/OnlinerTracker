@@ -31,6 +31,10 @@ namespace OnlinerTracker.ProductPriceTracker
 
 		static void Main(string[] args)
 		{
+			// TODO: OT.BusinessLogic.Models:
+			// 1 Добавить базовую сущность для моделей
+			// 2 научитить все парсеры нормально работать
+			
 			IKernel kernel = new StandardKernel();
 			RegisterBindings(kernel);
 			kernel.Get<IScheduleService>().Execute();

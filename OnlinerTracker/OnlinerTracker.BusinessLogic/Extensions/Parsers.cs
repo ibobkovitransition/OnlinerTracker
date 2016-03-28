@@ -9,6 +9,7 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 {
 	public static class Parsers
 	{
+		// TODO: привести к общему виду
 		public static Product ToEntity(this Models.Product product, int? id = null, DateTime? createdOn = null)
 		{
 			return new Product
