@@ -5,18 +5,18 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 {
 	public class ScheduleService : IScheduleService, IJob
 	{
-		private readonly IPriceChangedTrackingService priceChangedTrackingService;
-		private readonly IUserNotificationService userNotificationService;
+		private readonly IProductPriceTrackingService productPriceTrackingService;
+		private readonly IUserNotifyService userNotifyService;
 
-		public ScheduleService(IUserNotificationService userNotificationService, IPriceChangedTrackingService priceChangedTrackingService)
+		public ScheduleService(IUserNotifyService userNotifyService, IProductPriceTrackingService productPriceTrackingService)
 		{
-			this.userNotificationService = userNotificationService;
-			this.priceChangedTrackingService = priceChangedTrackingService;
+			this.userNotifyService = userNotifyService;
+			this.productPriceTrackingService = productPriceTrackingService;
 		}
 
 		public void Execute()
 		{
-			userNotificationService.Notify(priceChangedTrackingService.Products);
+			userNotifyService.NotifyAll(productPriceTrackingService.FindProductsWithChangedPrice());
 		}
 	}
 }

@@ -3,8 +3,8 @@ using OnlinerTracker.BusinessLogic.Models;
 
 namespace OnlinerTracker.BusinessLogic.Interfaces
 {
-	public interface IPriceChangedTrackingService
+	public interface IUserNotifyService
 	{
-		IEnumerable<ProductTracking> Products { get; } 
+		void NotifyAll(IEnumerable<ProductTracking> products);
 	}
 }

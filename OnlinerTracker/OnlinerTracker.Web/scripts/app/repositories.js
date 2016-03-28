@@ -95,12 +95,12 @@ repositories.factory("ProductTrackingRepository", function ($log, $localStorage)
 repositories.factory("UserInfoRepository", function ($log, $localStorage) {
 
 	var emptyResult = {
-		id: null,
-		first_name: null,
-		email: null,
+		id: "",
+		first_name: "",
+		email: "",
 		settings: {
-			prefered_time: null,
-			selected_currency: null
+			prefered_time: "",
+			selected_currency: ""
 		}
 	};
 

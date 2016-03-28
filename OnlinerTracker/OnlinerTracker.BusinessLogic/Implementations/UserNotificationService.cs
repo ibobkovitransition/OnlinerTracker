@@ -4,7 +4,7 @@ using OnlinerTracker.BusinessLogic.Models;
 
 namespace OnlinerTracker.BusinessLogic.Implementations
 {
-	public class UserNotificationService : IUserNotificationService
+	public class UserNotificationService : IUserNotifyService
 	{
 		private readonly INotifyMessageCreatorService notifyMessageCreatorService;
 		private readonly IEmailProvider emailProvider;
@@ -15,7 +15,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			this.emailProvider = emailProvider;
 		}
 
-		public void Notify(IEnumerable<ProductTracking> products)
+		public void NotifyAll(IEnumerable<ProductTracking> products)
 		{
 			// формиурем очередь
 			// дробим
@@ -23,7 +23,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 
 			// производим обход очереди
 			// создаем сообщение с помощью
-			emailProvider.Send(notifyMessageCreatorService.CreateMessage(/*первый элемент из коллекции*/ null, products));
+			//emailProvider.Send("ameli28@ua.ua", notifyMessageCreatorService.CreateMessage(null, null));
 			throw new System.NotImplementedException();
 		}
 

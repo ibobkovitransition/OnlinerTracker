@@ -2,6 +2,7 @@
 using OnlinerTracker.BusinessLogic.Models;
 using OnlinerTracker.DataAccess.Enteties;
 using Product = OnlinerTracker.DataAccess.Enteties.Product;
+using ProductTracking = OnlinerTracker.DataAccess.Enteties.ProductTracking;
 
 namespace OnlinerTracker.BusinessLogic.Extensions
 {

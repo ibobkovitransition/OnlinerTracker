@@ -19,9 +19,6 @@
 	var setupData = function () {
 		console.log("Init");
 
-		console.log($localStorage);
-		debugger;
-
 		$localStorage.currency.unshift({
 			CharCode: "BUR",
 			Rate: 1
