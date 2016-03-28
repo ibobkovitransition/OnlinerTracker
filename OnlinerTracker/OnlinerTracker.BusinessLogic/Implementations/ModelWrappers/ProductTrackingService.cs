@@ -20,8 +20,20 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 
 		public IEnumerable<Product> Get(int userId)
 		{
-			var productsTracking = unitOfWork.ProductTrackingRepository.GetEntities(x => x.UserId == userId, x => x.Product, x => x.User);
+			var productsTracking = unitOfWork.ProductTrackingRepository.GetEntities(
+				x => x.UserId == userId,
+				x => x.Product, x => x.User);
+
 			return productsTracking.Select(x => x.ToModel());
+		}
+
+		public IEnumerable<ProductTracking> Get()
+		{
+			var productTracking = unitOfWork.ProductTrackingRepository.GetEntities(
+				null,
+				x => x.Product, x => x.User, x => x.Product.PriceHistory);
+
+			return productTracking;
 		}
 
 		public void Increase(int productId, int userId, bool track)

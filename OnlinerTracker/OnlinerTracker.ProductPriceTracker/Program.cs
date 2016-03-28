@@ -24,13 +24,14 @@ namespace OnlinerTracker.ProductPriceTracker
 			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 
 			kernel.Bind<IProductTrackingService>().To<ProductTrackingService>();
-			kernel.Bind<IScheduleService>().To<PriceScheduleService>();
+			kernel.Bind<IPriceScheduleService>().To<PriceScheduleService>();
 
 			kernel.Bind<IProductService>().To<ProductService>();
 			kernel.Bind<IPriceTrackingService>().To<ProductPriceTrackingService>();
 			kernel.Bind<IRepository<PriceHistory>>().To<Repository<PriceHistory>>();
 			kernel.Bind<IProductSearchService>().To<OnlinerProductSearchService>();
 			kernel.Bind<IPriceHistoryService>().To<ProductPriceHistoryService>();
+			kernel.Bind<INotifyScheduleService>().To<NotifyScheduleService>();
 		}
 
 		static void Main(string[] args)
@@ -41,7 +42,8 @@ namespace OnlinerTracker.ProductPriceTracker
 			
 			IKernel kernel = new StandardKernel();
 			RegisterBindings(kernel);
-			kernel.Get<IScheduleService>().Execute();
+			kernel.Get<IPriceScheduleService>().Execute();
+			kernel.Get<INotifyScheduleService>().Execute();
 		}
 	}
 }

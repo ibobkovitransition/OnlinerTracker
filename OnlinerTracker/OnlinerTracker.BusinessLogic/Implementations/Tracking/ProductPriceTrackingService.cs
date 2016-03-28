@@ -44,21 +44,25 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 			{
 				if (product.Price.Min != (fetchedProduct.Price?.Min ?? 0) || product.Price.Max != (fetchedProduct.Price?.Max ?? 0))
 				{
-					result.Add(Parse(fetchedProduct));
+					result.Add(Parse(product, fetchedProduct));
 				}
 				break;
 			}
 		}
 
-		private PriceHistory Parse(Product product)
+		private PriceHistory Parse(Product oldProduct, Product fetchedProduct)
 		{
 			return new PriceHistory
 			{
 				CreatedOn = DateTime.Now,
-				Product = product,
-				ProductId = product.Id,
-				MinPrice = product.Price?.Min ?? 0,
-				MaxPrice = product.Price?.Max ?? 0
+
+				// отдаем продукт с актуальной ценой
+				Product = fetchedProduct,
+				ProductId = fetchedProduct.Id,
+
+				// сюда, в свою очередь, пишем старную цену
+				MinPrice = oldProduct.Price?.Min ?? 0,
+				MaxPrice = oldProduct.Price?.Max ?? 0
 			};
 		}
 	}

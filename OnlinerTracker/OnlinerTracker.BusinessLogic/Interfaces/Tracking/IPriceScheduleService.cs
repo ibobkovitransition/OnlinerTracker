@@ -1,6 +1,6 @@
 ﻿namespace OnlinerTracker.BusinessLogic.Interfaces.Tracking
 {
-	public interface IScheduleService
+	public interface IPriceScheduleService
 	{
 		void Execute();
 	}

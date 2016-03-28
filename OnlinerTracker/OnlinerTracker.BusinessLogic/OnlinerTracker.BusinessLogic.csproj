@@ -60,11 +60,13 @@
     <Compile Include="Implementations\Common\Base64HashService.cs" />
     <Compile Include="Implementations\ModelWrappers\CurrencyService.cs" />
     <Compile Include="Implementations\ModelWrappers\ProductPriceHistoryService.cs" />
+    <Compile Include="Implementations\Tracking\NotifyScheduleService.cs" />
     <Compile Include="Implementations\Tracking\ProductPriceTrackingService.cs" />
     <Compile Include="Implementations\ModelWrappers\ProductService.cs" />
     <Compile Include="Implementations\ModelWrappers\ProductTrackingService.cs" />
     <Compile Include="Implementations\Tracking\PriceScheduleService.cs" />
     <Compile Include="Interfaces\ModelWrappers\ICurrencyService.cs" />
+    <Compile Include="Interfaces\Tracking\INotifyScheduleService.cs" />
     <Compile Include="Interfaces\Tracking\IPriceTrackingService.cs" />
     <Compile Include="Interfaces\ModelWrappers\IPriceHistoryService.cs" />
     <Compile Include="Interfaces\ModelWrappers\IProductService.cs" />
@@ -73,7 +75,7 @@
     <Compile Include="Implementations\ModelWrappers\UserService.cs" />
     <Compile Include="Interfaces\Common\IHashService.cs" />
     <Compile Include="Interfaces\Common\IProductSearchService.cs" />
-    <Compile Include="Interfaces\Tracking\IScheduleService.cs" />
+    <Compile Include="Interfaces\Tracking\IPriceScheduleService.cs" />
     <Compile Include="Interfaces\Common\ISocialNetworkAuthService.cs" />
     <Compile Include="Implementations\Common\SocialNetworkAuthService.cs" />
     <Compile Include="Interfaces\ModelWrappers\IUserService.cs" />

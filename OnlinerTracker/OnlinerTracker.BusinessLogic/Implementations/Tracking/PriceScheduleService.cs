@@ -7,7 +7,7 @@ using OnlinerTracker.BusinessLogic.Models;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 {
-	public class PriceScheduleService : IScheduleService, IJob
+	public class PriceScheduleService : IPriceScheduleService, IJob
 	{
 		private readonly IPriceTrackingService priceTrackingService;
 		private readonly IPriceHistoryService productPriceHistoryService;
@@ -32,8 +32,8 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 			productService.Update(productPriceHistoryList.Select(x =>
 			{
 				var product = x.Product;
-				product.Price.Min = x.MinPrice;
-				product.Price.Max = x.MaxPrice;
+				product.Price.Min = x.Product.Price?.Min ?? 0;
+				product.Price.Max = x.Product.Price?.Min ?? 0;
 				return product;
 			}));
 		}
