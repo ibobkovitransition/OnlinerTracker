@@ -13,7 +13,7 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 			return new Product
 			{
 				Id = product.Id,
-				CreatedOn = product.CreatedOn,
+				CreatedAt = product.CreatedAt,
 				FullName = product.FullName,
 				Description = product.Description,
 				MinPrice = product.Price?.Min ?? 0,
@@ -28,7 +28,7 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 			return new User
 			{
 				Id = user.Id,
-				CreatedOn = user.CreatedOn,
+				CreatedAt = user.CreatedAt,
 				FirstName = user.FirstName,
 				SocialId = user.SocialNetworkUserId,
 				Email = user.Email
@@ -40,7 +40,7 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 			return new PriceHistory
 			{
 				Id = productPriceHistory.Id,
-				CreatedOn = productPriceHistory.CreatedOn,
+				CreatedAt = productPriceHistory.CreatedOn,
 				ProductId = productPriceHistory.Product.Id,
 				MinPrice = productPriceHistory.MinPrice,
 				MaxPrice = productPriceHistory.MaxPrice
@@ -52,7 +52,7 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 			return new Models.Onliner.Product
 			{
 				Id = product.Id,
-				CreatedOn = product.CreatedOn,
+				CreatedAt = product.CreatedAt,
 				FullName = product.FullName,
 				Description = product.Description,
 				IsAdded = true,
