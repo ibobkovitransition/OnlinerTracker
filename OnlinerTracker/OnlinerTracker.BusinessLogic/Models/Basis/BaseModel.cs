@@ -9,7 +9,7 @@ namespace OnlinerTracker.BusinessLogic.Models.Basis
 		[JsonProperty("id")]
 		public virtual int Id { get; set; }
 
-		[JsonProperty("createdOn")]
-		public virtual DateTime CreatedOn { get; set; } 
+		[JsonProperty("createdAt")]
+		public virtual DateTime CreatedAt { get; set; } 
 	}
 }

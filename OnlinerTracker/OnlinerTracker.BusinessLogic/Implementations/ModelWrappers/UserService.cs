@@ -34,7 +34,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			entity.UserSettings = entity.UserSettings ?? new UserSettings
 			{
 				Id = userId,
-				CreatedOn = DateTime.Now
+				CreatedAt = DateTime.Now
 			};
 
 			entity.UserSettings.PreferedTime = userInfo.UserSettings?.PreferedTime ?? TimeSpan.Zero;
@@ -52,7 +52,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 				var entity = user.ToEntity();
 				entity.UserSettings = new UserSettings
 				{
-					CreatedOn = DateTime.Now,
+					CreatedAt = DateTime.Now,
 					PreferedTime = TimeSpan.Zero,
 				};
 

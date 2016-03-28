@@ -48,7 +48,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			{
 				unitOfWork.ProductTrackingRepository.Attach(new ProductTracking
 				{
-					CreatedOn = DateTime.Now,
+					CreatedAt = DateTime.Now,
 					UserId = userId,
 					ProductId = productId,
 					Enabled = true
