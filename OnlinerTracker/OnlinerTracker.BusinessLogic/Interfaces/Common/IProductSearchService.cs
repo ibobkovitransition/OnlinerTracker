@@ -1,6 +1,6 @@
-﻿using OnlinerTracker.BusinessLogic.Models;
+﻿using OnlinerTracker.BusinessLogic.Models.Onliner;
 
-namespace OnlinerTracker.BusinessLogic.Interfaces
+namespace OnlinerTracker.BusinessLogic.Interfaces.Common
 {
 	public interface IProductSearchService
 	{

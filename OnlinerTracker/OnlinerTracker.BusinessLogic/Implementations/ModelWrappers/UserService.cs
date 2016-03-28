@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Specialized;
 using OnlinerTracker.BusinessLogic.Extensions;
-using OnlinerTracker.BusinessLogic.Interfaces;
-using OnlinerTracker.BusinessLogic.Models;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
+using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
+using OnlinerTracker.BusinessLogic.Models.User;
 using OnlinerTracker.DataAccess.Interfaces;
 using UserSettings = OnlinerTracker.DataAccess.Enteties.UserSettings;
 
-namespace OnlinerTracker.BusinessLogic.Implementations
+namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 {
 	public class UserService : IUserService
 	{

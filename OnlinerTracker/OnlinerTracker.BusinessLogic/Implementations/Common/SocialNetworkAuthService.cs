@@ -2,10 +2,10 @@
 using System.Linq;
 using OAuth2;
 using System.Collections.Specialized;
-using OnlinerTracker.BusinessLogic.Interfaces;
-using OnlinerTracker.BusinessLogic.Models;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
+using OnlinerTracker.BusinessLogic.Models.User;
 
-namespace OnlinerTracker.BusinessLogic.Implementations
+namespace OnlinerTracker.BusinessLogic.Implementations.Common
 {
 	public class SocialNetworkAuthService : ISocialNetworkAuthService
 	{

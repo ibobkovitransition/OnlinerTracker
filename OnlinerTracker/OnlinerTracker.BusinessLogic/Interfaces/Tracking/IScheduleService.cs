@@ -1,4 +1,4 @@
-﻿namespace OnlinerTracker.BusinessLogic.Interfaces
+﻿namespace OnlinerTracker.BusinessLogic.Interfaces.Tracking
 {
 	public interface IScheduleService
 	{

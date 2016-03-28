@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using OnlinerTracker.BusinessLogic.Extensions;
-using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.BusinessLogic.Models;
 using OnlinerTracker.DataAccess.Interfaces;
 
-namespace OnlinerTracker.BusinessLogic.Implementations
+namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 {
 	public class ProductPriceHistoryService : IProductPriceHistoryService
 	{

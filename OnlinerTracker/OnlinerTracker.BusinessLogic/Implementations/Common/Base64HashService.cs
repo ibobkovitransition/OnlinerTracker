@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
 
-namespace OnlinerTracker.BusinessLogic.Implementations
+namespace OnlinerTracker.BusinessLogic.Implementations.Common
 {
 	public class Base64HashService : IHashService
 	{

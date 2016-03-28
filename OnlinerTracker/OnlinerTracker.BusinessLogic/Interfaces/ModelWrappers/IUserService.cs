@@ -1,7 +1,7 @@
 ﻿using System.Collections.Specialized;
-using OnlinerTracker.BusinessLogic.Models;
+using OnlinerTracker.BusinessLogic.Models.User;
 
-namespace OnlinerTracker.BusinessLogic.Interfaces
+namespace OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers
 {
 	public interface IUserService
 	{

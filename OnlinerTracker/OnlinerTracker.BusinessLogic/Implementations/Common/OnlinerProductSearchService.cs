@@ -2,10 +2,10 @@
 using System.IO;
 using System.Net;
 using Newtonsoft.Json;
-using OnlinerTracker.BusinessLogic.Interfaces;
-using OnlinerTracker.BusinessLogic.Models;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
+using OnlinerTracker.BusinessLogic.Models.Onliner;
 
-namespace OnlinerTracker.BusinessLogic.Implementations
+namespace OnlinerTracker.BusinessLogic.Implementations.Common
 {
 	public class OnlinerProductSearchService : IProductSearchService
 	{

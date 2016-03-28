@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace OnlinerTracker.BusinessLogic.Onliner
+namespace OnlinerTracker.BusinessLogic.Models.Onliner
 {
 	public class SearchResult
 	{

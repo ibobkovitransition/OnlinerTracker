@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Xml.Serialization;
-using OnlinerTracker.BusinessLogic.Interfaces;
-using OnlinerTracker.BusinessLogic.Models;
+using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
+using OnlinerTracker.BusinessLogic.Models.Exchange;
 
-namespace OnlinerTracker.BusinessLogic.Implementations
+namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 {
 	public class CurrencyService : ICurrencyService
 	{

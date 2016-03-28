@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using OnlinerTracker.BusinessLogic.Models;
+using OnlinerTracker.BusinessLogic.Models.Onliner;
 
-namespace OnlinerTracker.BusinessLogic.Interfaces
+namespace OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers
 {
 	public interface IProductTrackingService
 	{

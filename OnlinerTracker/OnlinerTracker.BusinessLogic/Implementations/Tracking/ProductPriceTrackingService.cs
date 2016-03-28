@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
+using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
+using OnlinerTracker.BusinessLogic.Interfaces.Tracking;
 using OnlinerTracker.BusinessLogic.Models;
+using OnlinerTracker.BusinessLogic.Models.Onliner;
 
-namespace OnlinerTracker.BusinessLogic.Implementations
+namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 {
 	public class ProductPriceTrackingService : IPriceTrackingService
 	{

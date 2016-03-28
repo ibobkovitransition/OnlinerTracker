@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using OnlinerTracker.BusinessLogic.Extensions;
-using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Interfaces;
-using Product = OnlinerTracker.BusinessLogic.Models.Product;
+using Product = OnlinerTracker.BusinessLogic.Models.Onliner.Product;
 
-namespace OnlinerTracker.BusinessLogic.Implementations
+namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 {
 	public class ProductTrackingService : IProductTrackingService
 	{
