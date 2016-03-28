@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Xml.Serialization;
 
-namespace OnlinerTracker.BusinessLogic.Models
+namespace OnlinerTracker.BusinessLogic.Models.Exchange
 {
 	[DesignerCategory("code")]
 	[XmlType(AnonymousType = true)]

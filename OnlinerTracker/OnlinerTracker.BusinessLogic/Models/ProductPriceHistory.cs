@@ -1,4 +1,5 @@
 ﻿using System;
+using OnlinerTracker.BusinessLogic.Models.Onliner;
 
 namespace OnlinerTracker.BusinessLogic.Models
 {

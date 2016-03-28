@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace OnlinerTracker.BusinessLogic.Models
+namespace OnlinerTracker.BusinessLogic.Models.Onliner
 {
 	public class Page
 	{

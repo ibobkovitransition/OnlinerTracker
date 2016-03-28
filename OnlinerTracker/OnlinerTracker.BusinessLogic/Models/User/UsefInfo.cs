@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
+using OnlinerTracker.BusinessLogic.Models.Basis;
 
-namespace OnlinerTracker.BusinessLogic.Models
+namespace OnlinerTracker.BusinessLogic.Models.User
 {
-
-	public class UserInfo 
+	public class UserInfo : BaseModel
 	{
 		[JsonProperty("id")]
 		public int Id { get; set; }
