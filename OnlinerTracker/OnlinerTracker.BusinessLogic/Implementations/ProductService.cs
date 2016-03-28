@@ -50,6 +50,15 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			unitOfWork.Commit();
 		}
 
+		public void Update(IEnumerable<Product> products)
+		{
+			foreach (var product in products)
+			{
+				unitOfWork.ProductRepository.Update(product.ToEntity());
+			}
+			unitOfWork.Commit();
+		}
+
 		private void AddIfNotExsists(Product product)
 		{
 			var entry = unitOfWork.ProductRepository.FindBy(x => x.Id == product.Id);

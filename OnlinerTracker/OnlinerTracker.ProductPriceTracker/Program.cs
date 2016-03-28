@@ -9,7 +9,7 @@ namespace OnlinerTracker.ProductPriceTracker
 {
 	public class Program
 	{
-		static void Register(IKernel kernel)
+		static void RegisterBindings(IKernel kernel)
 		{
 			kernel.Bind<Context>().ToSelf().InSingletonScope().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
 
@@ -32,7 +32,7 @@ namespace OnlinerTracker.ProductPriceTracker
 		static void Main(string[] args)
 		{
 			IKernel kernel = new StandardKernel();
-			Register(kernel);
+			RegisterBindings(kernel);
 			kernel.Get<IScheduleService>().Execute();
 		}
 	}

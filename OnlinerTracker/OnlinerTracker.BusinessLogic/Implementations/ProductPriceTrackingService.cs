@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.BusinessLogic.Models;
@@ -11,50 +10,53 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 	{
 		private readonly IProductService productService;
 		private readonly IProductSearchService productSearchService;
+		private readonly List<ProductPriceHistory> result;
 
 		public ProductPriceTrackingService(IProductService productService, IProductSearchService productSearchService)
 		{
 			this.productService = productService;
 			this.productSearchService = productSearchService;
+			result = new List<ProductPriceHistory>();
 		}
 
 		public IEnumerable<ProductPriceHistory> FindChangedPrices()
 		{
 			var products = productService.Get();
-
-			var result = FetchResult(products);
+			FindChanges(products);
 			return result;
 		}
 
-		// косо криво
-		private IEnumerable<ProductPriceHistory> FetchResult(IEnumerable<Product> products)
+		private void FindChanges(IEnumerable<Product> products)
 		{
-			var result = new List<ProductPriceHistory>();
-
 			foreach (var product in products)
 			{
 				var searchResult = productSearchService.Search(product.FullName, 1, 10);
-
-				// TODO: починить  (fetchedProduct.Price?.Min ?? 0) || product.Price.Max != (fetchedProduct.Price?.Max ?? 0)
-				foreach (var fetchedProduct in searchResult.Products.Where(fetchedProduct => product.Id == fetchedProduct.Id))
-				{
-					if (product.Price.Min != (fetchedProduct.Price?.Min ?? 0) || product.Price.Max != (fetchedProduct.Price?.Max ?? 0))
-					{
-						result.Add(new ProductPriceHistory
-						{
-							CreatedOn = DateTime.Now,
-							Product = fetchedProduct,
-							ProductId = fetchedProduct.Id,
-							MinPrice = fetchedProduct.Price.Min,
-							MaxPrice = fetchedProduct.Price.Max
-						});
-					}
-
-					break;
-				}
+				AddToResultIfChanged(product, searchResult.Products.Where(fetchedProduct => product.Id == fetchedProduct.Id));
 			}
+		}
 
-			return result;
+		private void AddToResultIfChanged(Product product, IEnumerable<Product> fetchedProducts)
+		{
+			foreach (var fetchedProduct in fetchedProducts)
+			{
+				if (product.Price.Min != (fetchedProduct.Price?.Min ?? 0) || product.Price.Max != (fetchedProduct.Price?.Max ?? 0))
+				{
+					result.Add(Parse(fetchedProduct));
+				}
+				break;
+			}
+		}
+
+		private ProductPriceHistory Parse(Product product)
+		{
+			return new ProductPriceHistory
+			{
+				CreatedOn = DateTime.Now,
+				Product = product,
+				ProductId = product.Id,
+				MinPrice = product.Price?.Min ?? 0,
+				MaxPrice = product.Price?.Max ?? 0
+			};
 		}
 	}
 }

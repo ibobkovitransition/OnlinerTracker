@@ -14,5 +14,7 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 		void Delete(int productId);
 
 		void Update(Product product);
+
+		void Update(IEnumerable<Product> products);
 	}
 }

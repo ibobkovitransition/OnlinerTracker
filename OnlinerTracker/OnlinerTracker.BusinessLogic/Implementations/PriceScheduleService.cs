@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using FluentScheduler;
-using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.BusinessLogic.Models;
 
@@ -25,29 +23,18 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 		{
 			var result = priceTrackingService.FindChangedPrices();
 			productPriceHistoryService.Add(result);
+			UpdateChanged(result);
+		}
 
-
-			//foreach (var item in result)
-			//{
-			//	var product = item.Product;
-			//	product.Price.Min = item.MinPrice;
-			//	product.Price.Max = item.MaxPrice;
-
-			//	productService.Update(product);
-			//}
-
-			//productService.Update(result.Select(x =>
-			//{
-			//	var temp = x.Product;
-			//	temp.Price.Min = x.MinPrice;
-			//	temp.Price.Max = x.MaxPrice;
-			//	return temp;
-			//}));
-
-			//productPriceHistoryService.Add(result);
-			// add into table
-			// here
-			//throw new Exception();
+		private void UpdateChanged(IEnumerable<ProductPriceHistory> productPriceHistoryList)
+		{
+			productService.Update(productPriceHistoryList.Select(x =>
+			{
+				var product = x.Product;
+				product.Price.Min = x.MinPrice;
+				product.Price.Max = x.MaxPrice;
+				return product;
+			}));
 		}
 	}
 }
