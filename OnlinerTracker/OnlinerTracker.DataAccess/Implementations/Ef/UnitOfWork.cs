@@ -13,18 +13,18 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 
 		public IRepository<ProductTracking> ProductTrackingRepository { get; }
 
-		public IRepository<ProductPriceHistory> ProductPriceHistoryRepository { get; } 
+		public IRepository<PriceHistory> PriceHistoryRepository { get; } 
 
 		private readonly Context context;
 		private bool disposed;
 
-		public UnitOfWork(Context context, IRepository<User> userRepository, IRepository<Product> productRepository, IRepository<ProductTracking> productTrackingRepository, IRepository<ProductPriceHistory> productPriceHistoryRepository)
+		public UnitOfWork(Context context, IRepository<User> userRepository, IRepository<Product> productRepository, IRepository<ProductTracking> productTrackingRepository, IRepository<PriceHistory> priceHistoryRepository)
 		{
 			this.context = context;
 			UserRepository = userRepository;
 			ProductRepository = productRepository;
 			ProductTrackingRepository = productTrackingRepository;
-			ProductPriceHistoryRepository = productPriceHistoryRepository;
+			PriceHistoryRepository = priceHistoryRepository;
 		}
 
 		public void Commit()

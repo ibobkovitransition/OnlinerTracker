@@ -5,6 +5,6 @@ namespace OnlinerTracker.BusinessLogic.Interfaces.Tracking
 {
 	public interface IPriceTrackingService
 	{
-		IEnumerable<ProductPriceHistory> FindChangedPrices();
+		IEnumerable<PriceHistory> FindChangedPrices();
 	}
 }

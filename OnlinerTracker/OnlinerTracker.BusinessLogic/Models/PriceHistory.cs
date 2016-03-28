@@ -3,7 +3,7 @@ using OnlinerTracker.BusinessLogic.Models.Onliner;
 
 namespace OnlinerTracker.BusinessLogic.Models
 {
-	public class ProductPriceHistory
+	public class PriceHistory
 	{
 		public int Id { get; set; }
 

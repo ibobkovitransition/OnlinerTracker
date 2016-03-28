@@ -24,12 +24,12 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public ICollection<ProductTracking> ProductTracking { get; set; }
 
-		public ICollection<ProductPriceHistory> ProductPriceHistory { get; set; }
+		public ICollection<PriceHistory> PriceHistory { get; set; }
 
 		public Product()
 		{
 			ProductTracking = new List<ProductTracking>();
-			ProductPriceHistory = new List<ProductPriceHistory>();
+			PriceHistory = new List<PriceHistory>();
 		}
 	}
 }

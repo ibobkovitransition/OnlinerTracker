@@ -13,16 +13,16 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 	{
 		private readonly IProductService productService;
 		private readonly IProductSearchService productSearchService;
-		private readonly List<ProductPriceHistory> result;
+		private readonly List<PriceHistory> result;
 
 		public ProductPriceTrackingService(IProductService productService, IProductSearchService productSearchService)
 		{
 			this.productService = productService;
 			this.productSearchService = productSearchService;
-			result = new List<ProductPriceHistory>();
+			result = new List<PriceHistory>();
 		}
 
-		public IEnumerable<ProductPriceHistory> FindChangedPrices()
+		public IEnumerable<PriceHistory> FindChangedPrices()
 		{
 			var products = productService.Get();
 			FindChanges(products);
@@ -50,9 +50,9 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 			}
 		}
 
-		private ProductPriceHistory Parse(Product product)
+		private PriceHistory Parse(Product product)
 		{
-			return new ProductPriceHistory
+			return new PriceHistory
 			{
 				CreatedOn = DateTime.Now,
 				Product = product,

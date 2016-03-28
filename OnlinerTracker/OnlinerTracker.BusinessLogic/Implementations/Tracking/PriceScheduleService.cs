@@ -10,10 +10,10 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 	public class PriceScheduleService : IScheduleService, IJob
 	{
 		private readonly IPriceTrackingService priceTrackingService;
-		private readonly IProductPriceHistoryService productPriceHistoryService;
+		private readonly IPriceHistoryService productPriceHistoryService;
 		private readonly IProductService productService;
 
-		public PriceScheduleService(IPriceTrackingService priceTrackingService, IProductPriceHistoryService productPriceHistoryService, IProductService productService)
+		public PriceScheduleService(IPriceTrackingService priceTrackingService, IPriceHistoryService productPriceHistoryService, IProductService productService)
 		{
 			this.priceTrackingService = priceTrackingService;
 			this.productPriceHistoryService = productPriceHistoryService;
@@ -27,7 +27,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 			UpdateChanged(result);
 		}
 
-		private void UpdateChanged(IEnumerable<ProductPriceHistory> productPriceHistoryList)
+		private void UpdateChanged(IEnumerable<PriceHistory> productPriceHistoryList)
 		{
 			productService.Update(productPriceHistoryList.Select(x =>
 			{

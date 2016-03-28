@@ -35,9 +35,9 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 			};
 		}
 
-		public static ProductPriceHistory ToEntity(this Models.ProductPriceHistory productPriceHistory)
+		public static PriceHistory ToEntity(this Models.PriceHistory productPriceHistory)
 		{
-			return new ProductPriceHistory
+			return new PriceHistory
 			{
 				Id = productPriceHistory.Id,
 				CreatedOn = productPriceHistory.CreatedOn,

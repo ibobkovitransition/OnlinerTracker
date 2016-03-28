@@ -85,7 +85,7 @@ namespace OnlinerTracker.Web.App_Start
 			kernel.Bind<IRepository<Product>>().To<Repository<Product>>();
 			kernel.Bind<IRepository<ProductTracking>>().To<Repository<ProductTracking>>();
 			kernel.Bind<IRepository<UserSettings>>().To<Repository<UserSettings>>();
-			kernel.Bind<IRepository<ProductPriceHistory>>().To<Repository<ProductPriceHistory>>();
+			kernel.Bind<IRepository<PriceHistory>>().To<Repository<PriceHistory>>();
 			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 			
 			kernel.Bind<IUserService>().To<UserService>();

@@ -28,9 +28,9 @@ namespace OnlinerTracker.ProductPriceTracker
 
 			kernel.Bind<IProductService>().To<ProductService>();
 			kernel.Bind<IPriceTrackingService>().To<ProductPriceTrackingService>();
-			kernel.Bind<IRepository<ProductPriceHistory>>().To<Repository<ProductPriceHistory>>();
+			kernel.Bind<IRepository<PriceHistory>>().To<Repository<PriceHistory>>();
 			kernel.Bind<IProductSearchService>().To<OnlinerProductSearchService>();
-			kernel.Bind<IProductPriceHistoryService>().To<ProductPriceHistoryService>();
+			kernel.Bind<IPriceHistoryService>().To<ProductPriceHistoryService>();
 		}
 
 		static void Main(string[] args)

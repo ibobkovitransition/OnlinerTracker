@@ -6,7 +6,7 @@ using OnlinerTracker.DataAccess.Interfaces;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 {
-	public class ProductPriceHistoryService : IProductPriceHistoryService
+	public class ProductPriceHistoryService : IPriceHistoryService
 	{
 		private readonly IUnitOfWork unitOfWork;
 
@@ -15,19 +15,19 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			this.unitOfWork = unitOfWork;
 		}
 
-		public void Add(IEnumerable<ProductPriceHistory> productPriceHistoryList)
+		public void Add(IEnumerable<PriceHistory> productPriceHistoryList)
 		{
 			foreach (var productPriceHistory in productPriceHistoryList)
 			{
-				unitOfWork.ProductPriceHistoryRepository.Attach(productPriceHistory.ToEntity());
+				unitOfWork.PriceHistoryRepository.Attach(productPriceHistory.ToEntity());
 			}
 
 			unitOfWork.Commit();
 		}
 
-		public void Add(ProductPriceHistory productPriceHistory)
+		public void Add(PriceHistory productPriceHistory)
 		{
-			unitOfWork.ProductPriceHistoryRepository.Attach(productPriceHistory.ToEntity());
+			unitOfWork.PriceHistoryRepository.Attach(productPriceHistory.ToEntity());
 			unitOfWork.Commit();
 		}
 	}

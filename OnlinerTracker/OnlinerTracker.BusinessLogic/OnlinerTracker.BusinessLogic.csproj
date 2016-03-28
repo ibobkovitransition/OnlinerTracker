@@ -66,7 +66,7 @@
     <Compile Include="Implementations\Tracking\PriceScheduleService.cs" />
     <Compile Include="Interfaces\ModelWrappers\ICurrencyService.cs" />
     <Compile Include="Interfaces\Tracking\IPriceTrackingService.cs" />
-    <Compile Include="Interfaces\ModelWrappers\IProductPriceHistoryService.cs" />
+    <Compile Include="Interfaces\ModelWrappers\IPriceHistoryService.cs" />
     <Compile Include="Interfaces\ModelWrappers\IProductService.cs" />
     <Compile Include="Interfaces\ModelWrappers\IProductTrackingService.cs" />
     <Compile Include="Implementations\Common\OnlinerProductSearchService.cs" />
@@ -84,7 +84,7 @@
     <Compile Include="Models\Onliner\Page.cs" />
     <Compile Include="Models\Onliner\Price.cs" />
     <Compile Include="Models\Onliner\Product.cs" />
-    <Compile Include="Models\ProductPriceHistory.cs" />
+    <Compile Include="Models\PriceHistory.cs" />
     <Compile Include="Models\Onliner\SearchResult.cs" />
     <Compile Include="Models\User\UserSettings.cs" />
     <Compile Include="Models\User\UsefInfo.cs" />
