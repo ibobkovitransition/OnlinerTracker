@@ -27,6 +27,11 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			return result;
 		}
 
+		public IEnumerable<Product> Get()
+		{
+			return unitOfWork.ProductRepository.GetEntities().Select(x => x.ToModel());
+		}
+
 		public void Add(Product product, int userId)
 		{
 			AddIfNotExsists(product);

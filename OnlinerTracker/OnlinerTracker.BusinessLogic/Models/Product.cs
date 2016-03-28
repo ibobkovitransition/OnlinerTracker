@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace OnlinerTracker.BusinessLogic.Models
 {
@@ -6,6 +7,9 @@ namespace OnlinerTracker.BusinessLogic.Models
 	{
 		[JsonProperty("id")]
 		public int Id { get; set; }
+
+		// TODO: ВЫНЕСТИ В /BASIS/BaseModel {id: int, createdOn: datetime}
+		public DateTime CreatedOn { get; set; }
 
 		[JsonProperty("full_name")]
 		public string FullName { get; set; }

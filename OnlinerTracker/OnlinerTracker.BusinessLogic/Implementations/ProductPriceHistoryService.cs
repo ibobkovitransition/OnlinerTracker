@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces;
 using OnlinerTracker.BusinessLogic.Models;
@@ -16,9 +15,14 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 			this.unitOfWork = unitOfWork;
 		}
 
-		public IEnumerable<ProductPriceHistory> Get(int productId)
+		public void Add(IEnumerable<ProductPriceHistory> productPriceHistoryList)
 		{
-			return unitOfWork.ProductPriceHistoryRepository.GetEntities(x => x.ProductId == productId, x => x.Product).Select(x => x.ToModel());
+			foreach (var productPriceHistory in productPriceHistoryList)
+			{
+				unitOfWork.ProductPriceHistoryRepository.Attach(productPriceHistory.ToEntity());
+			}
+
+			unitOfWork.Commit();
 		}
 
 		public void Add(ProductPriceHistory productPriceHistory)

@@ -5,7 +5,7 @@ namespace OnlinerTracker.BusinessLogic.Interfaces
 {
 	public interface IProductPriceHistoryService
 	{
-		IEnumerable<ProductPriceHistory> Get(int productId);
+		void Add(IEnumerable<ProductPriceHistory> productPriceHistoryList);
 
 		void Add(ProductPriceHistory productPriceHistory);
 	}

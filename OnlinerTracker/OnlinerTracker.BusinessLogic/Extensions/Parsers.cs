@@ -42,8 +42,24 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 			{
 				Id = id ?? productPriceHistory.Id,
 				CreatedOn = createdOn ?? DateTime.Now,
-				Product = productPriceHistory.Product.ToEntity(),
-				ProductId = productPriceHistory.Product.Id
+				//Product = productPriceHistory.Product.ToEntity(),
+				ProductId = productPriceHistory.Product.Id,
+				MinPrice = productPriceHistory.MinPrice,
+				MaxPrice = productPriceHistory.MaxPrice
+			};
+		}
+
+		public static Models.Product ToModel(this Product product)
+		{
+			return new Models.Product
+			{
+				Id = product.Id,
+				CreatedOn = product.CreatedOn,
+				FullName = product.FullName,
+				Description = product.Description,
+				IsAdded = true,
+				Image = new Image { Icon = product.IconImageUrl, Header = product.HeaderImageUrl },
+				Price = new Price { Min = product.MinPrice, Max = product.MaxPrice }
 			};
 		}
 
@@ -83,7 +99,8 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 			{
 				CreatedOn = productPriceHistory.CreatedOn,
 				MinPrice = productPriceHistory.MinPrice,
-				MaxPrice = productPriceHistory.MaxPrice
+				MaxPrice = productPriceHistory.MaxPrice,
+				ProductId = productPriceHistory.ProductId
 			};
 		}
 	}

@@ -11,7 +11,22 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 	{
 		public SearchResult Search(string productName, int page, int size)
 		{
-			var request = (HttpWebRequest)WebRequest.Create($"https://catalog.api.onliner.by/search/products?query={productName}&page={page}&limit={size}");
+			var stream = GetResponseStream(productName, page, size);
+			return ParseStream(stream); ;
+		}
+
+		private static SearchResult ParseStream(Stream stream)
+		{
+			var reader = new StreamReader(stream);
+			var result = JsonConvert.DeserializeObject<SearchResult>(reader.ReadToEnd());
+			return result;
+		}
+
+		private static Stream GetResponseStream(string productName, int page, int size)
+		{
+			var request =
+				(HttpWebRequest)
+					WebRequest.Create($"https://catalog.api.onliner.by/search/products?query={productName}&page={page}&limit={size}");
 			request.Method = "GET";
 			request.Accept = "application/json";
 			var response = request.GetResponse();
@@ -22,9 +37,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations
 				throw new ArgumentException("response stream is null");
 			}
 
-			var reader = new StreamReader(stream);
-
-			return JsonConvert.DeserializeObject<SearchResult>(reader.ReadToEnd());
+			return stream;
 		}
 	}
 }

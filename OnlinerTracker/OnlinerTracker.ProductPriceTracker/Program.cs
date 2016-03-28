@@ -22,12 +22,11 @@ namespace OnlinerTracker.ProductPriceTracker
 			kernel.Bind<IProductTrackingService>().To<ProductTrackingService>();
 			kernel.Bind<IScheduleService>().To<PriceScheduleService>();
 
+			kernel.Bind<IProductService>().To<ProductService>();
 			kernel.Bind<IPriceTrackingService>().To<ProductPriceTrackingService>();
 			kernel.Bind<IRepository<ProductPriceHistory>>().To<Repository<ProductPriceHistory>>();
-			//kernel.Bind<IUserNotifyService>().To<UserNotificationService>();
-			//kernel.Bind<INotifyMessageCreatorService>().To<NotifyMessageCreatorService>();
-			//kernel.Bind<IEmailProvider>().To<GoogleEmailProvider>();
 			kernel.Bind<IProductSearchService>().To<OnlinerProductSearchService>();
+			kernel.Bind<IProductPriceHistoryService>().To<ProductPriceHistoryService>();
 		}
 
 		static void Main(string[] args)
