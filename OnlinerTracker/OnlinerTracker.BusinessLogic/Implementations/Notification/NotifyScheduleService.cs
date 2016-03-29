@@ -2,11 +2,11 @@
 using System.Linq;
 using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
-using OnlinerTracker.BusinessLogic.Interfaces.Tracking;
+using OnlinerTracker.BusinessLogic.Interfaces.Notification;
 using OnlinerTracker.BusinessLogic.Models.Notification;
 using OnlinerTracker.DataAccess.Enteties;
 
-namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
+namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 {
 	public class NotifyScheduleService : INotifyScheduleService
 	{

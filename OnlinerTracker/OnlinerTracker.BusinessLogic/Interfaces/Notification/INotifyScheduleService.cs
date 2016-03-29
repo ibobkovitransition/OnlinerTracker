@@ -1,4 +1,4 @@
-﻿namespace OnlinerTracker.BusinessLogic.Interfaces.Tracking
+﻿namespace OnlinerTracker.BusinessLogic.Interfaces.Notification
 {
 	public interface INotifyScheduleService
 	{
