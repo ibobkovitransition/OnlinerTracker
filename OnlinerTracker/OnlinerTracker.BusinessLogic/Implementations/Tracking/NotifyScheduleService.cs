@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.BusinessLogic.Interfaces.Tracking;
 
@@ -15,15 +17,22 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 
 		public void Execute()
 		{
-			var products = productTrackingService.Get()
-				.Where(x => x.Enabled && (x.Decrease || x.Increase));
+			var stuff = (from item in productTrackingService.Get()
+						 where
+							 item.Enabled &&
+							 (item.Decrease || item.Increase) &&
+							 item.Product.PriceHistory.Any()
+						 let lastLog = item.Product.PriceHistory.OrderBy(x => x.CreatedAt).Last()
+						 select new
+						 {
+							 ProductTracking = item,
+							 LastLog = lastLog
+						 }).Where(x => x.ProductTracking.CreatedAt <= x.LastLog.CreatedAt);
 
-			foreach (var product in products)
+			foreach (var item in stuff)
 			{
-				var orderedEnumerable = product.Product.PriceHistory.OrderBy(x => x.Product.PriceHistory);
-			}
 
-			throw new System.NotImplementedException();
+			}
 		}
 	}
 }
