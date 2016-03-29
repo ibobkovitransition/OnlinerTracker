@@ -30,5 +30,21 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			unitOfWork.PriceHistoryRepository.Attach(productPriceHistory.ToEntity());
 			unitOfWork.Commit();
 		}
+
+		public void Update(IEnumerable<PriceHistory> priceHistoryList)
+		{
+			foreach (var productPriceHistory in priceHistoryList)
+			{
+				unitOfWork.PriceHistoryRepository.Update(productPriceHistory.ToEntity());
+			}
+
+			unitOfWork.Commit();
+		}
+
+		public void Update(PriceHistory priceHistory)
+		{
+			unitOfWork.PriceHistoryRepository.Update(priceHistory.ToEntity());
+			unitOfWork.Commit();
+		}
 	}
 }

@@ -5,8 +5,12 @@ namespace OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers
 {
 	public interface IPriceHistoryService
 	{
-		void Add(IEnumerable<PriceHistory> productPriceHistoryList);
+		void Add(IEnumerable<PriceHistory> priceHistoryList);
 
-		void Add(PriceHistory productPriceHistory);
+		void Add(PriceHistory priceHistory);
+
+		void Update(IEnumerable<PriceHistory> priceHistoryList);
+
+		void Update(PriceHistory priceHistory);
 	}
 }

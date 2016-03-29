@@ -54,7 +54,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 		{
 			return new PriceHistory
 			{
-				CreatedOn = DateTime.Now,
+				CreatedAt = DateTime.Now,
 
 				// отдаем продукт с актуальной ценой
 				Product = fetchedProduct,

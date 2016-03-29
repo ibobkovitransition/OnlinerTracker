@@ -11,7 +11,6 @@ namespace OnlinerTracker.BusinessLogic.Models.Notification
 
 		public NotifyResult()
 		{
-			// TODO: FIX THIS SHIT
 			NotifyProducts = new List<NotifyProduct>();
 		}
 	}
