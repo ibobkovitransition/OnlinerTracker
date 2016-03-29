@@ -43,7 +43,7 @@ namespace OnlinerTracker.ProductPriceTracker
 			IKernel kernel = new StandardKernel();
 			RegisterBindings(kernel);
 			kernel.Get<IPriceScheduleService>().Execute();
-			kernel.Get<INotifyScheduleService>().Execute();
+			//kernel.Get<INotifyScheduleService>().Execute();
 		}
 	}
 }

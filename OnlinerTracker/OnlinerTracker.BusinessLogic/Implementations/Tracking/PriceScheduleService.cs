@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using FluentScheduler;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.BusinessLogic.Interfaces.Tracking;
-using OnlinerTracker.BusinessLogic.Models;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 {
@@ -24,18 +22,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 		{
 			var result = priceTrackingService.FindChangedPrices();
 			productPriceHistoryService.Add(result);
-			UpdateChanged(result);
-		}
-
-		private void UpdateChanged(IEnumerable<PriceHistory> productPriceHistoryList)
-		{
-			productService.Update(productPriceHistoryList.Select(x =>
-			{
-				var product = x.Product;
-				product.Price.Min = x.Product.Price?.Min ?? 0;
-				product.Price.Max = x.Product.Price?.Min ?? 0;
-				return product;
-			}));
+			productService.Update(result.Select(x => x.Product));
 		}
 	}
 }

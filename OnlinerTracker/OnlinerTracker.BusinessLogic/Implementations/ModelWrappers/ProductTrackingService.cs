@@ -27,6 +27,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			return productsTracking.Select(x => x.ToModel());
 		}
 
+		// запилить одельную ProductTracking
 		public IEnumerable<ProductTracking> Get()
 		{
 			var productTracking = unitOfWork.ProductTrackingRepository.GetEntities(

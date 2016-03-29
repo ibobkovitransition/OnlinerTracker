@@ -15,15 +15,12 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 
 		public void Execute()
 		{
-			var products = productTrackingService.Get();
+			var products = productTrackingService.Get()
+				.Where(x => x.Enabled && (x.Decrease || x.Increase));
 
 			foreach (var product in products)
 			{
-				if (product.Product.PriceHistory.Any())
-				{
-
-				}
-				
+				var orderedEnumerable = product.Product.PriceHistory.OrderBy(x => x.Product.PriceHistory);
 			}
 
 			throw new System.NotImplementedException();
