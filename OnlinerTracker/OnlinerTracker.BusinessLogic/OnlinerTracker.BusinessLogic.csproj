@@ -82,6 +82,8 @@
     <Compile Include="Models\Basis\BaseModel.cs" />
     <Compile Include="Models\Exchange\Currency.cs" />
     <Compile Include="Models\Exchange\DailyExchangeRates.cs" />
+    <Compile Include="Models\Notification\NotifyProduct.cs" />
+    <Compile Include="Models\Notification\NotifyResult.cs" />
     <Compile Include="Models\Onliner\Image.cs" />
     <Compile Include="Models\Onliner\Page.cs" />
     <Compile Include="Models\Onliner\Price.cs" />
