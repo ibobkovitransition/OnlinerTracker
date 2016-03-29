@@ -12,7 +12,6 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public decimal MaxPrice { get; set; }
 
-		// добавить свойство isNotified
-		// пилить отдельную таблицу пока не вижу смысла. Если нужно будет фиксировать время рассылки и получателей - сделаю
+		public bool Notified { get; set; }
 	}
 }
