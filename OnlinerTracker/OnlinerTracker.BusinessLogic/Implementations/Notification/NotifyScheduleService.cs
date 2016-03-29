@@ -5,6 +5,7 @@ using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.BusinessLogic.Interfaces.Notification;
 using OnlinerTracker.BusinessLogic.Models.Notification;
 using OnlinerTracker.DataAccess.Enteties;
+using PriceHistory = OnlinerTracker.BusinessLogic.Models.PriceHistory;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 {
@@ -12,11 +13,13 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 	{
 		private readonly IProductTrackingService productTrackingService;
 		private readonly INotifyService notifyService;
+		private readonly IPriceHistoryService priceHistoryService;
 
-		public NotifyScheduleService(IProductTrackingService productTrackingService, INotifyService notifyService)
+		public NotifyScheduleService(IProductTrackingService productTrackingService, INotifyService notifyService, IPriceHistoryService priceHistoryService)
 		{
 			this.productTrackingService = productTrackingService;
 			this.notifyService = notifyService;
+			this.priceHistoryService = priceHistoryService;
 		}
 
 		public void Execute()
@@ -53,8 +56,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 				   select new NotifyProduct
 				   {
 					   Product = notifyProduct.Product.ToModel(),
-					   MinPrice = lastLoggedPrice.MinPrice,
-					   MaxPrice = lastLoggedPrice.MaxPrice,
+					   PriceHistory = lastLoggedPrice.ToModel(),
 					   Decrease = notifyProduct.Decrease,
 					   Increase = notifyProduct.Increase
 				   };
@@ -62,7 +64,20 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 
 		private void MarkAsNotifited(IEnumerable<NotifyResult> notifyResults)
 		{
-			// Зову нужный сервис и устанавливаю флаги в true
+			var result = new List<PriceHistory>();
+
+			// с linq нормально не получилось
+			foreach (var notifyResult in notifyResults)
+			{
+				result.AddRange(notifyResult.NotifyProducts.Select(x =>
+				{
+					var temp = x.PriceHistory;
+					temp.Notifited = true;
+					return temp;
+				}));
+			}
+
+			priceHistoryService.Update(result);
 		}
 	}
 }

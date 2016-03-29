@@ -35,15 +35,16 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 			};
 		}
 
-		public static PriceHistory ToEntity(this Models.PriceHistory productPriceHistory)
+		public static PriceHistory ToEntity(this Models.PriceHistory priceHistory)
 		{
 			return new PriceHistory
 			{
-				Id = productPriceHistory.Id,
-				CreatedAt = productPriceHistory.CreatedOn,
-				ProductId = productPriceHistory.Product.Id,
-				MinPrice = productPriceHistory.MinPrice,
-				MaxPrice = productPriceHistory.MaxPrice
+				Id = priceHistory.Id,
+				CreatedAt = priceHistory.CreatedAt,
+				ProductId = priceHistory.Product.Id,
+				MinPrice = priceHistory.MinPrice,
+				MaxPrice = priceHistory.MaxPrice,
+				Notified = priceHistory.Notifited
 			};
 		}
 
@@ -89,6 +90,20 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				Price = new Price { Min = productTracking.Product.MinPrice, Max = productTracking.Product.MaxPrice },
 				Increase = productTracking.Increase,
 				Decrease = productTracking.Decrease
+			};
+		}
+
+		public static Models.PriceHistory ToModel(this PriceHistory priceHistory)
+		{
+			return new Models.PriceHistory
+			{
+				Id = priceHistory.Id,
+				CreatedAt = priceHistory.CreatedAt,
+				ProductId = priceHistory.ProductId,
+				Product = priceHistory.Product.ToModel(),
+				MinPrice = priceHistory.MaxPrice,
+				MaxPrice = priceHistory.MaxPrice,
+				Notifited = priceHistory.Notified
 			};
 		}
 	}

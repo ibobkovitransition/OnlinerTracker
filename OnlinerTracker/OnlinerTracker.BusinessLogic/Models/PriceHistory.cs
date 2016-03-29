@@ -1,14 +1,11 @@
 ﻿using System;
+using OnlinerTracker.BusinessLogic.Models.Basis;
 using OnlinerTracker.BusinessLogic.Models.Onliner;
 
 namespace OnlinerTracker.BusinessLogic.Models
 {
-	public class PriceHistory
+	public class PriceHistory : BaseModel
 	{
-		public int Id { get; set; }
-
-		public DateTime CreatedOn { get; set; }
-
 		public int ProductId { get; set; }
 
 		public Product Product { get; set; }
@@ -16,5 +13,7 @@ namespace OnlinerTracker.BusinessLogic.Models
 		public decimal MinPrice { get; set; }
 
 		public decimal MaxPrice { get; set; }
+
+		public bool Notifited { get; set; }
 	}
 }

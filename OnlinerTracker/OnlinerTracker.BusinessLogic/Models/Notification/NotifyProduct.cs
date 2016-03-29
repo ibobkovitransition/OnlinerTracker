@@ -4,9 +4,7 @@ namespace OnlinerTracker.BusinessLogic.Models.Notification
 {
 	public class NotifyProduct
 	{
-		public decimal MinPrice { get; set; }
-
-		public decimal MaxPrice { get; set; }
+		public PriceHistory PriceHistory { get; set; }
 
 		public bool Increase { get; set; }
 

@@ -24,7 +24,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 			}
 		}
 
-		private static SmtpClient ConfigSmtp(MailAddress @from, string fromPassword)
+		private SmtpClient ConfigSmtp(MailAddress @from, string fromPassword)
 		{
 			var smtp = new SmtpClient
 			{

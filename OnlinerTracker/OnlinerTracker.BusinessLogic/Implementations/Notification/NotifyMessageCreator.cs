@@ -12,25 +12,38 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 
 			foreach (var notifyProduct in notifyResult.NotifyProducts)
 			{
-				// TODO: докрутить increase, decrease
-				builder.Append($"{notifyProduct.Product.FullName}'s has been changed\n");
+				builder.Append($"{notifyProduct.Product.FullName}\n");
 
-				if (notifyProduct.MinPrice != notifyProduct.Product.Price.Min)
+				if (notifyProduct.PriceHistory.MinPrice != notifyProduct.Product.Price.Min)
 				{
-					builder.Append($"Old min {notifyProduct.MinPrice}\n");
-					builder.Append($"New min {notifyProduct.Product.Price.Min}\n");
+					if (notifyProduct.PriceHistory.MinPrice < notifyProduct.Product.Price.Min)
+					{
+						builder.Append($"Min price increased from {notifyProduct.Product.Price.Min} to {notifyProduct.PriceHistory.MinPrice}\n");
+					}
+
+					if (notifyProduct.PriceHistory.MinPrice > notifyProduct.Product.Price.Min)
+					{
+						builder.Append($"Min price decreased from {notifyProduct.PriceHistory.MinPrice} to {notifyProduct.Product.Price.Min}\n");
+					}
 				}
 
-				if (notifyProduct.MaxPrice != notifyProduct.Product.Price.Max)
+				if (notifyProduct.PriceHistory.MaxPrice != notifyProduct.Product.Price.Max)
 				{
-					builder.Append($"Old max {notifyProduct.MaxPrice}\n");
-					builder.Append($"New max {notifyProduct.Product.Price.Max}\n");
+					if (notifyProduct.PriceHistory.MaxPrice < notifyProduct.Product.Price.Max)
+					{
+						builder.Append($"Max price increased from {notifyProduct.Product.Price.Min} to {notifyProduct.PriceHistory.MaxPrice}\n");
+					}
+
+					if (notifyProduct.PriceHistory.MaxPrice > notifyProduct.Product.Price.Max)
+					{
+						builder.Append($"Max price decreased from {notifyProduct.PriceHistory.MaxPrice} to {notifyProduct.Product.Price.Min}\n");
+					}
 				}
-				
+
 				builder.Append('\n');
 			}
 
-			return $"Dear {notifyResult.UserInfo.FirstName}\n{builder}";
+			return $"Dear {notifyResult.UserInfo.FirstName},\n{builder}";
 		}
 	}
 }
