@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
@@ -12,23 +11,22 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 {
 	public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
 	{
-		internal readonly DbSet<TEntity> DbSet;
 		internal readonly Context Context;
 
 		public Repository(Context context)
 		{
 			Context = context;
-			DbSet = context.Set<TEntity>();
 		}
 
 		public IEnumerable<TEntity> GetEntities(Expression<Func<TEntity, bool>> filters = null, params Expression<Func<TEntity, object>>[] includedProperties)
 		{
-			IQueryable<TEntity> query = DbSet;
+			IQueryable<TEntity> query = Context.Set<TEntity>();
 			if (filters != null)
 			{
 				query = query.Where(filters);
 			}
 
+			query = query.AsNoTracking();
 			query = includedProperties.Aggregate(query, (current, property) => current.Include(property)).AsNoTracking();
 
 			return query.AsEnumerable();
@@ -36,28 +34,28 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 
 		public void Attach(TEntity entity)
 		{
-			DbSet.Add(entity);
+			Context.Set<TEntity>().Add(entity);
 		}
 
 		public void Detach(TEntity entity)
 		{
 			if (Context.Entry(entity).State == EntityState.Detached)
 			{
-				DbSet.Attach(entity);
+				Context.Set<TEntity>().Attach(entity);
 			}
 
-			DbSet.Remove(entity);
+			Context.Set<TEntity>().Remove(entity);
 		}
 
 		public void Detach(int id)
 		{
-			var entity = DbSet.Find(id);
+			var entity = Context.Set<TEntity>().Find(id);
 			Detach(entity);
 		}
 
 		public void Update(TEntity entity)
 		{
-			DbSet.AddOrUpdate(entity);
+			Context.Set<TEntity>().AddOrUpdate(entity);
 			//DbSet.Attach(entity);
 			//Context.Entry(entity).State = EntityState.Modified;
 		}
@@ -65,17 +63,19 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 		public void Commit()
 		{
 			Context.SaveChanges();
+			//Context.Set<TEntity>().
 		}
 
 		public TEntity FindBy(Expression<Func<TEntity, bool>> filters = null, params Expression<Func<TEntity, object>>[] includedProperties)
 		{
-			IQueryable<TEntity> query = DbSet;
+			IQueryable<TEntity> query = Context.Set<TEntity>();
 			if (filters != null)
 			{
 				query = query.Where(filters);
 			}
 
-			query = includedProperties.Aggregate(query, (current, property) => current.Include(property)).AsNoTracking();
+			query = query.AsNoTracking();
+			query = includedProperties.Aggregate(query, (current, property) => current.Include(property));
 
 			return query.FirstOrDefault(); 
 		}

@@ -13,41 +13,47 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 	{
 		private readonly IProductService productService;
 		private readonly IProductSearchService productSearchService;
-		private readonly List<PriceHistory> result;
 
 		public ProductPriceTrackingService(IProductService productService, IProductSearchService productSearchService)
 		{
 			this.productService = productService;
 			this.productSearchService = productSearchService;
-			result = new List<PriceHistory>();
 		}
 
 		public IEnumerable<PriceHistory> FindChangedPrices()
 		{
 			var products = productService.Get();
-			FindChanges(products);
-			return result;
+			return FindChanges(products);
 		}
 
-		private void FindChanges(IEnumerable<Product> products)
+		private List<PriceHistory> FindChanges(IEnumerable<Product> products)
 		{
+			var result = new List<PriceHistory>();
+
 			foreach (var product in products)
 			{
 				var searchResult = productSearchService.Search(product.FullName, 1, 10);
-				AddToResultIfChanged(product, searchResult.Products.Where(fetchedProduct => product.Id == fetchedProduct.Id));
+				var entry = GetChanged(product, searchResult.Products.Where(fetchedProduct => product.Id == fetchedProduct.Id));
+				if (entry != null)
+				{
+					result.Add(entry);
+				}
 			}
+
+			return result;
 		}
 
-		private void AddToResultIfChanged(Product product, IEnumerable<Product> fetchedProducts)
+		private PriceHistory GetChanged(Product product, IEnumerable<Product> fetchedProducts)
 		{
 			foreach (var fetchedProduct in fetchedProducts)
 			{
 				if (product.Price.Min != (fetchedProduct.Price?.Min ?? 0) || product.Price.Max != (fetchedProduct.Price?.Max ?? 0))
 				{
-					result.Add(Parse(product, fetchedProduct));
+					return Parse(product, fetchedProduct);
 				}
-				break;
 			}
+
+			return null;
 		}
 
 		private PriceHistory Parse(Product oldProduct, Product fetchedProduct)
