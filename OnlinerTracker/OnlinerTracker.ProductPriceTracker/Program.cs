@@ -33,7 +33,11 @@ namespace OnlinerTracker.ProductPriceTracker
 			kernel.Bind<IRepository<PriceHistory>>().To<Repository<PriceHistory>>();
 			kernel.Bind<IProductSearchService>().To<OnlinerProductSearchService>();
 			kernel.Bind<IPriceHistoryService>().To<ProductPriceHistoryService>();
+
 			kernel.Bind<INotifyScheduleService>().To<NotifyScheduleService>();
+			kernel.Bind<INotifyService>().To<NotifyService>();
+			kernel.Bind<IEmailNotifyService>().To<GmailNotifyService>();
+			kernel.Bind<INotifyMessageCreator>().To<NotifyMessageCreator>();
 		}
 
 		static void Main(string[] args)

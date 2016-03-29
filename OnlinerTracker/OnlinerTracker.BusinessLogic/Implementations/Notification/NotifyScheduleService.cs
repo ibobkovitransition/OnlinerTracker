@@ -11,23 +11,18 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 	public class NotifyScheduleService : INotifyScheduleService
 	{
 		private readonly IProductTrackingService productTrackingService;
+		private readonly INotifyService notifyService;
 
-		public NotifyScheduleService(IProductTrackingService productTrackingService)
+		public NotifyScheduleService(IProductTrackingService productTrackingService, INotifyService notifyService)
 		{
 			this.productTrackingService = productTrackingService;
+			this.notifyService = notifyService;
 		}
 
 		public void Execute()
 		{
 			var notifyResults = NotifyResults().Where(x => x.NotifyProducts.Any());
-
-			foreach (var notifyResult in notifyResults)
-			{
-				// рассылаем письма
-				// кстати, с таким подходом, можно вполне иделать рассылку по времени
-				// таски для рассылки падают в лист и данная рассылка закрывается путем выставления флага Notifited = true
-			}
-
+			notifyService.Notify(notifyResults);
 			MarkAsNotifited(notifyResults);
 		}
 
@@ -59,7 +54,9 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 				   {
 					   Product = notifyProduct.Product.ToModel(),
 					   MinPrice = lastLoggedPrice.MinPrice,
-					   MaxPrice = lastLoggedPrice.MaxPrice
+					   MaxPrice = lastLoggedPrice.MaxPrice,
+					   Decrease = notifyProduct.Decrease,
+					   Increase = notifyProduct.Increase
 				   };
 		}
 

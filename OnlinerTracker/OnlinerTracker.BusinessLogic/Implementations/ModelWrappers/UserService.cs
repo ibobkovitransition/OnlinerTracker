@@ -29,7 +29,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 		public UserInfo GetBySocialId(string socialId)
 		{
 			var user = unitOfWork.UserRepository.FindBy(x => x.SocialId == socialId);
-			return user.ToModel();
+			return user?.ToModel();
 		}
 
 		public void Update(int userId, UserInfo userInfo)
