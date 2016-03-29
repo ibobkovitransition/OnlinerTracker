@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
-using OnlinerTracker.BusinessLogic.Models.Onliner;
+using OnlinerTracker.DataAccess.Enteties;
+using Product = OnlinerTracker.BusinessLogic.Models.Onliner.Product;
 
 namespace OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers
 {
 	public interface IProductTrackingService
 	{
 		IEnumerable<Product> Get(int userId);
+
+		IEnumerable<ProductTracking> Get(); 
 
 		void Increase(int productId, int userId, bool track);
 

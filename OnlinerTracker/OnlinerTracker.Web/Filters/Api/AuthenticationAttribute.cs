@@ -6,7 +6,7 @@ using System.Web.Http;
 using System.Web.Http.Filters;
 using Ninject;
 using OnlinerTracker.BusinessLogic.Interfaces.Common;
-using OnlinerTracker.DataAccess.Interfaces;
+using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 
 namespace OnlinerTracker.Web.Filters.Api
 {
@@ -20,7 +20,7 @@ namespace OnlinerTracker.Web.Filters.Api
 		public IHashService HashService { get; set; }
 
 		[Inject]
-		public IUnitOfWork UnitOfWork { get; set; }
+		public IUserService UserService { get; set; }
 
 		public Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
 		{
@@ -48,7 +48,7 @@ namespace OnlinerTracker.Web.Filters.Api
 			}
 
 			var userId = HashService.Decrypt(entry.Value);
-			var user = UnitOfWork.UserRepository.FindBy(x => x.SocialId == userId);
+			var user = UserService.GetBySocialId(userId);
 
 			if (user == null)
 			{

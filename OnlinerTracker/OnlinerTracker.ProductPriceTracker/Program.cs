@@ -1,9 +1,11 @@
 ﻿using Ninject;
 using OnlinerTracker.BusinessLogic.Implementations.Common;
 using OnlinerTracker.BusinessLogic.Implementations.ModelWrappers;
+using OnlinerTracker.BusinessLogic.Implementations.Notification;
 using OnlinerTracker.BusinessLogic.Implementations.Tracking;
 using OnlinerTracker.BusinessLogic.Interfaces.Common;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
+using OnlinerTracker.BusinessLogic.Interfaces.Notification;
 using OnlinerTracker.BusinessLogic.Interfaces.Tracking;
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Implementations.Ef;
@@ -24,13 +26,18 @@ namespace OnlinerTracker.ProductPriceTracker
 			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 
 			kernel.Bind<IProductTrackingService>().To<ProductTrackingService>();
-			kernel.Bind<IScheduleService>().To<PriceScheduleService>();
+			kernel.Bind<IPriceScheduleService>().To<PriceScheduleService>();
 
 			kernel.Bind<IProductService>().To<ProductService>();
 			kernel.Bind<IPriceTrackingService>().To<ProductPriceTrackingService>();
 			kernel.Bind<IRepository<PriceHistory>>().To<Repository<PriceHistory>>();
 			kernel.Bind<IProductSearchService>().To<OnlinerProductSearchService>();
 			kernel.Bind<IPriceHistoryService>().To<ProductPriceHistoryService>();
+
+			kernel.Bind<INotifyScheduleService>().To<NotifyScheduleService>();
+			kernel.Bind<INotifyService>().To<NotifyService>();
+			kernel.Bind<IEmailNotifyService>().To<GmailNotifyService>();
+			kernel.Bind<INotifyMessageCreator>().To<NotifyMessageCreator>();
 		}
 
 		static void Main(string[] args)
@@ -41,7 +48,8 @@ namespace OnlinerTracker.ProductPriceTracker
 			
 			IKernel kernel = new StandardKernel();
 			RegisterBindings(kernel);
-			kernel.Get<IScheduleService>().Execute();
+			kernel.Get<IPriceScheduleService>().Execute();
+			kernel.Get<INotifyScheduleService>().Execute();
 		}
 	}
 }
