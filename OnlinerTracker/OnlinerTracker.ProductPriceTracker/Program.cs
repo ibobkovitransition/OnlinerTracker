@@ -1,4 +1,6 @@
-﻿using Ninject;
+﻿using System;
+using FluentScheduler;
+using Ninject;
 using OnlinerTracker.BusinessLogic.Implementations.Common;
 using OnlinerTracker.BusinessLogic.Implementations.ModelWrappers;
 using OnlinerTracker.BusinessLogic.Implementations.Notification;
@@ -48,8 +50,14 @@ namespace OnlinerTracker.ProductPriceTracker
 			
 			IKernel kernel = new StandardKernel();
 			RegisterBindings(kernel);
-			kernel.Get<IPriceScheduleService>().Execute();
-			kernel.Get<INotifyScheduleService>().Execute();
+
+			//kernel.Get<IPriceScheduleService>().Execute();
+			//kernel.Get<INotifyScheduleService>().Execute();
+
+			JobManager.Initialize(new ScheduleRegistry(kernel.Get<IPriceScheduleService>(), kernel.Get<INotifyScheduleService>()));
+
+			Console.WriteLine("Press any key to close");
+			Console.ReadKey();
 		}
 	}
 }

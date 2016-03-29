@@ -29,7 +29,7 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 				query = query.Where(filters);
 			}
 
-			query = includedProperties.Aggregate(query, (current, property) => current.Include(property));
+			query = includedProperties.Aggregate(query, (current, property) => current.Include(property)).AsNoTracking();
 
 			return query.AsEnumerable();
 		}
@@ -70,7 +70,7 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 				query = query.Where(filters);
 			}
 
-			query = includedProperties.Aggregate(query, (current, property) => current.Include(property));
+			query = includedProperties.Aggregate(query, (current, property) => current.Include(property)).AsNoTracking();
 
 			return query.FirstOrDefault(); 
 		}

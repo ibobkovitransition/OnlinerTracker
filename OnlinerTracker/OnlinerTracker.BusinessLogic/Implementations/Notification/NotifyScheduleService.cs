@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using FluentScheduler;
 using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.BusinessLogic.Interfaces.Notification;
@@ -9,7 +10,7 @@ using PriceHistory = OnlinerTracker.BusinessLogic.Models.PriceHistory;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 {
-	public class NotifyScheduleService : INotifyScheduleService
+	public class NotifyScheduleService : INotifyScheduleService, IJob
 	{
 		private readonly IProductTrackingService productTrackingService;
 		private readonly INotifyService notifyService;

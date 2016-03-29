@@ -9,6 +9,8 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 		public Context(string connectionName)
 			: base($"name={connectionName}")
 		{
+			Configuration.LazyLoadingEnabled = false;
+			Configuration.ProxyCreationEnabled = false;
 		}
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
