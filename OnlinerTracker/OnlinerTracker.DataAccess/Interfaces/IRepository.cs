@@ -17,6 +17,8 @@ namespace OnlinerTracker.DataAccess.Interfaces
 
 		void Update(TEntity entity);
 
+		void Commit();
+
 		TEntity FindBy(Expression<Func<TEntity, bool>> filters = null, params Expression<Func<TEntity, object>>[] includedProperties);
 	}
 }

@@ -73,7 +73,7 @@ namespace OnlinerTracker.Web.App_Start
 		private static void RegisterServices(IKernel kernel)
 		{
 			kernel.Bind<AuthorizationRoot>().ToSelf();
-			kernel.Bind<Context>().ToSelf().InSingletonScope().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
+			kernel.Bind<Context>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
 
 			kernel.Bind<ISocialNetworkAuthService>().To<SocialNetworkAuthService>();
 			kernel.Bind<ICookieService>().To<CookieService>();
@@ -86,7 +86,6 @@ namespace OnlinerTracker.Web.App_Start
 			kernel.Bind<IRepository<ProductTracking>>().To<Repository<ProductTracking>>();
 			kernel.Bind<IRepository<UserSettings>>().To<Repository<UserSettings>>();
 			kernel.Bind<IRepository<PriceHistory>>().To<Repository<PriceHistory>>();
-			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 			
 			kernel.Bind<IUserService>().To<UserService>();
 			kernel.Bind<IProductTrackingService>().To<ProductTrackingService>();

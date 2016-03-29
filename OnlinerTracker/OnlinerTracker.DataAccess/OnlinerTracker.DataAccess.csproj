@@ -57,9 +57,7 @@
     <Compile Include="Enteties\ProductTracking.cs" />
     <Compile Include="Enteties\UserSettings.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Implementations\Ef\Context.cs" />
-    <Compile Include="Implementations\Ef\UnitOfWork.cs" />
     <Compile Include="Implementations\Ef\Repository.cs" />
     <Compile Include="Enteties\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

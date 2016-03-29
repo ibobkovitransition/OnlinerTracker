@@ -4,6 +4,7 @@ using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces.Common;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.BusinessLogic.Models.User;
+using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Interfaces;
 using UserSettings = OnlinerTracker.DataAccess.Enteties.UserSettings;
 
@@ -11,30 +12,30 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 {
 	public class UserService : IUserService
 	{
-		private readonly IUnitOfWork unitOfWork;
+		private readonly IRepository<User> userRepository;
 		private readonly ISocialNetworkAuthService authService;
 
-		public UserService(IUnitOfWork unitOfWork, ISocialNetworkAuthService authService)
+		public UserService(ISocialNetworkAuthService authService, IRepository<User> userRepository)
 		{
-			this.unitOfWork = unitOfWork;
 			this.authService = authService;
+			this.userRepository = userRepository;
 		}
 
 		public UserInfo Get(int userId)
 		{
-			var user = unitOfWork.UserRepository.FindBy(x => x.Id == userId);
+			var user = userRepository.FindBy(x => x.Id == userId);
 			return user.ToModel();
 		}
 
 		public UserInfo GetBySocialId(string socialId)
 		{
-			var user = unitOfWork.UserRepository.FindBy(x => x.SocialId == socialId);
+			var user = userRepository.FindBy(x => x.SocialId == socialId);
 			return user?.ToModel();
 		}
 
 		public void Update(int userId, UserInfo userInfo)
 		{
-			var entity = unitOfWork.UserRepository.FindBy(x => x.Id == userId, x => x.UserSettings);
+			var entity = userRepository.FindBy(x => x.Id == userId, x => x.UserSettings);
 			entity.Email = userInfo.Email;
 
 			entity.UserSettings = entity.UserSettings ?? new UserSettings
@@ -44,14 +45,14 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			};
 
 			entity.UserSettings.PreferedTime = userInfo.UserSettings?.PreferedTime ?? TimeSpan.Zero;
-			unitOfWork.UserRepository.Update(entity);
-			unitOfWork.Commit();
+			userRepository.Update(entity);
+			userRepository.Commit();
 		}
 
 		public string AddUser(NameValueCollection queryString, string serviceName)
 		{
 			var user = authService.UserInfo(queryString, serviceName);
-			var isExists = unitOfWork.UserRepository.FindBy(x => x.SocialId == user.SocialNetworkUserId) != null;
+			var isExists = userRepository.FindBy(x => x.SocialId == user.SocialNetworkUserId) != null;
 
 			if (!isExists)
 			{
@@ -62,8 +63,8 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 					PreferedTime = TimeSpan.Zero,
 				};
 
-				unitOfWork.UserRepository.Attach(entity);
-				unitOfWork.Commit();
+				userRepository.Attach(entity);
+				userRepository.Commit();
 			}
 
 			return user.SocialNetworkUserId;
