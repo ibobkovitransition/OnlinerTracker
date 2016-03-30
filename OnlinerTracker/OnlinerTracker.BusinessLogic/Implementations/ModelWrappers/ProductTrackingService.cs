@@ -21,28 +21,29 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 
 		public IEnumerable<ProductTracking> Get()
 		{
-			var productTracking = productTrackingRepository.GetEntities(
+			return productTrackingRepository.GetEntities(
 				null,
-				x => x.Product, x => x.User, x => x.Product.PriceHistory);
-
-			return productTracking.Select(x => x.ToModel());
+				x => x.Product, 
+				x => x.User, 
+				x => x.Product.PriceHistory).Select(x => x.ToModel());
 		}
 
 		public IEnumerable<Product> Get(int userId)
 		{
-			var productsTracking = productTrackingRepository.GetEntities(
+			return productTrackingRepository.GetEntities(
 				x => x.UserId == userId,
-				x => x.Product, x => x.User);
-
-			return productsTracking.Select(x => x.ToProduct());
+				x => x.Product, 
+				x => x.User).Select(x => x.ToProduct());
 		}
 
 		public IEnumerable<ProductTracking> Get(IEnumerable<Product> products)
 		{
 			var ids = products.Select(x => x.Id);
-			var productsTracking = productTrackingRepository.GetEntities(x => ids.Contains(x.Id));
 
-			return null;
+			return productTrackingRepository.GetEntities(
+				x => ids.Contains(x.Id),
+				x => x.Product,
+				x => x.User).Select(x => x.ToModel());
 		}
 
 		public void Increase(int productId, int userId, bool track)
@@ -117,8 +118,8 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 
 		private ProductTracking GetTrackedProduct(int productId, int userId)
 		{
-			var temp = productTrackingRepository.FindBy(x => x.ProductId == productId && x.UserId == userId);
-			return temp?.ToModel();
+			return productTrackingRepository.FindBy(
+				x => x.ProductId == productId && x.UserId == userId)?.ToModel();
 		}
 	}
 }
