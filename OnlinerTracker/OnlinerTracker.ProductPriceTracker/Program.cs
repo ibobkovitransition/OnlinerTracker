@@ -47,8 +47,6 @@ namespace OnlinerTracker.ProductPriceTracker
 			IKernel kernel = new StandardKernel();
 			RegisterBindings(kernel);
 
-			//var result = kernel.Get<INotifyResultCreator>().Create();
-
 			JobManager.JobFactory = new JobFactory(kernel);
 			JobManager.Initialize(new ScheduleRegistry());
 

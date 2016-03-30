@@ -1,6 +1,8 @@
-﻿namespace OnlinerTracker.BusinessLogic.Interfaces.Notification
+﻿using FluentScheduler;
+
+namespace OnlinerTracker.BusinessLogic.Interfaces.Notification
 {
-	public interface INotifyScheduleService
+	public interface INotifyScheduleService : IJob
 	{
 		void Execute();
 	}
