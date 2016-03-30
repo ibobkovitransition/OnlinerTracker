@@ -15,7 +15,9 @@ namespace OnlinerTracker.ProductPriceTracker
 			this.notifyScheduleService = notifyScheduleService;
 
 			Schedule(priceScheduleService.Execute).AndThen(notifyScheduleService.Execute)
-				.ToRunNow().AndEvery(1).Minutes();
+				.ToRunNow().AndEvery(30).Seconds();
+
+			//Schedule(priceScheduleService.Execute).ToRunNow().AndEvery(5).Seconds();
 		}
 	}
 }

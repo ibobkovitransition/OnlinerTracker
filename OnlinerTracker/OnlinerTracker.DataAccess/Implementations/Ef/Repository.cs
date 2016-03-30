@@ -16,7 +16,10 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 		public Repository(Context context)
 		{
 			Context = context;
+			Caching = false;
 		}
+
+		public bool Caching { get; set; }
 
 		public IEnumerable<TEntity> GetEntities(Expression<Func<TEntity, bool>> filters = null, params Expression<Func<TEntity, object>>[] includedProperties)
 		{
@@ -26,7 +29,11 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 				query = query.Where(filters);
 			}
 
-			query = query.AsNoTracking();
+			if (!Caching)
+			{
+				query = query.AsNoTracking();
+			}
+
 			query = includedProperties.Aggregate(query, (current, property) => current.Include(property)).AsNoTracking();
 
 			return query.AsEnumerable();
@@ -56,14 +63,11 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 		public void Update(TEntity entity)
 		{
 			Context.Set<TEntity>().AddOrUpdate(entity);
-			//DbSet.Attach(entity);
-			//Context.Entry(entity).State = EntityState.Modified;
 		}
 
 		public void Commit()
 		{
 			Context.SaveChanges();
-			//Context.Set<TEntity>().
 		}
 
 		public TEntity FindBy(Expression<Func<TEntity, bool>> filters = null, params Expression<Func<TEntity, object>>[] includedProperties)
@@ -74,7 +78,11 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 				query = query.Where(filters);
 			}
 
-			query = query.AsNoTracking();
+			if (!Caching)
+			{
+				query = query.AsNoTracking();
+			}
+
 			query = includedProperties.Aggregate(query, (current, property) => current.Include(property));
 
 			return query.FirstOrDefault(); 

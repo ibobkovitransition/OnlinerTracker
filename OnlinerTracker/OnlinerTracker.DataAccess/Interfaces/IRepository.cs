@@ -7,6 +7,8 @@ namespace OnlinerTracker.DataAccess.Interfaces
 {
 	public interface IRepository<TEntity> where TEntity : BaseEntity
 	{
+		bool Caching { get; set; }
+
 		IEnumerable<TEntity> GetEntities(Expression<Func<TEntity, bool>> filters = null, params Expression<Func<TEntity, object>>[] includedProperties);
 
 		void Attach(TEntity entity);

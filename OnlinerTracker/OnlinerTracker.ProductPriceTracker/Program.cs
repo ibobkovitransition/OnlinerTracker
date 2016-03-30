@@ -39,20 +39,15 @@ namespace OnlinerTracker.ProductPriceTracker
 			kernel.Bind<INotifyService>().To<NotifyService>();
 			kernel.Bind<IEmailNotifyService>().To<GmailNotifyService>();
 			kernel.Bind<INotifyMessageCreator>().To<NotifyMessageCreator>();
+			kernel.Bind<INotifyResultCreator>().To<NotifyResultCreator>();
 		}
 
 		static void Main(string[] args)
 		{
-			// TODO: OT.BusinessLogic.Models:
-			// 1 Добавить базовую сущность для моделей
-			// 2 научитить все парсеры нормально работать
-			
 			IKernel kernel = new StandardKernel();
 			RegisterBindings(kernel);
 
-			//kernel.Get<IPriceScheduleService>().Execute();
-			//kernel.Get<INotifyScheduleService>().Execute();
-
+			//var result = kernel.Get<INotifyResultCreator>().Create();
 			JobManager.Initialize(new ScheduleRegistry(kernel.Get<IPriceScheduleService>(), kernel.Get<INotifyScheduleService>()));
 
 			Console.WriteLine("Press any key to close");

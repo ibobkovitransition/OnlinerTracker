@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces.Common;
@@ -57,6 +58,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 
 		public void Update(IEnumerable<Models.Onliner.Product> products)
 		{
+			Debug.WriteLine("Repository # {0}", productRepository.GetHashCode());
 			foreach (var product in products)
 			{
 				productRepository.Update(product.ToEntity());
