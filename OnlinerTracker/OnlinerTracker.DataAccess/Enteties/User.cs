@@ -15,9 +15,12 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public ICollection<ProductTracking> TrackedProducts { get; set; }
 
+		public ICollection<NotifyHistory> NotifyHistories { get; set; }
+
 		public User()
 		{
 			TrackedProducts = new List<ProductTracking>();
+			NotifyHistories = new List<NotifyHistory>();
 		}
 	}
 }

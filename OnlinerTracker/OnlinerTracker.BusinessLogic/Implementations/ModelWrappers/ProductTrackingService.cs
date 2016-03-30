@@ -3,44 +3,54 @@ using System.Collections.Generic;
 using System.Linq;
 using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
+using OnlinerTracker.BusinessLogic.Models;
+using OnlinerTracker.BusinessLogic.Models.Onliner;
 using OnlinerTracker.DataAccess.Interfaces;
-using ProductTracking = OnlinerTracker.DataAccess.Enteties.ProductTracking;
+using EntityProductTracking = OnlinerTracker.DataAccess.Enteties.ProductTracking;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 {
 	public class ProductTrackingService : IProductTrackingService
 	{
-		private readonly IRepository<ProductTracking> productTrackingRepository;
+		private readonly IRepository<EntityProductTracking> productTrackingRepository;
 
-		public ProductTrackingService(IRepository<ProductTracking> productTrackingRepository)
+		public ProductTrackingService(IRepository<EntityProductTracking> productTrackingRepository)
 		{
 			this.productTrackingRepository = productTrackingRepository;
 		}
 
-		public IEnumerable<Models.Onliner.Product> Get(int userId)
-		{
-			var productsTracking = productTrackingRepository.GetEntities(
-				x => x.UserId == userId,
-				x => x.Product, x => x.User);
-
-			return productsTracking.Select(x => x.ToModel());
-		}
-
-		// запилить одельную ProductTracking
 		public IEnumerable<ProductTracking> Get()
 		{
-			var productTracking = productTrackingRepository.GetEntities(
+			return productTrackingRepository.GetEntities(
 				null,
-				x => x.Product, x => x.User, x => x.Product.PriceHistory);
+				x => x.Product, 
+				x => x.User, 
+				x => x.Product.PriceHistory).Select(x => x.ToModel());
+		}
 
-			return productTracking;
+		public IEnumerable<Product> Get(int userId)
+		{
+			return productTrackingRepository.GetEntities(
+				x => x.UserId == userId,
+				x => x.Product, 
+				x => x.User).Select(x => x.ToProduct());
+		}
+
+		public IEnumerable<ProductTracking> Get(IEnumerable<Product> products)
+		{
+			var ids = products.Select(x => x.Id);
+
+			return productTrackingRepository.GetEntities(
+				x => ids.Contains(x.Id),
+				x => x.Product,
+				x => x.User).Select(x => x.ToModel());
 		}
 
 		public void Increase(int productId, int userId, bool track)
 		{
 			var trackedProduct = GetTrackedProduct(productId, userId);
 			trackedProduct.Increase = track;
-			productTrackingRepository.Update(trackedProduct);
+			productTrackingRepository.Update(trackedProduct.ToEntity());
 			productTrackingRepository.Commit();
 		}
 
@@ -48,7 +58,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 		{
 			var trackedProduct = GetTrackedProduct(productId, userId);
 			trackedProduct.Decrease = track;
-			productTrackingRepository.Update(trackedProduct);
+			productTrackingRepository.Update(trackedProduct.ToEntity());
 			productTrackingRepository.Commit();
 		}
 
@@ -58,18 +68,22 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 
 			if (trackedProduct == null)
 			{
-				productTrackingRepository.Attach(new ProductTracking
+				var entity = new ProductTracking
 				{
 					CreatedAt = DateTime.Now,
-					UserId = userId,
+					UserInfoId = userId,
 					ProductId = productId,
-					Enabled = true
-				});
+					Enabled = true,
+					Decrease = true,
+					Increase = true
+				};
+
+				productTrackingRepository.Attach(entity.ToEntity());
 			}
 			else
 			{
 				trackedProduct.Enabled = true;
-				productTrackingRepository.Update(trackedProduct);
+				productTrackingRepository.Update(trackedProduct.ToEntity());
 			}
 
 			productTrackingRepository.Commit();
@@ -85,7 +99,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			}
 
 			trackedProduct.Enabled = false;
-			productTrackingRepository.Update(trackedProduct);
+			productTrackingRepository.Update(trackedProduct.ToEntity());
 			productTrackingRepository.Commit();
 		}
 
@@ -98,13 +112,14 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 				throw new ArgumentException("arguments");
 			}
 
-			productTrackingRepository.Detach(trackedProduct);
+			productTrackingRepository.Detach(trackedProduct.ToEntity());
 			productTrackingRepository.Commit();
 		}
 
 		private ProductTracking GetTrackedProduct(int productId, int userId)
 		{
-			return productTrackingRepository.FindBy(x => x.ProductId == productId && x.UserId == userId);
+			return productTrackingRepository.FindBy(
+				x => x.ProductId == productId && x.UserId == userId)?.ToModel();
 		}
 	}
 }

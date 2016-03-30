@@ -12,7 +12,5 @@ namespace OnlinerTracker.BusinessLogic.Models
 		public decimal MinPrice { get; set; }
 
 		public decimal MaxPrice { get; set; }
-
-		public bool Notifited { get; set; }
 	}
 }

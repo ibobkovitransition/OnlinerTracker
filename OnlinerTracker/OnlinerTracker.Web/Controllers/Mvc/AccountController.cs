@@ -28,7 +28,7 @@ namespace OnlinerTracker.Web.Controllers.Mvc
 				return HttpNotFound();
 			}
 
-			var userId = userService.AddUser(Request.QueryString, socialNetwork);
+			var userId = userService.Create(Request.QueryString, socialNetwork);
 
 			if (userId.IsNullOrWhiteSpace())
 			{

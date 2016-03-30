@@ -6,50 +6,49 @@ using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.BusinessLogic.Models.User;
 using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Interfaces;
-using UserSettings = OnlinerTracker.DataAccess.Enteties.UserSettings;
+using EntityUserSettings = OnlinerTracker.DataAccess.Enteties.UserSettings;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 {
 	public class UserService : IUserService
 	{
 		private readonly IRepository<User> userRepository;
+		private readonly IRepository<EntityUserSettings> userSettingsRepository;
 		private readonly ISocialNetworkAuthService authService;
 
-		public UserService(ISocialNetworkAuthService authService, IRepository<User> userRepository)
+		public UserService(
+			ISocialNetworkAuthService authService, 
+			IRepository<User> userRepository, 
+			IRepository<EntityUserSettings> userSettingsRepository)
 		{
 			this.authService = authService;
 			this.userRepository = userRepository;
+			this.userSettingsRepository = userSettingsRepository;
 		}
 
 		public UserInfo Get(int userId)
 		{
-			var user = userRepository.FindBy(x => x.Id == userId);
-			return user.ToModel();
+			return userRepository.FindBy(
+				x => x.Id == userId).ToModel();
 		}
 
 		public UserInfo GetBySocialId(string socialId)
 		{
-			var user = userRepository.FindBy(x => x.SocialId == socialId);
-			return user?.ToModel();
+			return userRepository.FindBy(
+				x => x.SocialId == socialId,
+				x => x.UserSettings)?.ToModel();
 		}
 
 		public void Update(int userId, UserInfo userInfo)
 		{
 			var entity = userRepository.FindBy(x => x.Id == userId, x => x.UserSettings);
 			entity.Email = userInfo.Email;
-
-			entity.UserSettings = entity.UserSettings ?? new UserSettings
-			{
-				Id = userId,
-				CreatedAt = DateTime.Now
-			};
-
-			entity.UserSettings.PreferedTime = userInfo.UserSettings?.PreferedTime ?? TimeSpan.Zero;
+			UpdateUserSettings(userId, userInfo);
 			userRepository.Update(entity);
 			userRepository.Commit();
 		}
 
-		public string AddUser(NameValueCollection queryString, string serviceName)
+		public string Create(NameValueCollection queryString, string serviceName)
 		{
 			var user = authService.UserInfo(queryString, serviceName);
 			var isExists = userRepository.FindBy(x => x.SocialId == user.SocialNetworkUserId) != null;
@@ -57,7 +56,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			if (!isExists)
 			{
 				var entity = user.ToEntity();
-				entity.UserSettings = new UserSettings
+				entity.UserSettings = new EntityUserSettings
 				{
 					CreatedAt = DateTime.Now,
 					PreferedTime = TimeSpan.Zero,
@@ -68,6 +67,29 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			}
 
 			return user.SocialNetworkUserId;
+		}
+
+		private void UpdateUserSettings(int userId, UserInfo userInfo)
+		{
+			if (userInfo.UserSettings != null)
+			{
+				userSettingsRepository.Update(new EntityUserSettings
+				{
+					Id = userId,
+					User = userInfo.ToEntity(),
+					PreferedTime = userInfo.UserSettings?.PreferedTime ?? TimeSpan.Zero
+				});
+			}
+			else
+			{
+				userSettingsRepository.Attach(new EntityUserSettings
+				{
+					Id = userId,
+					User = userInfo.ToEntity()
+				});
+			}
+
+			userSettingsRepository.Commit();
 		}
 	}
 }
