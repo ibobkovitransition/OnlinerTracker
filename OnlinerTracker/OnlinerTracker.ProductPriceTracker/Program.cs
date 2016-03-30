@@ -48,7 +48,9 @@ namespace OnlinerTracker.ProductPriceTracker
 			RegisterBindings(kernel);
 
 			//var result = kernel.Get<INotifyResultCreator>().Create();
-			JobManager.Initialize(new ScheduleRegistry(kernel.Get<IPriceScheduleService>(), kernel.Get<INotifyScheduleService>()));
+
+			JobManager.JobFactory = new JobFactory(kernel);
+			JobManager.Initialize(new ScheduleRegistry());
 
 			Console.WriteLine("Press any key to close");
 			Console.ReadKey();
