@@ -19,13 +19,12 @@ namespace OnlinerTracker.ProductPriceTracker
 	{
 		static void RegisterBindings(IKernel kernel)
 		{
-			kernel.Bind<Context>().ToSelf().InSingletonScope().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
+			kernel.Bind<Context>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
 
 			kernel.Bind<IRepository<User>>().To<Repository<User>>();
 			kernel.Bind<IRepository<Product>>().To<Repository<Product>>();
 			kernel.Bind<IRepository<ProductTracking>>().To<Repository<ProductTracking>>();
 			kernel.Bind<IRepository<UserSettings>>().To<Repository<UserSettings>>();
-			kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 
 			kernel.Bind<IProductTrackingService>().To<ProductTrackingService>();
 			kernel.Bind<IPriceScheduleService>().To<PriceScheduleService>();
@@ -40,20 +39,15 @@ namespace OnlinerTracker.ProductPriceTracker
 			kernel.Bind<INotifyService>().To<NotifyService>();
 			kernel.Bind<IEmailNotifyService>().To<GmailNotifyService>();
 			kernel.Bind<INotifyMessageCreator>().To<NotifyMessageCreator>();
+			kernel.Bind<INotifyResultCreator>().To<NotifyResultCreator>();
 		}
 
 		static void Main(string[] args)
 		{
-			// TODO: OT.BusinessLogic.Models:
-			// 1 Добавить базовую сущность для моделей
-			// 2 научитить все парсеры нормально работать
-			
 			IKernel kernel = new StandardKernel();
 			RegisterBindings(kernel);
 
-			//kernel.Get<IPriceScheduleService>().Execute();
-			//kernel.Get<INotifyScheduleService>().Execute();
-
+			//var result = kernel.Get<INotifyResultCreator>().Create();
 			JobManager.Initialize(new ScheduleRegistry(kernel.Get<IPriceScheduleService>(), kernel.Get<INotifyScheduleService>()));
 
 			Console.WriteLine("Press any key to close");

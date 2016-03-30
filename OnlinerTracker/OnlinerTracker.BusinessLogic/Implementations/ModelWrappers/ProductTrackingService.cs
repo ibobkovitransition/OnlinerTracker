@@ -3,24 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
-using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Interfaces;
-using Product = OnlinerTracker.BusinessLogic.Models.Onliner.Product;
+using ProductTracking = OnlinerTracker.DataAccess.Enteties.ProductTracking;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 {
 	public class ProductTrackingService : IProductTrackingService
 	{
-		private readonly IUnitOfWork unitOfWork;
+		private readonly IRepository<ProductTracking> productTrackingRepository;
 
-		public ProductTrackingService(IUnitOfWork unitOfWork)
+		public ProductTrackingService(IRepository<ProductTracking> productTrackingRepository)
 		{
-			this.unitOfWork = unitOfWork;
+			this.productTrackingRepository = productTrackingRepository;
 		}
 
-		public IEnumerable<Product> Get(int userId)
+		public IEnumerable<Models.Onliner.Product> Get(int userId)
 		{
-			var productsTracking = unitOfWork.ProductTrackingRepository.GetEntities(
+			var productsTracking = productTrackingRepository.GetEntities(
 				x => x.UserId == userId,
 				x => x.Product, x => x.User);
 
@@ -30,7 +29,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 		// запилить одельную ProductTracking
 		public IEnumerable<ProductTracking> Get()
 		{
-			var productTracking = unitOfWork.ProductTrackingRepository.GetEntities(
+			var productTracking = productTrackingRepository.GetEntities(
 				null,
 				x => x.Product, x => x.User, x => x.Product.PriceHistory);
 
@@ -41,16 +40,16 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 		{
 			var trackedProduct = GetTrackedProduct(productId, userId);
 			trackedProduct.Increase = track;
-			unitOfWork.ProductTrackingRepository.Update(trackedProduct);
-			unitOfWork.Commit();
+			productTrackingRepository.Update(trackedProduct);
+			productTrackingRepository.Commit();
 		}
 
 		public void Decrease(int productId, int userId, bool track)
 		{
 			var trackedProduct = GetTrackedProduct(productId, userId);
 			trackedProduct.Decrease = track;
-			unitOfWork.ProductTrackingRepository.Update(trackedProduct);
-			unitOfWork.Commit();
+			productTrackingRepository.Update(trackedProduct);
+			productTrackingRepository.Commit();
 		}
 
 		public void Track(int productId, int userId)
@@ -59,7 +58,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 
 			if (trackedProduct == null)
 			{
-				unitOfWork.ProductTrackingRepository.Attach(new ProductTracking
+				productTrackingRepository.Attach(new ProductTracking
 				{
 					CreatedAt = DateTime.Now,
 					UserId = userId,
@@ -70,10 +69,10 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			else
 			{
 				trackedProduct.Enabled = true;
-				unitOfWork.ProductTrackingRepository.Update(trackedProduct);
+				productTrackingRepository.Update(trackedProduct);
 			}
 
-			unitOfWork.Commit();
+			productTrackingRepository.Commit();
 		}
 
 		public void Untrack(int productId, int userId)
@@ -86,8 +85,8 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			}
 
 			trackedProduct.Enabled = false;
-			unitOfWork.ProductTrackingRepository.Update(trackedProduct);
-			unitOfWork.Commit();
+			productTrackingRepository.Update(trackedProduct);
+			productTrackingRepository.Commit();
 		}
 
 		public void Remove(int productId, int userId)
@@ -99,13 +98,13 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 				throw new ArgumentException("arguments");
 			}
 
-			unitOfWork.ProductTrackingRepository.Detach(trackedProduct);
-			unitOfWork.Commit();
+			productTrackingRepository.Detach(trackedProduct);
+			productTrackingRepository.Commit();
 		}
 
 		private ProductTracking GetTrackedProduct(int productId, int userId)
 		{
-			return unitOfWork.ProductTrackingRepository.FindBy(x => x.ProductId == productId && x.UserId == userId);
+			return productTrackingRepository.FindBy(x => x.ProductId == productId && x.UserId == userId);
 		}
 	}
 }

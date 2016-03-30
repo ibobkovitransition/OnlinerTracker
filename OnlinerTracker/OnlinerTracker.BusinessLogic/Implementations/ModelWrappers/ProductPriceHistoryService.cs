@@ -1,50 +1,50 @@
 ﻿using System.Collections.Generic;
 using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
-using OnlinerTracker.BusinessLogic.Models;
 using OnlinerTracker.DataAccess.Interfaces;
+using PriceHistory = OnlinerTracker.DataAccess.Enteties.PriceHistory;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 {
 	public class ProductPriceHistoryService : IPriceHistoryService
 	{
-		private readonly IUnitOfWork unitOfWork;
+		private readonly IRepository<PriceHistory> priceHistoryRepository;
 
-		public ProductPriceHistoryService(IUnitOfWork unitOfWork)
+		public ProductPriceHistoryService(IRepository<PriceHistory> priceHistoryRepository)
 		{
-			this.unitOfWork = unitOfWork;
+			this.priceHistoryRepository = priceHistoryRepository;
 		}
 
-		public void Add(IEnumerable<PriceHistory> productPriceHistoryList)
+		public void Add(IEnumerable<Models.PriceHistory> productPriceHistoryList)
 		{
 			foreach (var productPriceHistory in productPriceHistoryList)
 			{
-				unitOfWork.PriceHistoryRepository.Attach(productPriceHistory.ToEntity());
+				priceHistoryRepository.Attach(productPriceHistory.ToEntity());
 			}
 
-			unitOfWork.Commit();
+			priceHistoryRepository.Commit();
 		}
 
-		public void Add(PriceHistory productPriceHistory)
+		public void Add(Models.PriceHistory productPriceHistory)
 		{
-			unitOfWork.PriceHistoryRepository.Attach(productPriceHistory.ToEntity());
-			unitOfWork.Commit();
+			priceHistoryRepository.Attach(productPriceHistory.ToEntity());
+			priceHistoryRepository.Commit();
 		}
 
-		public void Update(IEnumerable<PriceHistory> priceHistoryList)
+		public void Update(IEnumerable<Models.PriceHistory> priceHistoryList)
 		{
 			foreach (var productPriceHistory in priceHistoryList)
 			{
-				unitOfWork.PriceHistoryRepository.Update(productPriceHistory.ToEntity());
+				priceHistoryRepository.Update(productPriceHistory.ToEntity());
 			}
 
-			unitOfWork.Commit();
+			priceHistoryRepository.Commit();
 		}
 
-		public void Update(PriceHistory priceHistory)
+		public void Update(Models.PriceHistory priceHistory)
 		{
-			unitOfWork.PriceHistoryRepository.Update(priceHistory.ToEntity());
-			unitOfWork.Commit();
+			priceHistoryRepository.Update(priceHistory.ToEntity());
+			priceHistoryRepository.Commit();
 		}
 	}
 }

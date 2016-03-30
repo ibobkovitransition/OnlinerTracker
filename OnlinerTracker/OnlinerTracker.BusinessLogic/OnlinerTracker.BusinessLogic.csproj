@@ -62,6 +62,7 @@
     <Compile Include="Implementations\ModelWrappers\ProductPriceHistoryService.cs" />
     <Compile Include="Implementations\Notification\GmailNotifyService.cs" />
     <Compile Include="Implementations\Notification\NotifyMessageCreator.cs" />
+    <Compile Include="Implementations\Notification\NotifyResultCreator.cs" />
     <Compile Include="Implementations\Notification\NotifyScheduleService.cs" />
     <Compile Include="Implementations\Notification\NotifyService.cs" />
     <Compile Include="Implementations\Tracking\ProductPriceTrackingService.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Interfaces\ModelWrappers\ICurrencyService.cs" />
     <Compile Include="Interfaces\Notification\IEmailNotifyService.cs" />
     <Compile Include="Interfaces\Notification\INotifyMessageCreator.cs" />
+    <Compile Include="Interfaces\Notification\INotifyResultCreator.cs" />
     <Compile Include="Interfaces\Notification\INotifyScheduleService.cs" />
     <Compile Include="Interfaces\Notification\INotifyService.cs" />
     <Compile Include="Interfaces\Tracking\IPriceTrackingService.cs" />
