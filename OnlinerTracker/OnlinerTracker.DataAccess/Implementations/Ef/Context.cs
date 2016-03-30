@@ -27,5 +27,7 @@ namespace OnlinerTracker.DataAccess.Implementations.Ef
 		public virtual DbSet<UserSettings> UserSettings { get; set; }
 
 		public virtual DbSet<PriceHistory> ProductPriceHistory { get; set; }
+
+		public virtual DbSet<NotifyHistory> HotifyHistories { get; set; }
 	}
 }

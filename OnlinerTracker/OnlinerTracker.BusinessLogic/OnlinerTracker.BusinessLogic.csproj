@@ -59,6 +59,7 @@
     <Compile Include="Extensions\Parsers.cs" />
     <Compile Include="Implementations\Common\Base64HashService.cs" />
     <Compile Include="Implementations\ModelWrappers\CurrencyService.cs" />
+    <Compile Include="Implementations\ModelWrappers\NotifyHistoryService.cs" />
     <Compile Include="Implementations\ModelWrappers\ProductPriceHistoryService.cs" />
     <Compile Include="Implementations\Notification\GmailNotifyService.cs" />
     <Compile Include="Implementations\Notification\NotifyMessageCreator.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Implementations\ModelWrappers\ProductTrackingService.cs" />
     <Compile Include="Implementations\Tracking\PriceScheduleService.cs" />
     <Compile Include="Interfaces\ModelWrappers\ICurrencyService.cs" />
+    <Compile Include="Interfaces\ModelWrappers\INotifyHistoryService.cs" />
     <Compile Include="Interfaces\Notification\IEmailNotifyService.cs" />
     <Compile Include="Interfaces\Notification\INotifyMessageCreator.cs" />
     <Compile Include="Interfaces\Notification\INotifyResultCreator.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Models\Basis\BaseModel.cs" />
     <Compile Include="Models\Exchange\Currency.cs" />
     <Compile Include="Models\Exchange\DailyExchangeRates.cs" />
+    <Compile Include="Models\Notification\NotifyHistory.cs" />
     <Compile Include="Models\Notification\NotifyProduct.cs" />
     <Compile Include="Models\Notification\NotifyResult.cs" />
     <Compile Include="Models\Onliner\Image.cs" />

@@ -43,8 +43,20 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				CreatedAt = priceHistory.CreatedAt,
 				ProductId = priceHistory.Product.Id,
 				MinPrice = priceHistory.MinPrice,
-				MaxPrice = priceHistory.MaxPrice,
-				Notified = priceHistory.Notifited
+				MaxPrice = priceHistory.MaxPrice
+			};
+		}
+
+		public static NotifyHistory ToEntity(this Models.Notification.NotifyHistory notifyHistory)
+		{
+			return new NotifyHistory
+			{
+				Id = notifyHistory.Id,
+				CreatedAt = notifyHistory.CreatedAt,
+				UserId = notifyHistory.UserId,
+				User = notifyHistory.User,
+				Notifited = notifyHistory.Notifited,
+				SendOn = notifyHistory.SendOn
 			};
 		}
 
@@ -102,8 +114,20 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				ProductId = priceHistory.ProductId,
 				Product = priceHistory.Product.ToModel(),
 				MinPrice = priceHistory.MaxPrice,
-				MaxPrice = priceHistory.MaxPrice,
-				Notifited = priceHistory.Notified
+				MaxPrice = priceHistory.MaxPrice
+			};
+		}
+
+		public static Models.Notification.NotifyHistory ToModel(this NotifyHistory notifyHistory)
+		{
+			return new Models.Notification.NotifyHistory
+			{
+				Id = notifyHistory.Id,
+				CreatedAt = notifyHistory.CreatedAt,
+				UserId = notifyHistory.UserId,
+				User = notifyHistory.User,
+				Notifited = notifyHistory.Notifited,
+				SendOn = notifyHistory.SendOn
 			};
 		}
 	}

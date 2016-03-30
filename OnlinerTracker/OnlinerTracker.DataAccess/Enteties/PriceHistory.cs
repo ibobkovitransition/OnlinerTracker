@@ -11,7 +11,5 @@ namespace OnlinerTracker.DataAccess.Enteties
 		public decimal MinPrice { get; set; }
 
 		public decimal MaxPrice { get; set; }
-
-		public bool Notified { get; set; }
 	}
 }

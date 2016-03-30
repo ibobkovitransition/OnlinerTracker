@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enteties\Basis\BaseEntity.cs" />
+    <Compile Include="Enteties\NotifyHistory.cs" />
     <Compile Include="Enteties\Product.cs" />
     <Compile Include="Enteties\PriceHistory.cs" />
     <Compile Include="Enteties\ProductTracking.cs" />
