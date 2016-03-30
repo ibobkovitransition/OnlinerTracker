@@ -5,7 +5,7 @@ namespace OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers
 {
 	public interface INotifyHistoryService
 	{
-		IEnumerable<NotifyHistory> Get();
+		IEnumerable<NotifyHistory> GetPendingNotifications();
 
 		void Add(NotifyHistory notifyHistory);
 

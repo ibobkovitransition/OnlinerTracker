@@ -25,21 +25,24 @@ namespace OnlinerTracker.ProductPriceTracker
 			kernel.Bind<IRepository<Product>>().To<Repository<Product>>();
 			kernel.Bind<IRepository<ProductTracking>>().To<Repository<ProductTracking>>();
 			kernel.Bind<IRepository<UserSettings>>().To<Repository<UserSettings>>();
+			kernel.Bind<IRepository<NotifyHistory>>().To<Repository<NotifyHistory>>();
 
 			kernel.Bind<IProductTrackingService>().To<ProductTrackingService>();
 			kernel.Bind<IPriceScheduleService>().To<PriceScheduleService>();
 
 			kernel.Bind<IProductService>().To<ProductService>();
-			kernel.Bind<IPriceTrackingService>().To<ProductPriceTrackingService>();
+			kernel.Bind<IPriceTrackingService>().To<PriceTrackingService>();
 			kernel.Bind<IRepository<PriceHistory>>().To<Repository<PriceHistory>>();
 			kernel.Bind<IProductSearchService>().To<OnlinerProductSearchService>();
-			kernel.Bind<IPriceHistoryService>().To<ProductPriceHistoryService>();
+			kernel.Bind<IPriceHistoryService>().To<PriceHistoryService>();
 
 			kernel.Bind<INotifyScheduleService>().To<NotifyScheduleService>();
 			kernel.Bind<INotifyService>().To<NotifyService>();
 			kernel.Bind<IEmailNotifyService>().To<GmailNotifyService>();
 			kernel.Bind<INotifyMessageCreator>().To<NotifyMessageCreator>();
 			kernel.Bind<INotifyResultCreator>().To<NotifyResultCreator>();
+			kernel.Bind<INotifyQueueManager>().To<NotifyQueueManager>();
+			kernel.Bind<INotifyHistoryService>().To<NotifyHistoryService>();
 		}
 
 		static void Main(string[] args)

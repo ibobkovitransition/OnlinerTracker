@@ -7,36 +7,36 @@ using EntityPriceHistory = OnlinerTracker.DataAccess.Enteties.PriceHistory;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 {
-	public class ProductPriceHistoryService : IPriceHistoryService
+	public class PriceHistoryService : IPriceHistoryService
 	{
 		private readonly IRepository<EntityPriceHistory> priceHistoryRepository;
 
-		public ProductPriceHistoryService(IRepository<EntityPriceHistory> priceHistoryRepository)
+		public PriceHistoryService(IRepository<EntityPriceHistory> priceHistoryRepository)
 		{
 			this.priceHistoryRepository = priceHistoryRepository;
 		}
 
-		public void Add(IEnumerable<PriceHistory> productPriceHistoryList)
+		public void Add(IEnumerable<PriceHistory> priceHistoryList)
 		{
-			foreach (var productPriceHistory in productPriceHistoryList)
+			foreach (var priceHistory in priceHistoryList)
 			{
-				priceHistoryRepository.Attach(productPriceHistory.ToEntity());
+				priceHistoryRepository.Attach(priceHistory.ToEntity());
 			}
 
 			priceHistoryRepository.Commit();
 		}
 
-		public void Add(PriceHistory productPriceHistory)
+		public void Add(PriceHistory priceHistory)
 		{
-			priceHistoryRepository.Attach(productPriceHistory.ToEntity());
+			priceHistoryRepository.Attach(priceHistory.ToEntity());
 			priceHistoryRepository.Commit();
 		}
 
 		public void Update(IEnumerable<PriceHistory> priceHistoryList)
 		{
-			foreach (var productPriceHistory in priceHistoryList)
+			foreach (var priceHistory in priceHistoryList)
 			{
-				priceHistoryRepository.Update(productPriceHistory.ToEntity());
+				priceHistoryRepository.Update(priceHistory.ToEntity());
 			}
 
 			priceHistoryRepository.Commit();

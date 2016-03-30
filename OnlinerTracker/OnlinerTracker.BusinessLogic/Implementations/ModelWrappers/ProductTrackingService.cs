@@ -41,7 +41,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			var ids = products.Select(x => x.Id);
 
 			return productTrackingRepository.GetEntities(
-				x => ids.Contains(x.Id),
+				x => ids.Contains(x.ProductId),
 				x => x.Product,
 				x => x.User).Select(x => x.ToModel());
 		}

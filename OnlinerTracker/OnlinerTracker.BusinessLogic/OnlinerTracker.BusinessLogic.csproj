@@ -60,14 +60,14 @@
     <Compile Include="Implementations\Common\Base64HashService.cs" />
     <Compile Include="Implementations\ModelWrappers\CurrencyService.cs" />
     <Compile Include="Implementations\ModelWrappers\NotifyHistoryService.cs" />
-    <Compile Include="Implementations\ModelWrappers\ProductPriceHistoryService.cs" />
+    <Compile Include="Implementations\ModelWrappers\PriceHistoryService.cs" />
     <Compile Include="Implementations\Notification\GmailNotifyService.cs" />
     <Compile Include="Implementations\Notification\NotifyQueueManager.cs" />
     <Compile Include="Implementations\Notification\NotifyMessageCreator.cs" />
     <Compile Include="Implementations\Notification\NotifyResultCreator.cs" />
     <Compile Include="Implementations\Notification\NotifyScheduleService.cs" />
     <Compile Include="Implementations\Notification\NotifyService.cs" />
-    <Compile Include="Implementations\Tracking\ProductPriceTrackingService.cs" />
+    <Compile Include="Implementations\Tracking\PriceTrackingService.cs" />
     <Compile Include="Implementations\ModelWrappers\ProductService.cs" />
     <Compile Include="Implementations\ModelWrappers\ProductTrackingService.cs" />
     <Compile Include="Implementations\Tracking\PriceScheduleService.cs" />

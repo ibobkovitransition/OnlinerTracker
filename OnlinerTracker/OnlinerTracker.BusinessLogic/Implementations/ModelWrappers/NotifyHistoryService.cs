@@ -17,9 +17,11 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			this.notifyHistoryRepository = notifyHistoryRepository;
 		}
 
-		public IEnumerable<NotifyHistory> Get()
+		public IEnumerable<NotifyHistory> GetPendingNotifications()
 		{
-			return notifyHistoryRepository.GetEntities().Select(x => x.ToModel());
+			return notifyHistoryRepository.GetEntities(
+				x => !x.Notifited,
+				x => x.User).Select(x => x.ToModel());
 		}
 
 		public void Add(NotifyHistory notifyHistory)

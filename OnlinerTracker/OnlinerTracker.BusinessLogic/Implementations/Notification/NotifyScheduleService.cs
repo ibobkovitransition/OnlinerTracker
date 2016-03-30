@@ -41,12 +41,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 			// с linq нормально не получилось
 			foreach (var notifyResult in notifyResults)
 			{
-				result.AddRange(notifyResult.NotifyProducts.Select(x =>
-				{
-					var temp = x.PriceHistory;
-					//temp.Notifited = true;
-					return temp;
-				}));
+				result.AddRange(notifyResult.NotifyProducts.Select(x => x.PriceHistory));
 			}
 
 			priceHistoryService.Update(result);

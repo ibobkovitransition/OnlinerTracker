@@ -166,7 +166,7 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				Id = priceHistory.Id,
 				CreatedAt = priceHistory.CreatedAt,
 				ProductId = priceHistory.Product.Id,
-				Product = priceHistory.Product?.ToEntity(),
+				//Product = priceHistory.Product?.ToEntity(),
 				MinPrice = priceHistory.MinPrice,
 				MaxPrice = priceHistory.MaxPrice,
 			};
@@ -196,7 +196,7 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				UserId = notifyHistory.UserInfoId,
 				User = notifyHistory.UserInfo?.ToEntity(),
 				Notifited = notifyHistory.Notifited,
-				SendOn = notifyHistory.SendOn
+				NotifitedAt = notifyHistory.NotifitedAt
 			};
 		}
 
@@ -209,7 +209,7 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				UserInfoId = notifyHistory.UserId,
 				UserInfo = notifyHistory.User?.ToModel(),
 				Notifited = notifyHistory.Notifited,
-				SendOn = notifyHistory.SendOn
+				NotifitedAt = notifyHistory.NotifitedAt
 			};
 		}
 		#endregion

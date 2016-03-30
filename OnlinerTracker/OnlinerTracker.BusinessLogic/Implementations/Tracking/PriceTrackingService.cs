@@ -9,12 +9,12 @@ using OnlinerTracker.BusinessLogic.Models.Onliner;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 {
-	public class ProductPriceTrackingService : IPriceTrackingService
+	public class PriceTrackingService : IPriceTrackingService
 	{
 		private readonly IProductService productService;
 		private readonly IProductSearchService productSearchService;
 
-		public ProductPriceTrackingService(IProductService productService, IProductSearchService productSearchService)
+		public PriceTrackingService(IProductService productService, IProductSearchService productSearchService)
 		{
 			this.productService = productService;
 			this.productSearchService = productSearchService;
