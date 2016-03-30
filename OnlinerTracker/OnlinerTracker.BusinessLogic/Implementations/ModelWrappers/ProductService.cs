@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces.Common;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.BusinessLogic.Models.Onliner;
 using OnlinerTracker.DataAccess.Interfaces;
-using Product = OnlinerTracker.DataAccess.Enteties.Product;
-using ProductTracking = OnlinerTracker.DataAccess.Enteties.ProductTracking;
+using EntityProduct = OnlinerTracker.DataAccess.Enteties.Product;
+using EntityProductTracking = OnlinerTracker.DataAccess.Enteties.ProductTracking;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 {
@@ -15,10 +14,14 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 	{
 		private readonly IProductSearchService productSearchService;
 		private readonly IProductTrackingService productTrackingService;
-		private readonly IRepository<Product> productRepository;
-		private readonly IRepository<ProductTracking> productTrackingRepository;
+		private readonly IRepository<EntityProduct> productRepository;
+		private readonly IRepository<EntityProductTracking> productTrackingRepository;
 
-		public ProductService(IProductSearchService productSearchService, IProductTrackingService productTrackingService, IRepository<Product> productRepository, IRepository<ProductTracking> productTrackingRepository)
+		public ProductService(
+			IProductSearchService productSearchService, 
+			IProductTrackingService productTrackingService, 
+			IRepository<EntityProduct> productRepository, 
+			IRepository<EntityProductTracking> productTrackingRepository)
 		{
 			this.productSearchService = productSearchService;
 			this.productTrackingService = productTrackingService;
@@ -33,12 +36,12 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			return result;
 		}
 
-		public IEnumerable<Models.Onliner.Product> Get()
+		public IEnumerable<Product> Get()
 		{
 			return productRepository.GetEntities().Select(x => x.ToModel());
 		}
 
-		public void Add(Models.Onliner.Product product, int userId)
+		public void Add(Product product, int userId)
 		{
 			AddIfNotExsists(product);
 			productTrackingService.Track(product.Id, userId);
@@ -50,15 +53,14 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			productRepository.Commit();
 		}
 
-		public void Update(Models.Onliner.Product product)
+		public void Update(Product product)
 		{
 			productRepository.Update(product.ToEntity());
 			productRepository.Commit();
 		}
 
-		public void Update(IEnumerable<Models.Onliner.Product> products)
+		public void Update(IEnumerable<Product> products)
 		{
-			Debug.WriteLine("Repository # {0}", productRepository.GetHashCode());
 			foreach (var product in products)
 			{
 				productRepository.Update(product.ToEntity());
@@ -66,7 +68,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			productRepository.Commit();
 		}
 
-		private void AddIfNotExsists(Models.Onliner.Product product)
+		private void AddIfNotExsists(Product product)
 		{
 			var entry = productRepository.FindBy(x => x.Id == product.Id);
 			if (entry == null)
@@ -77,7 +79,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			}
 		}
 
-		private void MarkTrackedProducts(int userId, IEnumerable<Models.Onliner.Product> productsToMark)
+		private void MarkTrackedProducts(int userId, IEnumerable<Product> productsToMark)
 		{
 			var trackedProducts = productTrackingRepository.GetEntities(x => x.UserId == userId);
 

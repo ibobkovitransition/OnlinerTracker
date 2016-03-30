@@ -9,6 +9,8 @@ namespace OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers
 
 		void Add(NotifyHistory notifyHistory);
 
+		void Add(IEnumerable<NotifyHistory> hotNotifyHistories);
+
 		void Update(NotifyHistory notifyHistory);
 
 		void Update(IEnumerable<NotifyHistory> notifyHistories);

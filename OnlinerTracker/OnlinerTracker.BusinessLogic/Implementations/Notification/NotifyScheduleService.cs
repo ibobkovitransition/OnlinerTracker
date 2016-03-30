@@ -44,7 +44,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 				result.AddRange(notifyResult.NotifyProducts.Select(x =>
 				{
 					var temp = x.PriceHistory;
-					temp.Notifited = true;
+					//temp.Notifited = true;
 					return temp;
 				}));
 			}

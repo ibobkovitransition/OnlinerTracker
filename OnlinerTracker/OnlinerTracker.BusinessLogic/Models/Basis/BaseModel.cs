@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 
 namespace OnlinerTracker.BusinessLogic.Models.Basis
 {
-	// сделал для удобства при работе с обертками производными от BaseEntity
 	public abstract class BaseModel
 	{
 		[JsonProperty("id")]

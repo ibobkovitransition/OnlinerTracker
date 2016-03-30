@@ -63,8 +63,8 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 				CreatedAt = DateTime.Now,
 
 				// отдаем продукт с актуальной ценой
-				Product = fetchedProduct,
 				ProductId = fetchedProduct.Id,
+				Product = fetchedProduct,
 
 				// сюда, в свою очередь, пишем старную цену
 				MinPrice = oldProduct.Price?.Min ?? 0,
