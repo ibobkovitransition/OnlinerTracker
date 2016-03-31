@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.BusinessLogic.Models.Notification;
@@ -18,24 +16,15 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			this.notifyHistoryRepository = notifyHistoryRepository;
 		}
 
-		public IEnumerable<NotifyHistory> GetActual()
+		public IEnumerable<EntityNotifyHistory> GetActual()
 		{
 			return notifyHistoryRepository.GetEntities(
 				x => !x.Notifited,
 				x => x.User,
-				x => x.Product).Select(x => x.ToModel());
-		}
-
-		public IEnumerable<EntityNotifyHistory> GetActualByTime(TimeSpan sendOn)
-		{
-			return notifyHistoryRepository.GetEntities(
-				x => !x.Notifited &&
-				x.User.UserSettings.PreferedTime == sendOn,
-				x => x.User,
 				x => x.User.UserSettings,
 				x => x.Product,
-				x => x.Product.PriceHistory,
-				x => x.Product.ProductTracking);
+				x => x.Product.ProductTracking,
+				x => x.Product.PriceHistory);
 		}
 
 		public void Add(IEnumerable<NotifyHistory> notifyHistories)

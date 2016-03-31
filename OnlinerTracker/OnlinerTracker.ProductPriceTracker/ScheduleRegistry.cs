@@ -8,8 +8,8 @@ namespace OnlinerTracker.ProductPriceTracker
 	{
 		public ScheduleRegistry()
 		{
-			Schedule<IPriceScheduleService>().ToRunNow().AndEvery(10).Minutes();
-			Schedule<INotifyScheduleService>().ToRunEvery(30).Seconds();
+			Schedule<IPriceScheduleService>().ToRunNow().AndEvery(3).Minutes();
+			Schedule<INotifyScheduleService>().ToRunNow().AndEvery(10).Minutes();
 		}
 	}
 }

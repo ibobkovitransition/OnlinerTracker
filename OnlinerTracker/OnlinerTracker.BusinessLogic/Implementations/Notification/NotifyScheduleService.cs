@@ -1,5 +1,4 @@
-﻿using System;
-using OnlinerTracker.BusinessLogic.Interfaces.Notification;
+﻿using OnlinerTracker.BusinessLogic.Interfaces.Notification;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 {
@@ -24,19 +23,10 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 		{
 			lock (syncRoot)
 			{
-				var sendOn = CurrentTime;
-				var notifyResults = notifyResultCreator.Create(sendOn);
+				var intervalInMinutes = 10;
+				var notifyResults = notifyResultCreator.Create(intervalInMinutes);
 				notifyService.Notify(notifyResults);
-				notifyQueueManager.MarkAsNotifited(sendOn);
-			}
-		}
-
-		private TimeSpan CurrentTime
-		{
-			get
-			{
-				var now = DateTime.Now.TimeOfDay;
-				return new TimeSpan(now.Ticks - (now.Ticks % 600000000));
+				notifyQueueManager.MarkAsNotifited(intervalInMinutes);
 			}
 		}
 	}

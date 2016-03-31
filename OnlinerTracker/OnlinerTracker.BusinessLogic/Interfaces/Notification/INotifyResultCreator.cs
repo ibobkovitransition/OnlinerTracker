@@ -6,6 +6,6 @@ namespace OnlinerTracker.BusinessLogic.Interfaces.Notification
 {
 	public interface INotifyResultCreator
 	{
-		IEnumerable<NotifyResult> Create(TimeSpan sendOn);
+		IEnumerable<NotifyResult> Create(int intervalInMinutes);
 	}
 }
