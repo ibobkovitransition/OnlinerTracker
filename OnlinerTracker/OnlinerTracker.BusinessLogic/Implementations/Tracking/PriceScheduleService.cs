@@ -29,7 +29,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 				var result = priceTrackingService.FindChangedPrices();
 				priceHistoryService.Add(result);
 				productService.Update(result.Select(x => x.Product));
-				notifyQueueManager.RegisterByProducts(result.Select(x => x.Product));
+				notifyQueueManager.Register(result.Select(x => x.Product));
 			}
 		}
 	}

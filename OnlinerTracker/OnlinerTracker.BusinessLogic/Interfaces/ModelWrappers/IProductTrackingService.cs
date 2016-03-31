@@ -6,11 +6,9 @@ namespace OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers
 {
 	public interface IProductTrackingService
 	{
-		IEnumerable<ProductTracking> Get();
-
 		IEnumerable<Product> Get(int userId);
 
-		IEnumerable<ProductTracking> Get(IEnumerable<Product> products); 
+		IEnumerable<ProductTracking> GetActualByProducts(IEnumerable<Product> product);
 
 		void Increase(int productId, int userId, bool track);
 

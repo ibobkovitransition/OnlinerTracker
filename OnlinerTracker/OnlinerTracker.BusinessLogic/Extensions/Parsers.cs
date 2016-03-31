@@ -195,6 +195,8 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				CreatedAt = notifyHistory.CreatedAt,
 				UserId = notifyHistory.UserInfoId,
 				User = notifyHistory.UserInfo?.ToEntity(),
+				ProductId = notifyHistory.ProductId,
+				Product = notifyHistory.Product?.ToEntity(),
 				Notifited = notifyHistory.Notifited,
 				NotifitedAt = notifyHistory.NotifitedAt
 			};
@@ -208,6 +210,8 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				CreatedAt = notifyHistory.CreatedAt,
 				UserInfoId = notifyHistory.UserId,
 				UserInfo = notifyHistory.User?.ToModel(),
+				ProductId = notifyHistory.ProductId,
+				Product = notifyHistory.Product?.ToModel(),
 				Notifited = notifyHistory.Notifited,
 				NotifitedAt = notifyHistory.NotifitedAt
 			};

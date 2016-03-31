@@ -17,17 +17,12 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			this.notifyHistoryRepository = notifyHistoryRepository;
 		}
 
-		public IEnumerable<NotifyHistory> GetPendingNotifications()
+		public IEnumerable<NotifyHistory> GetActual()
 		{
 			return notifyHistoryRepository.GetEntities(
 				x => !x.Notifited,
-				x => x.User).Select(x => x.ToModel());
-		}
-
-		public void Add(NotifyHistory notifyHistory)
-		{
-			notifyHistoryRepository.Attach(notifyHistory.ToEntity());
-			notifyHistoryRepository.Commit();
+				x => x.User,
+				x => x.Product).Select(x => x.ToModel());
 		}
 
 		public void Add(IEnumerable<NotifyHistory> notifyHistories)
@@ -35,21 +30,6 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			foreach (var notifyHistory in notifyHistories)
 			{
 				notifyHistoryRepository.Attach(notifyHistory.ToEntity());
-			}
-			notifyHistoryRepository.Commit();
-		}
-
-		public void Update(NotifyHistory notifyHistory)
-		{
-			notifyHistoryRepository.Update(notifyHistory.ToEntity());
-			notifyHistoryRepository.Commit();
-		}
-
-		public void Update(IEnumerable<NotifyHistory> notifyHistories)
-		{
-			foreach (var notifyHistory in notifyHistories)
-			{
-				notifyHistoryRepository.Update(notifyHistory.ToEntity());
 			}
 			notifyHistoryRepository.Commit();
 		}

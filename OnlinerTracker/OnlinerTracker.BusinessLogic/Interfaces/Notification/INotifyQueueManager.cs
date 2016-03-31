@@ -5,6 +5,6 @@ namespace OnlinerTracker.BusinessLogic.Interfaces.Notification
 {
 	public interface INotifyQueueManager
 	{
-		void RegisterByProducts(IEnumerable<Product> products);
+		void Register(IEnumerable<Product> products);
 	}
 }

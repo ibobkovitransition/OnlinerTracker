@@ -19,25 +19,23 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 			this.productTrackingService = productTrackingService;
 		}
 
-		public void RegisterByProducts(IEnumerable<Product> products)
+		public void Register(IEnumerable<Product> products)
 		{
-			var userIds = productTrackingService.Get(products)
-				.Where(x => x.Enabled && (x.Increase || x.Decrease))
-				.Select(x => x.UserInfoId)
-				.Distinct();
+			var actualTrackingList = productTrackingService.GetActualByProducts(products);
+			var actualNotifications = notifyHistoryService.GetActual();
 
-			var pendingNotifications = notifyHistoryService.GetPendingNotifications();
+			var result =
+				from tracking in actualTrackingList
+				where !actualNotifications.Any(x => x.UserInfoId == tracking.UserInfoId && x.ProductId == tracking.ProductId)
+				select new NotifyHistory
+				{
+					CreatedAt = DateTime.Now,
+					UserInfoId = tracking.UserInfoId,
+					ProductId = tracking.ProductId,
+					Notifited = false
+				};
 
-			var idsToNotify = userIds.Where(
-				x => !pendingNotifications.Select(
-					c => c.UserInfoId).Contains(x)).Distinct();
-
-			notifyHistoryService.Add(idsToNotify.Select(userId => new NotifyHistory
-			{
-				CreatedAt = DateTime.Now,
-				Notifited = false,
-				UserInfoId = userId
-			}));
+			notifyHistoryService.Add(result);
 		}
 	}
 }
