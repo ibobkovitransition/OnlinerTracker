@@ -1,81 +1,69 @@
 ﻿.form-signin {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
 }
 
 .form-signin-wrapper {
-    margin-top: 35px;
+	margin-top: 35px;
 }
 
-.content-container {
-    padding-left: 30px;
+.checkbox-wrapper {
+	vertical-align: middle !important;
 }
 
-@media (min-width: 1200px) {
-    .container {
-        width: 970px;
-    }
+.btn {
+	border-radius: 0px;
+}
 
-    .item-wrapper {
-        /*cursor: pointer;*/
-        height: 128px;
-        /*background-color: #ff4500;*/
-        margin-bottom: 14px;
-    }
+a {
+	cursor: pointer;
+}
 
-    .item-wrapper > .img-wrapper {
-        text-align: center;
-        position: relative;
-        height: 100%;
-    }
+img {
+	max-width: 100%;
+	max-height: 86px;
+	vertical-align: middle;
+	margin: auto;
+	display: block;
+}
 
-    .item-wrapper > .img-wrapper > input {
-        top: 32px;
-    }
+.row {
+	height: 128px;
+}
 
-    .item-wrapper > img {
-        max-width: 100%;
-        max-height: 128px;
-        vertical-align: middle;
-        margin: auto;
-        display: block;
-    }
+.list-group-item-added {
+	background-color: #F5F5F5;
+}
+
+.list-group-item-tracked {
+	background-color: #E3F0EC;
 }
 
 body {
-    padding-top: 75px;
-    background-color: #F2F2F2;
+	padding-top: 50px;
 }
 
-.list-group > li:hover {
-    background-color: #F0F0F0;
+p {
+	margin: 0 0 2px;
 }
 
-.status-wrapper > label {
-    display: block;
-    text-align: center;
+.ng-invalid {
+	border-color: #ff6347;
 }
 
-.status-wrapper > label > input {
-    display: inline-block;
+.item-hidden-controlls {
+	display: none;
 }
 
-.btn-default, .form-control {
-    border-radius: 0px;
-    background: #FFFFFF;
+.item-wrapper:hover {
+	background-color: #faf6fb;
 }
 
-.navbar-fixed-top {
-    /*background: #DEDEDE;*/
+
+
+.item-wrapper:hover .item-hidden-controlls {
+	display: block
 }
 
-.status-ok {
-    color: green;
-    font-weight: bold;
-}
 
-.status-bad {
-    color: brown;
-    font-weight: bold;
-}

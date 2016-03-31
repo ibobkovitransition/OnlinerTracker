@@ -10,25 +10,29 @@ namespace OnlinerTracker.DataAccess.Enteties
 		[Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
 		public override int Id { get; set; }
 
-		public string Name { get; set; }
-
 		public string FullName { get; set; }
 
 		public string Description { get; set; }
-
-		public string HtmlUrl { get; set; }
 
 		public decimal MinPrice { get; set; }
 
 		public decimal MaxPrice { get; set; }
 
-		public string ImageUrl { get; set; }
+		public string IconImageUrl{ get; set; }
 
-		public ICollection<TrackedProduct> TrackedProducts { get; set; }
+		public string HeaderImageUrl { get; set; }
+
+		public ICollection<ProductTracking> ProductTracking { get; set; }
+
+		public ICollection<PriceHistory> PriceHistory { get; set; }
+
+		public ICollection<NotifyHistory> NotifyHistory { get; set; }
 
 		public Product()
 		{
-			TrackedProducts = new List<TrackedProduct>();
+			ProductTracking = new List<ProductTracking>();
+			PriceHistory = new List<PriceHistory>();
+			NotifyHistory = new List<NotifyHistory>();
 		}
 	}
 }

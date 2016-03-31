@@ -192,16 +192,30 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Styles.css" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="scripts\angular-animate.js" />
+    <Content Include="scripts\angular-animate.min.js" />
+    <Content Include="scripts\angular-cookies.js" />
+    <Content Include="scripts\angular-cookies.min.js" />
     <Content Include="scripts\angular-mocks.js" />
     <Content Include="scripts\angular-resource.js" />
     <Content Include="scripts\angular-resource.min.js" />
     <Content Include="scripts\angular-route.js" />
     <Content Include="scripts\angular-route.min.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="scripts\angular.js" />
-    <Content Include="scripts\angular.min.js" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -211,23 +225,39 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="scripts\angular.min.js" />
+    <Content Include="scripts\angular.min.js.map" />
+    <Content Include="scripts\angular-animate.min.js.map" />
+    <Content Include="scripts\angular-route.min.js.map" />
     <Content Include="scripts\angular-resource.min.js.map" />
-    <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="fonts\fontawesome-webfont.woff2" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.svg" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="scripts\angular-cookies.min.js.map" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="scripts\App\Application.js" />
-    <Content Include="scripts\App\Account\Controllers\AccountCtrl.js" />
-    <Content Include="scripts\App\Account\Views\SignIn.html" />
-    <Content Include="scripts\App\Home\Controllers\SearchCtrl.js" />
-    <Content Include="scripts\App\Home\Views\Search.html" />
+    <Content Include="scripts\app\app.js" />
+    <Content Include="scripts\app\controllers\account\SignInController.js" />
+    <Content Include="scripts\app\controllers\admin\ManageController.js" />
+    <Content Include="scripts\app\controllers\admin\SettingsController.js" />
+    <Content Include="scripts\app\directives\home\infiniteScroll.js" />
+    <Content Include="scripts\app\filters\shared\exchangeFilter.js" />
+    <Content Include="scripts\app\repositories.js" />
+    <Content Include="scripts\app\services\account\AuthService.js" />
+    <Content Include="scripts\app\services\home\ProductSearchService.js" />
+    <Content Include="scripts\app\services\shared\AppInitializeService.js" />
+    <Content Include="scripts\app\services\shared\CurrencyService.js" />
+    <Content Include="scripts\app\services\shared\ProductTrackingService.js" />
+    <Content Include="scripts\app\services\home\ProductUploadService.js" />
+    <Content Include="scripts\app\services\shared\UserInfoService.js" />
+    <Content Include="scripts\app\views\account\signin.html" />
+    <Content Include="scripts\app\controllers\home\SearchController.js" />
+    <Content Include="scripts\app\views\admin\manage.html" />
+    <Content Include="scripts\app\views\admin\settings.html" />
+    <Content Include="scripts\app\views\home\search.html" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\modernizr-2.8.3.js" />
+    <Content Include="scripts\ngStorage.js" />
+    <Content Include="scripts\ngStorage.min.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
@@ -236,23 +266,28 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="App_Start\WebApiFiltersConfig.cs" />
+    <Compile Include="Controllers\Api\ApiControllerBase.cs" />
+    <Compile Include="Controllers\Api\CurrencyController.cs" />
     <Compile Include="Controllers\Api\SearchController.cs" />
-    <Compile Include="Controllers\Api\TrackedProductController.cs" />
+    <Compile Include="Controllers\Api\ProductTrackingController.cs" />
+    <Compile Include="Controllers\Api\UserController.cs" />
     <Compile Include="Controllers\Mvc\AccountController.cs" />
     <Compile Include="Controllers\Mvc\HomeController.cs" />
     <Compile Include="Controllers\Api\AccountController.cs" />
+    <Compile Include="Filters\Api\AuthenticationAttribute.cs" />
+    <Compile Include="Filters\AuthenticationFailureResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Implementations\CookieService.cs" />
+    <Compile Include="Filters\PrincipalUser.cs" />
     <Compile Include="Interaces\ICookieService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="scripts\angular.min.js.map" />
-    <Content Include="scripts\angular-route.min.js.map" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -263,7 +298,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Filters\Mvc\" />
     <Folder Include="Models\" />
+    <Folder Include="scripts\app\services\admin\" />
+    <Folder Include="scripts\app\views\shared\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlinerTracker.BusinessLogic\OnlinerTracker.BusinessLogic.csproj">

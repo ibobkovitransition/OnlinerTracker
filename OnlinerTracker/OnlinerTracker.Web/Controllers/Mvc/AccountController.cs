@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
-using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
+using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.Web.Interaces;
 
 namespace OnlinerTracker.Web.Controllers.Mvc
@@ -19,15 +20,15 @@ namespace OnlinerTracker.Web.Controllers.Mvc
 			this.cookieService = cookieService;
 		}
 
-		[Route("auth/{socNetwork}")]
-		public ActionResult AuthCallBack(string socNetwork)
+		[Route("auth/{socialNetwork}")]
+		public ActionResult AuthCallBack(string socialNetwork)
 		{
-			if (socNetwork.IsNullOrWhiteSpace())
+			if (socialNetwork.IsNullOrWhiteSpace())
 			{
 				return HttpNotFound();
 			}
 
-			var userId = userService.AddUser(Request.QueryString, socNetwork);
+			var userId = userService.Create(Request.QueryString, socialNetwork);
 
 			if (userId.IsNullOrWhiteSpace())
 			{

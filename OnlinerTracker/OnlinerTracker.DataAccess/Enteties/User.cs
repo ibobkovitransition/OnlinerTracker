@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using OnlinerTracker.DataAccess.Enteties.Basis;
 
 namespace OnlinerTracker.DataAccess.Enteties
@@ -10,19 +9,18 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public string SocialId { get; set; }
 
-		public string PhotoUri { get; set; }
-
 		public string Email { get; set; }
 
-		//public UserSettings Settings { get; set; }
+		public UserSettings UserSettings { get; set; }
 
-		//public int SettingsId { get; set; }
+		public ICollection<ProductTracking> ProductTracking { get; set; }
 
-		public ICollection<TrackedProduct> TrackedProducts { get; set; }
+		public ICollection<NotifyHistory> NotifyHistory { get; set; }
 
 		public User()
 		{
-			TrackedProducts = new List<TrackedProduct>();
+			ProductTracking = new List<ProductTracking>();
+			NotifyHistory = new List<NotifyHistory>();
 		}
 	}
 }

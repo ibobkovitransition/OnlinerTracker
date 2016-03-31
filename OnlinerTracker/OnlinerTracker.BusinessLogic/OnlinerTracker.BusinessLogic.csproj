@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentScheduler, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b76503528a14ebd1, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentScheduler.4.0.0\lib\net40\FluentScheduler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -52,34 +56,67 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\Base64HashService.cs" />
-    <Compile Include="Implementations\ProductService.cs" />
-    <Compile Include="Implementations\TrackedProductService.cs" />
-    <Compile Include="Interfaces\IProductService.cs" />
-    <Compile Include="Interfaces\ITrackedProductService.cs" />
-    <Compile Include="Implementations\OnlinerProductSearchService.cs" />
-    <Compile Include="Implementations\UserService.cs" />
-    <Compile Include="Interfaces\IHashService.cs" />
-    <Compile Include="Interfaces\IProductSearchService.cs" />
-    <Compile Include="Interfaces\ISocNetworkAuthService.cs" />
-    <Compile Include="Implementations\SocNetworkAuthService.cs" />
-    <Compile Include="Interfaces\IUserService.cs" />
-    <Compile Include="Models\Image.cs" />
-    <Compile Include="Models\Page.cs" />
-    <Compile Include="Models\Price.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\SearchResult.cs" />
-    <Compile Include="Models\UsefInfo.cs" />
+    <Compile Include="Extensions\Parsers.cs" />
+    <Compile Include="Extensions\EntityUserComparer.cs" />
+    <Compile Include="Implementations\Common\Base64HashService.cs" />
+    <Compile Include="Implementations\ModelWrappers\CurrencyService.cs" />
+    <Compile Include="Implementations\ModelWrappers\NotifyHistoryService.cs" />
+    <Compile Include="Implementations\ModelWrappers\PriceHistoryService.cs" />
+    <Compile Include="Implementations\Notification\GmailNotifyService.cs" />
+    <Compile Include="Implementations\Notification\NotifyQueueManager.cs" />
+    <Compile Include="Implementations\Notification\NotifyMessageCreator.cs" />
+    <Compile Include="Implementations\Notification\NotifyResultCreator.cs" />
+    <Compile Include="Implementations\Notification\NotifyScheduleService.cs" />
+    <Compile Include="Implementations\Notification\NotifyService.cs" />
+    <Compile Include="Implementations\Tracking\PriceTrackingService.cs" />
+    <Compile Include="Implementations\ModelWrappers\ProductService.cs" />
+    <Compile Include="Implementations\ModelWrappers\ProductTrackingService.cs" />
+    <Compile Include="Implementations\Tracking\PriceScheduleService.cs" />
+    <Compile Include="Interfaces\ModelWrappers\ICurrencyService.cs" />
+    <Compile Include="Interfaces\ModelWrappers\INotifyHistoryService.cs" />
+    <Compile Include="Interfaces\Notification\INotifyQueueManager.cs" />
+    <Compile Include="Interfaces\Notification\IEmailNotifyService.cs" />
+    <Compile Include="Interfaces\Notification\INotifyMessageCreator.cs" />
+    <Compile Include="Interfaces\Notification\INotifyResultCreator.cs" />
+    <Compile Include="Interfaces\Notification\INotifyScheduleService.cs" />
+    <Compile Include="Interfaces\Notification\INotifyService.cs" />
+    <Compile Include="Interfaces\Tracking\IPriceTrackingService.cs" />
+    <Compile Include="Interfaces\ModelWrappers\IPriceHistoryService.cs" />
+    <Compile Include="Interfaces\ModelWrappers\IProductService.cs" />
+    <Compile Include="Interfaces\ModelWrappers\IProductTrackingService.cs" />
+    <Compile Include="Implementations\Common\OnlinerProductSearchService.cs" />
+    <Compile Include="Implementations\ModelWrappers\UserService.cs" />
+    <Compile Include="Interfaces\Common\IHashService.cs" />
+    <Compile Include="Interfaces\Common\IProductSearchService.cs" />
+    <Compile Include="Interfaces\Tracking\IPriceScheduleService.cs" />
+    <Compile Include="Interfaces\Common\ISocialNetworkAuthService.cs" />
+    <Compile Include="Implementations\Common\SocialNetworkAuthService.cs" />
+    <Compile Include="Interfaces\ModelWrappers\IUserService.cs" />
+    <Compile Include="Models\Basis\BaseModel.cs" />
+    <Compile Include="Models\Exchange\Currency.cs" />
+    <Compile Include="Models\Exchange\DailyExchangeRates.cs" />
+    <Compile Include="Models\Notification\NotifyHistory.cs" />
+    <Compile Include="Models\Notification\NotifyProduct.cs" />
+    <Compile Include="Models\Notification\NotifyResult.cs" />
+    <Compile Include="Models\Onliner\Image.cs" />
+    <Compile Include="Models\Onliner\Page.cs" />
+    <Compile Include="Models\Onliner\Price.cs" />
+    <Compile Include="Models\Onliner\Product.cs" />
+    <Compile Include="Models\PriceHistory.cs" />
+    <Compile Include="Models\Onliner\SearchResult.cs" />
+    <Compile Include="Models\ProductTracking.cs" />
+    <Compile Include="Models\User\UserSettings.cs" />
+    <Compile Include="Models\User\UsefInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlinerTracker.DataAccess\OnlinerTracker.DataAccess.csproj">
       <Project>{F73A59E1-CC0C-4F02-BBA8-7A8022B2078D}</Project>
       <Name>OnlinerTracker.DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,30 +1,31 @@
 ﻿using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.Ajax.Utilities;
-using OnlinerTracker.BusinessLogic.Interfaces;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
 
 namespace OnlinerTracker.Web.Controllers.Api
 {
-	public class AccountController : ApiController
+	public class AccountController : ApiControllerBase
 	{
-		private readonly ISocNetworkAuthService authService;
+		private readonly ISocialNetworkAuthService authService;
 
-		public AccountController(ISocNetworkAuthService authService)
+		public AccountController(ISocialNetworkAuthService authService)
 		{
 			this.authService = authService;
 		}
 
-		[Route("signin/{socNetwork}")]
+		[AllowAnonymous]
 		[HttpGet]
 		[ResponseType(typeof(string))]
-		public IHttpActionResult AuthUrl(string socNetwork)
+		[Route("signin/{socialNetwork}")]
+		public IHttpActionResult AuthUrl(string socialNetwork)
 		{
-			if (socNetwork.IsNullOrWhiteSpace())
+			if (socialNetwork.IsNullOrWhiteSpace())
 			{
 				return NotFound();
 			}
 
-			return Ok(authService.AuthUrl(socNetwork));
+			return Ok(authService.AuthUrl(socialNetwork));
 		}
 	}
 }
