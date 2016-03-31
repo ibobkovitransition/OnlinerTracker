@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\Parsers.cs" />
+    <Compile Include="Extensions\EntityUserComparer.cs" />
     <Compile Include="Implementations\Common\Base64HashService.cs" />
     <Compile Include="Implementations\ModelWrappers\CurrencyService.cs" />
     <Compile Include="Implementations\ModelWrappers\NotifyHistoryService.cs" />

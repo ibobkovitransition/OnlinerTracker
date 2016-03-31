@@ -81,9 +81,7 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				Id = productTracking.Id,
 				CreatedAt = productTracking.CreatedAt,
 				ProductId = productTracking.ProductId,
-				//Product = productTracking.Product?.ToEntity(),
 				UserId = productTracking.UserInfoId,
-				//User = productTracking.UserInfo?.ToEntity(),
 				Enabled = productTracking.Enabled,
 				Increase = productTracking.Increase,
 				Decrease = productTracking.Decrease
@@ -136,7 +134,6 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 		#endregion
 
 		#region UserSettings
-
 		public static EntityUserSettings ToEntity(this UserSettings settings)
 		{
 			return new EntityUserSettings
@@ -166,7 +163,6 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				Id = priceHistory.Id,
 				CreatedAt = priceHistory.CreatedAt,
 				ProductId = priceHistory.Product.Id,
-				//Product = priceHistory.Product?.ToEntity(),
 				MinPrice = priceHistory.MinPrice,
 				MaxPrice = priceHistory.MaxPrice,
 			};
@@ -194,9 +190,7 @@ namespace OnlinerTracker.BusinessLogic.Extensions
 				Id = notifyHistory.Id,
 				CreatedAt = notifyHistory.CreatedAt,
 				UserId = notifyHistory.UserInfoId,
-				//User = notifyHistory.UserInfo?.ToEntity(),
 				ProductId = notifyHistory.ProductId,
-				//Product = notifyHistory.Product?.ToEntity(),
 				Notifited = notifyHistory.Notifited,
 				NotifitedAt = notifyHistory.NotifitedAt
 			};

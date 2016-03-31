@@ -8,6 +8,6 @@ namespace OnlinerTracker.BusinessLogic.Interfaces.Notification
 	{
 		void Register(IEnumerable<Product> products);
 
-		void MarkAsNotifited(TimeSpan sendedAt);
+		void MarkAsNotifited(int intervalInMinutes);
 	}
 }

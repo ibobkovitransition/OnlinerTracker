@@ -27,7 +27,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 
 			var result =
 				from tracking in actualTrackingList
-				where !actualNotifications.Any(x => x.UserInfoId == tracking.UserInfoId && x.ProductId == tracking.ProductId)
+				where !actualNotifications.Any(x => x.UserId == tracking.UserInfoId && x.ProductId == tracking.ProductId)
 				select new NotifyHistory
 				{
 					CreatedAt = DateTime.Now,
@@ -39,18 +39,31 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 			notifyHistoryService.Add(result);
 		}
 
-		public void MarkAsNotifited(TimeSpan sendedAt)
+		public void MarkAsNotifited(int intervalInMinutes)
 		{
-			var notificationsToMarking = notifyHistoryService.GetActualByTime(sendedAt).Select(x =>
+			var notifications = GetNotificationsByInterval(intervalInMinutes).Select(x =>
 			{
-				var temp = x.ToModel();
+				var temp = x;
 				temp.Notifited = true;
 				temp.NotifitedAt = DateTime.Now;
 				return temp;
 			});
+			notifyHistoryService.Update(notifications);
+		}
 
+		private IEnumerable<NotifyHistory> GetNotificationsByInterval(int intervalInMinutes)
+		{
+			var actual = notifyHistoryService.GetActual();
 
-			notifyHistoryService.Update(notificationsToMarking);
+			return actual.Select(x => x.ToModel()).Where(
+				x =>
+					GetDifference(x.UserInfo.UserSettings.PreferedTime) <= intervalInMinutes &&
+					GetDifference(x.UserInfo.UserSettings.PreferedTime) > 0);
+		}
+
+		private int GetDifference(TimeSpan target)
+		{
+			return (int)DateTime.Now.TimeOfDay.Subtract(target).TotalMinutes;
 		}
 	}
 }
