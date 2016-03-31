@@ -17,7 +17,7 @@ namespace OnlinerTracker.ProductPriceTracker
 {
 	public class Program
 	{
-		static void RegisterBindings(IKernel kernel)
+		private static void RegisterBindings(IKernel kernel)
 		{
 			kernel.Bind<Context>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
 
@@ -45,7 +45,7 @@ namespace OnlinerTracker.ProductPriceTracker
 			kernel.Bind<INotifyHistoryService>().To<NotifyHistoryService>();
 		}
 
-		static void Main(string[] args)
+		private static void Main(string[] args)
 		{
 			IKernel kernel = new StandardKernel();
 			RegisterBindings(kernel);

@@ -9,6 +9,10 @@ namespace OnlinerTracker.DataAccess.Enteties
 
 		public User User { get; set; }
 
+		public int ProductId { get; set; }
+
+		public Product Product { get; set; }
+
 		public bool Notifited { get; set; }
 
 		public DateTime? NotifitedAt { get; set; }

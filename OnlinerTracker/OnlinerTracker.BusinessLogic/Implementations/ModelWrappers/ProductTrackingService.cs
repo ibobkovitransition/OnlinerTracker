@@ -19,31 +19,22 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			this.productTrackingRepository = productTrackingRepository;
 		}
 
-		public IEnumerable<ProductTracking> Get()
-		{
-			return productTrackingRepository.GetEntities(
-				null,
-				x => x.Product, 
-				x => x.User, 
-				x => x.Product.PriceHistory).Select(x => x.ToModel());
-		}
-
 		public IEnumerable<Product> Get(int userId)
 		{
 			return productTrackingRepository.GetEntities(
 				x => x.UserId == userId,
-				x => x.Product, 
+				x => x.Product,
 				x => x.User).Select(x => x.ToProduct());
 		}
 
-		public IEnumerable<ProductTracking> Get(IEnumerable<Product> products)
+		public IEnumerable<ProductTracking> GetActualByProducts(IEnumerable<Product> products)
 		{
-			var ids = products.Select(x => x.Id);
+			var productIds = products.Select(x => x.Id);
 
 			return productTrackingRepository.GetEntities(
-				x => ids.Contains(x.ProductId),
-				x => x.Product,
-				x => x.User).Select(x => x.ToModel());
+				x => x.Enabled &&
+				(x.Increase || x.Decrease) &&
+				productIds.Contains(x.ProductId)).Select(x => x.ToModel());
 		}
 
 		public void Increase(int productId, int userId, bool track)

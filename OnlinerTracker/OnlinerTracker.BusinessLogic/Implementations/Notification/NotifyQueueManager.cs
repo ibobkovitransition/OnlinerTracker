@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.BusinessLogic.Interfaces.Notification;
 using OnlinerTracker.BusinessLogic.Models.Notification;
@@ -19,25 +20,37 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 			this.productTrackingService = productTrackingService;
 		}
 
-		public void RegisterByProducts(IEnumerable<Product> products)
+		public void Register(IEnumerable<Product> products)
 		{
-			var userIds = productTrackingService.Get(products)
-				.Where(x => x.Enabled && (x.Increase || x.Decrease))
-				.Select(x => x.UserInfoId)
-				.Distinct();
+			var actualTrackingList = productTrackingService.GetActualByProducts(products);
+			var actualNotifications = notifyHistoryService.GetActual();
 
-			var pendingNotifications = notifyHistoryService.GetPendingNotifications();
+			var result =
+				from tracking in actualTrackingList
+				where !actualNotifications.Any(x => x.UserInfoId == tracking.UserInfoId && x.ProductId == tracking.ProductId)
+				select new NotifyHistory
+				{
+					CreatedAt = DateTime.Now,
+					UserInfoId = tracking.UserInfoId,
+					ProductId = tracking.ProductId,
+					Notifited = false
+				};
 
-			var idsToNotify = userIds.Where(
-				x => !pendingNotifications.Select(
-					c => c.UserInfoId).Contains(x)).Distinct();
+			notifyHistoryService.Add(result);
+		}
 
-			notifyHistoryService.Add(idsToNotify.Select(userId => new NotifyHistory
+		public void MarkAsNotifited(TimeSpan sendedAt)
+		{
+			var notificationsToMarking = notifyHistoryService.GetActualByTime(sendedAt).Select(x =>
 			{
-				CreatedAt = DateTime.Now,
-				Notifited = false,
-				UserInfoId = userId
-			}));
+				var temp = x.ToModel();
+				temp.Notifited = true;
+				temp.NotifitedAt = DateTime.Now;
+				return temp;
+			});
+
+
+			notifyHistoryService.Update(notificationsToMarking);
 		}
 	}
 }

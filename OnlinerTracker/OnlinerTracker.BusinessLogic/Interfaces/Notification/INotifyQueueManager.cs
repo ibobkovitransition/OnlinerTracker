@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using OnlinerTracker.BusinessLogic.Models.Onliner;
 
 namespace OnlinerTracker.BusinessLogic.Interfaces.Notification
 {
 	public interface INotifyQueueManager
 	{
-		void RegisterByProducts(IEnumerable<Product> products);
+		void Register(IEnumerable<Product> products);
+
+		void MarkAsNotifited(TimeSpan sendedAt);
 	}
 }
