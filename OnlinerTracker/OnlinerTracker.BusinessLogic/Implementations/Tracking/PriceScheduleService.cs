@@ -14,7 +14,11 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 
 		private readonly object syncRoot = new object();
 
-		public PriceScheduleService(IPriceTrackingService priceTrackingService, IPriceHistoryService priceHistoryService, IProductService productService, INotifyQueueManager notifyQueueManager)
+		public PriceScheduleService(
+			IPriceTrackingService priceTrackingService, 
+			IPriceHistoryService priceHistoryService, 
+			IProductService productService, 
+			INotifyQueueManager notifyQueueManager)
 		{
 			this.priceTrackingService = priceTrackingService;
 			this.priceHistoryService = priceHistoryService;

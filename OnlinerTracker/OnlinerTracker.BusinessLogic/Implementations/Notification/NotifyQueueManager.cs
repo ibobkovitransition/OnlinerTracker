@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using OnlinerTracker.BusinessLogic.Extensions;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.BusinessLogic.Interfaces.Notification;
 using OnlinerTracker.BusinessLogic.Models.Notification;
@@ -36,6 +37,20 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 				};
 
 			notifyHistoryService.Add(result);
+		}
+
+		public void MarkAsNotifited(TimeSpan sendedAt)
+		{
+			var notificationsToMarking = notifyHistoryService.GetActualByTime(sendedAt).Select(x =>
+			{
+				var temp = x.ToModel();
+				temp.Notifited = true;
+				temp.NotifitedAt = DateTime.Now;
+				return temp;
+			});
+
+
+			notifyHistoryService.Update(notificationsToMarking);
 		}
 	}
 }

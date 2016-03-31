@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using OnlinerTracker.BusinessLogic.Models.Onliner;
 
 namespace OnlinerTracker.BusinessLogic.Interfaces.Notification
@@ -6,5 +7,7 @@ namespace OnlinerTracker.BusinessLogic.Interfaces.Notification
 	public interface INotifyQueueManager
 	{
 		void Register(IEnumerable<Product> products);
+
+		void MarkAsNotifited(TimeSpan sendedAt);
 	}
 }

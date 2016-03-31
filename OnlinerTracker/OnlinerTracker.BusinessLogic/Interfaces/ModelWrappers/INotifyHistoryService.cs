@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using OnlinerTracker.BusinessLogic.Models.Notification;
+using EntityNotifyHistory = OnlinerTracker.DataAccess.Enteties.NotifyHistory;
 
 namespace OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers
 {
@@ -7,6 +9,10 @@ namespace OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers
 	{
 		IEnumerable<NotifyHistory> GetActual();
 
-		void Add(IEnumerable<NotifyHistory> hotNotifyHistories);
+		IEnumerable<EntityNotifyHistory> GetActualByTime(TimeSpan sendOn); 
+
+		void Add(IEnumerable<NotifyHistory> notifyHistories);
+
+		void Update(IEnumerable<NotifyHistory> notifyHistories);
 	}
 }

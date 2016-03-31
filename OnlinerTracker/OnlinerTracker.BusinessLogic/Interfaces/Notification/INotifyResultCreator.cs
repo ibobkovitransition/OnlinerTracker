@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using OnlinerTracker.BusinessLogic.Models.Notification;
 
 namespace OnlinerTracker.BusinessLogic.Interfaces.Notification
 {
 	public interface INotifyResultCreator
 	{
-		IEnumerable<NotifyResult> Create();
+		IEnumerable<NotifyResult> Create(TimeSpan sendOn);
 	}
 }
