@@ -2,6 +2,6 @@
 {
 	public interface INotificator
 	{
-		void Notify(string message);
+		void Notify(string connectionId, string message);
 	}
 }

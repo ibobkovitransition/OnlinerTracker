@@ -41,6 +41,11 @@ main.constant("VIEW_URLS", {
 	SETTINGS: "/scripts/app/views/admin/settings.html"
 });
 
+main.constant("COOKIE_KEYS", {
+	USER_ID: "onliner_tracker",
+	USER_CONNECTION_ID: "onliner_tracker_connection_id"
+});
+
 // https://github.com/mgechev/angularjs-style-guide/blob/master/README-ru-ru.md
 // TODO: будет время - сделать https://github.com/angular-ui/ui-router
 

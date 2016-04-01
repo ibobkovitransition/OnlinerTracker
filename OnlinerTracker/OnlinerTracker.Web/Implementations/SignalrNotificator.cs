@@ -6,11 +6,10 @@ namespace OnlinerTracker.Web.Implementations
 {
 	public class SignalrNotificator : INotificator
 	{
-		public void Notify(string message)
+		public void Notify(string connectionId, string message)
 		{
 			var context = GlobalHost.ConnectionManager.GetConnectionContext<SignalrContext>();
-			// TODO: научить уведомлять по id подключения
-			context.Connection.Broadcast(message);
+			context.Connection.Send(connectionId, message);
 		}
 	}
 }
