@@ -39,11 +39,11 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 				x => x.UserSettings)?.ToModel();
 		}
 
-		public void Update(int userId, UserInfo userInfo)
+		public void Update(UserInfo userInfo)
 		{
-			var entity = userRepository.FindBy(x => x.Id == userId, x => x.UserSettings);
+			var entity = userRepository.FindBy(x => x.Id == userInfo.Id, x => x.UserSettings);
 			entity.Email = userInfo.Email;
-			UpdateUserSettings(userId, userInfo);
+			UpdateUserSettings(userInfo);
 			userRepository.Update(entity);
 			userRepository.Commit();
 		}
@@ -69,13 +69,13 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			return user.SocialNetworkUserId;
 		}
 
-		private void UpdateUserSettings(int userId, UserInfo userInfo)
+		private void UpdateUserSettings(UserInfo userInfo)
 		{
 			if (userInfo.UserSettings != null)
 			{
 				userSettingsRepository.Update(new EntityUserSettings
 				{
-					Id = userId,
+					Id = userInfo.Id,
 					User = userInfo.ToEntity(),
 					PreferedTime = userInfo.UserSettings?.PreferedTime ?? TimeSpan.Zero
 				});
@@ -84,7 +84,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 			{
 				userSettingsRepository.Attach(new EntityUserSettings
 				{
-					Id = userId,
+					Id = userInfo.Id,
 					User = userInfo.ToEntity()
 				});
 			}

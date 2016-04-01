@@ -16,22 +16,22 @@ namespace OnlinerTracker.Web.Controllers.Api
 
 		[HttpGet]
 		[ResponseType(typeof(UserInfo))]
-		[Route("user/info")]
+		[Route("user")]
 		public IHttpActionResult UserInfo()
 		{
 			return Ok(userService.Get(PrincipalUser.Id));
 		}
 
 		[HttpPut]
-		[Route("user/update/{id:int:min(0)}")]
-		public IHttpActionResult Update(int id, UserInfo userInfo)
+		[Route("user")]
+		public IHttpActionResult Update(UserInfo userInfo)
 		{
-			if (id != PrincipalUser.Id)
+			if (userInfo.Id != PrincipalUser.Id)
 			{
 				return BadRequest("Wrong user id");
 			}
 
-			userService.Update(id, userInfo);
+			userService.Update(userInfo);
 			return Ok();
 		}
 	}

@@ -23,8 +23,8 @@ main.constant("ROUTES", {
 main.constant("URLS", {
 	SIGN_IN: "/signin/",
 	SEARCH_PRODUCTS: "/search/products/",
-	USER_INFO: "/user/info",
-	USER_UPDATE: "/user/update/",
+	USER_INFO: "/user/",
+	USER_UPDATE: "/user/",
 	CURRENCY: "/currency",
 	PRODUCT_TRACKING: "/tracking/products",
 	TRACK: "/tracking/start",
