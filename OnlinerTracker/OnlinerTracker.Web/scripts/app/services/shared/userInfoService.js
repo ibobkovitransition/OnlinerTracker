@@ -22,7 +22,7 @@
 		entity.settings.prefered_time = $filter("date")(userInfo.settings.prefered_time, "HH:mm");
 		entity.settings.selected_currency = userInfo.settings.selected_currency.CharCode;
 
-		$http.put(URLS.USER_UPDATE + userInfo.id, entity).then(function () {
+		$http.put(URLS.USER_UPDATE, entity).then(function () {
 			$log.error("User info update (success)");
 		}, function (response) {
 			$log.error("User info update (rejected)", response);
