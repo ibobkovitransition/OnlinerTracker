@@ -23,8 +23,8 @@ main.constant("ROUTES", {
 main.constant("URLS", {
 	SIGN_IN: "/signin/",
 	SEARCH_PRODUCTS: "/search/products/",
-	USER_INFO: "/user/info",
-	USER_UPDATE: "/user/update/",
+	USER_INFO: "/user/",
+	USER_UPDATE: "/user/",
 	CURRENCY: "/currency",
 	PRODUCT_TRACKING: "/tracking/products",
 	TRACK: "/tracking/start",
@@ -39,6 +39,11 @@ main.constant("VIEW_URLS", {
 	SEARCH: "/scripts/app/views/home/search.html",
 	ADMIN: "/scripts/app/views/admin/manage.html",
 	SETTINGS: "/scripts/app/views/admin/settings.html"
+});
+
+main.constant("COOKIE_KEYS", {
+	USER_ID: "onliner_tracker",
+	USER_CONNECTION_ID: "onliner_tracker_connection_id"
 });
 
 // https://github.com/mgechev/angularjs-style-guide/blob/master/README-ru-ru.md
@@ -65,6 +70,7 @@ main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
 	});
 });
 
-main.run(function (AppInitializeService) {
+main.run(function (AppInitializeService, SignalrService) {
 	AppInitializeService.init();
+	SignalrService.init();
 });

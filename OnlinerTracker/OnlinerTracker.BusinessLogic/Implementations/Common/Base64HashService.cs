@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using OAuth2.Infrastructure;
 using OnlinerTracker.BusinessLogic.Interfaces.Common;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.Common
@@ -14,6 +15,11 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Common
 
 		public string Decrypt(string content)
 		{
+			if (string.IsNullOrEmpty(content))
+			{
+				return null;
+			}
+
 			var bytes = Convert.FromBase64String(content);
 			return Encoding.UTF8.GetString(bytes);
 		}

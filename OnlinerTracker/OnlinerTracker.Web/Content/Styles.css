@@ -60,10 +60,13 @@ p {
 	background-color: #faf6fb;
 }
 
-
-
-.item-wrapper:hover .item-hidden-controlls {
-	display: block
+.static-alert-left-bottom {
+	position: fixed;
+	width: 210px;
+	bottom: 15px;
+	left: 45px;
 }
 
-
+.item-wrapper:hover .item-hidden-controlls {
+	display: block;
+}

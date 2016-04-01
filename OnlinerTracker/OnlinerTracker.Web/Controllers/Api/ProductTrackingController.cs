@@ -4,6 +4,7 @@ using System.Web.Http.Description;
 using OnlinerTracker.BusinessLogic.Interfaces.ModelWrappers;
 using OnlinerTracker.BusinessLogic.Models.Onliner;
 using OnlinerTracker.Web.Filters.Api;
+using OnlinerTracker.Web.Interaces;
 
 namespace OnlinerTracker.Web.Controllers.Api
 {
@@ -12,11 +13,16 @@ namespace OnlinerTracker.Web.Controllers.Api
 	{
 		private readonly IProductTrackingService trackingProductService;
 		private readonly IProductService productService;
+		private readonly INotificator notificator;
 
-		public ProductTrackingController(IProductTrackingService trackingProductService, IProductService productService)
+		public ProductTrackingController(
+			IProductTrackingService trackingProductService, 
+			IProductService productService, 
+			INotificator notificator)
 		{
 			this.trackingProductService = trackingProductService;
 			this.productService = productService;
+			this.notificator = notificator;
 		}
 
 		// положу что бы не потерять
@@ -36,6 +42,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 		public IHttpActionResult Track(int id, Product product)
 		{
 			productService.Add(product, PrincipalUser.Id);
+			notificator.Notify(PrincipalUser.ConnectionId, "Tracking started");
 			return Ok();
 		}
 
@@ -44,6 +51,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 		public IHttpActionResult Untrack(int id)
 		{
 			trackingProductService.Untrack(id, PrincipalUser.Id);
+			notificator.Notify(PrincipalUser.ConnectionId, "Tracking stopped");
 			return Ok();
 		}
 
@@ -52,6 +60,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 		public IHttpActionResult Remove(int id)
 		{
 			trackingProductService.Remove(id, PrincipalUser.Id);
+			notificator.Notify(PrincipalUser.ConnectionId, "Deleted");
 			return Ok();
 		}
 
@@ -60,6 +69,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 		public IHttpActionResult TrackIncrease(int id, Product product)
 		{
 			trackingProductService.Increase(id, PrincipalUser.Id, product.Increase);
+			notificator.Notify(PrincipalUser.ConnectionId, "Done");
 			return Ok();
 		}
 
@@ -68,6 +78,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 		public IHttpActionResult TrackDecrease(int id, Product product)
 		{
 			trackingProductService.Decrease(id, PrincipalUser.Id, product.Decrease);
+			notificator.Notify(PrincipalUser.ConnectionId, "Done");
 			return Ok();
 		}
 	}

@@ -6,19 +6,22 @@
 
 <html ng-app="OnlinerTracker">
 <head>
-	<meta name="viewport" content="width=device-width"/>
-
-	@* TODO: переисать под JQLITE *@
-	@Scripts.Render("~/bundles/jquery")
-	@Scripts.Render("~/bundles/angular")
-	@Scripts.Render("~/bundles/application")
-
+	<meta name="viewport" content="width=device-width" />
 	@Styles.Render("~/bundles/bootstrap-css")
 	@Styles.Render("~/bundles/styles")
 
 	<title>Index</title>
 </head>
 <body>
+	<div id="notify-alert" style="display: none" class="alert alert-info static-alert-left-bottom">
+		<strong id="alert-content">Empty</strong>
+	</div>
+
 	<div ng-view></div>
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/signalr")
+	@Scripts.Render("~/bundles/angular")
+	@Scripts.Render("~/bundles/application")
 </body>
 </html>
