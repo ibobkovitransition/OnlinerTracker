@@ -65,6 +65,7 @@ main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
 	});
 });
 
-main.run(function (AppInitializeService) {
+main.run(function (AppInitializeService, SignalrService) {
 	AppInitializeService.init();
+	SignalrService.init();
 });
