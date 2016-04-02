@@ -7,7 +7,7 @@
 		}
 
 		if (isNaN(value)) {
-			return "No price";
+			return "0";
 		}
 
 		return $filter("number")(value / rate, 0);

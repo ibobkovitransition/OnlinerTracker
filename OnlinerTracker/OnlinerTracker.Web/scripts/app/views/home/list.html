@@ -1,0 +1,25 @@
+﻿<ul class="list-group" infinite-scroll="uploadProducts()" infinite-scroll-distance="2">
+	<li ng-repeat="item in items" ng-class="getCssClass(item)" class="row item-wrapper list-group-item">
+		<div class="col-lg-2">
+			<img ng-src="{{item.images.icon != null ? item.images.header : item.images.icon }}" />
+		</div>
+		<div class="col-lg-7">
+			<h4>{{item.full_name}}</h4>
+			<p>{{item.description}}</p>
+		</div>
+		<div class="col-lg-3">
+			<h4>
+				<span class="label label-success" style="display: block">
+					{{item.prices.min | exchangeFilter : userInfo.settings.selected_currency.Rate}}
+					to
+					{{item.prices.max | exchangeFilter : userInfo.settings.selected_currency.Rate}}
+				</span>
+			</h4>
+
+			<p style="font-weight: bold">
+				Tracking
+				<input type="checkbox" class="pull-right" ng-model="item.is_tracked" ng-change="trackProduct(item)" />
+			</p>
+		</div>
+	</li>
+</ul>

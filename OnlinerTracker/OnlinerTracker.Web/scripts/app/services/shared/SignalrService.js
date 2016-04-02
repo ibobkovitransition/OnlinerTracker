@@ -1,32 +1,22 @@
 ﻿angular.module("OnlinerTracker.Services")
-.factory("SignalrService", function ($http, $log, $timeout, $cookies, COOKIE_KEYS) {
-
-	var fadeoutAlert = function (content, delay) {
-		$("#notify-alert").show();
-		$("#notify-alert > #alert-content").text(content);
-		$timeout(function () {
-			$("#notify-alert").hide();
-		}, delay);
-	};
+.factory("SignalrService", function ($http, $log, $cookies, AlertService, COOKIE_KEYS) {
 
 	(function () {
 		var connection = $.connection("/echo");
 		connection.received(function (data) {
-			$log.log(data);
-			fadeoutAlert(data, 1250);
+			AlertService.showAlert(data, 750);
 		});
 
 		connection.start().done(function () {
 			var clientId = connection.id;
 			$cookies.put(COOKIE_KEYS.USER_CONNECTION_ID, clientId);
-
 			$log.log("connection is started with ", clientId);
 		});
 	})();
 
 	return {
 		init: function () {
-			//$log.log(connection);
+			// переназвать в другой сервис, сомтреть что используется zeroMq или SignalR
 		}
 	};
 });

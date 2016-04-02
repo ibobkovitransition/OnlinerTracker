@@ -1,17 +1,19 @@
-﻿angular.module("infiniteScroll", []);
+﻿angular.module("infiniteScroll", []); // вынести в directives
 
 angular.module("OnlinerTracker.Repositories", []);
+angular.module("OnlinerTracker.Controllers", ["ui.bootstrap", "infiniteScroll"]);
+angular.module("OnlinerTracker.Directives", []);
 angular.module("OnlinerTracker.Services", []);
 angular.module("OnlinerTracker.Filters", []);
-angular.module("OnlinerTracker.Controllers", ["ui.bootstrap", "infiniteScroll"]);
 
 var main = angular.module("OnlinerTracker", [
 	"ngRoute",
 	"ngStorage",
 	"ngCookies",
-	"OnlinerTracker.Controllers",
-	"OnlinerTracker.Services",
 	"OnlinerTracker.Repositories",
+	"OnlinerTracker.Controllers",
+	"OnlinerTracker.Directives",
+	"OnlinerTracker.Services",
 	"OnlinerTracker.Filters"]);
 
 main.constant("ROUTES", {
@@ -45,9 +47,6 @@ main.constant("COOKIE_KEYS", {
 	USER_ID: "onliner_tracker",
 	USER_CONNECTION_ID: "onliner_tracker_connection_id"
 });
-
-// https://github.com/mgechev/angularjs-style-guide/blob/master/README-ru-ru.md
-// TODO: будет время - сделать https://github.com/angular-ui/ui-router
 
 main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
 	$routeProvider.when(ROUTES.AUTH, {

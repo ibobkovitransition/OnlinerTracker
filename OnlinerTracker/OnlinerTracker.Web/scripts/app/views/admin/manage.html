@@ -1,14 +1,6 @@
 ﻿<header class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
-		<div class="navbar-header">
-			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a ng-click="toHome()" class="navbar-brand" style="cursor: pointer;">Onliner tracker</a>
-		</div>
+		<div ng-include="'scripts/app/views/shared/navbar-header.html'"></div>
 		<nav class="collapse navbar-collapse" role="navigation">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
@@ -47,36 +39,10 @@
 	</div>
 </header>
 
-<div class="container list-group">
-	<div ng-repeat="item in items | filter: {full_name: filterQuery}" class="row item-wrapper list-group-item">
-		<div class="col-lg-2">
-			<img ng-src="{{item.images.icon != null ? item.images.header : item.images.icon }}" />
-		</div>
-		<div class="col-lg-8">
-			<b>{{item.full_name}}</b>
-			<p>{{item.description}}</p>
-		</div>
-		<div class="col-lg-2">
-			<div class="row">
-				<div class="col-lg-10">
-					<p>Min<span class="pull-right">{{item.prices.min | exchangeFilter : userInfo.settings.selected_currency.Rate}}</span></p>
-					<p>Max<span class="pull-right">{{item.prices.max | exchangeFilter : userInfo.settings.selected_currency.Rate}}</span></p>
-					<p>
-						Increase<input type="checkbox" class="pull-right" ng-model="item.increase" ng-change="trackIncrease(item)" />
-					</p>
-					<p>
-						Decrease<input type="checkbox" class="pull-right" ng-model="item.decrease" ng-change="trackDecrease(item)" />
-					</p>
-					<p>
-						Track<input type="checkbox" class="pull-right" ng-model="item.is_tracked" ng-change="trackProduct(item)" />
-					</p>
-				</div>
-				<div class="col-lg-2 item-hidden-controlls">
-					<a ng-click="removeProduct(item, $index)" class="pull-right">
-						<b class="glyphicon glyphicon-trash" style="font-size: 15px"></b>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="container">
+	<a id="top">&nbsp;</a>
+
+	<div ng-include="'scripts/app/views/admin/list.html'"></div>
+
+	<div anchor target="top" show-after="250" class="anchor"></div>
 </div>

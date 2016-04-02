@@ -260,11 +260,13 @@
     <Content Include="scripts\app\controllers\account\SignInController.js" />
     <Content Include="scripts\app\controllers\admin\ManageController.js" />
     <Content Include="scripts\app\controllers\admin\SettingsController.js" />
-    <Content Include="scripts\app\directives\home\infiniteScroll.js" />
+    <Content Include="scripts\app\directives\shared\infiniteScroll.js" />
+    <Content Include="scripts\app\directives\shared\anchor.js" />
     <Content Include="scripts\app\filters\shared\exchangeFilter.js" />
     <Content Include="scripts\app\repositories.js" />
     <Content Include="scripts\app\services\account\AuthService.js" />
     <Content Include="scripts\app\services\home\ProductSearchService.js" />
+    <Content Include="scripts\app\services\shared\AlertService.js" />
     <Content Include="scripts\app\services\shared\AppInitializeService.js" />
     <Content Include="scripts\app\services\shared\CurrencyService.js" />
     <Content Include="scripts\app\services\shared\ProductTrackingService.js" />
@@ -273,9 +275,12 @@
     <Content Include="scripts\app\services\shared\UserInfoService.js" />
     <Content Include="scripts\app\views\account\signin.html" />
     <Content Include="scripts\app\controllers\home\SearchController.js" />
+    <Content Include="scripts\app\views\admin\list.html" />
     <Content Include="scripts\app\views\admin\manage.html" />
     <Content Include="scripts\app\views\admin\settings.html" />
+    <Content Include="scripts\app\views\home\list.html" />
     <Content Include="scripts\app\views\home\search.html" />
+    <Content Include="scripts\app\views\shared\navbar-header.html" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
@@ -332,7 +337,6 @@
     <Folder Include="Filters\Mvc\" />
     <Folder Include="Models\" />
     <Folder Include="scripts\app\services\admin\" />
-    <Folder Include="scripts\app\views\shared\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlinerTracker.BusinessLogic\OnlinerTracker.BusinessLogic.csproj">
