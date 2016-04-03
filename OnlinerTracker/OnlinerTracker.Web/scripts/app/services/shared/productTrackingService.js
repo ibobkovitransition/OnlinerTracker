@@ -53,7 +53,7 @@
 		});
 	}
 
-	var get = function (callback) {
+	var get = function () {
 		return ProductTrackingRepository.get();
 	}
 

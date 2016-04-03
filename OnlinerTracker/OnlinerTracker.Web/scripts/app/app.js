@@ -1,15 +1,14 @@
-﻿angular.module("infiniteScroll", []); // вынести в directives
-
-angular.module("OnlinerTracker.Repositories", []);
-angular.module("OnlinerTracker.Controllers", ["ui.bootstrap", "infiniteScroll"]);
+﻿angular.module("OnlinerTracker.Repositories", []);
+angular.module("OnlinerTracker.Controllers", []);
 angular.module("OnlinerTracker.Directives", []);
 angular.module("OnlinerTracker.Services", []);
 angular.module("OnlinerTracker.Filters", []);
 
 var main = angular.module("OnlinerTracker", [
-	"ngRoute",
+	"ui.bootstrap",
 	"ngStorage",
 	"ngCookies",
+	"ngRoute",
 	"OnlinerTracker.Repositories",
 	"OnlinerTracker.Controllers",
 	"OnlinerTracker.Directives",
@@ -56,20 +55,31 @@ main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
 
 	$routeProvider.when(ROUTES.HOME, {
 		templateUrl: VIEW_URLS.SEARCH,
-		controller: "SearchController"
+		controller: "SearchController",
+		resolve: {
+			"InitializeServiceData": function (InitializeService) {
+				return InitializeService.init();
+			},
+			"SignalrServiceData": function(SignalrService) {
+				return SignalrService.init();
+			}
+		}
 	});
 
 	$routeProvider.when(ROUTES.ADMIN, {
 		templateUrl: VIEW_URLS.ADMIN,
-		controller: "ManageController"
+		controller: "ManageController",
+		resolve: {
+			"InitializeServiceData": function (InitializeService) {
+				return InitializeService.init();
+			},
+			"SignalrServiceData": function (SignalrService) {
+				return SignalrService.init();
+			}
+		}
 	});
 
 	$routeProvider.otherwise({
 		redirectTo: ROUTES.AUTH
 	});
-});
-
-main.run(function (AppInitializeService, SignalrService) {
-	AppInitializeService.init();
-	SignalrService.init();
 });

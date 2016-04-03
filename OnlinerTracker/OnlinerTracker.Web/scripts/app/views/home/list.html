@@ -9,17 +9,19 @@
 		</div>
 		<div class="col-lg-3">
 			<h4>
-				<span class="label label-success" style="display: block">
+				<span class="label label-success" style="display: block" ng-show="item.prices">
 					{{item.prices.min | exchangeFilter : userInfo.settings.selected_currency.Rate}}
 					to
 					{{item.prices.max | exchangeFilter : userInfo.settings.selected_currency.Rate}}
 				</span>
+				<span class="label label-danger" style="display: block" ng-hide="item.prices">
+					No price
+				</span>
 			</h4>
-
-			<p style="font-weight: bold">
-				Tracking
-				<input type="checkbox" class="pull-right" ng-model="item.is_tracked" ng-change="trackProduct(item)" />
-			</p>
+			<div class="btn-group btn-group-sm btn-group-justified">
+				<label class="btn btn-success btn-sm" ng-model="item.is_tracked" ng-change="trackProduct(item)" uib-btn-radio="true" uncheckable>Enabled</label>
+				<label class="btn btn-success btn-sm" ng-model="item.is_tracked" ng-change="trackProduct(item)" uib-btn-radio="false" uncheckable>Disabled</label>
+			</div>
 		</div>
 	</li>
 </ul>

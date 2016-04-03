@@ -25,7 +25,7 @@
 		}
 
 		if (isLoading) {
-			$log.warn("Content is loading");
+			$log.info("Content is loading");
 			return;
 		}
 
@@ -36,7 +36,7 @@
 
 		isLoading = true;
 
-		// TODO: ЗАПИЛИТЬ ФОРМАТИРОВАНИЕ СТРОКИ $interpolate в помощь
+		// TODO: ФОРМАТИРОВАНИЕ СТРОКИ $interpolate в помощь
 		var url = URLS.SEARCH_PRODUCTS + productName + "/page/" + pageNumber + "/size/" + pageSize;
 		$http.get(url).then(function (response) {
 			isLoading = false;

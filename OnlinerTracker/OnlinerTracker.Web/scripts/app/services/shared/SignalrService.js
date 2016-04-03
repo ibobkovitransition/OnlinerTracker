@@ -1,22 +1,30 @@
 ﻿angular.module("OnlinerTracker.Services")
 .factory("SignalrService", function ($http, $log, $cookies, AlertService, COOKIE_KEYS) {
 
-	(function () {
-		var connection = $.connection("/echo");
-		connection.received(function (data) {
-			AlertService.showAlert(data, 750);
-		});
+	var initialized = false;
+	var connection = null;
 
-		connection.start().done(function () {
-			var clientId = connection.id;
-			$cookies.put(COOKIE_KEYS.USER_CONNECTION_ID, clientId);
-			$log.log("connection is started with ", clientId);
-		});
-	})();
+	var onReceived = function(data) {
+		AlertService.showAlert(data, 1500);
+	}
+
+	var onConnected = function() {
+		$cookies.put(COOKIE_KEYS.USER_CONNECTION_ID, connection.id);
+		$log.info("SignalR connection successful");
+		initialized = true;
+	}
+
+	var initConnection = function () {
+		if (initialized) {
+			return;
+		}
+
+		connection = $.connection("/echo");
+		connection.received(onReceived);
+		connection.start().done(onConnected);
+	};
 
 	return {
-		init: function () {
-			// переназвать в другой сервис, сомтреть что используется zeroMq или SignalR
-		}
+		init: initConnection
 	};
 });

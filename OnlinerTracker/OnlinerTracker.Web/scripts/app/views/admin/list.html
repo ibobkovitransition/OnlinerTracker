@@ -9,10 +9,13 @@
 		</div>
 		<div class="col-lg-3">
 			<h4>
-				<span class="label label-success" style="display: block">
+				<span class="label label-success" style="display: block" ng-show="item.prices.min !== 0 || item.prices.max !== 0">
 					{{item.prices.min | exchangeFilter : userInfo.settings.selected_currency.Rate}}
 					to
 					{{item.prices.max | exchangeFilter : userInfo.settings.selected_currency.Rate}}
+				</span>
+				<span class="label label-danger" style="display: block" ng-show="item.prices.min === 0 && item.prices.max === 0">
+					No price
 				</span>
 			</h4>
 			<div class="btn-group btn-group-sm btn-group-justified">
@@ -26,6 +29,7 @@
 				<label class="btn btn-success btn-sm"
 					   ng-model="item.increase"
 					   ng-change="trackIncrease(item)"
+					   ng-disabled="!item.is_tracked"
 					   uib-btn-checkbox>
 					Increase
 				</label>
@@ -33,6 +37,7 @@
 				<label class="btn btn-success btn-sm"
 					   ng-model="item.decrease"
 					   ng-change="trackDecrease(item)"
+					   ng-disabled="!item.is_tracked"
 					   uib-btn-checkbox>
 					Decrease
 				</label>
