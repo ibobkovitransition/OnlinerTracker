@@ -109,6 +109,14 @@
       <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NetMQ, Version=3.3.0.11, Culture=neutral, PublicKeyToken=a6decef4ddc58b3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetMQ.3.3.0.11\lib\net40\NetMQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NetMQ.WebSockets, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetMQ.WebSockets.0.5.0.0-beta\lib\net40\NetMQ.WebSockets.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -314,7 +322,9 @@
     </Compile>
     <Compile Include="Implementations\CookieService.cs" />
     <Compile Include="Filters\PrincipalUser.cs" />
+    <Compile Include="Implementations\NetMqNotificator.cs" />
     <Compile Include="Implementations\SignalrNotificator.cs" />
+    <Compile Include="Infrastructure\NetMqWebSocketsContext.cs" />
     <Compile Include="Infrastructure\OwinStartup.cs" />
     <Compile Include="Infrastructure\SignalrContext.cs" />
     <Compile Include="Interaces\ICookieService.cs" />
