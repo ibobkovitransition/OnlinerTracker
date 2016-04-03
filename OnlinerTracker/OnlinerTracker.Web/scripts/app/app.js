@@ -1,17 +1,18 @@
-﻿angular.module("infiniteScroll", []);
-
-angular.module("OnlinerTracker.Repositories", []);
+﻿angular.module("OnlinerTracker.Repositories", []);
+angular.module("OnlinerTracker.Controllers", []);
+angular.module("OnlinerTracker.Directives", []);
 angular.module("OnlinerTracker.Services", []);
 angular.module("OnlinerTracker.Filters", []);
-angular.module("OnlinerTracker.Controllers", ["ui.bootstrap", "infiniteScroll"]);
 
 var main = angular.module("OnlinerTracker", [
-	"ngRoute",
+	"ui.bootstrap",
 	"ngStorage",
 	"ngCookies",
-	"OnlinerTracker.Controllers",
-	"OnlinerTracker.Services",
+	"ngRoute",
 	"OnlinerTracker.Repositories",
+	"OnlinerTracker.Controllers",
+	"OnlinerTracker.Directives",
+	"OnlinerTracker.Services",
 	"OnlinerTracker.Filters"]);
 
 main.constant("ROUTES", {
@@ -46,9 +47,6 @@ main.constant("COOKIE_KEYS", {
 	USER_CONNECTION_ID: "onliner_tracker_connection_id"
 });
 
-// https://github.com/mgechev/angularjs-style-guide/blob/master/README-ru-ru.md
-// TODO: будет время - сделать https://github.com/angular-ui/ui-router
-
 main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
 	$routeProvider.when(ROUTES.AUTH, {
 		templateUrl: VIEW_URLS.SIGN_IN,
@@ -57,20 +55,31 @@ main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
 
 	$routeProvider.when(ROUTES.HOME, {
 		templateUrl: VIEW_URLS.SEARCH,
-		controller: "SearchController"
+		controller: "SearchController",
+		resolve: {
+			"InitializeServiceData": function (InitializeService) {
+				return InitializeService.init();
+			},
+			"SignalrServiceData": function(SignalrService) {
+				return SignalrService.init();
+			}
+		}
 	});
 
 	$routeProvider.when(ROUTES.ADMIN, {
 		templateUrl: VIEW_URLS.ADMIN,
-		controller: "ManageController"
+		controller: "ManageController",
+		resolve: {
+			"InitializeServiceData": function (InitializeService) {
+				return InitializeService.init();
+			},
+			"SignalrServiceData": function (SignalrService) {
+				return SignalrService.init();
+			}
+		}
 	});
 
 	$routeProvider.otherwise({
 		redirectTo: ROUTES.AUTH
 	});
-});
-
-main.run(function (AppInitializeService, SignalrService) {
-	AppInitializeService.init();
-	SignalrService.init();
 });

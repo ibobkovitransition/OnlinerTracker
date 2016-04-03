@@ -60,7 +60,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 		public IHttpActionResult Remove(int id)
 		{
 			trackingProductService.Remove(id, PrincipalUser.Id);
-			notificator.Notify(PrincipalUser.ConnectionId, "Deleted");
+			notificator.Notify(PrincipalUser.ConnectionId, "Removed");
 			return Ok();
 		}
 
@@ -69,7 +69,9 @@ namespace OnlinerTracker.Web.Controllers.Api
 		public IHttpActionResult TrackIncrease(int id, Product product)
 		{
 			trackingProductService.Increase(id, PrincipalUser.Id, product.Increase);
-			notificator.Notify(PrincipalUser.ConnectionId, "Done");
+			notificator.Notify(PrincipalUser.ConnectionId, 
+				$"Price increase tracking { (product.Increase ? "started" : "stopped") }");
+
 			return Ok();
 		}
 
@@ -78,7 +80,9 @@ namespace OnlinerTracker.Web.Controllers.Api
 		public IHttpActionResult TrackDecrease(int id, Product product)
 		{
 			trackingProductService.Decrease(id, PrincipalUser.Id, product.Decrease);
-			notificator.Notify(PrincipalUser.ConnectionId, "Done");
+			notificator.Notify(PrincipalUser.ConnectionId,
+				$"Price decrease tracking { (product.Decrease ? "started" : "stopped") }");
+
 			return Ok();
 		}
 	}

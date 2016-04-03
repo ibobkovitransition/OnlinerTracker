@@ -31,12 +31,14 @@ namespace OnlinerTracker.Web.App_Start
 				.Include("~/scripts/app/services/home/ProductUploadService.js")
 				.Include("~/scripts/app/services/shared/ProductTrackingService.js")
 				.Include("~/scripts/app/services/shared/UserInfoService.js")
-				.Include("~/scripts/app/services/shared/AppInitializeService.js")
+				.Include("~/scripts/app/services/shared/InitializeService.js")
 				.Include("~/scripts/app/services/shared/CurrencyService.js")
 				.Include("~/scripts/app/services/shared/SignalrService.js")
+				.Include("~/scripts/app/services/shared/AlertService.js")
 
 				.Include("~/scripts/app/filters/shared/exchangeFilter.js")
-				.Include("~/scripts/app/directives/home/infiniteScroll.js"));
+				.Include("~/scripts/app/directives/shared/infiniteScroll.js")
+				.Include("~/scripts/app/directives/shared/anchor.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/jquery")
 				.Include("~/scripts/jquery-1.9.1.js"));

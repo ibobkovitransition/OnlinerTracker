@@ -64,9 +64,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.ModelWrappers
 					CreatedAt = DateTime.Now,
 					UserInfoId = userId,
 					ProductId = productId,
-					Enabled = true,
-					Decrease = true,
-					Increase = true
+					Enabled = true
 				};
 
 				productTrackingRepository.Attach(entity.ToEntity());

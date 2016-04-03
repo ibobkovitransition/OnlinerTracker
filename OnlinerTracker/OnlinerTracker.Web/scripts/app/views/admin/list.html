@@ -1,0 +1,53 @@
+﻿<ul class="list-group" infinite-scroll="uploadProducts()" infinite-scroll-distance="2">
+	<li ng-repeat="item in items | filter: {full_name: filterQuery}" class="row item-wrapper list-group-item">
+		<div class="col-lg-2">
+			<img ng-src="{{item.images.icon != null ? item.images.header : item.images.icon }}" />
+		</div>
+		<div class="col-lg-7">
+			<h4>{{item.full_name}}</h4>
+			<p>{{item.description}}</p>
+		</div>
+		<div class="col-lg-3">
+			<h4>
+				<span class="label label-success" style="display: block" ng-show="item.prices.min !== 0 || item.prices.max !== 0">
+					{{item.prices.min | exchangeFilter : userInfo.settings.selected_currency.Rate}}
+					to
+					{{item.prices.max | exchangeFilter : userInfo.settings.selected_currency.Rate}}
+				</span>
+				<span class="label label-danger" style="display: block" ng-show="item.prices.min === 0 && item.prices.max === 0">
+					No price
+				</span>
+			</h4>
+			<div class="btn-group btn-group-sm btn-group-justified">
+				<label class="btn btn-success btn-sm"
+					   ng-model="item.is_tracked"
+					   ng-change="trackProduct(item)"
+					   uib-btn-checkbox>
+					Tracking
+				</label>
+
+				<label class="btn btn-success btn-sm"
+					   ng-model="item.increase"
+					   ng-change="trackIncrease(item)"
+					   ng-disabled="!item.is_tracked"
+					   uib-btn-checkbox>
+					Increase
+				</label>
+
+				<label class="btn btn-success btn-sm"
+					   ng-model="item.decrease"
+					   ng-change="trackDecrease(item)"
+					   ng-disabled="!item.is_tracked"
+					   uib-btn-checkbox>
+					Decrease
+				</label>
+			</div>
+			<div>
+				<a class="btn btn-link pull-right" ng-click="removeProduct(item, $index)">
+					Remove
+					<b class="glyphicon glyphicon-trash" style="font-size: 12pt"></b>
+				</a>
+			</div>
+		</div>
+	</li>
+</ul>

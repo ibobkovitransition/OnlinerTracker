@@ -1,32 +1,30 @@
 ﻿angular.module("OnlinerTracker.Services")
-.factory("SignalrService", function ($http, $log, $timeout, $cookies, COOKIE_KEYS) {
+.factory("SignalrService", function ($http, $log, $cookies, AlertService, COOKIE_KEYS) {
 
-	var fadeoutAlert = function (content, delay) {
-		$("#notify-alert").show();
-		$("#notify-alert > #alert-content").text(content);
-		$timeout(function () {
-			$("#notify-alert").hide();
-		}, delay);
+	var initialized = false;
+	var connection = null;
+
+	var onReceived = function(data) {
+		AlertService.showAlert(data, 1500);
+	}
+
+	var onConnected = function() {
+		$cookies.put(COOKIE_KEYS.USER_CONNECTION_ID, connection.id);
+		$log.info("SignalR connection successful");
+		initialized = true;
+	}
+
+	var initConnection = function () {
+		if (initialized) {
+			return;
+		}
+
+		connection = $.connection("/echo");
+		connection.received(onReceived);
+		connection.start().done(onConnected);
 	};
 
-	(function () {
-		var connection = $.connection("/echo");
-		connection.received(function (data) {
-			$log.log(data);
-			fadeoutAlert(data, 1250);
-		});
-
-		connection.start().done(function () {
-			var clientId = connection.id;
-			$cookies.put(COOKIE_KEYS.USER_CONNECTION_ID, clientId);
-
-			$log.log("connection is started with ", clientId);
-		});
-	})();
-
 	return {
-		init: function () {
-			//$log.log(connection);
-		}
+		init: initConnection
 	};
 });
