@@ -17,7 +17,7 @@ namespace OnlinerTracker.Web.Filters.Api
 		public bool AllowMultiple => false;
 
 		private readonly string userCookieName = "onliner_tracker";
-		private readonly string connectionCookieName = "onliner_tracker_connection_id";
+		private readonly string connectionCookieName = "connection_id";
 
 		[Inject]
 		public IHashService HashService { get; set; }

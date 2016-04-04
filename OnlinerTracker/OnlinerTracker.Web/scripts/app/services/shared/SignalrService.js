@@ -1,5 +1,5 @@
 ﻿angular.module("OnlinerTracker.Services")
-.factory("SignalrService", function ($http, $log, $cookies, AlertService, COOKIE_KEYS) {
+.factory("SignalrService", function ($log, $cookies, AlertService, COOKIE_KEYS, SIGNALR) {
 
 	var initialized = false;
 	var connection = null;
@@ -19,7 +19,7 @@
 			return;
 		}
 
-		connection = $.connection("/echo");
+		connection = $.connection(SIGNALR.URI);
 		connection.received(onReceived);
 		connection.start().done(onConnected);
 	};

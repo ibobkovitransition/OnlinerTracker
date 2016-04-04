@@ -93,9 +93,11 @@ namespace OnlinerTracker.Web.App_Start
 			kernel.Bind<IProductService>().To<ProductService>();
 
 			kernel.Bind<NetMQContext>().ToConstant(NetMQContext.Create());
+
+			// TODO: придумать как его правильно разместить, мб в каком нибудь сервисе и тд
 			kernel.Bind<Infrastructure.NetMq.Context>().ToSelf().InSingletonScope();
 
-			// todo: биндить по условию
+			// todo: завязать на IWebConfig
 			var isNetMq = true;
 			kernel.Bind<INotificator>().To<SignalrNotificator>().When(x => !isNetMq);
 			kernel.Bind<INotificator>().To<NetMqNotificator>().When(x => isNetMq);

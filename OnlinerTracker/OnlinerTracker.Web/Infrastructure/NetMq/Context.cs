@@ -13,8 +13,8 @@ namespace OnlinerTracker.Web.Infrastructure.NetMq
 		private WSRouter router;
 		private WSPublisher publisher;
 
-		private string routerConnectionString = "ws://localhost:91";
-		private string publisherConnectionString = "ws://localhost:92";
+		private string routerConnectionString = "ws://localhost:991";
+		private string publisherConnectionString = "ws://localhost:992";
 
 		public Context(NetMQContext context)
 		{
@@ -44,7 +44,7 @@ namespace OnlinerTracker.Web.Infrastructure.NetMq
 		{
 			var identity = args.WSSocket.Receive();
 			var receivedMessage = args.WSSocket.ReceiveString();
-
+			
 			if (receivedMessage == "#id")
 			{
 				args.WSSocket.SendMore(identity).Send(Guid.NewGuid().ToString());

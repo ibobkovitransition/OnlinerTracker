@@ -44,7 +44,16 @@ main.constant("VIEW_URLS", {
 
 main.constant("COOKIE_KEYS", {
 	USER_ID: "onliner_tracker",
-	USER_CONNECTION_ID: "onliner_tracker_connection_id"
+	USER_CONNECTION_ID: "connection_id"
+});
+
+main.constant("SIGNALR", {
+	URI: "/echo"
+});
+
+main.constant("NETMQ", {
+	DEALER: "ws://localhost:991",
+	PUBLISHER: "ws://localhost:992"
 });
 
 main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
@@ -60,9 +69,14 @@ main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
 			"InitializeServiceData": function (InitializeService) {
 				return InitializeService.init();
 			},
-			"SignalrServiceData": function(SignalrService) {
-				return SignalrService.init();
+			// загружать по условию
+			"NetMqServiceData": function(NetMqService) {
+				return NetMqService.init();
 			}
+			// загружать по условию
+			//"SignalrServiceData": function(SignalrService) {
+			//	return SignalrService.init();
+			//}
 		}
 	});
 
@@ -73,9 +87,14 @@ main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
 			"InitializeServiceData": function (InitializeService) {
 				return InitializeService.init();
 			},
-			"SignalrServiceData": function (SignalrService) {
-				return SignalrService.init();
+			// загружать по условию
+			"NetMqServiceData": function (NetMqService) {
+				return NetMqService.init();
 			}
+			// загружать по условию
+			//"SignalrServiceData": function (SignalrService) {
+			//	return SignalrService.init();
+			//}
 		}
 	});
 

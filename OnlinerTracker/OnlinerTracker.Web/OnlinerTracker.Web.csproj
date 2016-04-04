@@ -277,6 +277,7 @@
     <Content Include="scripts\app\services\shared\AlertService.js" />
     <Content Include="scripts\app\services\shared\InitializeService.js" />
     <Content Include="scripts\app\services\shared\CurrencyService.js" />
+    <Content Include="scripts\app\services\shared\NetMqService.js" />
     <Content Include="scripts\app\services\shared\ProductTrackingService.js" />
     <Content Include="scripts\app\services\home\ProductUploadService.js" />
     <Content Include="scripts\app\services\shared\SignalrService.js" />
@@ -295,6 +296,7 @@
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="scripts\jquery.signalR-2.2.0.js" />
     <Content Include="scripts\jquery.signalR-2.2.0.min.js" />
+    <Content Include="scripts\JSMQ.js" />
     <Content Include="scripts\modernizr-2.8.3.js" />
     <Content Include="scripts\ngStorage.js" />
     <Content Include="scripts\ngStorage.min.js" />
