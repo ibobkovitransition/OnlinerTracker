@@ -1,3 +1,7 @@
+using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Infrastructure;
+using Microsoft.AspNet.SignalR.Messaging;
 using NetMQ;
 using OAuth2;
 using OnlinerTracker.BusinessLogic.Implementations.Common;
@@ -9,6 +13,7 @@ using OnlinerTracker.DataAccess.Implementations.Ef;
 using OnlinerTracker.DataAccess.Interfaces;
 using OnlinerTracker.Web.Implementations;
 using OnlinerTracker.Web.Interaces;
+using Context = OnlinerTracker.DataAccess.Implementations.Ef.Context;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -73,7 +78,6 @@ namespace OnlinerTracker.Web.App_Start
 		/// <param name="kernel">The kernel.</param>
 		private static void RegisterServices(IKernel kernel)
 		{
-			// TODO: вынести в owin или написать dependency resolver
 			kernel.Bind<IConfig>().To<Config>();
 			kernel.Bind<AuthorizationRoot>().ToSelf();
 			kernel.Bind<Context>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
@@ -89,20 +93,17 @@ namespace OnlinerTracker.Web.App_Start
 			kernel.Bind<IRepository<ProductTracking>>().To<Repository<ProductTracking>>();
 			kernel.Bind<IRepository<UserSettings>>().To<Repository<UserSettings>>();
 			kernel.Bind<IRepository<PriceHistory>>().To<Repository<PriceHistory>>();
-			
+
 			kernel.Bind<IUserService>().To<UserService>();
 			kernel.Bind<IProductTrackingService>().To<ProductTrackingService>();
 			kernel.Bind<IProductService>().To<ProductService>();
 
 			kernel.Bind<NetMQContext>().ToConstant(NetMQContext.Create());
-
-			// TODO: придумать как его правильно разместить, мб в каком нибудь сервисе и тд
 			kernel.Bind<Infrastructure.NetMq.Context>().ToSelf().InSingletonScope();
 
-			// todo: завязать на IWebConfig
-			var isNetMq = true;
-			kernel.Bind<INotificator>().To<SignalrNotificator>().When(x => !isNetMq);
-			kernel.Bind<INotificator>().To<NetMqNotificator>().When(x => isNetMq);
+			var config = kernel.Get<IConfig>();
+			kernel.Bind<INotificator>().To<NetMqNotificator>().When(x => config.UseNetMq);
+			kernel.Bind<INotificator>().To<SignalrNotificator>().When(x => !config.UseNetMq);
 		}
 	}
 }

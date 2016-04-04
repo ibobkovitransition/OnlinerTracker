@@ -69,14 +69,13 @@ main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
 			"InitializeServiceData": function (InitializeService) {
 				return InitializeService.init();
 			},
-			// загружать по условию
 			"NetMqServiceData": function(NetMqService) {
 				return NetMqService.init();
+			},
+			 //загружать по условию
+			"SignalrServiceData": function(SignalrService) {
+				return SignalrService.init();
 			}
-			// загружать по условию
-			//"SignalrServiceData": function(SignalrService) {
-			//	return SignalrService.init();
-			//}
 		}
 	});
 
@@ -90,11 +89,11 @@ main.config(function ($routeProvider, ROUTES, VIEW_URLS) {
 			// загружать по условию
 			"NetMqServiceData": function (NetMqService) {
 				return NetMqService.init();
+			},
+			 //загружать по условию
+			"SignalrServiceData": function (SignalrService) {
+				return SignalrService.init();
 			}
-			// загружать по условию
-			//"SignalrServiceData": function (SignalrService) {
-			//	return SignalrService.init();
-			//}
 		}
 	});
 

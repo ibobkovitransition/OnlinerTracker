@@ -2,12 +2,11 @@
 using System.Threading.Tasks;
 using NetMQ;
 using NetMQ.WebSockets;
-using Ninject;
 using OnlinerTracker.BusinessLogic.Interfaces.Common;
 
 namespace OnlinerTracker.Web.Infrastructure.NetMq
 {
-	public class Context : IStartable
+	public class Context
 	{
 		private readonly IConfig config;
 		private readonly NetMQContext context;
