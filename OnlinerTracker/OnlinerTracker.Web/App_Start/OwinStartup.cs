@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using System.Threading;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
+using Microsoft.Owin.BuilderProperties;
 using OnlinerTracker.BusinessLogic.Interfaces.Common;
 using OnlinerTracker.Web.Infrastructure.SignalR;
 using Owin;
@@ -21,10 +23,22 @@ namespace OnlinerTracker.Web.App_Start
 				{
 					netMq.Start();
 				});
+
+				HandleClosing(app, netMq);
 			}
 			else
 			{
 				app.MapSignalR<Context>(config.SignalrUri);
+			}
+		}
+
+		private static void HandleClosing(IAppBuilder app, Infrastructure.NetMq.Context netMq)
+		{
+			var properties = new AppProperties(app.Properties);
+			var token = properties.OnAppDisposing;
+			if (token != CancellationToken.None)
+			{
+				token.Register(netMq.Stop);
 			}
 		}
 	}
