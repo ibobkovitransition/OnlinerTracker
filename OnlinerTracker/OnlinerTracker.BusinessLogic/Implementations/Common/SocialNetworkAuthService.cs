@@ -42,7 +42,9 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Common
 			return new UserInfo
 			{
 				FirstName = result.FirstName,
-				SocialNetworkUserId = result.Id
+				SocialNetworkUserId = result.Id,
+				Email = result.Email,
+				CreatedAt = DateTime.Now
 			};
 		}
 	}

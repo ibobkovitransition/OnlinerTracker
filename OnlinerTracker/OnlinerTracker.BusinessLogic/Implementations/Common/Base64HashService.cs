@@ -20,6 +20,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Common
 				return null;
 			}
 
+			// TODO: НЕ ПОДДЕРЖИВАЕТ ЛОГИН В ВК ПО EMAIL'Y 1141
 			var bytes = Convert.FromBase64String(content);
 			return Encoding.UTF8.GetString(bytes);
 		}
