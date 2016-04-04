@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Http;
 using System.Web.Optimization;
-using OnlinerTracker.DataAccess.Implementations.Ef;
+using Microsoft.AspNet.SignalR;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
 using OnlinerTracker.Web.App_Start;
 
 namespace OnlinerTracker.Web
@@ -14,13 +14,17 @@ namespace OnlinerTracker.Web
 	{
 		void Application_Start(object sender, EventArgs e)
 		{
-			// Code that runs on application startup
 			AreaRegistration.RegisterAllAreas();
 			GlobalConfiguration.Configure(WebApiConfig.Register);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 			WebApiFiltersConfig.Register(GlobalConfiguration.Configuration.Filters);
-			Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Context>());
+
+			GlobalHost.DependencyResolver.Register(typeof(IConfig), () => DependencyResolver.Current.GetService<IConfig>());
+			GlobalHost.DependencyResolver.Register(typeof(Infrastructure.NetMq.Context), () => DependencyResolver.Current.GetService<Infrastructure.NetMq.Context>());
+
+			// не работает с новым Resolver'ом
+			//GlobalHost.DependencyResolver = new SignalrDependencyResolver(DependencyResolver.Current.GetService<DefaultDependencyResolver>());
 		}
 	}
 }

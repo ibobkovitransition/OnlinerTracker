@@ -327,8 +327,9 @@
     <Compile Include="Implementations\NetMqNotificator.cs" />
     <Compile Include="Implementations\SignalrNotificator.cs" />
     <Compile Include="Infrastructure\NetMq\Context.cs" />
-    <Compile Include="Infrastructure\SignalR\OwinStartup.cs" />
+    <Compile Include="App_Start\OwinStartup.cs" />
     <Compile Include="Infrastructure\SignalR\Context.cs" />
+    <Compile Include="Infrastructure\SignalR\SignalrDependencyResolver.cs" />
     <Compile Include="Interaces\ICookieService.cs" />
     <Compile Include="Interaces\INotificator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
