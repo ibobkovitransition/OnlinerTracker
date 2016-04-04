@@ -8,7 +8,6 @@ using OnlinerTracker.DataAccess.Enteties;
 using OnlinerTracker.DataAccess.Implementations.Ef;
 using OnlinerTracker.DataAccess.Interfaces;
 using OnlinerTracker.Web.Implementations;
-using OnlinerTracker.Web.Infrastructure;
 using OnlinerTracker.Web.Interaces;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(OnlinerTracker.Web.App_Start.NinjectWebCommon), "Start")]
@@ -75,7 +74,7 @@ namespace OnlinerTracker.Web.App_Start
 		private static void RegisterServices(IKernel kernel)
 		{
 			kernel.Bind<AuthorizationRoot>().ToSelf();
-			kernel.Bind<Context>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
+			kernel.Bind<DataAccess.Implementations.Ef.Context>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
 
 			kernel.Bind<ISocialNetworkAuthService>().To<SocialNetworkAuthService>();
 			kernel.Bind<ICookieService>().To<CookieService>();
@@ -93,12 +92,13 @@ namespace OnlinerTracker.Web.App_Start
 			kernel.Bind<IProductTrackingService>().To<ProductTrackingService>();
 			kernel.Bind<IProductService>().To<ProductService>();
 
-			//kernel.Bind<INotificator>().To<SignalrNotificator>();
-
 			kernel.Bind<NetMQContext>().ToConstant(NetMQContext.Create());
-			kernel.Bind<NetMqWebSocketsContext>().ToSelf().InSingletonScope();
-			kernel.Bind<INotificator>().To<NetMqNotificator>();
+			kernel.Bind<Infrastructure.NetMq.Context>().ToSelf().InSingletonScope();
 
+			// todo: биндить по условию
+			var isNetMq = true;
+			kernel.Bind<INotificator>().To<SignalrNotificator>().When(x => !isNetMq);
+			kernel.Bind<INotificator>().To<NetMqNotificator>().When(x => isNetMq);
 		}
 	}
 }

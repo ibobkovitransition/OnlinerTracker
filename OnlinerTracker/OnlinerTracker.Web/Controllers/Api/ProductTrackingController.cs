@@ -42,8 +42,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 		public IHttpActionResult Track(int id, Product product)
 		{
 			productService.Add(product, PrincipalUser.Id);
-			//notificator.Notify(PrincipalUser.ConnectionId, "Tracking started");
-			notificator.Notify("chat1", "started");
+			notificator.Notify(PrincipalUser.ConnectionId, "Tracking started");
 			return Ok();
 		}
 
@@ -52,8 +51,7 @@ namespace OnlinerTracker.Web.Controllers.Api
 		public IHttpActionResult Untrack(int id)
 		{
 			trackingProductService.Untrack(id, PrincipalUser.Id);
-			//notificator.Notify(PrincipalUser.ConnectionId, "Tracking stopped");
-			notificator.Notify("chat2", "stopped");
+			notificator.Notify(PrincipalUser.ConnectionId, "Tracking stopped");
 			return Ok();
 		}
 

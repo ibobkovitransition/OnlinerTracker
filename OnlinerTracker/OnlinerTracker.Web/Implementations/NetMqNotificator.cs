@@ -1,14 +1,13 @@
-﻿using NetMQ;
-using OnlinerTracker.Web.Infrastructure;
+﻿using OnlinerTracker.Web.Infrastructure.NetMq;
 using OnlinerTracker.Web.Interaces;
 
 namespace OnlinerTracker.Web.Implementations
 {
 	public class NetMqNotificator : INotificator
 	{
-		private readonly NetMqWebSocketsContext context;
+		private readonly Context context;
 
-		public NetMqNotificator(NetMqWebSocketsContext context)
+		public NetMqNotificator(Context context)
 		{
 			this.context = context;
 		}
