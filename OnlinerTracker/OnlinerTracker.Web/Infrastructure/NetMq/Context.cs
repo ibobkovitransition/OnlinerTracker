@@ -29,8 +29,8 @@ namespace OnlinerTracker.Web.Infrastructure.NetMq
 				using (publisher = context.CreateWSPublisher())
 				{
 					poller = new Poller();
-					router.Bind(config.NetMqRouterConnectionString);
-					publisher.Bind(config.NetMqPublisherConnectionString);
+					router.Bind(config.NetMqRouter);
+					publisher.Bind(config.NetMqPublisher);
 
 					router.ReceiveReady += GiveConnectionId;
 

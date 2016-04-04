@@ -8,14 +8,14 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 		private readonly INotifyService notifyService;
 		private readonly INotifyResultCreator notifyResultCreator;
 		private readonly INotifyQueueManager notifyQueueManager;
-		private readonly IConfig config;
+		private readonly IDeliveryConfig config;
 		private readonly object syncRoot = new object();
 
 		public NotifyScheduleService(
 			INotifyService notifyService,
 			INotifyResultCreator notifyResultCreator,
-			INotifyQueueManager notifyQueueManager, 
-			IConfig config)
+			INotifyQueueManager notifyQueueManager,
+			IDeliveryConfig config)
 		{
 			this.notifyService = notifyService;
 			this.notifyResultCreator = notifyResultCreator;
@@ -27,7 +27,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 		{
 			lock (syncRoot)
 			{
-				var intervalInMinutes = config.EmailDeliveryIntervalInMinutes;
+				var intervalInMinutes = config.DeliveryInterval;
 				var notifyResults = notifyResultCreator.Create(intervalInMinutes);
 				notifyService.Notify(notifyResults);
 				notifyQueueManager.MarkAsNotifited(intervalInMinutes);

@@ -73,6 +73,7 @@ namespace OnlinerTracker.Web.App_Start
 		/// <param name="kernel">The kernel.</param>
 		private static void RegisterServices(IKernel kernel)
 		{
+			// TODO: вынести в owin или написать dependency resolver
 			kernel.Bind<IConfig>().To<Config>();
 			kernel.Bind<AuthorizationRoot>().ToSelf();
 			kernel.Bind<Context>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");

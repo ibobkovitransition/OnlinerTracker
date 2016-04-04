@@ -1,34 +1,20 @@
 ﻿using OnlinerTracker.BusinessLogic.Interfaces.Common;
+using System.Configuration;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.Common
 {
 	public class Config : IConfig
 	{
-		public string Email => "not4niceperson@gmail.com";
-		public string EmailPassword => "ava4v4zsk";
+		public string SignalrUri => ConfigurationManager.AppSettings["SignalrUri"];
 
-		public string EmailHeader => "OnlinerTracker";
+		public string NetMqRouter => ConfigurationManager.AppSettings["NetMqRouter"];
 
-		public string EmailSubject => "OnlinerTracker";
+		public string NetMqPublisher => ConfigurationManager.AppSettings["NetMqPublisher"];
 
-		public string SmptHost => "smtp.gmail.com";
+		public string UserCookie => ConfigurationManager.AppSettings["UserCookie"];
 
-		public int SmtpPort => 587;
+		public string UserConnectionCookie => ConfigurationManager.AppSettings["UserConnectionCookie"];
 
-		public bool SmtpEnableSsl => true;
-
-		public int EmailDeliveryIntervalInMinutes => 30;
-
-		public int PriceTrackingIntervalInMinutes => 13;
-
-		public string SignalrUri => "/echo";
-
-		public string NetMqRouterConnectionString => "ws://localhost:91";
-
-		public string NetMqPublisherConnectionString => "ws://localhost:92";
-
-		public string UserCookieName => "onliner_tracker";
-
-		public string UserConnectionCookieName => "connection_id";
+		public bool UseNetMq => bool.Parse(ConfigurationManager.AppSettings["UseNetMq"]);
 	}
 }

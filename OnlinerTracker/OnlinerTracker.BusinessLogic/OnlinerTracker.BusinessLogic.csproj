@@ -47,6 +47,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,6 +61,7 @@
     <Compile Include="Extensions\EntityUserComparer.cs" />
     <Compile Include="Implementations\Common\Base64HashService.cs" />
     <Compile Include="Implementations\Common\Config.cs" />
+    <Compile Include="Implementations\Common\DeliveryConfig.cs" />
     <Compile Include="Implementations\ModelWrappers\CurrencyService.cs" />
     <Compile Include="Implementations\ModelWrappers\NotifyHistoryService.cs" />
     <Compile Include="Implementations\ModelWrappers\PriceHistoryService.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Implementations\ModelWrappers\ProductTrackingService.cs" />
     <Compile Include="Implementations\Tracking\PriceScheduleService.cs" />
     <Compile Include="Interfaces\Common\IConfig.cs" />
+    <Compile Include="Interfaces\Common\IDeliveryConfig.cs" />
     <Compile Include="Interfaces\ModelWrappers\ICurrencyService.cs" />
     <Compile Include="Interfaces\ModelWrappers\INotifyHistoryService.cs" />
     <Compile Include="Interfaces\Notification\INotifyQueueManager.cs" />
