@@ -1,4 +1,5 @@
-﻿using OnlinerTracker.BusinessLogic.Interfaces.Notification;
+﻿using OnlinerTracker.BusinessLogic.Interfaces.Common;
+using OnlinerTracker.BusinessLogic.Interfaces.Notification;
 
 namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 {
@@ -7,23 +8,26 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 		private readonly INotifyService notifyService;
 		private readonly INotifyResultCreator notifyResultCreator;
 		private readonly INotifyQueueManager notifyQueueManager;
+		private readonly IConfig config;
 		private readonly object syncRoot = new object();
 
 		public NotifyScheduleService(
 			INotifyService notifyService,
 			INotifyResultCreator notifyResultCreator,
-			INotifyQueueManager notifyQueueManager)
+			INotifyQueueManager notifyQueueManager, 
+			IConfig config)
 		{
 			this.notifyService = notifyService;
 			this.notifyResultCreator = notifyResultCreator;
 			this.notifyQueueManager = notifyQueueManager;
+			this.config = config;
 		}
 
 		public void Execute()
 		{
 			lock (syncRoot)
 			{
-				var intervalInMinutes = 10;
+				var intervalInMinutes = config.EmailDeliveryIntervalInMinutes;
 				var notifyResults = notifyResultCreator.Create(intervalInMinutes);
 				notifyService.Notify(notifyResults);
 				notifyQueueManager.MarkAsNotifited(intervalInMinutes);

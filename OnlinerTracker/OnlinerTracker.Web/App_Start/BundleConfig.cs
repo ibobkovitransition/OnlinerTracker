@@ -33,8 +33,11 @@ namespace OnlinerTracker.Web.App_Start
 				.Include("~/scripts/app/services/shared/UserInfoService.js")
 				.Include("~/scripts/app/services/shared/InitializeService.js")
 				.Include("~/scripts/app/services/shared/CurrencyService.js")
-				.Include("~/scripts/app/services/shared/SignalrService.js")
 				.Include("~/scripts/app/services/shared/AlertService.js")
+
+				// одтавать по условию 
+				.Include("~/scripts/app/services/shared/SignalrService.js")
+				.Include("~/scripts/app/services/shared/NetMqService.js")
 
 				.Include("~/scripts/app/filters/shared/exchangeFilter.js")
 				.Include("~/scripts/app/directives/shared/infiniteScroll.js")
@@ -42,6 +45,9 @@ namespace OnlinerTracker.Web.App_Start
 
 			bundles.Add(new ScriptBundle("~/bundles/jquery")
 				.Include("~/scripts/jquery-1.9.1.js"));
+
+			bundles.Add(new ScriptBundle("~/bundles/JSMQ")
+				.Include("~/scripts/JSMQ.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/signalr")
 				.Include("~/scripts/jquery.signalR-2.2.0.js"));

@@ -1,3 +1,4 @@
+using NetMQ;
 using OAuth2;
 using OnlinerTracker.BusinessLogic.Implementations.Common;
 using OnlinerTracker.BusinessLogic.Implementations.ModelWrappers;
@@ -72,6 +73,7 @@ namespace OnlinerTracker.Web.App_Start
 		/// <param name="kernel">The kernel.</param>
 		private static void RegisterServices(IKernel kernel)
 		{
+			kernel.Bind<IConfig>().To<Config>();
 			kernel.Bind<AuthorizationRoot>().ToSelf();
 			kernel.Bind<Context>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
 
@@ -91,7 +93,15 @@ namespace OnlinerTracker.Web.App_Start
 			kernel.Bind<IProductTrackingService>().To<ProductTrackingService>();
 			kernel.Bind<IProductService>().To<ProductService>();
 
-			kernel.Bind<INotificator>().To<SignalrNotificator>();
+			kernel.Bind<NetMQContext>().ToConstant(NetMQContext.Create());
+
+			// TODO: придумать как его правильно разместить, мб в каком нибудь сервисе и тд
+			kernel.Bind<Infrastructure.NetMq.Context>().ToSelf().InSingletonScope();
+
+			// todo: завязать на IWebConfig
+			var isNetMq = true;
+			kernel.Bind<INotificator>().To<SignalrNotificator>().When(x => !isNetMq);
+			kernel.Bind<INotificator>().To<NetMqNotificator>().When(x => isNetMq);
 		}
 	}
 }

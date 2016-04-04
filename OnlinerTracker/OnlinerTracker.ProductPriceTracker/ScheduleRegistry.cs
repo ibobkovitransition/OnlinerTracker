@@ -1,4 +1,5 @@
 ﻿using FluentScheduler;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
 using OnlinerTracker.BusinessLogic.Interfaces.Notification;
 using OnlinerTracker.BusinessLogic.Interfaces.Tracking;
 
@@ -6,10 +7,10 @@ namespace OnlinerTracker.ProductPriceTracker
 {
 	public class ScheduleRegistry : Registry
 	{
-		public ScheduleRegistry()
+		public ScheduleRegistry(IConfig config)
 		{
-			Schedule<IPriceScheduleService>().ToRunNow().AndEvery(3).Minutes();
-			Schedule<INotifyScheduleService>().ToRunNow().AndEvery(10).Minutes();
+			Schedule<IPriceScheduleService>().ToRunNow().AndEvery(config.PriceTrackingIntervalInMinutes).Minutes();
+			Schedule<INotifyScheduleService>().ToRunEvery(config.EmailDeliveryIntervalInMinutes).Minutes();
 		}
 	}
 }

@@ -109,6 +109,14 @@
       <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NetMQ, Version=3.3.0.11, Culture=neutral, PublicKeyToken=a6decef4ddc58b3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetMQ.3.3.0.11\lib\net40\NetMQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NetMQ.WebSockets, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetMQ.WebSockets.0.5.0.0-beta\lib\net40\NetMQ.WebSockets.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -269,6 +277,7 @@
     <Content Include="scripts\app\services\shared\AlertService.js" />
     <Content Include="scripts\app\services\shared\InitializeService.js" />
     <Content Include="scripts\app\services\shared\CurrencyService.js" />
+    <Content Include="scripts\app\services\shared\NetMqService.js" />
     <Content Include="scripts\app\services\shared\ProductTrackingService.js" />
     <Content Include="scripts\app\services\home\ProductUploadService.js" />
     <Content Include="scripts\app\services\shared\SignalrService.js" />
@@ -287,6 +296,7 @@
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="scripts\jquery.signalR-2.2.0.js" />
     <Content Include="scripts\jquery.signalR-2.2.0.min.js" />
+    <Content Include="scripts\JSMQ.js" />
     <Content Include="scripts\modernizr-2.8.3.js" />
     <Content Include="scripts\ngStorage.js" />
     <Content Include="scripts\ngStorage.min.js" />
@@ -314,9 +324,11 @@
     </Compile>
     <Compile Include="Implementations\CookieService.cs" />
     <Compile Include="Filters\PrincipalUser.cs" />
+    <Compile Include="Implementations\NetMqNotificator.cs" />
     <Compile Include="Implementations\SignalrNotificator.cs" />
-    <Compile Include="Infrastructure\OwinStartup.cs" />
-    <Compile Include="Infrastructure\SignalrContext.cs" />
+    <Compile Include="Infrastructure\NetMq\Context.cs" />
+    <Compile Include="Infrastructure\SignalR\OwinStartup.cs" />
+    <Compile Include="Infrastructure\SignalR\Context.cs" />
     <Compile Include="Interaces\ICookieService.cs" />
     <Compile Include="Interaces\INotificator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
