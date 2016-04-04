@@ -7,10 +7,10 @@ namespace OnlinerTracker.ProductPriceTracker
 {
 	public class ScheduleRegistry : Registry
 	{
-		public ScheduleRegistry(IConfig config)
+		public ScheduleRegistry(IDeliveryConfig config)
 		{
-			Schedule<IPriceScheduleService>().ToRunNow().AndEvery(config.PriceTrackingIntervalInMinutes).Minutes();
-			Schedule<INotifyScheduleService>().ToRunEvery(config.EmailDeliveryIntervalInMinutes).Minutes();
+			Schedule<IPriceScheduleService>().ToRunNow().AndEvery(config.PriceTrackingInterval).Minutes();
+			Schedule<INotifyScheduleService>().ToRunEvery(config.DeliveryInterval).Minutes();
 		}
 	}
 }

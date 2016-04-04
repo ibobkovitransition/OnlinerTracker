@@ -7,22 +7,22 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 {
 	public class GmailNotifyService : IEmailNotifyService
 	{
-		private readonly IConfig config;
+		private readonly IDeliveryConfig config;
 
-		public GmailNotifyService(IConfig config)
+		public GmailNotifyService(IDeliveryConfig config)
 		{
 			this.config = config;
 		}
 
 		public void Send(string message, string email)
 		{
-			var from = new MailAddress(config.Email, config.EmailHeader);
-			var to = new MailAddress(email, config.EmailSubject);
-			var smtp = ConfigSmtp(@from, config.EmailPassword);
+			var from = new MailAddress(config.Email, config.Header);
+			var to = new MailAddress(email, config.Subject);
+			var smtp = ConfigSmtp(@from, config.Password);
 
 			using (var mailmessage = new MailMessage(from, to)
 			{
-				Subject = config.EmailSubject,
+				Subject = config.Subject,
 				Body = message
 			})
 			{
@@ -36,7 +36,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 			{
 				Host = config.SmptHost,
 				Port = config.SmtpPort,
-				EnableSsl = config.SmtpEnableSsl,
+				EnableSsl = config.SmtpSsl,
 				DeliveryMethod = SmtpDeliveryMethod.Network,
 				UseDefaultCredentials = false,
 				Credentials = new NetworkCredential(@from.Address, fromPassword)

@@ -32,7 +32,7 @@ namespace OnlinerTracker.Web.Filters.Api
 				return Task.FromResult(0);
 			}
 
-			var cookies = context.Request.Headers.GetCookies(Config.UserCookieName);
+			var cookies = context.Request.Headers.GetCookies(Config.UserCookie);
 
 			if (!IsCookiesExists(cookies))
 			{
@@ -40,8 +40,8 @@ namespace OnlinerTracker.Web.Filters.Api
 				return Task.FromResult(0);
 			}
 
-			var userCookie = cookies[0].Cookies.FirstOrDefault(x => x.Name == Config.UserCookieName);
-			var connectionIdCookie = cookies[0].Cookies.FirstOrDefault(x => x.Name == Config.UserConnectionCookieName);
+			var userCookie = cookies[0].Cookies.FirstOrDefault(x => x.Name == Config.UserCookie);
+			var connectionIdCookie = cookies[0].Cookies.FirstOrDefault(x => x.Name == Config.UserConnectionCookie);
 			var user = UserService.GetBySocialId(HashService.Decrypt(userCookie?.Value));
 
 			if (user == null)
