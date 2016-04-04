@@ -73,8 +73,9 @@ namespace OnlinerTracker.Web.App_Start
 		/// <param name="kernel">The kernel.</param>
 		private static void RegisterServices(IKernel kernel)
 		{
+			kernel.Bind<IConfig>().To<Config>();
 			kernel.Bind<AuthorizationRoot>().ToSelf();
-			kernel.Bind<DataAccess.Implementations.Ef.Context>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
+			kernel.Bind<Context>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
 
 			kernel.Bind<ISocialNetworkAuthService>().To<SocialNetworkAuthService>();
 			kernel.Bind<ICookieService>().To<CookieService>();

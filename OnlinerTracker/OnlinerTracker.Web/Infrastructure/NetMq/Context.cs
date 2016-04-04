@@ -3,22 +3,22 @@ using System.Threading.Tasks;
 using NetMQ;
 using NetMQ.WebSockets;
 using Ninject;
+using OnlinerTracker.BusinessLogic.Interfaces.Common;
 
 namespace OnlinerTracker.Web.Infrastructure.NetMq
 {
 	public class Context : IStartable
 	{
+		private readonly IConfig config;
 		private readonly NetMQContext context;
 		private Poller poller;
 		private WSRouter router;
 		private WSPublisher publisher;
 
-		private string routerConnectionString = "ws://localhost:991";
-		private string publisherConnectionString = "ws://localhost:992";
-
-		public Context(NetMQContext context)
+		public Context(NetMQContext context, IConfig config)
 		{
 			this.context = context;
+			this.config = config;
 		}
 
 		public void Start()
@@ -29,8 +29,8 @@ namespace OnlinerTracker.Web.Infrastructure.NetMq
 				using (publisher = context.CreateWSPublisher())
 				{
 					poller = new Poller();
-					router.Bind(routerConnectionString);
-					publisher.Bind(publisherConnectionString);
+					router.Bind(config.NetMqRouterConnectionString);
+					publisher.Bind(config.NetMqPublisherConnectionString);
 
 					router.ReceiveReady += GiveConnectionId;
 

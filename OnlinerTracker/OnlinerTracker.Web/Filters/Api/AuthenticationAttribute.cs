@@ -16,8 +16,8 @@ namespace OnlinerTracker.Web.Filters.Api
 	{
 		public bool AllowMultiple => false;
 
-		private readonly string userCookieName = "onliner_tracker";
-		private readonly string connectionCookieName = "connection_id";
+		[Inject]
+		public IConfig Config { get; set; }
 
 		[Inject]
 		public IHashService HashService { get; set; }
@@ -32,7 +32,7 @@ namespace OnlinerTracker.Web.Filters.Api
 				return Task.FromResult(0);
 			}
 
-			var cookies = context.Request.Headers.GetCookies(userCookieName);
+			var cookies = context.Request.Headers.GetCookies(Config.UserCookieName);
 
 			if (!IsCookiesExists(cookies))
 			{
@@ -40,8 +40,8 @@ namespace OnlinerTracker.Web.Filters.Api
 				return Task.FromResult(0);
 			}
 
-			var userCookie = cookies[0].Cookies.FirstOrDefault(x => x.Name == userCookieName);
-			var connectionIdCookie = cookies[0].Cookies.FirstOrDefault(x => x.Name == connectionCookieName);
+			var userCookie = cookies[0].Cookies.FirstOrDefault(x => x.Name == Config.UserCookieName);
+			var connectionIdCookie = cookies[0].Cookies.FirstOrDefault(x => x.Name == Config.UserConnectionCookieName);
 			var user = UserService.GetBySocialId(HashService.Decrypt(userCookie?.Value));
 
 			if (user == null)

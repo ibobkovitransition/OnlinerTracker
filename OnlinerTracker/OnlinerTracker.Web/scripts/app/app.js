@@ -52,8 +52,8 @@ main.constant("SIGNALR", {
 });
 
 main.constant("NETMQ", {
-	DEALER: "ws://localhost:991",
-	PUBLISHER: "ws://localhost:992"
+	DEALER: "ws://localhost:91",
+	PUBLISHER: "ws://localhost:92"
 });
 
 main.config(function ($routeProvider, ROUTES, VIEW_URLS) {

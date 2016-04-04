@@ -19,6 +19,7 @@ namespace OnlinerTracker.ProductPriceTracker
 	{
 		private static void RegisterBindings(IKernel kernel)
 		{
+			kernel.Bind<IConfig>().To<Config>();
 			kernel.Bind<Context>().ToSelf().WithConstructorArgument("connectionName", "EntityFrameworkDbContext");
 
 			kernel.Bind<IRepository<User>>().To<Repository<User>>();
@@ -51,7 +52,7 @@ namespace OnlinerTracker.ProductPriceTracker
 			RegisterBindings(kernel);
 
 			JobManager.JobFactory = new JobFactory(kernel);
-			JobManager.Initialize(new ScheduleRegistry());
+			JobManager.Initialize(new ScheduleRegistry(kernel.Get<IConfig>()));
 
 			Console.WriteLine("Press any key to close");
 			Console.ReadKey();
