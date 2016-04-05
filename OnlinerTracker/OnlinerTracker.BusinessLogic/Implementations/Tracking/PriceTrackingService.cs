@@ -14,11 +14,16 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 	{
 		private readonly IProductService productService;
 		private readonly IProductSearchService productSearchService;
+		private readonly IDeliveryConfig config;
 
-		public PriceTrackingService(IProductService productService, IProductSearchService productSearchService)
+		public PriceTrackingService(
+			IProductService productService, 
+			IProductSearchService productSearchService,
+			IDeliveryConfig config)
 		{
 			this.productService = productService;
 			this.productSearchService = productSearchService;
+			this.config = config;
 		}
 
 		public IEnumerable<PriceHistory> FindChangedPrices()
@@ -39,6 +44,9 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Tracking
 				{
 					result.Add(entry);
 				}
+
+				// избегаем ошибку 503
+				Thread.Sleep(config.RequestDelay);
 			}
 
 			return result;

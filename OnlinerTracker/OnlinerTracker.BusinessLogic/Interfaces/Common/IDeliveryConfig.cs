@@ -25,5 +25,10 @@
 		/// interval in minutes
 		/// </summary>
 		int PriceTrackingInterval { get; }
+
+		/// <summary>
+		/// delay in miliseconds. Need to avoid 503 error with onliner search service
+		/// </summary>
+		int RequestDelay { get; }
 	}
 }
