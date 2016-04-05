@@ -83,7 +83,7 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Notification
 
 		private int GetDifference(TimeSpan target)
 		{
-			return (int)DateTime.Now.TimeOfDay.Subtract(target).TotalMinutes;
+			return (int)DateTime.Now.TimeOfDay.Subtract(target).TotalMinutes; ;
 		}
 	}
 }
