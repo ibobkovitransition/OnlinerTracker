@@ -11,13 +11,18 @@ namespace OnlinerTracker.Web.Controllers.Mvc
 		private readonly IUserService userService;
 		private readonly IHashService hashService;
 		private readonly ICookieService cookieService;
-		private readonly string cookieName = "onliner_tracker";
+		private readonly IConfig config;
 
-		public AccountController(IUserService userService, IHashService hashService, ICookieService cookieService)
+		public AccountController(
+			IUserService userService, 
+			IHashService hashService, 
+			ICookieService cookieService, 
+			IConfig config)
 		{
 			this.userService = userService;
 			this.hashService = hashService;
 			this.cookieService = cookieService;
+			this.config = config;
 		}
 
 		[Route("auth/{socialNetwork}")]
@@ -36,7 +41,7 @@ namespace OnlinerTracker.Web.Controllers.Mvc
 			}
 
 			var encryptedId = hashService.Encrypt(userId);
-			cookieService.PutCookie(ControllerContext.HttpContext.Response, cookieName, encryptedId, 10);
+			cookieService.PutCookie(ControllerContext.HttpContext.Response, config.UserCookie, encryptedId, 10);
 
 			return Redirect("/#/Home");
 		}

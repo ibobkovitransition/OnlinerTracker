@@ -3,7 +3,9 @@ function Endpoint(address) {
     var ClosedState = 0;
     var ConnectingState = 1;
     var ActiveState = 2;
-    
+    var attempts = 0;
+	var attemptsLimit = 3;
+
     var reconnectTries = 0;
     
     console.log("connecting to " + address);
@@ -34,11 +36,13 @@ function Endpoint(address) {
         webSocket.onmessage = onmessage;
 
         reconnectTries++;
+	    attempts++;
     }
     
     function onopen (e) {
         console.log("WebSocket opened to " + address);
         reconnectTries = 0;
+	    attempts = 0;
 
         state = ActiveState;
 
@@ -59,7 +63,11 @@ function Endpoint(address) {
         if (reconnectTries > 10) {
             window.setTimeout(open, 2000);
         } else {
-            open();
+            if (attempts < attemptsLimit) {
+                open();
+            } else {
+                console.log("Stopped");
+            }
         }
     };
 

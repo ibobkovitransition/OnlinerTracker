@@ -1,7 +1,3 @@
-using Microsoft.Ajax.Utilities;
-using Microsoft.AspNet.SignalR;
-using Microsoft.AspNet.SignalR.Infrastructure;
-using Microsoft.AspNet.SignalR.Messaging;
 using NetMQ;
 using OAuth2;
 using OnlinerTracker.BusinessLogic.Implementations.Common;
