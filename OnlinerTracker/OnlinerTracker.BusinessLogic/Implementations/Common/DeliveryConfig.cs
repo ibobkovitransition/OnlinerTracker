@@ -22,5 +22,6 @@ namespace OnlinerTracker.BusinessLogic.Implementations.Common
 		public int DeliveryInterval => int.Parse(ConfigurationManager.AppSettings["DeliveryInterval"]);
 
 		public int PriceTrackingInterval => int.Parse(ConfigurationManager.AppSettings["PriceTrackingInterval"]);
+		public int RequestDelay => int.Parse(ConfigurationManager.AppSettings["RequestDelay"]);
 	}
 }

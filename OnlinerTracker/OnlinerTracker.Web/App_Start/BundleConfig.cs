@@ -24,7 +24,6 @@ namespace OnlinerTracker.Web.App_Start
 				.Include("~/scripts/app/controllers/home/SearchController.js")
 				.Include("~/scripts/app/controllers/admin/ManageController.js")
 				.Include("~/scripts/app/controllers/admin/SettingsController.js")
-
 				.Include("~/scripts/app/repositories.js")
 				.Include("~/scripts/app/services/account/AuthService.js")
 				.Include("~/scripts/app/services/home/ProductSearchService.js")
@@ -34,11 +33,8 @@ namespace OnlinerTracker.Web.App_Start
 				.Include("~/scripts/app/services/shared/InitializeService.js")
 				.Include("~/scripts/app/services/shared/CurrencyService.js")
 				.Include("~/scripts/app/services/shared/AlertService.js")
-
-				// одтавать по условию 
 				.Include("~/scripts/app/services/shared/SignalrService.js")
 				.Include("~/scripts/app/services/shared/NetMqService.js")
-
 				.Include("~/scripts/app/filters/shared/exchangeFilter.js")
 				.Include("~/scripts/app/directives/shared/infiniteScroll.js")
 				.Include("~/scripts/app/directives/shared/anchor.js"));
